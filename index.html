@@ -1,16 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>配重克數計算</title>
+    <title>釣蝦配重克數計算</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
     <script>
-        function getTenPingGnum(point, typ = "cycle", ftw = "0.08", ew = "0.1") {
-            let gow;
-            if (typ === "cycle") {
-                gow = 0.16;
-            } else if (typ === "wen") {
-                gow = 0.11;
-            }
+        function getTenPingGnum(point, gow, ftw, ew) {
             const pw = point * 0.375;
             let lw = pw - gow - ftw - ew;
             lw = Number(lw.toFixed(3));
@@ -18,20 +14,29 @@
         }
 
         function calculateWeight() {
-            const score = document.getElementById("score").value;
-            const hookType = document.getElementById("hookType").value;
-            const weightType = document.getElementById("weightType").value;
-            const baitWeight = document.getElementById("baitWeight").value || "0.1";
+            const score = parseFloat(document.getElementById("score").value);
+            const ftw = parseFloat(document.getElementById("weightType").value);
+            const ew = parseFloat(document.getElementById("baitWeight").value) || 0.1;
+            let gow;
 
-            const result = getTenPingGnum(parseFloat(score), hookType, weightType, baitWeight);
-            document.getElementById("result").innerText = "計算出的配重克數: " + result + " 克";
-            return false; // 防止表單提交
+            if (document.getElementById("hookTypeRough").checked) {
+                gow = parseFloat(document.querySelector('input[name="hookTypeRoughOptions"]:checked').value);
+            } else {
+                gow = parseFloat(document.getElementById("gowInput1").value) * 2 + parseFloat(document.getElementById("gowInput2").value) * 2;
+            }
+
+            const result = getTenPingGnum(score, gow, ftw, ew);
+            document.getElementById("result").innerText = "計算出的配重克數: " + result + " 克\n注意: 此數值僅供參考，實際配重時需留有殘餘浮力。";
+            return false;
         }
     </script>
     <style>
         body {
             background-color: #000;
             color: #fff;
+        }
+        .form-section {
+            margin-bottom: 15px;
         }
     </style>
 </head>
@@ -44,12 +49,34 @@
                 <input type="text" class="form-control" id="score" name="score" required>
             </div>
 
-            <div class="form-group">
-                <label for="hookType">勾子類別:</label>
-                <select class="form-control" id="hookType" name="hookType">
-                    <option value="cycle">精靈環(0.16g)</option>
-                    <option value="wen">文式勾(0.11g)</option>
-                </select>
+            <div class="form-group form-section">
+                <label>勾子類別:</label><br>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="hookType" id="hookTypeRough" value="rough" checked>
+                    <label class="form-check-label" for="hookTypeRough">粗略</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="hookType" id="hookTypeDetailed" value="detailed">
+                    <label class="form-check-label" for="hookTypeDetailed">精細</label>
+                </div>
+            </div>
+
+            <div id="hookTypeRoughOptions" class="form-section" style="margin-left:50px;">
+                <input class="form-check-input" type="radio" name="hookTypeRoughOptions" value="0.16" checked> 精靈環(L號、9號勾 0.16g)<br>
+                <input class="form-check-input" type="radio" name="hookTypeRoughOptions" value="0.11"> 文式勾(9號 0.11g)
+            </div>
+            
+            <div id="hookTypeDetailedOptions" class="form-section" style="display: none;">
+                <div class="form-row">
+                    <div class="col-6">
+                        <label for="gowInput1">精靈環的重量(g/per):</label>
+                        <input type="text" class="form-control" value="0.025" id="gowInput1" name="gowInput1">
+                    </div>
+                    <div class="col-6">
+                        <label for="gowInput2">鉤子的重量(g/per):</label>
+                        <input type="text" class="form-control" value="0.055" id="gowInput2" name="gowInput2">
+                    </div>
+                </div>
             </div>
 
             <div class="form-group">
@@ -67,6 +94,18 @@
 
         <p id="result" class="mt-3"></p>
     </div>
+
+    <script>
+        document.getElementById("hookTypeRough").addEventListener('change', function() {
+            document.getElementById("hookTypeRoughOptions").style.display = "block";
+            document.getElementById("hookTypeDetailedOptions").style.display = "none";
+        });
+
+        document.getElementById("hookTypeDetailed").addEventListener('change', function() {
+            document.getElementById("hookTypeRoughOptions").style.display = "none";
+            document.getElementById("hookTypeDetailedOptions").style.display = "block";
+        });
+    </script>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
