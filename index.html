@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>配重克數計算</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <script>
+        function getTenPingGnum(point, typ = "cycle", ftw = "0.08", ew = "0.1") {
+            let gow;
+            if (typ === "cycle") {
+                gow = 0.16;
+            } else if (typ === "wen") {
+                gow = 0.11;
+            }
+            const pw = point * 0.375;
+            let lw = pw - gow - ftw - ew;
+            lw = Number(lw.toFixed(3));
+            return lw;
+        }
+
+        function calculateWeight() {
+            const score = document.getElementById("score").value;
+            const hookType = document.getElementById("hookType").value;
+            const weightType = document.getElementById("weightType").value;
+            const baitWeight = document.getElementById("baitWeight").value || "0.1";
+
+            const result = getTenPingGnum(parseFloat(score), hookType, weightType, baitWeight);
+            document.getElementById("result").innerText = "計算出的配重克數: " + result + " 克";
+            return false; // 防止表單提交
+        }
+    </script>
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="text-center">釣蝦配重克數計算</h2>
+        <form onsubmit="return calculateWeight()" class="mt-4">
+            <div class="form-group">
+                <label for="score">分數:</label>
+                <input type="text" class="form-control" id="score" name="score" required>
+            </div>
+
+            <div class="form-group">
+                <label for="hookType">勾子類別:</label>
+                <select class="form-control" id="hookType" name="hookType">
+                    <option value="cycle">精靈環</option>
+                    <option value="wen">文式勾</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="weightType">快別重量:</label>
+                <input type="text" class="form-control" value="0.08" id="weightType" name="weightType" required>
+            </div>
+
+            <div class="form-group">
+                <label for="baitWeight">餌料重量:</label>
+                <input type="text" class="form-control" id="baitWeight" name="baitWeight" placeholder="0.1">
+            </div>
+
+            <button type="submit" class="btn btn-primary">計算</button>
+        </form>
+
+        <p id="result" class="mt-3"></p>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>
