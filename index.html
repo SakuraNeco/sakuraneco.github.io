@@ -40,25 +40,25 @@
         <h2 class="text-center">釣蝦配重克數計算</h2>
         <form onsubmit="return calculateWeight()" class="mt-4">
             <div class="form-group">
-                <label for="score">分數:</label>
+                <label for="score">阿波/浮標分數:</label>
                 <input type="text" class="form-control" id="score" name="score" required>
             </div>
 
             <div class="form-group">
                 <label for="hookType">勾子類別:</label>
                 <select class="form-control" id="hookType" name="hookType">
-                    <option value="cycle">精靈環</option>
-                    <option value="wen">文式勾</option>
+                    <option value="cycle">精靈環(0.16g)</option>
+                    <option value="wen">文式勾(0.11g)</option>
                 </select>
             </div>
 
             <div class="form-group">
-                <label for="weightType">快別重量:</label>
+                <label for="weightType">快別重量(g):</label>
                 <input type="text" class="form-control" value="0.08" id="weightType" name="weightType" required>
             </div>
 
             <div class="form-group">
-                <label for="baitWeight">餌料重量:</label>
+                <label for="baitWeight">餌料重量(g):</label>
                 <input type="text" class="form-control" id="baitWeight" name="baitWeight" placeholder="0.1">
             </div>
 
