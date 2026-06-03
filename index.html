@@ -1,15 +1,1272 @@
 <!doctype html>
-<html lang="zh-Hant">
-	<head>
-		<meta charset="UTF-8"/>
-		<link rel="icon" href="/sltung-logo-mark.svg"/>
-		<script src="https://service.sltung.com.tw/api/js/md5.min.js"></script>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-		<title>台彩醒悟器</title>
-		<script type="module" crossorigin src="/assets/index.8ed84a0b.js"></script>
-		<link rel="stylesheet" href="/assets/index.8b1fd2dd.css"/>
-	</head>
-	<body>
-		<div id="app" class="tung"></div>
-	</body>
+<html lang="zh-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ian Cheng · 資深全端工程師 & AI 工程師</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Noto+Sans+TC:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+
+    <style>
+      /* ── Reset & Base ───────────────────────────────── */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --bg: #070b14;
+        --bg2: #0d1424;
+        --bg3: #111827;
+        --blue: #4f9cf9;
+        --blue-dim: #2563eb;
+        --cyan: #22d3ee;
+        --purple: #a78bfa;
+        --text: #e2e8f0;
+        --muted: #8892a4;
+        --border: rgba(79, 156, 249, 0.18);
+        --glow: rgba(79, 156, 249, 0.25);
+        --card: rgba(13, 20, 36, 0.85);
+        --radius: 14px;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: "Noto Sans TC", "Space Grotesk", sans-serif;
+        font-size: 15px;
+        line-height: 1.7;
+        overflow-x: hidden;
+      }
+
+      /* ── Canvas Background ─────────────────────────── */
+      #bg-canvas {
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+        opacity: 0.5;
+      }
+
+      /* ── Layout ────────────────────────────────────── */
+      .wrapper {
+        position: relative;
+        z-index: 1;
+      }
+      section {
+        padding: 90px 0;
+      }
+      .container {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 0 24px;
+      }
+
+      /* ── Nav ───────────────────────────────────────── */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        backdrop-filter: blur(14px);
+        background: rgba(7, 11, 20, 0.8);
+        border-bottom: 1px solid var(--border);
+        padding: 0 24px;
+        height: 58px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .nav-logo {
+        font-family: "Space Grotesk", sans-serif;
+        font-weight: 700;
+        font-size: 18px;
+        color: var(--blue);
+        letter-spacing: 0.05em;
+      }
+      .nav-links {
+        display: flex;
+        gap: 28px;
+        list-style: none;
+      }
+      .nav-links a {
+        color: var(--muted);
+        text-decoration: none;
+        font-size: 13px;
+        font-weight: 500;
+        letter-spacing: 0.04em;
+        transition: color 0.2s;
+      }
+      .nav-links a:hover {
+        color: var(--blue);
+      }
+
+      /* ── Section Title ──────────────────────────────── */
+      .sec-title {
+        font-family: "Space Grotesk", sans-serif;
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--blue);
+        margin-bottom: 10px;
+      }
+      .sec-heading {
+        font-size: 30px;
+        font-weight: 700;
+        color: var(--text);
+        margin-bottom: 48px;
+        line-height: 1.3;
+      }
+      .sec-heading span {
+        background: linear-gradient(90deg, var(--blue), var(--cyan));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      /* ── Hero ───────────────────────────────────────── */
+      #hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        padding-top: 58px;
+      }
+      .hero-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: rgba(79, 156, 249, 0.1);
+        border: 1px solid var(--border);
+        border-radius: 100px;
+        padding: 5px 14px;
+        font-size: 12px;
+        color: var(--cyan);
+        margin-bottom: 22px;
+        letter-spacing: 0.04em;
+      }
+      .hero-badge::before {
+        content: "";
+        width: 7px;
+        height: 7px;
+        background: var(--cyan);
+        border-radius: 50%;
+        animation: pulse 2s infinite;
+      }
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 1;
+          transform: scale(1);
+        }
+        50% {
+          opacity: 0.4;
+          transform: scale(0.8);
+        }
+      }
+      .hero-name {
+        font-family: "Space Grotesk", sans-serif;
+        font-size: clamp(44px, 7vw, 76px);
+        font-weight: 700;
+        line-height: 1.05;
+        margin-bottom: 16px;
+        letter-spacing: -0.02em;
+      }
+      .hero-name .highlight {
+        background: linear-gradient(
+          135deg,
+          var(--blue) 0%,
+          var(--cyan) 50%,
+          var(--purple) 100%
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .hero-sub {
+        font-size: 18px;
+        color: var(--muted);
+        margin-bottom: 36px;
+        max-width: 520px;
+      }
+      .hero-sub strong {
+        color: var(--text);
+        font-weight: 500;
+      }
+      .hero-cta {
+        display: flex;
+        gap: 14px;
+        flex-wrap: wrap;
+        margin-bottom: 52px;
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 11px 24px;
+        border-radius: 100px;
+        font-size: 14px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.2s;
+        cursor: pointer;
+        border: none;
+      }
+      .btn-primary {
+        background: linear-gradient(135deg, var(--blue-dim), var(--blue));
+        color: #fff;
+        box-shadow: 0 0 24px rgba(79, 156, 249, 0.35);
+      }
+      .btn-primary:hover {
+        box-shadow: 0 0 36px rgba(79, 156, 249, 0.55);
+        transform: translateY(-1px);
+      }
+      .btn-ghost {
+        background: transparent;
+        color: var(--text);
+        border: 1px solid var(--border);
+      }
+      .btn-ghost:hover {
+        background: rgba(79, 156, 249, 0.08);
+        border-color: var(--blue);
+        color: var(--blue);
+      }
+      .hero-stats {
+        display: flex;
+        gap: 36px;
+        flex-wrap: wrap;
+      }
+      .stat-item {
+        display: flex;
+        flex-direction: column;
+      }
+      .stat-num {
+        font-family: "Space Grotesk", sans-serif;
+        font-size: 30px;
+        font-weight: 700;
+        color: var(--text);
+        line-height: 1;
+      }
+      .stat-num span {
+        background: linear-gradient(90deg, var(--blue), var(--cyan));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .stat-label {
+        font-size: 12px;
+        color: var(--muted);
+        margin-top: 4px;
+      }
+
+      /* ── About ──────────────────────────────────────── */
+      #about {
+        background: rgba(13, 20, 36, 0.4);
+      }
+      .about-card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 36px 40px;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 0 60px rgba(79, 156, 249, 0.06);
+      }
+      .about-card p {
+        color: var(--muted);
+        font-size: 15.5px;
+        line-height: 1.85;
+        max-width: 760px;
+      }
+      .about-card p strong {
+        color: var(--text);
+        font-weight: 500;
+      }
+
+      /* ── Skills ─────────────────────────────────────── */
+      .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 18px;
+      }
+      .skill-card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 24px 26px;
+        transition:
+          border-color 0.2s,
+          box-shadow 0.2s;
+      }
+      .skill-card:hover {
+        border-color: rgba(79, 156, 249, 0.4);
+        box-shadow: 0 0 30px var(--glow);
+      }
+      .skill-card-icon {
+        width: 38px;
+        height: 38px;
+        background: rgba(79, 156, 249, 0.1);
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 14px;
+        font-size: 16px;
+        color: var(--blue);
+      }
+      .skill-card-title {
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--muted);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        margin-bottom: 12px;
+      }
+      .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 7px;
+      }
+      .tag {
+        background: rgba(79, 156, 249, 0.08);
+        border: 1px solid rgba(79, 156, 249, 0.2);
+        border-radius: 6px;
+        padding: 3px 10px;
+        font-size: 12px;
+        color: var(--text);
+        font-family: "Space Grotesk", monospace;
+      }
+      .tag.hot {
+        background: rgba(167, 139, 250, 0.1);
+        border-color: rgba(167, 139, 250, 0.3);
+        color: var(--purple);
+      }
+
+      /* ── Experience ─────────────────────────────────── */
+      #experience {
+        background: rgba(13, 20, 36, 0.4);
+      }
+      .timeline {
+        position: relative;
+        padding-left: 28px;
+      }
+      .timeline::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 6px;
+        bottom: 0;
+        width: 2px;
+        background: linear-gradient(to bottom, var(--blue), transparent);
+      }
+      .timeline-item {
+        position: relative;
+        margin-bottom: 48px;
+      }
+      .timeline-dot {
+        position: absolute;
+        left: -33px;
+        top: 5px;
+        width: 12px;
+        height: 12px;
+        background: var(--blue);
+        border-radius: 50%;
+        box-shadow: 0 0 10px var(--blue);
+      }
+      .timeline-header {
+        display: flex;
+        align-items: baseline;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-bottom: 4px;
+      }
+      .timeline-role {
+        font-size: 17px;
+        font-weight: 600;
+        color: var(--text);
+      }
+      .timeline-company {
+        font-size: 14px;
+        color: var(--blue);
+        font-weight: 500;
+      }
+      .timeline-period {
+        font-size: 12px;
+        color: var(--muted);
+        font-family: "Space Grotesk", sans-serif;
+        margin-bottom: 20px;
+      }
+      .project-block {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-left: 3px solid var(--blue);
+        border-radius: 0 var(--radius) var(--radius) 0;
+        padding: 18px 22px;
+        margin-bottom: 14px;
+        transition:
+          border-color 0.2s,
+          box-shadow 0.2s;
+      }
+      .project-block:hover {
+        border-color: rgba(79, 156, 249, 0.5);
+        box-shadow: 0 0 20px var(--glow);
+      }
+      .project-block-title {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--cyan);
+        margin-bottom: 10px;
+      }
+      .project-block ul {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+      .project-block ul li {
+        font-size: 13.5px;
+        color: var(--muted);
+        padding-left: 16px;
+        position: relative;
+      }
+      .project-block ul li::before {
+        content: "▸";
+        position: absolute;
+        left: 0;
+        color: var(--blue);
+        font-size: 11px;
+        top: 1px;
+      }
+
+      /* ── Projects ───────────────────────────────────── */
+      .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+        gap: 22px;
+      }
+      .project-card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 28px 30px;
+        text-decoration: none;
+        display: block;
+        transition:
+          border-color 0.2s,
+          box-shadow 0.2s,
+          transform 0.2s;
+        position: relative;
+        overflow: hidden;
+      }
+      .project-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, var(--blue), var(--cyan));
+        opacity: 0;
+        transition: opacity 0.2s;
+      }
+      .project-card:hover {
+        border-color: rgba(79, 156, 249, 0.4);
+        box-shadow: 0 8px 40px rgba(79, 156, 249, 0.12);
+        transform: translateY(-3px);
+      }
+      .project-card:hover::before {
+        opacity: 1;
+      }
+      .project-card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 14px;
+      }
+      .project-card-icon {
+        width: 44px;
+        height: 44px;
+        background: rgba(79, 156, 249, 0.1);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+      }
+      .project-card-link {
+        color: var(--muted);
+        font-size: 13px;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+      .project-card-link:hover {
+        color: var(--blue);
+      }
+      .project-card-name {
+        font-size: 18px;
+        font-weight: 700;
+        color: var(--text);
+        margin-bottom: 6px;
+      }
+      .project-card-sub {
+        font-size: 12px;
+        color: var(--blue);
+        font-weight: 500;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        margin-bottom: 14px;
+      }
+      .project-card-desc {
+        font-size: 13.5px;
+        color: var(--muted);
+        line-height: 1.7;
+        margin-bottom: 18px;
+      }
+      .project-features {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        margin-bottom: 18px;
+      }
+      .project-feature {
+        display: flex;
+        align-items: flex-start;
+        gap: 8px;
+        font-size: 13px;
+        color: var(--muted);
+      }
+      .project-feature i {
+        color: var(--blue);
+        font-size: 11px;
+        margin-top: 3px;
+        flex-shrink: 0;
+      }
+
+      /* ── Achievements ───────────────────────────────── */
+      #achievements {
+        background: rgba(13, 20, 36, 0.4);
+      }
+      .achievements-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+        gap: 20px;
+      }
+      .achievement-card {
+        background: var(--card);
+        border: 1px solid rgba(167, 139, 250, 0.2);
+        border-radius: var(--radius);
+        padding: 26px 28px;
+        display: flex;
+        gap: 18px;
+        align-items: flex-start;
+        transition: box-shadow 0.2s;
+      }
+      .achievement-card:hover {
+        box-shadow: 0 0 30px rgba(167, 139, 250, 0.15);
+      }
+      .achievement-icon {
+        width: 44px;
+        height: 44px;
+        background: rgba(167, 139, 250, 0.1);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        flex-shrink: 0;
+        color: var(--purple);
+      }
+      .achievement-title {
+        font-size: 15px;
+        font-weight: 600;
+        color: var(--text);
+        margin-bottom: 6px;
+      }
+      .achievement-desc {
+        font-size: 13px;
+        color: var(--muted);
+        line-height: 1.65;
+      }
+      .achievement-desc strong {
+        color: var(--purple);
+        font-weight: 500;
+      }
+
+      /* ── Education ──────────────────────────────────── */
+      .edu-card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 26px 30px;
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        max-width: 520px;
+      }
+      .edu-icon {
+        width: 52px;
+        height: 52px;
+        background: rgba(79, 156, 249, 0.1);
+        border-radius: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 22px;
+        color: var(--blue);
+        flex-shrink: 0;
+      }
+      .edu-school {
+        font-size: 17px;
+        font-weight: 600;
+        color: var(--text);
+      }
+      .edu-dept {
+        font-size: 13px;
+        color: var(--muted);
+        margin-top: 3px;
+      }
+      .edu-badge {
+        display: inline-block;
+        background: rgba(34, 211, 238, 0.1);
+        border: 1px solid rgba(34, 211, 238, 0.25);
+        border-radius: 5px;
+        padding: 2px 8px;
+        font-size: 11px;
+        color: var(--cyan);
+        margin-top: 6px;
+      }
+
+      /* ── Contact ────────────────────────────────────── */
+      #contact {
+        text-align: center;
+      }
+      .contact-email {
+        font-size: 22px;
+        font-weight: 600;
+        color: var(--blue);
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 28px;
+        transition: color 0.2s;
+      }
+      .contact-email:hover {
+        color: var(--cyan);
+      }
+      .social-links {
+        display: flex;
+        justify-content: center;
+        gap: 14px;
+        flex-wrap: wrap;
+      }
+      .social-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 20px;
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 100px;
+        color: var(--muted);
+        text-decoration: none;
+        font-size: 13px;
+        font-weight: 500;
+        transition: all 0.2s;
+      }
+      .social-link:hover {
+        background: rgba(79, 156, 249, 0.08);
+        border-color: var(--blue);
+        color: var(--blue);
+      }
+
+      /* ── Footer ─────────────────────────────────────── */
+      footer {
+        text-align: center;
+        padding: 28px;
+        border-top: 1px solid var(--border);
+        color: var(--muted);
+        font-size: 12px;
+      }
+
+      /* ── Scroll animation ───────────────────────────── */
+      .fade-in {
+        opacity: 0;
+        transform: translateY(28px);
+        transition:
+          opacity 0.6s ease,
+          transform 0.6s ease;
+      }
+      .fade-in.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* ── Responsive ─────────────────────────────────── */
+      @media (max-width: 640px) {
+        nav {
+          padding: 0 16px;
+        }
+        .nav-links {
+          display: none;
+        }
+        .projects-grid {
+          grid-template-columns: 1fr;
+        }
+        .achievements-grid {
+          grid-template-columns: 1fr;
+        }
+        .hero-stats {
+          gap: 22px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <canvas id="bg-canvas"></canvas>
+
+    <div class="wrapper">
+      <!-- ── Nav ── -->
+      <nav>
+        <div class="nav-logo">IC</div>
+        <ul class="nav-links">
+          <li><a href="#about">關於我</a></li>
+          <li><a href="#skills">技能</a></li>
+          <li><a href="#experience">經歷</a></li>
+          <li><a href="#projects">作品</a></li>
+          <li><a href="#contact">聯繫</a></li>
+        </ul>
+      </nav>
+
+      <!-- ── Hero ── -->
+      <section id="hero">
+        <div class="container">
+          <div class="hero-badge">Available for opportunities</div>
+          <h1 class="hero-name">
+            Hi, I'm<br />
+            <span class="highlight">Ian Cheng</span>
+          </h1>
+          <p class="hero-sub">
+            <strong>資深全端工程師</strong>，10 年開發經驗。<br />
+            擅長 AI 產品落地、微服務架構設計，具備從零到上線的完整交付能力。
+          </p>
+          <div class="hero-cta">
+            <a href="#projects" class="btn btn-primary">
+              <i class="fas fa-rocket"></i> 查看作品
+            </a>
+            <a href="#contact" class="btn btn-ghost">
+              <i class="fas fa-envelope"></i> 聯繫我
+            </a>
+          </div>
+          <div class="hero-stats">
+            <div class="stat-item">
+              <div class="stat-num"><span>10</span>+</div>
+              <div class="stat-label">年開發經驗</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-num"><span>5</span>+</div>
+              <div class="stat-label">大型專案交付</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-num"><span>2</span></div>
+              <div class="stat-label">自建產品上線</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-num"><span>3</span></div>
+              <div class="stat-label">AI 整合實戰</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── About ── -->
+      <section id="about">
+        <div class="container">
+          <div class="fade-in">
+            <p class="sec-title">About</p>
+            <h2 class="sec-heading">關於<span>我</span></h2>
+          </div>
+          <div class="about-card fade-in">
+            <p>
+              10 年全端工程師，具備從系統架構設計到 AI
+              產品落地的端對端能力。曾在<strong>童綜合醫院</strong>主導多項院內大型系統開發，採<strong
+                >微服務架構 + API Gateway + RBAC 集中控管</strong
+              >，支援全院多部門運作。
+            </p>
+            <br />
+            <p>
+              自行開發並上線 <strong>璐娜健康管家</strong>（AI 健康
+              SaaS）與<strong>金連發電器</strong>（家電電商），整合
+              <strong>Gemini + OpenAI 多模態雙引擎</strong>。具備
+              <strong>Stable Diffusion + LoRA 模型微調</strong>及
+              <strong>RAG 系統建置</strong
+              >實戰經驗，熟悉醫療資料處理與合規需求。
+            </p>
+            <br />
+            <p>
+              背景橫跨醫療資訊、電商、AI
+              三個領域，能同時勝任技術深度討論與跨部門架構溝通。目前積極尋求
+              <strong>AI 工程師 / Tech Lead / Solution Architect</strong>
+              相關機會。
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Skills ── -->
+      <section id="skills">
+        <div class="container">
+          <div class="fade-in">
+            <p class="sec-title">Skills</p>
+            <h2 class="sec-heading">核心<span>技能</span></h2>
+          </div>
+          <div class="skills-grid">
+            <div class="skill-card fade-in">
+              <div class="skill-card-icon"><i class="fas fa-code"></i></div>
+              <div class="skill-card-title">程式語言</div>
+              <div class="tags">
+                <span class="tag">Python</span>
+                <span class="tag">Vue.js</span>
+                <span class="tag">PHP</span>
+                <span class="tag">JavaScript</span>
+                <span class="tag">HTML / CSS</span>
+              </div>
+            </div>
+            <div class="skill-card fade-in">
+              <div class="skill-card-icon"><i class="fas fa-database"></i></div>
+              <div class="skill-card-title">資料庫</div>
+              <div class="tags">
+                <span class="tag">MySQL</span>
+                <span class="tag">PostgreSQL</span>
+                <span class="tag">MongoDB</span>
+                <span class="tag">Redis</span>
+              </div>
+            </div>
+            <div class="skill-card fade-in">
+              <div class="skill-card-icon"><i class="fas fa-sitemap"></i></div>
+              <div class="skill-card-title">系統架構</div>
+              <div class="tags">
+                <span class="tag">微服務</span>
+                <span class="tag">API Gateway</span>
+                <span class="tag">RBAC</span>
+                <span class="tag">事件驅動</span>
+                <span class="tag">負載均衡</span>
+                <span class="tag">CDN</span>
+              </div>
+            </div>
+            <div class="skill-card fade-in">
+              <div class="skill-card-icon"><i class="fas fa-robot"></i></div>
+              <div class="skill-card-title">AI / ML</div>
+              <div class="tags">
+                <span class="tag hot">OpenAI API</span>
+                <span class="tag hot">Gemini API</span>
+                <span class="tag hot">RAG</span>
+                <span class="tag hot">LoRA fine-tuning</span>
+                <span class="tag hot">Stable Diffusion</span>
+                <span class="tag hot">向量資料庫</span>
+              </div>
+            </div>
+            <div class="skill-card fade-in">
+              <div class="skill-card-icon"><i class="fas fa-server"></i></div>
+              <div class="skill-card-title">DevOps</div>
+              <div class="tags">
+                <span class="tag">Docker</span>
+                <span class="tag">CI/CD</span>
+                <span class="tag">Linux</span>
+                <span class="tag">Nginx</span>
+              </div>
+            </div>
+            <div class="skill-card fade-in">
+              <div class="skill-card-icon"><i class="fas fa-hospital"></i></div>
+              <div class="skill-card-title">領域知識</div>
+              <div class="tags">
+                <span class="tag">醫療資訊系統</span>
+                <span class="tag">電商平台</span>
+                <span class="tag">醫療資料合規</span>
+                <span class="tag">HL7 / FHIR</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Experience ── -->
+      <section id="experience">
+        <div class="container">
+          <div class="fade-in">
+            <p class="sec-title">Experience</p>
+            <h2 class="sec-heading">工作<span>經歷</span></h2>
+          </div>
+          <div class="timeline fade-in">
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-header">
+                <span class="timeline-role">程式設計師</span>
+                <span class="timeline-company">童綜合醫院</span>
+              </div>
+              <div class="timeline-period">20XX – 至今　｜　任職約 9 年</div>
+
+              <div class="project-block">
+                <div class="project-block-title">
+                  🏥 全院行動祕書（全院通用行動 App）
+                </div>
+                <ul>
+                  <li>
+                    微服務架構設計，各功能模組獨立部署並透過 API Gateway
+                    統一入口管理
+                  </li>
+                  <li>RBAC 集中式權限控管，支援多角色、多部門存取隔離</li>
+                  <li>
+                    Vue.js 前端 + Python / PHP 後端，Redis 快取優化高頻讀取效能
+                  </li>
+                  <li>負責架構設計、開發、部署與維運全流程</li>
+                </ul>
+              </div>
+
+              <div class="project-block">
+                <div class="project-block-title">📋 個案管理系統</div>
+                <ul>
+                  <li>
+                    跨科別病患個案追蹤平台，整合多部門護理流程與個案狀態管理
+                  </li>
+                  <li>符合醫療資料安全規範，實作審計日誌與敏感欄位加密機制</li>
+                </ul>
+              </div>
+
+              <div class="project-block">
+                <div class="project-block-title">📚 學習護照系統</div>
+                <ul>
+                  <li>
+                    全院員工學習歷程平台，支援課程管理、學習進度追蹤與認證產出
+                  </li>
+                  <li>
+                    模組化設計對應醫師、護理師、行政等不同職類的差異化學習路徑
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Projects ── -->
+      <section id="projects">
+        <div class="container">
+          <div class="fade-in">
+            <p class="sec-title">Projects</p>
+            <h2 class="sec-heading">自建<span>作品</span></h2>
+          </div>
+          <div class="projects-grid">
+            <a
+              href="https://luna-ai-life.com"
+              target="_blank"
+              class="project-card fade-in"
+            >
+              <div class="project-card-header">
+                <div class="project-card-icon">🌙</div>
+                <span class="project-card-link">
+                  luna-ai-life.com
+                  <i
+                    class="fas fa-arrow-up-right-from-square"
+                    style="font-size: 11px"
+                  ></i>
+                </span>
+              </div>
+              <div class="project-card-name">璐娜健康管家</div>
+              <div class="project-card-sub">AI SaaS · LINE Bot · 健康管理</div>
+              <div class="project-card-desc">
+                整合 Gemini + OpenAI 雙引擎的 AI
+                健康管理平台，提供拍照熱量辨識、社交陪跑配對與個人化健康報告。
+              </div>
+              <div class="project-features">
+                <div class="project-feature">
+                  <i class="fas fa-check-circle"></i>
+                  多模態 AI 辨識食物熱量（蛋白質、碳水、脂肪、鈉）
+                </div>
+                <div class="project-feature">
+                  <i class="fas fa-check-circle"></i>
+                  AI 配對陪跑夥伴 + 遊戲化打卡獎勵系統
+                </div>
+                <div class="project-feature">
+                  <i class="fas fa-check-circle"></i>
+                  個人化週報 / 月報，含代謝評估與行動建議
+                </div>
+                <div class="project-feature">
+                  <i class="fas fa-check-circle"></i>
+                  Gemini + OpenAI 雙引擎備援架構
+                </div>
+              </div>
+              <div class="tags">
+                <span class="tag hot">OpenAI</span>
+                <span class="tag hot">Gemini</span>
+                <span class="tag">Vue.js</span>
+                <span class="tag">Python</span>
+                <span class="tag">LINE Bot</span>
+              </div>
+            </a>
+
+            <a
+              href="https://jlfshop.com"
+              target="_blank"
+              class="project-card fade-in"
+            >
+              <div class="project-card-header">
+                <div class="project-card-icon">🏪</div>
+                <span class="project-card-link">
+                  jlfshop.com
+                  <i
+                    class="fas fa-arrow-up-right-from-square"
+                    style="font-size: 11px"
+                  ></i>
+                </span>
+              </div>
+              <div class="project-card-name">金連發電器</div>
+              <div class="project-card-sub">電商平台 · 家電 · 全台配送</div>
+              <div class="project-card-desc">
+                完整家電購物商城，涵蓋商品管理、訂單流程、安裝 / 回收 /
+                運送服務整合，為實際營運中的電商系統。
+              </div>
+              <div class="project-features">
+                <div class="project-feature">
+                  <i class="fas fa-check-circle"></i>
+                  完整電商流程：商品、購物車、訂單、金流
+                </div>
+                <div class="project-feature">
+                  <i class="fas fa-check-circle"></i>
+                  物流整合：安裝、回收、運送服務調度
+                </div>
+                <div class="project-feature">
+                  <i class="fas fa-check-circle"></i>
+                  Redis 快取 + CDN + 負載均衡效能優化
+                </div>
+              </div>
+              <div class="tags">
+                <span class="tag">Vue.js</span>
+                <span class="tag">PHP</span>
+                <span class="tag">Redis</span>
+                <span class="tag">CDN</span>
+                <span class="tag">MySQL</span>
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Achievements ── -->
+      <section id="achievements">
+        <div class="container">
+          <div class="fade-in">
+            <p class="sec-title">Highlights</p>
+            <h2 class="sec-heading">特殊<span>技術實績</span></h2>
+          </div>
+          <div class="achievements-grid">
+            <div class="achievement-card fade-in">
+              <div class="achievement-icon">🎨</div>
+              <div>
+                <div class="achievement-title">
+                  Stable Diffusion + LoRA 模型微調
+                </div>
+                <div class="achievement-desc">
+                  獨立完成圖像生成模型訓練，涵蓋<strong>資料標注、訓練參數調整至產出</strong>完整流程，具備
+                  AI 模型層級的實戰能力，不只是 API 呼叫層。
+                </div>
+              </div>
+            </div>
+            <div class="achievement-card fade-in">
+              <div class="achievement-icon">🏥</div>
+              <div>
+                <div class="achievement-title">醫療文件 RAG 系統</div>
+                <div class="achievement-desc">
+                  將
+                  <strong>800+ 頁原文病歷</strong
+                  >向量化，建置可語義查詢的醫療知識庫，實際用於醫療諮詢輔助，具備高精度召回率與答案可追溯性需求的處理經驗。
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Education ── -->
+      <section id="education">
+        <div class="container">
+          <div class="fade-in">
+            <p class="sec-title">Education</p>
+            <h2 class="sec-heading">學<span>歷</span></h2>
+          </div>
+          <div class="edu-card fade-in">
+            <div class="edu-icon"><i class="fas fa-graduation-cap"></i></div>
+            <div>
+              <div class="edu-school">中山醫學大學</div>
+              <div class="edu-dept">醫學資訊學系</div>
+              <div class="edu-badge">學士</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Contact ── -->
+      <section id="contact">
+        <div class="container">
+          <div class="fade-in">
+            <p class="sec-title">Contact</p>
+            <h2 class="sec-heading">聯繫<span>我</span></h2>
+          </div>
+          <div class="fade-in">
+            <a href="mailto:ak02036597@gmail.com" class="contact-email">
+              <i class="fas fa-envelope"></i>
+              ak02036597@gmail.com
+            </a>
+            <div class="social-links">
+              <a
+                href="https://luna-ai-life.com"
+                target="_blank"
+                class="social-link"
+              >
+                <i class="fas fa-globe"></i> 璐娜健康管家
+              </a>
+              <a href="https://jlfshop.com" target="_blank" class="social-link">
+                <i class="fas fa-store"></i> 金連發電器
+              </a>
+              <a href="https://github.com/" target="_blank" class="social-link">
+                <i class="fab fa-github"></i> GitHub
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer>
+        <p>© 2026 Ian Cheng · Built with ❤️</p>
+      </footer>
+    </div>
+
+    <script>
+      // ── Canvas particle background ──────────────────
+      const canvas = document.getElementById("bg-canvas");
+      const ctx = canvas.getContext("2d");
+      let W,
+        H,
+        particles = [];
+
+      function resize() {
+        W = canvas.width = window.innerWidth;
+        H = canvas.height = window.innerHeight;
+      }
+
+      class Particle {
+        constructor() {
+          this.reset();
+        }
+        reset() {
+          this.x = Math.random() * W;
+          this.y = Math.random() * H;
+          this.vx = (Math.random() - 0.5) * 0.3;
+          this.vy = (Math.random() - 0.5) * 0.3;
+          this.r = Math.random() * 1.5 + 0.5;
+          this.a = Math.random() * 0.5 + 0.1;
+        }
+        update() {
+          this.x += this.vx;
+          this.y += this.vy;
+          if (this.x < 0 || this.x > W || this.y < 0 || this.y > H)
+            this.reset();
+        }
+        draw() {
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(79,156,249,${this.a})`;
+          ctx.fill();
+        }
+      }
+
+      function initParticles() {
+        particles = Array.from({ length: 90 }, () => new Particle());
+      }
+
+      function drawLines() {
+        for (let i = 0; i < particles.length; i++) {
+          for (let j = i + 1; j < particles.length; j++) {
+            const dx = particles[i].x - particles[j].x;
+            const dy = particles[i].y - particles[j].y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < 130) {
+              ctx.beginPath();
+              ctx.moveTo(particles[i].x, particles[i].y);
+              ctx.lineTo(particles[j].x, particles[j].y);
+              ctx.strokeStyle = `rgba(79,156,249,${0.12 * (1 - dist / 130)})`;
+              ctx.lineWidth = 0.5;
+              ctx.stroke();
+            }
+          }
+        }
+      }
+
+      function animate() {
+        ctx.clearRect(0, 0, W, H);
+        particles.forEach((p) => {
+          p.update();
+          p.draw();
+        });
+        drawLines();
+        requestAnimationFrame(animate);
+      }
+
+      resize();
+      initParticles();
+      animate();
+      window.addEventListener("resize", () => {
+        resize();
+        initParticles();
+      });
+
+      // ── Scroll fade-in ──────────────────────────────
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add("visible");
+              observer.unobserve(e.target);
+            }
+          });
+        },
+        { threshold: 0.12 },
+      );
+
+      document
+        .querySelectorAll(".fade-in")
+        .forEach((el) => observer.observe(el));
+
+      // ── Nav active highlight ────────────────────────
+      const sections = document.querySelectorAll("section[id]");
+      const navLinks = document.querySelectorAll(".nav-links a");
+      window.addEventListener("scroll", () => {
+        const scrollY = window.scrollY + 80;
+        sections.forEach((sec) => {
+          if (
+            scrollY >= sec.offsetTop &&
+            scrollY < sec.offsetTop + sec.offsetHeight
+          ) {
+            navLinks.forEach((l) => (l.style.color = ""));
+            const link = document.querySelector(
+              `.nav-links a[href="#${sec.id}"]`,
+            );
+            if (link) link.style.color = "#4f9cf9";
+          }
+        });
+      });
+    </script>
+  </body>
 </html>
