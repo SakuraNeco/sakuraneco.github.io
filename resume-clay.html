@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ian Cheng — 資深全端工程師 & AI 工程師</title>
+<meta name="description" content="Ian Cheng｜資深全端工程師 & AI 工程師。10 年開發經驗，擅長 AI 產品落地、微服務架構設計，具備從零到上線的完整交付能力。">
+<meta name="author" content="Ian Cheng">
+<meta name="theme-color" content="#c9b6f5">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Ian Cheng — 資深全端工程師 & AI 工程師">
+<meta property="og:description" content="10 年開發經驗，擅長 AI 產品落地、微服務架構設計，具備從零到上線的完整交付能力。">
+<meta property="og:locale" content="zh_TW">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Ian Cheng — 資深全端工程師 & AI 工程師">
+<meta name="twitter:description" content="10 年開發經驗，擅長 AI 產品落地、微服務架構設計。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23c9b6f5'/%3E%3Cstop offset='1' stop-color='%23ffc8b0'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100' height='100' rx='30' fill='url(%23g)'/%3E%3Ctext x='50' y='68' font-size='52' font-family='sans-serif' font-weight='700' text-anchor='middle' fill='%23fff'%3EIC%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Baloo+2:wght@500;600;700;800&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" referrerpolicy="no-referrer">
+<style>
+:root{
+  --lav:#c9b6f5; --lav-d:#a98ee8; --mint:#bdf0d8; --mint-d:#8fe0bc;
+  --peach:#ffc8b0; --peach-d:#ff9f7e; --cream:#fff7f1;
+  --bg1:#f3ecff; --bg2:#e7fbf2; --bg3:#fff0e8;
+  --clay:#fbf6ff; --clay2:#f6effb;
+  --ink:#5b4a6e; --ink-soft:#8a7aa0; --ink-light:#a99cbb;
+  --white:#ffffff;
+  --r-sm:18px; --r:28px; --r-lg:40px; --r-pill:999px;
+  --sh-out:10px 10px 24px rgba(150,120,190,.30), -8px -8px 22px rgba(255,255,255,.92);
+  --sh-in:inset 4px 4px 10px rgba(150,120,190,.28), inset -5px -5px 10px rgba(255,255,255,.95);
+  --sh-press:inset 6px 6px 14px rgba(150,120,190,.38), inset -4px -4px 10px rgba(255,255,255,.85);
+  --t:cubic-bezier(.34,1.56,.64,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:96px}
+body{
+  font-family:"Quicksand","Noto Sans TC",sans-serif;
+  color:var(--ink);
+  line-height:1.75;
+  background:
+    radial-gradient(1100px 700px at 12% -8%, var(--bg1) 0%, transparent 55%),
+    radial-gradient(1000px 650px at 90% 8%, var(--bg2) 0%, transparent 55%),
+    radial-gradient(1200px 800px at 50% 110%, var(--bg3) 0%, transparent 60%),
+    linear-gradient(160deg,#fbf6ff 0%,#f6fbf8 50%,#fff5ef 100%);
+  background-attachment:fixed;
+  min-height:100vh;
+  overflow-x:hidden;
+}
+h1,h2,h3{font-family:"Baloo 2","Noto Sans TC",cursive;font-weight:700;line-height:1.3}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+
+/* ---------- floating blobs ---------- */
+.blobs{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none}
+.blob{position:absolute;border-radius:50%;filter:blur(8px);opacity:.5;animation:floaty 16s ease-in-out infinite}
+.blob.b1{width:280px;height:280px;background:radial-gradient(circle at 35% 35%,#e2d4ff,#c9b6f5);top:-60px;left:-40px}
+.blob.b2{width:230px;height:230px;background:radial-gradient(circle at 35% 35%,#d6fbe9,#bdf0d8);top:40%;right:-60px;animation-delay:-5s}
+.blob.b3{width:200px;height:200px;background:radial-gradient(circle at 35% 35%,#ffe1d2,#ffc8b0);bottom:-50px;left:18%;animation-delay:-9s}
+@keyframes floaty{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(24px,-30px) scale(1.06)}66%{transform:translate(-18px,18px) scale(.96)}}
+
+/* ---------- clay primitive ---------- */
+.clay{
+  background:var(--clay);
+  border-radius:var(--r);
+  box-shadow:var(--sh-out);
+  border:1px solid rgba(255,255,255,.7);
+}
+
+/* ---------- nav ---------- */
+header.nav{position:sticky;top:14px;z-index:50;margin:14px auto 0;max-width:1080px;padding:0 22px}
+.navbar{
+  display:flex;align-items:center;gap:14px;justify-content:space-between;
+  padding:12px 16px;border-radius:var(--r-pill);
+  background:rgba(251,246,255,.78);backdrop-filter:blur(12px);
+  box-shadow:var(--sh-out);border:1px solid rgba(255,255,255,.8);
+}
+.brand{display:flex;align-items:center;gap:11px;font-family:"Baloo 2",cursive;font-weight:700;font-size:1.05rem;padding-left:6px}
+.brand .mark{
+  width:38px;height:38px;border-radius:14px;display:grid;place-items:center;color:#fff;font-size:.95rem;
+  background:linear-gradient(135deg,var(--lav),var(--peach));
+  box-shadow:3px 3px 8px rgba(150,120,190,.4),inset -2px -2px 5px rgba(150,120,190,.3),inset 2px 2px 5px rgba(255,255,255,.6);
+}
+.navlinks{display:flex;gap:4px;flex-wrap:wrap}
+.navlinks a{
+  font-size:.86rem;font-weight:600;padding:7px 13px;border-radius:var(--r-pill);
+  color:var(--ink-soft);transition:.3s var(--t);position:relative;white-space:nowrap;
+}
+.navlinks a:hover{color:var(--ink);transform:translateY(-2px)}
+.navlinks a.active{color:var(--lav-d);background:var(--clay);box-shadow:var(--sh-in)}
+.nav-toggle{display:none;background:none;border:none;color:var(--ink);font-size:1.3rem;cursor:pointer;
+  width:42px;height:42px;border-radius:14px;box-shadow:var(--sh-out);background:var(--clay)}
+
+/* ---------- section base ---------- */
+section{padding:64px 0 12px}
+.sec-head{display:flex;align-items:center;gap:14px;margin-bottom:30px}
+.sec-icon{
+  width:54px;height:54px;flex:none;border-radius:20px;display:grid;place-items:center;color:#fff;
+  background:linear-gradient(135deg,var(--lav),var(--lav-d));
+  box-shadow:6px 6px 14px rgba(150,120,190,.35),inset -3px -3px 7px rgba(120,90,170,.4),inset 3px 3px 7px rgba(255,255,255,.5);
+}
+.sec-icon svg{width:26px;height:26px}
+.sec-head h2{font-size:1.7rem}
+.sec-head .sub{font-size:.85rem;color:var(--ink-light);font-weight:600;letter-spacing:.06em;text-transform:uppercase;font-family:"Quicksand"}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(34px) scale(.97)}
+.reveal.in{opacity:1;transform:none;transition:opacity .7s ease, transform .7s var(--t)}
+.reveal.d1{transition-delay:.08s}.reveal.d2{transition-delay:.16s}.reveal.d3{transition-delay:.24s}
+.reveal.d4{transition-delay:.32s}.reveal.d5{transition-delay:.40s}
+
+/* ---------- hero ---------- */
+.hero{padding-top:50px}
+.hero-card{padding:46px 42px;border-radius:var(--r-lg);text-align:center;position:relative;overflow:hidden}
+.avatar{
+  width:118px;height:118px;border-radius:38px;margin:0 auto 22px;display:grid;place-items:center;
+  font-family:"Baloo 2";font-weight:800;font-size:2.6rem;color:#fff;
+  background:linear-gradient(140deg,var(--lav),var(--peach));
+  box-shadow:9px 9px 20px rgba(150,120,190,.4),inset -4px -4px 10px rgba(150,90,170,.4),inset 5px 5px 12px rgba(255,255,255,.7);
+  animation:bob 5s ease-in-out infinite;
+}
+@keyframes bob{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-9px) rotate(2deg)}}
+.hero h1{
+  font-size:2.7rem;line-height:1.3;padding-bottom:.12em;
+  background:linear-gradient(120deg,var(--lav-d),var(--peach-d) 60%,var(--mint-d));
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+}
+.hero .role{font-size:1.12rem;font-weight:700;color:var(--ink-soft);margin-top:4px}
+.hero .tagline{max-width:620px;margin:18px auto 0;color:var(--ink-soft);font-size:1.02rem}
+.hero-meta{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:26px}
+.pill{
+  display:inline-flex;align-items:center;gap:9px;padding:11px 19px;border-radius:var(--r-pill);
+  font-weight:600;font-size:.92rem;background:var(--clay);box-shadow:var(--sh-out);transition:.3s var(--t);
+}
+.pill:hover{transform:translateY(-3px) scale(1.03)}
+.pill:active{box-shadow:var(--sh-press);transform:translateY(0)}
+.pill .dot{width:11px;height:11px;border-radius:50%;background:var(--mint-d);box-shadow:0 0 0 4px rgba(143,224,188,.35);animation:pulse 1.8s ease-in-out infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 4px rgba(143,224,188,.35)}50%{box-shadow:0 0 0 8px rgba(143,224,188,.1)}}
+.pill svg{width:17px;height:17px;color:var(--lav-d)}
+.pill.email{color:var(--ink)}
+.pill.email svg{color:var(--peach-d)}
+
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:36px}
+.stat{padding:26px 16px;border-radius:var(--r);text-align:center;transition:.35s var(--t)}
+.stat:hover{transform:translateY(-6px)}
+.stat:active{box-shadow:var(--sh-press)}
+.stat .num{font-family:"Baloo 2";font-weight:800;font-size:2.5rem;line-height:1.1;
+  background:linear-gradient(135deg,var(--lav-d),var(--peach-d));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.stat .lab{font-size:.84rem;color:var(--ink-soft);font-weight:600;margin-top:6px}
+
+/* ---------- about ---------- */
+.about-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px}
+.about-card{padding:28px 26px;border-radius:var(--r);transition:.35s var(--t)}
+.about-card:hover{transform:translateY(-6px) rotate(-.4deg)}
+.about-card .n{
+  width:42px;height:42px;border-radius:14px;display:grid;place-items:center;margin-bottom:16px;
+  font-family:"Baloo 2";font-weight:800;color:#fff;font-size:1.1rem;
+  background:linear-gradient(135deg,var(--mint-d),var(--lav));
+  box-shadow:4px 4px 9px rgba(150,120,190,.3),inset -2px -2px 5px rgba(120,160,140,.4),inset 2px 2px 5px rgba(255,255,255,.6);
+}
+.about-card p{font-size:.96rem;color:var(--ink-soft)}
+.about-card strong{color:var(--ink);font-weight:700}
+
+/* ---------- skills ---------- */
+.skills-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.skill-card{padding:24px 24px;border-radius:var(--r);transition:.35s var(--t)}
+.skill-card:hover{transform:translateY(-5px)}
+.skill-card h3{font-size:1.06rem;display:flex;align-items:center;gap:11px;margin-bottom:15px;color:var(--ink)}
+.skill-card h3 .ico{
+  width:38px;height:38px;border-radius:13px;display:grid;place-items:center;color:#fff;flex:none;
+  background:linear-gradient(135deg,var(--peach-d),var(--lav));
+  box-shadow:3px 3px 7px rgba(150,120,190,.3),inset -2px -2px 4px rgba(170,110,90,.35),inset 2px 2px 4px rgba(255,255,255,.6);
+}
+.skill-card h3 .ico svg{width:19px;height:19px}
+.tags{display:flex;flex-wrap:wrap;gap:9px}
+.tag{
+  font-size:.85rem;font-weight:600;padding:7px 14px;border-radius:var(--r-pill);color:var(--ink-soft);
+  background:var(--clay2);box-shadow:var(--sh-in);transition:.25s var(--t);cursor:default;
+}
+.tag:hover{transform:translateY(-3px) scale(1.05);color:var(--lav-d);box-shadow:var(--sh-out)}
+
+/* ---------- timeline ---------- */
+.job-head{padding:26px 28px;border-radius:var(--r);margin-bottom:22px;display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
+.job-head h3{font-size:1.2rem;color:var(--ink)}
+.job-head .meta{color:var(--ink-soft);font-weight:600;font-size:.95rem;display:flex;align-items:center;gap:8px}
+.job-head .meta svg{width:16px;height:16px;color:var(--lav-d)}
+.job-head .when{font-size:.86rem;font-weight:700;color:#fff;padding:7px 15px;border-radius:var(--r-pill);
+  background:linear-gradient(135deg,var(--lav-d),var(--peach-d));box-shadow:3px 3px 8px rgba(150,120,190,.35)}
+.timeline{display:flex;flex-direction:column;gap:18px;position:relative;padding-left:30px}
+.timeline::before{content:"";position:absolute;left:9px;top:14px;bottom:14px;width:5px;border-radius:5px;
+  background:linear-gradient(var(--lav),var(--mint-d),var(--peach));opacity:.55}
+.tl-item{position:relative;padding:24px 26px;border-radius:var(--r);transition:.35s var(--t)}
+.tl-item:hover{transform:translateX(5px)}
+.tl-item::before{content:"";position:absolute;left:-30px;top:30px;width:18px;height:18px;border-radius:50%;
+  background:linear-gradient(135deg,var(--lav),var(--peach));
+  box-shadow:0 0 0 5px var(--clay),3px 3px 7px rgba(150,120,190,.4),inset -1px -1px 3px rgba(150,90,170,.4),inset 1px 1px 3px rgba(255,255,255,.7)}
+.tl-item h4{font-family:"Baloo 2";font-weight:700;font-size:1.05rem;color:var(--ink);margin-bottom:10px}
+.tl-item ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+.tl-item li{position:relative;padding-left:24px;font-size:.94rem;color:var(--ink-soft)}
+.tl-item li::before{content:"";position:absolute;left:4px;top:.62em;width:8px;height:8px;border-radius:50%;
+  background:var(--mint-d);box-shadow:inset -1px -1px 2px rgba(120,160,140,.5)}
+
+/* ---------- projects ---------- */
+.proj-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.proj{padding:28px 28px;border-radius:var(--r-lg);transition:.35s var(--t);display:flex;flex-direction:column}
+.proj:hover{transform:translateY(-8px)}
+.proj .top{display:flex;align-items:flex-start;gap:14px;margin-bottom:6px}
+.proj .pico{
+  width:52px;height:52px;border-radius:18px;display:grid;place-items:center;color:#fff;flex:none;
+  box-shadow:5px 5px 12px rgba(150,120,190,.32),inset -3px -3px 6px rgba(0,0,0,.12),inset 3px 3px 7px rgba(255,255,255,.55);
+}
+.proj.p1 .pico{background:linear-gradient(135deg,var(--lav),var(--lav-d))}
+.proj.p2 .pico{background:linear-gradient(135deg,var(--peach-d),#ff8a6a)}
+.proj .pico svg{width:26px;height:26px}
+.proj h3{font-size:1.22rem;color:var(--ink)}
+.proj .kind{font-size:.82rem;font-weight:600;color:var(--ink-light)}
+.proj .desc{font-size:.94rem;color:var(--ink-soft);margin:12px 0 14px}
+.feat{list-style:none;display:flex;flex-direction:column;gap:7px;margin-bottom:16px}
+.feat li{position:relative;padding-left:24px;font-size:.9rem;color:var(--ink-soft)}
+.feat li svg{position:absolute;left:0;top:3px;width:16px;height:16px;color:var(--mint-d)}
+.proj .foot{margin-top:auto}
+.proj .ptags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+.proj .ptags .tag{font-size:.8rem;padding:6px 12px}
+.proj .visit{
+  display:inline-flex;align-items:center;gap:9px;font-weight:700;font-size:.9rem;color:var(--lav-d);
+  padding:10px 18px;border-radius:var(--r-pill);background:var(--clay);box-shadow:var(--sh-out);transition:.3s var(--t)
+}
+.proj .visit:hover{transform:translateY(-3px) scale(1.03)}
+.proj .visit:active{box-shadow:var(--sh-press);transform:translateY(0)}
+.proj .visit svg{width:16px;height:16px}
+
+/* ---------- highlights ---------- */
+.hl-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.hl{padding:30px 30px;border-radius:var(--r-lg);transition:.35s var(--t)}
+.hl:hover{transform:translateY(-6px) scale(1.01)}
+.hl .badge{
+  width:60px;height:60px;border-radius:20px;display:grid;place-items:center;color:#fff;margin-bottom:18px;
+  background:linear-gradient(135deg,var(--mint-d),var(--lav));
+  box-shadow:6px 6px 14px rgba(150,120,190,.32),inset -3px -3px 7px rgba(110,150,130,.4),inset 3px 3px 8px rgba(255,255,255,.6);
+}
+.hl .badge svg{width:30px;height:30px}
+.hl h3{font-size:1.14rem;color:var(--ink);margin-bottom:10px}
+.hl p{font-size:.95rem;color:var(--ink-soft)}
+
+/* ---------- education ---------- */
+.edu{padding:30px 32px;border-radius:var(--r-lg);display:flex;align-items:center;gap:22px;transition:.35s var(--t)}
+.edu:hover{transform:translateY(-5px)}
+.edu .cap{
+  width:64px;height:64px;border-radius:22px;display:grid;place-items:center;color:#fff;flex:none;
+  background:linear-gradient(135deg,var(--lav-d),var(--peach-d));
+  box-shadow:6px 6px 14px rgba(150,120,190,.32),inset -3px -3px 7px rgba(120,90,170,.4),inset 3px 3px 8px rgba(255,255,255,.5);
+}
+.edu .cap svg{width:32px;height:32px}
+.edu h3{font-size:1.24rem;color:var(--ink)}
+.edu p{color:var(--ink-soft);font-weight:600;margin-top:3px}
+
+/* ---------- contact ---------- */
+.contact-card{padding:42px 38px;border-radius:var(--r-lg);text-align:center}
+.contact-card h2{font-size:1.8rem;line-height:1.3;padding-bottom:.1em;
+  background:linear-gradient(120deg,var(--lav-d),var(--peach-d));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.contact-card p{color:var(--ink-soft);max-width:480px;margin:10px auto 26px}
+.clinks{display:flex;flex-wrap:wrap;gap:14px;justify-content:center}
+.clink{
+  display:inline-flex;align-items:center;gap:11px;padding:14px 24px;border-radius:var(--r-pill);
+  font-weight:700;font-size:.95rem;background:var(--clay);box-shadow:var(--sh-out);transition:.3s var(--t)
+}
+.clink:hover{transform:translateY(-4px) scale(1.04)}
+.clink:active{box-shadow:var(--sh-press);transform:translateY(0)}
+.clink svg{width:19px;height:19px}
+.clink.c1 svg{color:var(--lav-d)}.clink.c2 svg{color:var(--peach-d)}
+.clink.c3 svg{color:var(--mint-d)}.clink.c4{color:var(--ink)}
+
+/* ---------- footer ---------- */
+footer{text-align:center;padding:50px 22px 60px;color:var(--ink-light);font-size:.9rem;font-weight:600}
+footer .heart{color:var(--peach-d)}
+
+/* ---------- responsive ---------- */
+@media(max-width:860px){
+  .navlinks{display:none;position:absolute;top:70px;left:0;right:0;flex-direction:column;gap:6px;
+    padding:16px;border-radius:var(--r);background:rgba(251,246,255,.97);backdrop-filter:blur(12px);box-shadow:var(--sh-out)}
+  .navlinks.open{display:flex}
+  .navlinks a{padding:11px 16px;border-radius:var(--r-sm)}
+  .nav-toggle{display:grid;place-items:center}
+  .stats{grid-template-columns:1fr 1fr}
+  .about-grid,.skills-grid,.proj-grid,.hl-grid{grid-template-columns:1fr}
+  .hero h1{font-size:2.1rem}
+  .hero-card{padding:36px 24px}
+  .sec-head h2{font-size:1.45rem}
+}
+@media(max-width:480px){
+  .stats{grid-template-columns:1fr 1fr}
+  .stat .num{font-size:2rem}
+  .edu{flex-direction:column;text-align:center}
+}
+
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;scroll-behavior:auto!important}
+  .reveal{opacity:1!important;transform:none!important;transition:none!important}
+  .blob{display:none}
+}
+
+@media print{
+  body{background:#fff}
+  .blobs,header.nav,.nav-toggle,.blob{display:none!important}
+  section{padding:18px 0;break-inside:avoid}
+  .clay,.hero-card,.stat,.about-card,.skill-card,.tl-item,.proj,.hl,.edu,.job-head,.contact-card{
+    box-shadow:none!important;border:1px solid #ddd!important;background:#fff!important}
+  .reveal{opacity:1!important;transform:none!important}
+  .hero h1,.stat .num,.contact-card h2{-webkit-text-fill-color:#5b4a6e!important;color:#5b4a6e!important}
+  a{color:#5b4a6e!important}
+}
+</style>
+</head>
+<body>
+<div class="blobs" aria-hidden="true">
+  <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+</div>
+
+<header class="nav">
+  <nav class="navbar" aria-label="主導覽">
+    <a href="#hero" class="brand"><span class="mark">IC</span><span>Ian Cheng</span></a>
+    <div class="navlinks" id="navlinks">
+      <a href="#about">關於我</a>
+      <a href="#skills">核心技能</a>
+      <a href="#exp">工作經歷</a>
+      <a href="#projects">自建作品</a>
+      <a href="#highlights">技術實績</a>
+      <a href="#edu">學歷</a>
+      <a href="#contact">聯繫</a>
+    </div>
+    <button class="nav-toggle" id="navToggle" aria-label="開啟選單" aria-expanded="false">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+  </nav>
+</header>
+
+<main class="wrap">
+
+<!-- HERO -->
+<section id="hero" class="hero">
+  <div class="hero-card clay reveal">
+    <div class="avatar">IC</div>
+    <h1>Ian Cheng</h1>
+    <p class="role">資深全端工程師 &amp; AI 工程師</p>
+    <p class="tagline">10 年開發經驗，擅長 AI 產品落地、微服務架構設計，具備從零到上線的完整交付能力。</p>
+    <div class="hero-meta">
+      <span class="pill"><span class="dot"></span>Available for opportunities</span>
+      <a class="pill email" href="mailto:serviceluna@luna-ai-life.com">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m3 7 9 6 9-6"/></svg>
+        serviceluna@luna-ai-life.com
+      </a>
+    </div>
+    <div class="stats">
+      <div class="stat clay reveal d1"><div class="num" data-to="10" data-suffix="+">0</div><div class="lab">年開發經驗</div></div>
+      <div class="stat clay reveal d2"><div class="num" data-to="5" data-suffix="+">0</div><div class="lab">大型專案交付</div></div>
+      <div class="stat clay reveal d3"><div class="num" data-to="2" data-suffix="">0</div><div class="lab">自建產品上線</div></div>
+      <div class="stat clay reveal d4"><div class="num" data-to="3" data-suffix="">0</div><div class="lab">AI 整合實戰</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="sec-head reveal">
+    <div class="sec-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M5.5 20a6.5 6.5 0 0 1 13 0"/></svg>
+    </div>
+    <div><div class="sub">About</div><h2>關於我</h2></div>
+  </div>
+  <div class="about-grid">
+    <div class="about-card clay reveal d1">
+      <div class="n">1</div>
+      <p><strong>10 年全端工程師</strong>，具備從系統架構設計到 AI 產品落地的端對端能力。曾在中部區域醫院主導多項院內大型系統開發，採微服務架構 + API Gateway + RBAC 集中控管，支援全院多部門運作。</p>
+    </div>
+    <div class="about-card clay reveal d2">
+      <div class="n">2</div>
+      <p>自行開發並上線 <strong>璐娜健康管家</strong>（AI 健康 SaaS）與 <strong>金連發電器</strong>（家電電商），整合 Gemini + OpenAI 多模態雙引擎。具備 Stable Diffusion + LoRA 模型微調及 RAG 系統建置實戰經驗，熟悉醫療資料處理與合規需求。</p>
+    </div>
+    <div class="about-card clay reveal d3">
+      <div class="n">3</div>
+      <p>背景橫跨<strong>醫療資訊、電商、AI</strong> 三個領域，能同時勝任技術深度討論與跨部門架構溝通。目前積極尋求 AI 工程師 / Tech Lead / Solution Architect 相關機會。</p>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="sec-head reveal">
+    <div class="sec-icon" style="background:linear-gradient(135deg,var(--mint-d),var(--lav))">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m8 16-4-4 4-4"/><path d="m16 8 4 4-4 4"/><path d="m14 4-4 16"/></svg>
+    </div>
+    <div><div class="sub">Skills</div><h2>核心技能</h2></div>
+  </div>
+  <div class="skills-grid">
+    <div class="skill-card clay reveal d1">
+      <h3><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 16 4-4-4-4"/><path d="m6 8-4 4 4 4"/><path d="m14.5 4-5 16"/></svg></span>程式語言</h3>
+      <div class="tags"><span class="tag">Python</span><span class="tag">Vue.js</span><span class="tag">PHP</span><span class="tag">JavaScript</span><span class="tag">HTML / CSS</span></div>
+    </div>
+    <div class="skill-card clay reveal d2">
+      <h3><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span>資料庫</h3>
+      <div class="tags"><span class="tag">MySQL</span><span class="tag">PostgreSQL</span><span class="tag">MongoDB</span><span class="tag">Redis</span></div>
+    </div>
+    <div class="skill-card clay reveal d3">
+      <h3><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></span>系統架構</h3>
+      <div class="tags"><span class="tag">微服務</span><span class="tag">API Gateway</span><span class="tag">RBAC</span><span class="tag">事件驅動</span><span class="tag">負載均衡</span><span class="tag">CDN</span></div>
+    </div>
+    <div class="skill-card clay reveal d4">
+      <h3><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a4 4 0 0 0-4 4v1a3 3 0 0 0-3 3 3 3 0 0 0 1 5.2A3 3 0 0 0 9 22a3 3 0 0 0 3-2"/><path d="M12 2a4 4 0 0 1 4 4v1a3 3 0 0 1 3 3 3 3 0 0 1-1 5.2A3 3 0 0 1 15 22a3 3 0 0 1-3-2"/><path d="M12 6v14"/></svg></span>AI / ML</h3>
+      <div class="tags"><span class="tag">OpenAI API</span><span class="tag">Gemini API</span><span class="tag">RAG</span><span class="tag">LoRA fine-tuning</span><span class="tag">Stable Diffusion</span><span class="tag">向量資料庫</span></div>
+    </div>
+    <div class="skill-card clay reveal d5">
+      <h3><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 3 7v6c0 5 3.8 8.3 9 9 5.2-.7 9-4 9-9V7z"/><path d="m9 12 2 2 4-4"/></svg></span>DevOps</h3>
+      <div class="tags"><span class="tag">Docker</span><span class="tag">CI/CD</span><span class="tag">Linux</span><span class="tag">Nginx</span></div>
+    </div>
+    <div class="skill-card clay reveal d5">
+      <h3><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.5-1.5 3-3.2 3-5.5A5.5 5.5 0 0 0 12 5 5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4 3 5.5l7 7z"/></svg></span>領域知識</h3>
+      <div class="tags"><span class="tag">醫療資訊系統</span><span class="tag">電商平台</span><span class="tag">醫療資料合規</span><span class="tag">HL7 / FHIR</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="exp">
+  <div class="sec-head reveal">
+    <div class="sec-icon" style="background:linear-gradient(135deg,var(--peach-d),var(--lav))">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="3"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+    </div>
+    <div><div class="sub">Experience</div><h2>工作經歷</h2></div>
+  </div>
+  <div class="job-head clay reveal d1">
+    <div>
+      <h3>程式設計師</h3>
+      <div class="meta">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/><path d="M9 9h0M9 13h0M9 17h0M15 9h0M15 13h0M15 17h0"/></svg>
+        中部區域醫院
+      </div>
+    </div>
+    <span class="when">任職約 9 年 — 至今</span>
+  </div>
+  <div class="timeline">
+    <div class="tl-item clay reveal d2">
+      <h4>全院行動祕書（全院通用行動 App）</h4>
+      <ul>
+        <li>微服務架構設計，各功能模組獨立部署並透過 API Gateway 統一入口管理</li>
+        <li>RBAC 集中式權限控管，支援多角色、多部門存取隔離</li>
+        <li>Vue.js 前端 + Python / PHP 後端，Redis 快取優化高頻讀取效能</li>
+        <li>負責架構設計、開發、部署與維運全流程</li>
+      </ul>
+    </div>
+    <div class="tl-item clay reveal d3">
+      <h4>個案管理系統</h4>
+      <ul>
+        <li>跨科別病患個案追蹤平台，整合多部門護理流程與個案狀態管理</li>
+        <li>符合醫療資料安全規範，實作審計日誌與敏感欄位加密機制</li>
+      </ul>
+    </div>
+    <div class="tl-item clay reveal d4">
+      <h4>學習護照系統</h4>
+      <ul>
+        <li>全院員工學習歷程平台，支援課程管理、學習進度追蹤與認證產出</li>
+        <li>模組化設計對應醫師、護理師、行政等不同職類的差異化學習路徑</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="sec-head reveal">
+    <div class="sec-icon" style="background:linear-gradient(135deg,var(--lav),var(--peach-d))">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2 2.4 7.2H22l-6 4.4 2.3 7.2L12 16.4 5.7 20.8 8 13.6 2 9.2h7.6z"/></svg>
+    </div>
+    <div><div class="sub">Products</div><h2>自建作品</h2></div>
+  </div>
+  <div class="proj-grid">
+    <div class="proj p1 clay reveal d1">
+      <div class="top">
+        <div class="pico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.5-1.5 3-3.2 3-5.5A5.5 5.5 0 0 0 12 5 5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4 3 5.5l7 7z"/></svg></div>
+        <div><h3>璐娜健康管家</h3><div class="kind">AI SaaS · LINE Bot · 健康管理</div></div>
+      </div>
+      <p class="desc">整合 Gemini + OpenAI 雙引擎的 AI 健康管理平台，提供拍照熱量辨識、社交陪跑配對與個人化健康報告。</p>
+      <ul class="feat">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-11"/></svg>多模態 AI 辨識食物熱量（蛋白質、碳水、脂肪、鈉）</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-11"/></svg>AI 配對陪跑夥伴 + 遊戲化打卡獎勵系統</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-11"/></svg>個人化週報 / 月報含代謝評估與行動建議</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-11"/></svg>Gemini + OpenAI 雙引擎備援架構</li>
+      </ul>
+      <div class="foot">
+        <div class="ptags"><span class="tag">OpenAI</span><span class="tag">Gemini</span><span class="tag">Vue.js</span><span class="tag">Python</span><span class="tag">LINE Bot</span></div>
+        <a class="visit" href="https://luna-ai-life.com" target="_blank" rel="noopener noreferrer">前往網站
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a>
+      </div>
+    </div>
+    <div class="proj p2 clay reveal d2">
+      <div class="top">
+        <div class="pico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1.6"/><circle cx="18" cy="21" r="1.6"/><path d="M2 3h2.5l2 13h11l2-9H6"/></svg></div>
+        <div><h3>金連發電器</h3><div class="kind">電商平台 · 家電 · 全台配送</div></div>
+      </div>
+      <p class="desc">完整家電購物商城，涵蓋商品管理、訂單流程、安裝 / 回收 / 運送服務整合，為實際營運中的電商系統。</p>
+      <ul class="feat">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-11"/></svg>完整電商流程（商品、購物車、訂單、金流）</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-11"/></svg>物流整合（安裝、回收、運送服務調度）</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-11"/></svg>Redis 快取 + CDN + 負載均衡效能優化</li>
+      </ul>
+      <div class="foot">
+        <div class="ptags"><span class="tag">Vue.js</span><span class="tag">PHP</span><span class="tag">Redis</span><span class="tag">CDN</span><span class="tag">MySQL</span></div>
+        <a class="visit" href="https://jlfshop.com" target="_blank" rel="noopener noreferrer">前往網站
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HIGHLIGHTS -->
+<section id="highlights">
+  <div class="sec-head reveal">
+    <div class="sec-icon" style="background:linear-gradient(135deg,var(--mint-d),var(--peach-d))">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/><circle cx="12" cy="12" r="3.5"/></svg>
+    </div>
+    <div><div class="sub">Highlights</div><h2>特殊技術實績</h2></div>
+  </div>
+  <div class="hl-grid">
+    <div class="hl clay reveal d1">
+      <div class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="9" cy="9" r="2"/><path d="m21 15-4.5-4.5L7 20"/></svg></div>
+      <h3>Stable Diffusion + LoRA 模型微調</h3>
+      <p>獨立完成圖像生成模型訓練，涵蓋資料標注、訓練參數調整至產出完整流程，具備 AI 模型層級的實戰能力，不只是 API 呼叫層。</p>
+    </div>
+    <div class="hl clay reveal d2">
+      <div class="badge" style="background:linear-gradient(135deg,var(--peach-d),var(--lav))"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v12H4z"/><path d="M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3"/><path d="M8 8h8M8 11h5"/></svg></div>
+      <h3>醫療文件 RAG 系統</h3>
+      <p>將 800+ 頁原文病歷向量化，建置可語義查詢的醫療知識庫，實際用於醫療諮詢輔助，具備高精度召回率與答案可追溯性需求的處理經驗。</p>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="edu">
+  <div class="sec-head reveal">
+    <div class="sec-icon" style="background:linear-gradient(135deg,var(--lav-d),var(--mint-d))">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 9 12 4 2 9l10 5 10-5z"/><path d="M6 11.5V16c0 1.5 2.7 3 6 3s6-1.5 6-3v-4.5"/></svg>
+    </div>
+    <div><div class="sub">Education</div><h2>學歷</h2></div>
+  </div>
+  <div class="edu clay reveal d1">
+    <div class="cap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 9 12 4 2 9l10 5 10-5z"/><path d="M6 11.5V16c0 1.5 2.7 3 6 3s6-1.5 6-3v-4.5"/><path d="M22 9v5"/></svg></div>
+    <div>
+      <h3>中山醫學大學</h3>
+      <p>醫學資訊學系 · 學士</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-card clay reveal">
+    <h2>讓我們聊聊</h2>
+    <p>目前積極尋求 AI 工程師 / Tech Lead / Solution Architect 相關機會，歡迎來信交流。</p>
+    <div class="clinks">
+      <a class="clink c4" href="mailto:serviceluna@luna-ai-life.com">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m3 7 9 6 9-6"/></svg>
+        serviceluna@luna-ai-life.com
+      </a>
+      <a class="clink c1" href="https://luna-ai-life.com" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.5-1.5 3-3.2 3-5.5A5.5 5.5 0 0 0 12 5 5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4 3 5.5l7 7z"/></svg>
+        璐娜健康管家
+      </a>
+      <a class="clink c2" href="https://jlfshop.com" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1.6"/><circle cx="18" cy="21" r="1.6"/><path d="M2 3h2.5l2 13h11l2-9H6"/></svg>
+        金連發電器
+      </a>
+      <a class="clink c3" href="https://github.com/" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.5 2 2 6.6 2 12.3c0 4.5 2.9 8.3 6.8 9.7.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.4-3.4-1.4-.5-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.6 2.4 1.1 3 .9.1-.7.4-1.1.6-1.4-2.2-.3-4.6-1.1-4.6-5 0-1.1.4-2 1-2.7-.1-.3-.4-1.3.1-2.7 0 0 .8-.3 2.7 1a9.3 9.3 0 0 1 5 0c1.9-1.3 2.7-1 2.7-1 .5 1.4.2 2.4.1 2.7.6.7 1 1.6 1 2.7 0 3.9-2.3 4.7-4.6 5 .4.3.7.9.7 1.9v2.8c0 .3.2.6.7.5 3.9-1.4 6.8-5.2 6.8-9.7C22 6.6 17.5 2 12 2z"/></svg>
+        GitHub
+      </a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <p>Crafted with <span class="heart">&hearts;</span> · &copy; 2026 Ian Cheng</p>
+</footer>
+
+<script>
+(function(){
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // mobile nav toggle
+  var toggle = document.getElementById('navToggle');
+  var links = document.getElementById('navlinks');
+  if(toggle){
+    toggle.addEventListener('click', function(){
+      var open = links.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    links.querySelectorAll('a').forEach(function(a){
+      a.addEventListener('click', function(){ links.classList.remove('open'); toggle.setAttribute('aria-expanded','false'); });
+    });
+  }
+
+  // reveal on scroll
+  var revs = document.querySelectorAll('.reveal');
+  if(reduce || !('IntersectionObserver' in window)){
+    revs.forEach(function(r){ r.classList.add('in'); });
+  } else {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, {threshold:.14, rootMargin:'0px 0px -8% 0px'});
+    revs.forEach(function(r){ io.observe(r); });
+  }
+
+  // count up numbers
+  var nums = document.querySelectorAll('.num[data-to]');
+  function countUp(el){
+    var to = parseInt(el.getAttribute('data-to'),10);
+    var suf = el.getAttribute('data-suffix') || '';
+    if(reduce){ el.textContent = to + suf; return; }
+    var start = null, dur = 1100;
+    function step(ts){
+      if(!start) start = ts;
+      var p = Math.min((ts-start)/dur,1);
+      var eased = 1 - Math.pow(1-p,3);
+      el.textContent = Math.round(eased*to) + suf;
+      if(p<1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  if('IntersectionObserver' in window && !reduce){
+    var nio = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){ countUp(e.target); nio.unobserve(e.target); } });
+    }, {threshold:.6});
+    nums.forEach(function(n){ nio.observe(n); });
+  } else {
+    nums.forEach(countUp);
+  }
+
+  // scrollspy nav highlight
+  var navAnchors = Array.prototype.slice.call(document.querySelectorAll('.navlinks a'));
+  var sections = navAnchors.map(function(a){ return document.querySelector(a.getAttribute('href')); }).filter(Boolean);
+  function spy(){
+    var pos = window.scrollY + 130;
+    var cur = sections[0];
+    sections.forEach(function(s){ if(s.offsetTop <= pos) cur = s; });
+    navAnchors.forEach(function(a){
+      a.classList.toggle('active', cur && a.getAttribute('href') === '#'+cur.id);
+    });
+  }
+  window.addEventListener('scroll', spy, {passive:true});
+  window.addEventListener('load', spy);
+  spy();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,1253 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ian Cheng — 資深全端工程師 &amp; AI 工程師｜RPG 角色履歷</title>
+<meta name="description" content="Ian Cheng — 資深全端工程師 &amp; AI 工程師。10 年開發經驗，擅長 AI 產品落地、微服務架構設計，具備從零到上線的完整交付能力。以 JRPG 角色狀態畫面呈現的互動式履歷。" />
+<meta name="author" content="Ian Cheng" />
+<meta name="theme-color" content="#0b1030" />
+<meta name="robots" content="index,follow" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="profile" />
+<meta property="og:title" content="Ian Cheng — 資深全端工程師 &amp; AI 工程師（RPG 角色履歷）" />
+<meta property="og:description" content="10 年開發經驗，擅長 AI 產品落地、微服務架構設計，具備從零到上線的完整交付能力。" />
+<meta property="og:locale" content="zh_TW" />
+<meta property="profile:first_name" content="Ian" />
+<meta property="profile:last_name" content="Cheng" />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="Ian Cheng — 資深全端工程師 &amp; AI 工程師（RPG 角色履歷）" />
+<meta name="twitter:description" content="10 年開發經驗，擅長 AI 產品落地、微服務架構設計，具備從零到上線的完整交付能力。" />
+
+<!-- Favicon: data URI SVG, pixel-style hero head -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Crect width='16' height='16' fill='%230b1030'/%3E%3Crect x='5' y='2' width='6' height='2' fill='%2364e0ff'/%3E%3Crect x='4' y='4' width='8' height='5' fill='%23ffd27a'/%3E%3Crect x='6' y='6' width='1' height='1' fill='%230b1030'/%3E%3Crect x='9' y='6' width='1' height='1' fill='%230b1030'/%3E%3Crect x='5' y='9' width='6' height='4' fill='%231b56c4'/%3E%3Crect x='7' y='9' width='2' height='4' fill='%23ffd27a'/%3E%3C/svg%3E" />
+
+<!-- Google Fonts: pixel display + Noto Sans TC body -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet" />
+
+<!-- Font Awesome (cdnjs) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<style>
+  :root {
+    --bg: #070b1f;
+    --bg-2: #0b1030;
+    --panel: #111a44;
+    --panel-2: #0d1538;
+    --window: #0a1235;
+    --frame: #6c8cff;
+    --frame-soft: rgba(108, 140, 255, 0.35);
+    --frame-line: rgba(120, 160, 255, 0.55);
+    --ink: #eaf0ff;
+    --ink-soft: #aebbe6;
+    --muted: #7e8bc0;
+    --cyan: #64e0ff;
+    --gold: #ffd166;
+    --green: #57e08a;
+    --red: #ff6b8a;
+    --purple: #c490ff;
+    --orange: #ffa15c;
+    --hp: #ff5d73;
+    --mp: #4db4ff;
+    --shadow: 0 0 0 2px #000, 0 6px 0 #050818, 0 14px 28px rgba(0,0,0,0.55);
+    --pixel: 'Press Start 2P', 'Noto Sans TC', system-ui, sans-serif;
+    --body: 'Noto Sans TC', system-ui, -apple-system, sans-serif;
+    --max: 1100px;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    font-family: var(--body);
+    color: var(--ink);
+    background:
+      radial-gradient(1200px 600px at 50% -10%, #18225e 0%, transparent 60%),
+      radial-gradient(900px 500px at 110% 20%, #1a1247 0%, transparent 55%),
+      var(--bg);
+    line-height: 1.7;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Subtle pixel grid backdrop */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background-image:
+      linear-gradient(rgba(108,140,255,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(108,140,255,0.04) 1px, transparent 1px);
+    background-size: 32px 32px;
+    opacity: 0.7;
+  }
+
+  a { color: var(--cyan); text-decoration: none; }
+  a:hover, a:focus-visible { text-decoration: underline; }
+
+  :focus-visible {
+    outline: 3px solid var(--gold);
+    outline-offset: 2px;
+  }
+
+  .wrap {
+    position: relative;
+    z-index: 1;
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 24px 18px 80px;
+  }
+
+  /* ---------- Pixel / RPG window frame ---------- */
+  .window {
+    position: relative;
+    background:
+      linear-gradient(180deg, var(--window) 0%, var(--panel-2) 100%);
+    border: 3px solid var(--frame);
+    border-radius: 4px;
+    box-shadow: var(--shadow);
+    padding: 22px;
+    image-rendering: pixelidated;
+  }
+  .window::after {
+    content: "";
+    position: absolute;
+    inset: 4px;
+    border: 1px solid var(--frame-soft);
+    border-radius: 2px;
+    pointer-events: none;
+  }
+
+  .pixel { font-family: var(--pixel); }
+
+  /* ---------- Section heading (menu bar) ---------- */
+  .section { margin-top: 40px; }
+  .section-head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+    font-family: var(--pixel);
+    font-size: clamp(12px, 2.4vw, 16px);
+    letter-spacing: 1px;
+    line-height: 1.5;
+    color: var(--gold);
+    text-shadow: 0 2px 0 #5a3b00, 0 0 12px rgba(255,209,102,0.25);
+    padding-bottom: 6px;
+  }
+  .section-head .ico {
+    width: 30px; height: 30px;
+    flex: 0 0 30px;
+    display: grid; place-items: center;
+    background: var(--panel);
+    border: 2px solid var(--frame);
+    border-radius: 4px;
+    color: var(--cyan);
+    font-size: 14px;
+  }
+  .section-head .en {
+    font-size: 9px;
+    color: var(--muted);
+    letter-spacing: 1px;
+    margin-left: auto;
+    text-shadow: none;
+  }
+
+  /* ---------- Cursor marker ▶ ---------- */
+  .cursor::before {
+    content: "\25B6";
+    color: var(--gold);
+    margin-right: 8px;
+    font-size: 0.8em;
+    display: inline-block;
+    animation: blinkCursor 1s steps(2, start) infinite;
+  }
+  @keyframes blinkCursor { 50% { opacity: 0.25; } }
+
+  /* =====================================================
+     HERO / CHARACTER CARD
+  ===================================================== */
+  header.hero { margin-top: 8px; }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    gap: 22px;
+    align-items: stretch;
+  }
+  .avatar-box {
+    display: grid;
+    place-items: center;
+    background:
+      repeating-linear-gradient(45deg, #0c1640 0 8px, #0a1238 8px 16px);
+    border: 2px solid var(--frame);
+    border-radius: 4px;
+    padding: 10px;
+    position: relative;
+  }
+  .avatar-box .lvl-badge {
+    position: absolute;
+    top: -12px; left: -12px;
+    font-family: var(--pixel);
+    font-size: 10px;
+    color: #1a1200;
+    background: var(--gold);
+    border: 2px solid #000;
+    border-radius: 4px;
+    padding: 6px 8px;
+    box-shadow: 0 3px 0 #7a5400;
+    line-height: 1;
+  }
+  .pixel-hero { width: 110px; height: 110px; image-rendering: pixelated; }
+
+  .hero-info { min-width: 0; }
+  .hero-name {
+    font-family: var(--pixel);
+    font-size: clamp(18px, 4.4vw, 30px);
+    line-height: 1.35;
+    padding-bottom: 6px;
+    margin: 0 0 4px;
+    background: linear-gradient(90deg, var(--cyan), #b9a0ff 60%, var(--gold));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .hero-class {
+    font-family: var(--pixel);
+    font-size: clamp(9px, 1.9vw, 12px);
+    color: var(--purple);
+    line-height: 1.7;
+    margin-bottom: 12px;
+  }
+  .hero-tagline {
+    color: var(--ink-soft);
+    font-size: clamp(14px, 1.7vw, 16px);
+    margin: 10px 0 14px;
+    max-width: 60ch;
+  }
+
+  /* Buff/status badges */
+  .buffs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+  .buff {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 6px 11px;
+    border-radius: 4px;
+    border: 2px solid var(--frame);
+    background: var(--panel);
+    color: var(--ink);
+  }
+  .buff.avail { border-color: var(--green); color: var(--green); }
+  .buff.avail .dot {
+    width: 9px; height: 9px; border-radius: 50%;
+    background: var(--green);
+    box-shadow: 0 0 8px var(--green);
+    animation: pulse 1.6s ease-in-out infinite;
+  }
+  @keyframes pulse { 50% { opacity: 0.35; transform: scale(0.8); } }
+
+  /* HP / MP bars */
+  .bars { display: grid; gap: 9px; max-width: 460px; }
+  .bar-row { display: grid; grid-template-columns: 44px 1fr auto; align-items: center; gap: 10px; }
+  .bar-row .lab { font-family: var(--pixel); font-size: 10px; }
+  .bar-row .lab.hp { color: var(--hp); }
+  .bar-row .lab.mp { color: var(--mp); }
+  .bar-track {
+    height: 14px;
+    background: #050a22;
+    border: 2px solid #000;
+    border-radius: 3px;
+    overflow: hidden;
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.05);
+  }
+  .bar-fill { height: 100%; width: 0; transition: width 1.4s cubic-bezier(.2,.8,.2,1); }
+  .bar-fill.hp { background: linear-gradient(90deg, #ff3b5c, #ff8aa0); }
+  .bar-fill.mp { background: linear-gradient(90deg, #2b7bff, #7fd0ff); }
+  .bar-row .val { font-family: var(--pixel); font-size: 9px; color: var(--ink-soft); }
+
+  /* =====================================================
+     STATS (數據亮點 -> 屬性)
+  ===================================================== */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+  }
+  .stat {
+    background: var(--panel-2);
+    border: 2px solid var(--frame);
+    border-radius: 4px;
+    padding: 16px 12px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .stat::after {
+    content: ""; position: absolute; inset: 3px;
+    border: 1px solid var(--frame-soft); border-radius: 2px; pointer-events: none;
+  }
+  .stat .abbr {
+    font-family: var(--pixel);
+    font-size: 11px;
+    color: var(--cyan);
+    letter-spacing: 1px;
+  }
+  .stat .num {
+    font-family: var(--pixel);
+    font-size: clamp(20px, 4vw, 28px);
+    line-height: 1.3;
+    padding-bottom: 4px;
+    color: var(--gold);
+    text-shadow: 0 2px 0 #6a4800;
+    margin: 8px 0 4px;
+  }
+  .stat .desc { font-size: 12.5px; color: var(--ink-soft); }
+
+  /* =====================================================
+     SKILL TREE (核心技能)
+  ===================================================== */
+  .skilltree {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+  .skill-node {
+    text-align: left;
+    cursor: pointer;
+    background: linear-gradient(180deg, var(--panel) 0%, var(--panel-2) 100%);
+    border: 2px solid var(--frame);
+    border-radius: 4px;
+    padding: 16px 16px;
+    color: var(--ink);
+    font-family: var(--body);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    transition: transform .12s, box-shadow .12s, border-color .12s, background .12s;
+  }
+  .skill-node:hover, .skill-node:focus-visible {
+    transform: translateY(-3px);
+    border-color: var(--gold);
+    box-shadow: 0 0 0 2px #000, 0 8px 0 #04081c, 0 0 22px rgba(255,209,102,0.25);
+  }
+  .skill-node[aria-expanded="true"] {
+    border-color: var(--gold);
+    background: linear-gradient(180deg, #1a245e 0%, #131c4c 100%);
+  }
+  .skill-node .nico {
+    width: 42px; height: 42px; flex: 0 0 42px;
+    display: grid; place-items: center;
+    border: 2px solid var(--frame);
+    border-radius: 4px;
+    background: #0a1136;
+    color: var(--cyan);
+    font-size: 18px;
+  }
+  .skill-node .nt { min-width: 0; }
+  .skill-node .nt .name { font-family: var(--pixel); font-size: 10px; line-height: 1.6; color: var(--gold); }
+  .skill-node .nt .cnt { font-size: 12px; color: var(--muted); }
+  .skill-node .chev { margin-left: auto; color: var(--frame); transition: transform .2s; }
+  .skill-node[aria-expanded="true"] .chev { transform: rotate(90deg); color: var(--gold); }
+
+  /* Skill window popup (inline expanding) */
+  .skill-panel {
+    grid-column: 1 / -1;
+    display: none;
+    margin-top: -4px;
+  }
+  .skill-panel.open { display: block; animation: popIn .28s ease both; }
+  @keyframes popIn { from { opacity: 0; transform: translateY(-6px) scale(.99);} to {opacity:1; transform:none;} }
+  .skill-panel .sp-head {
+    font-family: var(--pixel);
+    font-size: 11px;
+    color: var(--cyan);
+    margin-bottom: 12px;
+    line-height: 1.6;
+  }
+  .skill-chips { display: flex; flex-wrap: wrap; gap: 9px; }
+  .chip {
+    display: inline-flex; align-items: center; gap: 7px;
+    font-size: 13.5px; font-weight: 500;
+    padding: 7px 13px;
+    border-radius: 4px;
+    border: 2px solid var(--frame-line);
+    background: #0c1440;
+    color: var(--ink);
+  }
+  .chip i { color: var(--cyan); font-size: 12px; }
+
+  /* =====================================================
+     QUEST LOG (工作經歷)
+  ===================================================== */
+  .quest-meta {
+    font-size: 14px; color: var(--ink-soft); margin-bottom: 16px;
+    display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center;
+  }
+  .quest-meta .badge {
+    font-family: var(--pixel); font-size: 9px; color: var(--green);
+    border: 2px solid var(--green); border-radius: 4px; padding: 5px 8px; line-height: 1;
+  }
+  .quest {
+    border: 2px solid var(--frame);
+    border-radius: 4px;
+    background: var(--panel-2);
+    margin-bottom: 12px;
+    overflow: hidden;
+  }
+  .quest-toggle {
+    width: 100%;
+    text-align: left;
+    background: transparent;
+    border: 0;
+    color: var(--ink);
+    font-family: var(--body);
+    cursor: pointer;
+    padding: 14px 16px;
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    transition: background .15s;
+  }
+  .quest-toggle:hover, .quest-toggle:focus-visible { background: rgba(108,140,255,0.10); }
+  .quest-toggle .q-ico {
+    width: 34px; height: 34px; flex: 0 0 34px;
+    display: grid; place-items: center;
+    border: 2px solid var(--frame); border-radius: 4px;
+    background: #0a1136; color: var(--gold); font-size: 14px;
+  }
+  .quest-toggle .q-title { font-weight: 700; font-size: 15.5px; }
+  .quest-toggle .q-sub { font-size: 12.5px; color: var(--muted); }
+  .quest-toggle .q-state {
+    margin-left: auto; font-family: var(--pixel); font-size: 8px;
+    color: var(--cyan); border: 2px solid var(--frame); border-radius: 4px;
+    padding: 5px 7px; line-height: 1; white-space: nowrap;
+  }
+  .quest-toggle .chev { color: var(--frame); transition: transform .2s; margin-left: 8px; }
+  .quest-toggle[aria-expanded="true"] .chev { transform: rotate(90deg); color: var(--gold); }
+  .quest-body {
+    display: none;
+    padding: 4px 18px 18px 18px;
+    border-top: 1px solid var(--frame-soft);
+  }
+  .quest-body.open { display: block; animation: popIn .26s ease both; }
+  .quest-body ul { margin: 12px 0 0; padding-left: 0; list-style: none; }
+  .quest-body li {
+    position: relative; padding-left: 26px; margin-bottom: 11px;
+    font-size: 14.5px; color: var(--ink-soft); line-height: 1.75;
+  }
+  .quest-body li::before {
+    content: "\f3ff"; /* location pin -> quest marker */
+    font-family: "Font Awesome 6 Free"; font-weight: 900;
+    position: absolute; left: 0; top: 2px; color: var(--gold); font-size: 12px;
+  }
+
+  /* =====================================================
+     PARTY / SUMMONS (自建作品)
+  ===================================================== */
+  .party {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  .summon {
+    border: 2px solid var(--frame);
+    border-radius: 4px;
+    background: linear-gradient(180deg, var(--panel) 0%, var(--panel-2) 100%);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  .summon .s-head {
+    display: flex; align-items: center; gap: 13px;
+    padding: 15px 16px;
+    border-bottom: 1px solid var(--frame-soft);
+  }
+  .summon .s-emblem {
+    width: 48px; height: 48px; flex: 0 0 48px;
+    display: grid; place-items: center;
+    border: 2px solid var(--frame); border-radius: 6px;
+    background: #0a1136; font-size: 20px;
+  }
+  .summon .s-name { font-family: var(--pixel); font-size: 11px; color: var(--gold); line-height: 1.6; }
+  .summon .s-role { font-size: 12px; color: var(--cyan); margin-top: 5px; }
+  .summon .s-body { padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 12px; flex: 1; }
+  .summon .s-desc { font-size: 14px; color: var(--ink-soft); }
+  .summon .s-feats { margin: 0; padding-left: 0; list-style: none; display: grid; gap: 7px; }
+  .summon .s-feats li { position: relative; padding-left: 22px; font-size: 13.5px; color: var(--ink-soft); }
+  .summon .s-feats li::before {
+    content: "\f005"; font-family: "Font Awesome 6 Free"; font-weight: 900;
+    position: absolute; left: 0; top: 3px; color: var(--gold); font-size: 11px;
+  }
+  .s-tags { display: flex; flex-wrap: wrap; gap: 7px; }
+  .s-tag {
+    font-size: 12px; font-weight: 700;
+    border: 2px solid var(--frame-line); border-radius: 4px;
+    padding: 4px 9px; background: #0c1440; color: var(--cyan);
+  }
+  .s-link {
+    margin-top: auto;
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: var(--pixel); font-size: 9px;
+    color: #04122e; background: var(--cyan);
+    border: 2px solid #000; border-radius: 4px;
+    padding: 9px 12px; line-height: 1.5;
+    align-self: flex-start;
+    transition: transform .12s, box-shadow .12s;
+  }
+  .s-link:hover, .s-link:focus-visible { text-decoration: none; transform: translateY(-2px); box-shadow: 0 5px 0 #0a4a66; }
+
+  /* =====================================================
+     ACHIEVEMENTS (特殊技術實績 -> 獎盃)
+  ===================================================== */
+  .achv-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .achv {
+    display: flex; gap: 15px;
+    border: 2px solid var(--frame); border-radius: 4px;
+    background: var(--panel-2);
+    padding: 16px;
+    position: relative;
+  }
+  .achv .trophy {
+    width: 52px; height: 52px; flex: 0 0 52px;
+    display: grid; place-items: center;
+    border: 2px solid var(--gold); border-radius: 6px;
+    background: radial-gradient(circle at 50% 30%, #3a2c08, #120e02);
+    color: var(--gold); font-size: 22px;
+    box-shadow: 0 0 14px rgba(255,209,102,0.25);
+  }
+  .achv .a-name { font-family: var(--pixel); font-size: 10px; color: var(--gold); line-height: 1.7; }
+  .achv .a-tag { font-family: var(--pixel); font-size: 7px; color: var(--green); margin: 6px 0 8px; letter-spacing: 1px; }
+  .achv .a-desc { font-size: 14px; color: var(--ink-soft); }
+
+  /* =====================================================
+     BACKGROUND (學歷) + SAVE POINT (聯繫)
+  ===================================================== */
+  .twocol { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: stretch; }
+  .lore { display: flex; gap: 15px; align-items: center; }
+  .lore .l-ico {
+    width: 56px; height: 56px; flex: 0 0 56px;
+    display: grid; place-items: center;
+    border: 2px solid var(--frame); border-radius: 6px;
+    background: #0a1136; color: var(--purple); font-size: 24px;
+  }
+  .lore .l-school { font-weight: 700; font-size: 16px; }
+  .lore .l-dept { color: var(--ink-soft); font-size: 14px; margin-top: 4px; }
+  .lore .l-deg { font-family: var(--pixel); font-size: 8px; color: var(--cyan); margin-top: 8px; letter-spacing: 1px; }
+
+  .save .save-row {
+    display: flex; align-items: center; gap: 12px;
+    padding: 11px 0;
+    border-bottom: 1px solid var(--frame-soft);
+    font-size: 14.5px;
+  }
+  .save .save-row:last-child { border-bottom: 0; }
+  .save .save-row i { color: var(--cyan); width: 20px; text-align: center; }
+  .save-cta {
+    display: inline-flex; align-items: center; gap: 9px;
+    margin-top: 14px;
+    font-family: var(--pixel); font-size: 10px;
+    color: #04122e; background: var(--gold);
+    border: 2px solid #000; border-radius: 4px;
+    padding: 12px 16px; line-height: 1.5;
+    transition: transform .12s, box-shadow .12s;
+  }
+  .save-cta:hover, .save-cta:focus-visible { text-decoration: none; transform: translateY(-2px); box-shadow: 0 5px 0 #7a5400; }
+  .save-glow {
+    width: 12px; height: 12px; border-radius: 50%;
+    background: var(--gold); box-shadow: 0 0 10px var(--gold);
+    animation: pulse 1.5s ease-in-out infinite;
+  }
+
+  /* =====================================================
+     ABOUT (關於我 -> 角色背景文)
+  ===================================================== */
+  .about-p {
+    position: relative;
+    padding: 14px 16px 14px 46px;
+    margin-bottom: 12px;
+    border: 2px solid var(--frame-soft);
+    border-left: 4px solid var(--cyan);
+    border-radius: 4px;
+    background: var(--panel-2);
+    font-size: 15px;
+    color: var(--ink-soft);
+    line-height: 1.85;
+  }
+  .about-p::before {
+    content: counter(ab);
+    counter-increment: ab;
+    position: absolute; left: 12px; top: 13px;
+    font-family: var(--pixel); font-size: 11px; color: var(--gold);
+  }
+  .about-list { counter-reset: ab; }
+
+  /* =====================================================
+     CONTROLS BAR (全部展開 / 文件版)
+  ===================================================== */
+  .controls {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    padding: 10px 12px;
+    margin: 0 0 22px;
+    background: rgba(8,12,34,0.92);
+    backdrop-filter: blur(6px);
+    border: 2px solid var(--frame);
+    border-radius: 4px;
+  }
+  .controls .hint { font-size: 12.5px; color: var(--muted); margin-right: auto; }
+  .ctl-btn {
+    cursor: pointer;
+    font-family: var(--pixel); font-size: 9px; line-height: 1.5;
+    color: var(--ink);
+    background: var(--panel);
+    border: 2px solid var(--frame);
+    border-radius: 4px;
+    padding: 9px 11px;
+    display: inline-flex; align-items: center; gap: 7px;
+    transition: background .12s, border-color .12s, transform .1s;
+  }
+  .ctl-btn:hover, .ctl-btn:focus-visible { border-color: var(--gold); color: var(--gold); transform: translateY(-1px); }
+  .ctl-btn[aria-pressed="true"] { background: var(--gold); color: #04122e; border-color: #000; }
+  .ctl-btn i { font-size: 11px; }
+
+  /* Plain document mode: reveal everything, flatten interaction */
+  body.docmode .skill-panel,
+  body.docmode .quest-body { display: block !important; }
+  body.docmode .chev { display: none; }
+  body.docmode .skill-node, body.docmode .quest-toggle { cursor: default; }
+
+  /* =====================================================
+     LEVEL UP TOAST
+  ===================================================== */
+  .toast {
+    position: fixed;
+    left: 50%; bottom: 28px;
+    transform: translateX(-50%) translateY(140%);
+    z-index: 50;
+    font-family: var(--pixel); font-size: 11px; line-height: 1.6;
+    color: var(--gold);
+    background: var(--bg-2);
+    border: 3px solid var(--gold);
+    border-radius: 6px;
+    padding: 14px 18px;
+    box-shadow: 0 0 0 2px #000, 0 10px 30px rgba(0,0,0,0.6);
+    transition: transform .4s cubic-bezier(.2,1.3,.4,1);
+    pointer-events: none;
+    text-align: center;
+    max-width: 90vw;
+  }
+  .toast.show { transform: translateX(-50%) translateY(0); }
+  .toast .t-sub { display: block; font-size: 8px; color: var(--cyan); margin-top: 7px; }
+
+  /* footer */
+  footer.foot {
+    margin-top: 48px;
+    text-align: center;
+    font-family: var(--pixel);
+    font-size: 9px;
+    color: var(--muted);
+    line-height: 1.8;
+  }
+
+  /* =====================================================
+     IntersectionObserver reveal
+  ===================================================== */
+  .reveal { opacity: 0; transform: translateY(26px); transition: opacity .6s ease, transform .6s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+
+  /* =====================================================
+     RWD
+  ===================================================== */
+  @media (max-width: 860px) {
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .skilltree { grid-template-columns: 1fr 1fr; }
+    .party { grid-template-columns: 1fr; }
+    .achv-grid { grid-template-columns: 1fr; }
+    .twocol { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 560px) {
+    .hero-grid { grid-template-columns: 1fr; }
+    .avatar-box { max-width: 200px; margin: 0 auto; }
+    .skilltree { grid-template-columns: 1fr; }
+    .section-head .en { display: none; }
+    .window { padding: 16px; }
+  }
+
+  /* =====================================================
+     REDUCED MOTION -> static scrollable document
+  ===================================================== */
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { animation: none !important; transition: none !important; }
+    .reveal { opacity: 1 !important; transform: none !important; }
+    .skill-panel, .quest-body { display: block !important; }
+    .chev { display: none; }
+    .bar-fill { width: var(--bar) !important; }
+    .toast { display: none !important; }
+    .cursor::before { animation: none; }
+  }
+
+  /* =====================================================
+     PRINT — clean, all content expanded
+  ===================================================== */
+  @media print {
+    body { background: #fff; color: #000; }
+    body::before { display: none; }
+    .controls, .toast, .save-cta, .s-link, .chev { display: none !important; }
+    .window, .stat, .skill-node, .quest, .summon, .achv, .about-p {
+      border-color: #999 !important; box-shadow: none !important; background: #fff !important;
+    }
+    .skill-panel, .quest-body { display: block !important; }
+    .hero-name, .stat .num, .section-head, .skill-node .nt .name,
+    .quest-toggle .q-state, .summon .s-name, .achv .a-name, .lore .l-deg {
+      color: #000 !important; -webkit-text-fill-color: #000 !important; text-shadow: none !important;
+    }
+    a { color: #000; text-decoration: underline; }
+    .reveal { opacity: 1 !important; transform: none !important; }
+    .section { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- ================= CONTROL BAR ================= -->
+  <nav class="controls" aria-label="檢視控制">
+    <span class="hint"><i class="fa-solid fa-gamepad" aria-hidden="true"></i> 互動式 RPG 角色履歷 — 點節點探索，或一鍵展開全文</span>
+    <button class="ctl-btn" id="btnExpand" type="button" aria-pressed="false">
+      <i class="fa-solid fa-list-check" aria-hidden="true"></i> 全部展開 / 檢視全文
+    </button>
+    <button class="ctl-btn" id="btnDoc" type="button" aria-pressed="false">
+      <i class="fa-solid fa-file-lines" aria-hidden="true"></i> 純文件版
+    </button>
+  </nav>
+
+  <!-- ================= HERO ================= -->
+  <header class="hero reveal">
+    <div class="window">
+      <div class="hero-grid">
+        <div class="avatar-box">
+          <span class="lvl-badge">LV.10</span>
+          <!-- Pixel hero (inline SVG) -->
+          <svg class="pixel-hero" viewBox="0 0 22 22" shape-rendering="crispEdges" role="img" aria-label="像素風工程師角色">
+            <rect x="7" y="2" width="8" height="2" fill="#1b3a8c"/>
+            <rect x="6" y="3" width="10" height="2" fill="#2451b8"/>
+            <rect x="6" y="5" width="10" height="6" fill="#ffd9a8"/>
+            <rect x="6" y="5" width="10" height="2" fill="#3a2a14" opacity="0.25"/>
+            <rect x="8" y="7" width="2" height="2" fill="#0b1030"/>
+            <rect x="12" y="7" width="2" height="2" fill="#0b1030"/>
+            <rect x="9" y="10" width="4" height="1" fill="#c97b5a"/>
+            <rect x="5" y="11" width="12" height="7" fill="#1f7a5a"/>
+            <rect x="9" y="11" width="4" height="7" fill="#2bbf8c"/>
+            <rect x="10" y="13" width="2" height="2" fill="#ffd166"/>
+            <rect x="2" y="12" width="3" height="5" fill="#ffd9a8"/>
+            <rect x="17" y="12" width="3" height="5" fill="#ffd9a8"/>
+            <rect x="6" y="18" width="4" height="3" fill="#11204a"/>
+            <rect x="12" y="18" width="4" height="3" fill="#11204a"/>
+          </svg>
+        </div>
+        <div class="hero-info">
+          <h1 class="hero-name">Ian Cheng</h1>
+          <p class="hero-class pixel">CLASS&nbsp;:&nbsp;資深全端工程師 &amp; AI 工程師</p>
+          <p class="hero-tagline">10 年開發經驗，擅長 AI 產品落地、微服務架構設計，具備從零到上線的完整交付能力。</p>
+
+          <div class="buffs">
+            <span class="buff avail"><span class="dot" aria-hidden="true"></span>BUFF：Available for opportunities</span>
+            <a class="buff" href="mailto:serviceluna@luna-ai-life.com"><i class="fa-solid fa-envelope" aria-hidden="true"></i> serviceluna@luna-ai-life.com</a>
+          </div>
+
+          <div class="bars" aria-hidden="true">
+            <div class="bar-row">
+              <span class="lab hp pixel">HP</span>
+              <span class="bar-track"><span class="bar-fill hp" style="--bar:96%"></span></span>
+              <span class="val pixel">9600/9999</span>
+            </div>
+            <div class="bar-row">
+              <span class="lab mp pixel">MP</span>
+              <span class="bar-track"><span class="bar-fill mp" style="--bar:88%"></span></span>
+              <span class="val pixel">880/999</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= STATS / 數據亮點 ================= -->
+  <section class="section reveal" aria-labelledby="h-stats">
+    <h2 class="section-head" id="h-stats">
+      <span class="ico"><i class="fa-solid fa-chart-simple" aria-hidden="true"></i></span>
+      角色屬性 STATUS
+      <span class="en pixel">DATA HIGHLIGHTS</span>
+    </h2>
+    <div class="stats-grid">
+      <div class="stat">
+        <div class="abbr">EXP</div>
+        <div class="num" data-count="10" data-suffix="+">0</div>
+        <div class="desc">年開發經驗</div>
+      </div>
+      <div class="stat">
+        <div class="abbr">ATK</div>
+        <div class="num" data-count="5" data-suffix="+">0</div>
+        <div class="desc">大型專案交付</div>
+      </div>
+      <div class="stat">
+        <div class="abbr">DEF</div>
+        <div class="num" data-count="2" data-suffix="">0</div>
+        <div class="desc">自建產品上線</div>
+      </div>
+      <div class="stat">
+        <div class="abbr">INT</div>
+        <div class="num" data-count="3" data-suffix="">0</div>
+        <div class="desc">AI 整合實戰</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= ABOUT / 角色背景 ================= -->
+  <section class="section reveal" aria-labelledby="h-about">
+    <h2 class="section-head" id="h-about">
+      <span class="ico"><i class="fa-solid fa-scroll" aria-hidden="true"></i></span>
+      角色背景 PROFILE
+      <span class="en pixel">ABOUT</span>
+    </h2>
+    <div class="window">
+      <div class="about-list">
+        <p class="about-p">10 年全端工程師，具備從系統架構設計到 AI 產品落地的端對端能力。曾在中部區域醫院主導多項院內大型系統開發，採微服務架構 + API Gateway + RBAC 集中控管，支援全院多部門運作。</p>
+        <p class="about-p">自行開發並上線 璐娜健康管家（AI 健康 SaaS）與金連發電器（家電電商），整合 Gemini + OpenAI 多模態雙引擎。具備 Stable Diffusion + LoRA 模型微調及 RAG 系統建置實戰經驗，熟悉醫療資料處理與合規需求。</p>
+        <p class="about-p">背景橫跨醫療資訊、電商、AI 三個領域，能同時勝任技術深度討論與跨部門架構溝通。目前積極尋求 AI 工程師 / Tech Lead / Solution Architect 相關機會。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SKILL TREE / 核心技能 ================= -->
+  <section class="section reveal" aria-labelledby="h-skills">
+    <h2 class="section-head" id="h-skills">
+      <span class="ico"><i class="fa-solid fa-diagram-project" aria-hidden="true"></i></span>
+      技能樹 SKILL TREE
+      <span class="en pixel">CORE SKILLS</span>
+    </h2>
+    <div class="window">
+      <p style="margin:0 0 16px; color:var(--ink-soft); font-size:14px;"><span class="cursor"></span>點擊任一分支節點，在視窗中展開該分類技能。</p>
+      <div class="skilltree" id="skilltree">
+        <!-- nodes + inline panels injected by JS, with static fallback below -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= QUEST LOG / 工作經歷 ================= -->
+  <section class="section reveal" aria-labelledby="h-quest">
+    <h2 class="section-head" id="h-quest">
+      <span class="ico"><i class="fa-solid fa-book-open" aria-hidden="true"></i></span>
+      任務日誌 QUEST LOG
+      <span class="en pixel">EXPERIENCE</span>
+    </h2>
+    <div class="window">
+      <div class="quest-meta">
+        <span class="badge">MAIN QUEST</span>
+        <span><strong>程式設計師</strong> ＠ 中部區域醫院</span>
+        <span style="color:var(--muted)"><i class="fa-regular fa-clock" aria-hidden="true"></i> 任職約 9 年 — 至今</span>
+      </div>
+
+      <div class="quest">
+        <button class="quest-toggle" type="button" aria-expanded="false" aria-controls="q1">
+          <span class="q-ico"><i class="fa-solid fa-mobile-screen-button" aria-hidden="true"></i></span>
+          <span>
+            <span class="q-title">全院行動祕書</span><br />
+            <span class="q-sub">全院通用行動 App · 微服務架構</span>
+          </span>
+          <span class="q-state">CLEARED</span>
+          <i class="fa-solid fa-chevron-right chev" aria-hidden="true"></i>
+        </button>
+        <div class="quest-body" id="q1">
+          <ul>
+            <li>微服務架構設計，各功能模組獨立部署並透過 API Gateway 統一入口管理</li>
+            <li>RBAC 集中式權限控管，支援多角色、多部門存取隔離</li>
+            <li>Vue.js 前端 + Python / PHP 後端，Redis 快取優化高頻讀取效能</li>
+            <li>負責架構設計、開發、部署與維運全流程</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="quest">
+        <button class="quest-toggle" type="button" aria-expanded="false" aria-controls="q2">
+          <span class="q-ico"><i class="fa-solid fa-user-nurse" aria-hidden="true"></i></span>
+          <span>
+            <span class="q-title">個案管理系統</span><br />
+            <span class="q-sub">跨科別病患個案追蹤平台</span>
+          </span>
+          <span class="q-state">CLEARED</span>
+          <i class="fa-solid fa-chevron-right chev" aria-hidden="true"></i>
+        </button>
+        <div class="quest-body" id="q2">
+          <ul>
+            <li>跨科別病患個案追蹤平台，整合多部門護理流程與個案狀態管理</li>
+            <li>符合醫療資料安全規範，實作審計日誌與敏感欄位加密機制</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="quest">
+        <button class="quest-toggle" type="button" aria-expanded="false" aria-controls="q3">
+          <span class="q-ico"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i></span>
+          <span>
+            <span class="q-title">學習護照系統</span><br />
+            <span class="q-sub">全院員工學習歷程平台</span>
+          </span>
+          <span class="q-state">CLEARED</span>
+          <i class="fa-solid fa-chevron-right chev" aria-hidden="true"></i>
+        </button>
+        <div class="quest-body" id="q3">
+          <ul>
+            <li>全院員工學習歷程平台，支援課程管理、學習進度追蹤與認證產出</li>
+            <li>模組化設計對應醫師、護理師、行政等不同職類的差異化學習路徑</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PARTY / 自建作品 ================= -->
+  <section class="section reveal" aria-labelledby="h-party">
+    <h2 class="section-head" id="h-party">
+      <span class="ico"><i class="fa-solid fa-dragon" aria-hidden="true"></i></span>
+      隊伍成員 PARTY
+      <span class="en pixel">SIDE PROJECTS</span>
+    </h2>
+    <div class="party">
+
+      <article class="summon">
+        <div class="s-head">
+          <span class="s-emblem" style="color:var(--green)"><i class="fa-solid fa-heart-pulse" aria-hidden="true"></i></span>
+          <span>
+            <span class="s-name">璐娜健康管家</span>
+            <span class="s-role">AI SaaS · LINE Bot · 健康管理</span>
+          </span>
+        </div>
+        <div class="s-body">
+          <p class="s-desc">整合 Gemini + OpenAI 雙引擎的 AI 健康管理平台，提供拍照熱量辨識、社交陪跑配對與個人化健康報告。</p>
+          <ul class="s-feats">
+            <li>多模態 AI 辨識食物熱量（蛋白質、碳水、脂肪、鈉）</li>
+            <li>AI 配對陪跑夥伴 + 遊戲化打卡獎勵系統</li>
+            <li>個人化週報 / 月報含代謝評估與行動建議</li>
+            <li>Gemini + OpenAI 雙引擎備援架構</li>
+          </ul>
+          <div class="s-tags">
+            <span class="s-tag">OpenAI</span><span class="s-tag">Gemini</span><span class="s-tag">Vue.js</span><span class="s-tag">Python</span><span class="s-tag">LINE Bot</span>
+          </div>
+          <a class="s-link" href="https://luna-ai-life.com" target="_blank" rel="noopener noreferrer">
+            <i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i> luna-ai-life.com
+          </a>
+        </div>
+      </article>
+
+      <article class="summon">
+        <div class="s-head">
+          <span class="s-emblem" style="color:var(--orange)"><i class="fa-solid fa-plug-circle-bolt" aria-hidden="true"></i></span>
+          <span>
+            <span class="s-name">金連發電器</span>
+            <span class="s-role">電商平台 · 家電 · 全台配送</span>
+          </span>
+        </div>
+        <div class="s-body">
+          <p class="s-desc">完整家電購物商城，涵蓋商品管理、訂單流程、安裝 / 回收 / 運送服務整合，為實際營運中的電商系統。</p>
+          <ul class="s-feats">
+            <li>完整電商流程（商品、購物車、訂單、金流）</li>
+            <li>物流整合（安裝、回收、運送服務調度）</li>
+            <li>Redis 快取 + CDN + 負載均衡效能優化</li>
+          </ul>
+          <div class="s-tags">
+            <span class="s-tag">Vue.js</span><span class="s-tag">PHP</span><span class="s-tag">Redis</span><span class="s-tag">CDN</span><span class="s-tag">MySQL</span>
+          </div>
+          <a class="s-link" href="https://jlfshop.com" target="_blank" rel="noopener noreferrer">
+            <i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i> jlfshop.com
+          </a>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ================= ACHIEVEMENTS / 特殊技術實績 ================= -->
+  <section class="section reveal" aria-labelledby="h-achv">
+    <h2 class="section-head" id="h-achv">
+      <span class="ico"><i class="fa-solid fa-trophy" aria-hidden="true"></i></span>
+      成就解鎖 ACHIEVEMENTS
+      <span class="en pixel">SPECIAL FEATS</span>
+    </h2>
+    <div class="achv-grid">
+      <div class="achv">
+        <span class="trophy"><i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i></span>
+        <div>
+          <div class="a-name">Stable Diffusion + LoRA 模型微調</div>
+          <div class="a-tag">UNLOCKED · MODEL-TIER</div>
+          <p class="a-desc">獨立完成圖像生成模型訓練，涵蓋資料標注、訓練參數調整至產出完整流程，具備 AI 模型層級的實戰能力，不只是 API 呼叫層。</p>
+        </div>
+      </div>
+      <div class="achv">
+        <span class="trophy"><i class="fa-solid fa-magnifying-glass-chart" aria-hidden="true"></i></span>
+        <div>
+          <div class="a-name">醫療文件 RAG 系統</div>
+          <div class="a-tag">UNLOCKED · 800+ PAGES</div>
+          <p class="a-desc">將 800+ 頁原文病歷向量化，建置可語義查詢的醫療知識庫，實際用於醫療諮詢輔助，具備高精度召回率與答案可追溯性需求的處理經驗。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= BACKGROUND + SAVE POINT ================= -->
+  <section class="section reveal" aria-labelledby="h-bg">
+    <h2 class="section-head" id="h-bg">
+      <span class="ico"><i class="fa-solid fa-flag-checkered" aria-hidden="true"></i></span>
+      角色出身 &amp; 存檔點
+      <span class="en pixel">EDUCATION &amp; CONTACT</span>
+    </h2>
+    <div class="twocol">
+      <div class="window lore">
+        <span class="l-ico"><i class="fa-solid fa-school" aria-hidden="true"></i></span>
+        <div>
+          <div class="l-school">中山醫學大學</div>
+          <div class="l-dept">醫學資訊學系</div>
+          <div class="l-deg pixel">DEGREE · 學士</div>
+        </div>
+      </div>
+
+      <div class="window save">
+        <div class="save-row"><i class="fa-solid fa-envelope" aria-hidden="true"></i> <a href="mailto:serviceluna@luna-ai-life.com">serviceluna@luna-ai-life.com</a></div>
+        <div class="save-row"><i class="fa-solid fa-heart-pulse" aria-hidden="true"></i> <a href="https://luna-ai-life.com" target="_blank" rel="noopener noreferrer">璐娜健康管家</a></div>
+        <div class="save-row"><i class="fa-solid fa-plug" aria-hidden="true"></i> <a href="https://jlfshop.com" target="_blank" rel="noopener noreferrer">金連發電器</a></div>
+        <div class="save-row"><i class="fa-brands fa-github" aria-hidden="true"></i> <a href="https://github.com/" target="_blank" rel="noopener noreferrer">GitHub</a></div>
+        <a class="save-cta" href="mailto:serviceluna@luna-ai-life.com">
+          <span class="save-glow" aria-hidden="true"></span> SAVE &amp; 聯繫
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <p>© 2026 Ian Cheng</p>
+    <p style="color:var(--frame); font-size:8px;">PRESS START — Thanks for playing.</p>
+  </footer>
+
+</div>
+
+<!-- Level-up toast -->
+<div class="toast" id="toast" role="status" aria-live="polite">
+  LEVEL UP!
+  <span class="t-sub" id="toastSub">技能分支已解鎖</span>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* ---------- Skill tree data ---------- */
+  var SKILLS = [
+    { id:"lang", name:"程式語言", en:"LANGUAGES", icon:"fa-code",
+      items:["Python","Vue.js","PHP","JavaScript","HTML / CSS"] },
+    { id:"db", name:"資料庫", en:"DATABASE", icon:"fa-database",
+      items:["MySQL","PostgreSQL","MongoDB","Redis"] },
+    { id:"arch", name:"系統架構", en:"ARCHITECTURE", icon:"fa-sitemap",
+      items:["微服務","API Gateway","RBAC","事件驅動","負載均衡","CDN"] },
+    { id:"ai", name:"AI / ML", en:"AI / ML", icon:"fa-robot",
+      items:["OpenAI API","Gemini API","RAG","LoRA fine-tuning","Stable Diffusion","向量資料庫"] },
+    { id:"devops", name:"DevOps", en:"DEVOPS", icon:"fa-gears",
+      items:["Docker","CI/CD","Linux","Nginx"] },
+    { id:"domain", name:"領域知識", en:"DOMAIN", icon:"fa-briefcase-medical",
+      items:["醫療資訊系統","電商平台","醫療資料合規","HL7 / FHIR"] }
+  ];
+
+  var tree = document.getElementById("skilltree");
+
+  function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+
+  function buildTree(){
+    var html = "";
+    SKILLS.forEach(function (s) {
+      var panelId = "sp-" + s.id;
+      html +=
+        '<button class="skill-node" type="button" aria-expanded="false" aria-controls="'+panelId+'" data-skill="'+s.id+'">' +
+          '<span class="nico"><i class="fa-solid '+s.icon+'" aria-hidden="true"></i></span>' +
+          '<span class="nt"><span class="name">'+esc(s.name)+'</span><span class="cnt">'+s.items.length+' 項技能 · 點擊展開</span></span>' +
+          '<i class="fa-solid fa-chevron-right chev" aria-hidden="true"></i>' +
+        '</button>';
+      var chips = s.items.map(function (it) {
+        return '<span class="chip"><i class="fa-solid fa-bolt" aria-hidden="true"></i>'+esc(it)+'</span>';
+      }).join("");
+      html +=
+        '<div class="skill-panel" id="'+panelId+'" role="region" aria-label="'+esc(s.name)+' 技能">' +
+          '<div class="window">' +
+            '<div class="sp-head"><span class="cursor"></span>'+esc(s.name)+' &mdash; '+esc(s.en)+'</div>' +
+            '<div class="skill-chips">'+chips+'</div>' +
+          '</div>' +
+        '</div>';
+    });
+    tree.innerHTML = html;
+  }
+  buildTree();
+
+  /* ---------- Level-up toast ---------- */
+  var toast = document.getElementById("toast");
+  var toastSub = document.getElementById("toastSub");
+  var toastTimer = null;
+  function showToast(label, sub){
+    if (reduceMotion || document.body.classList.contains("docmode")) return;
+    toast.firstChild.nodeValue = label + " ";
+    toastSub.textContent = sub || "";
+    toast.classList.add("show");
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function(){ toast.classList.remove("show"); }, 1700);
+  }
+
+  /* ---------- Skill node toggle ---------- */
+  tree.addEventListener("click", function (e) {
+    var btn = e.target.closest(".skill-node");
+    if (!btn || document.body.classList.contains("docmode")) return;
+    var panel = document.getElementById(btn.getAttribute("aria-controls"));
+    var open = btn.getAttribute("aria-expanded") === "true";
+    btn.setAttribute("aria-expanded", open ? "false" : "true");
+    if (panel) panel.classList.toggle("open", !open);
+    if (!open) {
+      var name = btn.querySelector(".name").textContent;
+      showToast("SKILL UNLOCKED", name + " 分支已展開");
+    }
+    syncControls();
+  });
+
+  /* ---------- Quest toggle ---------- */
+  document.querySelectorAll(".quest-toggle").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      if (document.body.classList.contains("docmode")) return;
+      var body = document.getElementById(btn.getAttribute("aria-controls"));
+      var open = btn.getAttribute("aria-expanded") === "true";
+      btn.setAttribute("aria-expanded", open ? "false" : "true");
+      if (body) body.classList.toggle("open", !open);
+      if (!open) {
+        var t = btn.querySelector(".q-title").textContent;
+        showToast("QUEST OPENED", t);
+      }
+      syncControls();
+    });
+  });
+
+  /* ---------- Expand all / collapse all ---------- */
+  var btnExpand = document.getElementById("btnExpand");
+  function setAll(expand){
+    document.querySelectorAll(".skill-node").forEach(function (b) {
+      b.setAttribute("aria-expanded", expand ? "true" : "false");
+      var p = document.getElementById(b.getAttribute("aria-controls"));
+      if (p) p.classList.toggle("open", expand);
+    });
+    document.querySelectorAll(".quest-toggle").forEach(function (b) {
+      b.setAttribute("aria-expanded", expand ? "true" : "false");
+      var p = document.getElementById(b.getAttribute("aria-controls"));
+      if (p) p.classList.toggle("open", expand);
+    });
+    btnExpand.setAttribute("aria-pressed", expand ? "true" : "false");
+    btnExpand.innerHTML = expand
+      ? '<i class="fa-solid fa-list-check" aria-hidden="true"></i> 全部收合'
+      : '<i class="fa-solid fa-list-check" aria-hidden="true"></i> 全部展開 / 檢視全文';
+  }
+  function allExpanded(){
+    var nodes = document.querySelectorAll(".skill-node, .quest-toggle");
+    for (var i=0;i<nodes.length;i++){ if (nodes[i].getAttribute("aria-expanded")!=="true") return false; }
+    return true;
+  }
+  function syncControls(){
+    var all = allExpanded();
+    btnExpand.setAttribute("aria-pressed", all ? "true" : "false");
+    btnExpand.innerHTML = all
+      ? '<i class="fa-solid fa-list-check" aria-hidden="true"></i> 全部收合'
+      : '<i class="fa-solid fa-list-check" aria-hidden="true"></i> 全部展開 / 檢視全文';
+  }
+  btnExpand.addEventListener("click", function () {
+    setAll(!allExpanded());
+  });
+
+  /* ---------- Document mode ---------- */
+  var btnDoc = document.getElementById("btnDoc");
+  btnDoc.addEventListener("click", function () {
+    var on = document.body.classList.toggle("docmode");
+    btnDoc.setAttribute("aria-pressed", on ? "true" : "false");
+    btnDoc.innerHTML = on
+      ? '<i class="fa-solid fa-gamepad" aria-hidden="true"></i> 回到互動版'
+      : '<i class="fa-solid fa-file-lines" aria-hidden="true"></i> 純文件版';
+    if (on) setAll(true);
+  });
+
+  /* ---------- If reduced motion: behave like document mode content-wise ---------- */
+  if (reduceMotion) {
+    setAll(true);
+  }
+
+  /* ---------- Count-up numbers ---------- */
+  function countUp(el){
+    var target = parseInt(el.getAttribute("data-count"), 10) || 0;
+    var suffix = el.getAttribute("data-suffix") || "";
+    if (reduceMotion) { el.textContent = target + suffix; return; }
+    var start = null, dur = 1100;
+    function step(ts){
+      if (!start) start = ts;
+      var p = Math.min((ts - start) / dur, 1);
+      var eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(target * eased) + suffix;
+      if (p < 1) requestAnimationFrame(step);
+      else el.textContent = target + suffix;
+    }
+    requestAnimationFrame(step);
+  }
+
+  /* ---------- HP/MP bar fill ---------- */
+  function fillBars(){
+    document.querySelectorAll(".bar-fill").forEach(function (b) {
+      var v = b.style.getPropertyValue("--bar");
+      if (reduceMotion) { b.style.width = v; return; }
+      requestAnimationFrame(function(){ b.style.width = v; });
+    });
+  }
+
+  /* ---------- IntersectionObserver reveal + triggers ---------- */
+  var counted = false, barred = false;
+  if ("IntersectionObserver" in window && !reduceMotion) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        en.target.classList.add("in");
+        if (en.target.querySelector && en.target.querySelector("[data-count]") && !counted) {
+          counted = true;
+          en.target.querySelectorAll("[data-count]").forEach(countUp);
+        }
+        io.unobserve(en.target);
+      });
+    }, { threshold: 0.18, rootMargin: "0px 0px -8% 0px" });
+    document.querySelectorAll(".reveal").forEach(function (el) { io.observe(el); });
+    // fire hero bars + level-up shortly after load
+    setTimeout(function(){ fillBars(); showToast("LV.10 READY", "角色載入完成"); }, 500);
+  } else {
+    document.querySelectorAll(".reveal").forEach(function (el) { el.classList.add("in"); });
+    document.querySelectorAll("[data-count]").forEach(countUp);
+    fillBars();
+  }
+
+  syncControls();
+})();
+</script>
+</body>
+</html>

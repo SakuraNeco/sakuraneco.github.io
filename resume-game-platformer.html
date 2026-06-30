@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>Ian Cheng — 資深全端工程師 &amp; AI 工程師｜互動履歷</title>
+<meta name="description" content="Ian Cheng — 資深全端工程師 &amp; AI 工程師。10 年開發經驗，擅長 AI 產品落地、微服務架構設計，具備從零到上線的完整交付能力。橫向捲軸平台遊戲式互動履歷。" />
+<meta name="author" content="Ian Cheng" />
+<meta name="keywords" content="Ian Cheng,全端工程師,AI 工程師,微服務,RAG,LoRA,Stable Diffusion,Tech Lead,Solution Architect" />
+<meta name="theme-color" content="#0b1026" />
+<meta name="robots" content="index,follow" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="profile" />
+<meta property="og:title" content="Ian Cheng — 資深全端工程師 &amp; AI 工程師｜互動履歷" />
+<meta property="og:description" content="10 年開發經驗，擅長 AI 產品落地、微服務架構設計，具備從零到上線的完整交付能力。橫向捲軸平台遊戲式互動履歷。" />
+<meta property="og:locale" content="zh_TW" />
+<meta property="profile:first_name" content="Ian" />
+<meta property="profile:last_name" content="Cheng" />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="Ian Cheng — 資深全端工程師 &amp; AI 工程師" />
+<meta name="twitter:description" content="10 年開發經驗，擅長 AI 產品落地、微服務架構設計，具備從零到上線的完整交付能力。" />
+
+<!-- Favicon (data URI SVG) -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20100%20100'%3E%3Crect%20width='100'%20height='100'%20rx='18'%20fill='%230b1026'/%3E%3Crect%20x='30'%20y='28'%20width='40'%20height='44'%20rx='8'%20fill='%2364f0c8'/%3E%3Crect%20x='40'%20y='40'%20width='8'%20height='8'%20fill='%230b1026'/%3E%3Crect%20x='54'%20y='40'%20width='8'%20height='8'%20fill='%230b1026'/%3E%3Crect%20x='42'%20y='56'%20width='18'%20height='5'%20rx='2'%20fill='%230b1026'/%3E%3C/svg%3E" />
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet" />
+
+<!-- Font Awesome (cdnjs) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" referrerpolicy="no-referrer" />
+
+<style>
+  :root{
+    --bg:#0b1026; --bg2:#131a3a; --panel:rgba(18,26,58,.92);
+    --ink:#e8edff; --muted:#9aa6d4; --line:rgba(120,140,220,.22);
+    --mint:#64f0c8; --sky:#5db8ff; --gold:#ffd166; --pink:#ff7eb6; --violet:#9d8cff;
+    --accent:#64f0c8;
+    --pixel:'Press Start 2P', 'Noto Sans TC', monospace;
+    --sans:'Noto Sans TC', system-ui, sans-serif;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    background:radial-gradient(1200px 700px at 50% -10%, #1a2350 0%, var(--bg) 60%) fixed;
+    color:var(--ink); font-family:var(--sans); -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  a{color:var(--sky); text-decoration:none}
+  a:hover{text-decoration:underline}
+
+  /* ===== Skip / accessibility ===== */
+  .skip{position:absolute; left:-999px; top:0; z-index:200; background:var(--mint); color:#04210f; padding:10px 14px; border-radius:8px; font-weight:700}
+  .skip:focus{left:10px; top:10px}
+
+  /* ===== Top bar ===== */
+  .topbar{
+    position:fixed; inset:0 0 auto 0; z-index:60; display:flex; gap:10px; align-items:center;
+    padding:10px 14px; background:linear-gradient(180deg, rgba(11,16,38,.95), rgba(11,16,38,.55) 70%, transparent);
+    flex-wrap:wrap;
+  }
+  .brand{font-family:var(--pixel); font-size:12px; color:var(--mint); letter-spacing:.5px; display:flex; align-items:center; gap:8px; line-height:1.4}
+  .brand .dot{width:10px;height:10px;border-radius:2px;background:var(--mint);box-shadow:0 0 10px var(--mint)}
+  .spacer{flex:1}
+  .btn{
+    font-family:var(--sans); font-weight:700; font-size:13px; cursor:pointer;
+    background:rgba(120,140,220,.12); color:var(--ink); border:1px solid var(--line);
+    padding:8px 12px; border-radius:10px; display:inline-flex; align-items:center; gap:7px;
+    transition:transform .12s ease, background .2s, border-color .2s;
+  }
+  .btn:hover{background:rgba(120,140,220,.22); border-color:var(--mint); transform:translateY(-1px)}
+  .btn.primary{background:linear-gradient(135deg,var(--mint),var(--sky)); color:#06241c; border-color:transparent}
+  .btn i{font-size:13px}
+  .menu-wrap{position:relative}
+  .menu{
+    position:absolute; right:0; top:46px; background:var(--panel); border:1px solid var(--line);
+    border-radius:14px; padding:8px; min-width:200px; box-shadow:0 20px 50px rgba(0,0,0,.5);
+    display:none; backdrop-filter:blur(8px);
+  }
+  .menu.open{display:block}
+  .menu button{
+    width:100%; text-align:left; background:transparent; border:0; color:var(--ink);
+    font-family:var(--sans); font-size:14px; padding:9px 10px; border-radius:9px; cursor:pointer;
+    display:flex; align-items:center; gap:10px;
+  }
+  .menu button:hover{background:rgba(120,140,220,.18)}
+  .menu button i{width:18px; color:var(--mint)}
+
+  /* ===== Game stage ===== */
+  #stage{position:fixed; inset:0; z-index:1}
+  #game{display:block; width:100%; height:100%; image-rendering:pixelated}
+
+  /* HUD */
+  .hud{
+    position:fixed; left:14px; bottom:14px; z-index:40; display:flex; gap:12px; align-items:center;
+    background:var(--panel); border:1px solid var(--line); padding:8px 12px; border-radius:12px;
+    font-family:var(--pixel); font-size:10px; color:var(--gold); backdrop-filter:blur(6px);
+  }
+  .hud .coin{display:flex; align-items:center; gap:7px}
+  .hud .seg{color:var(--muted)}
+  .hud .seg b{color:var(--mint)}
+
+  .hint{
+    position:fixed; left:50%; bottom:96px; transform:translateX(-50%); z-index:40;
+    background:rgba(11,16,38,.8); border:1px solid var(--line); color:var(--muted);
+    padding:7px 14px; border-radius:30px; font-size:12.5px; backdrop-filter:blur(6px);
+    display:flex; gap:8px; align-items:center; max-width:92vw; text-align:center;
+  }
+  .hint b{color:var(--mint)}
+
+  /* Sign / billboard popup */
+  .sign{
+    position:fixed; z-index:55; left:50%; top:50%; transform:translate(-50%,-50%) scale(.96);
+    width:min(640px, 92vw); max-height:78vh; overflow:auto;
+    background:var(--panel); border:1px solid var(--line); border-radius:18px;
+    box-shadow:0 30px 80px rgba(0,0,0,.6); padding:22px 22px 18px; backdrop-filter:blur(10px);
+    opacity:0; pointer-events:none; transition:opacity .18s ease, transform .18s ease;
+  }
+  .sign.open{opacity:1; pointer-events:auto; transform:translate(-50%,-50%) scale(1)}
+  .sign h2{
+    font-family:var(--pixel); font-size:15px; margin:0 0 12px;
+    background:linear-gradient(90deg,var(--mint),var(--sky)); -webkit-background-clip:text; background-clip:text;
+    color:transparent; line-height:1.4; padding-bottom:4px; display:flex; align-items:center; gap:10px;
+  }
+  .sign h2 i{ -webkit-text-fill-color:var(--mint); color:var(--mint); font-size:16px}
+  .sign .close{position:absolute; right:14px; top:12px; background:rgba(120,140,220,.14); border:1px solid var(--line); color:var(--ink); width:34px;height:34px;border-radius:10px;cursor:pointer; font-size:15px}
+  .sign .close:hover{border-color:var(--pink); color:var(--pink)}
+  .sign .nav{display:flex; justify-content:space-between; gap:10px; margin-top:16px; padding-top:14px; border-top:1px dashed var(--line)}
+
+  /* Touch controls */
+  .touch{position:fixed; z-index:45; bottom:18px; display:none; user-select:none; -webkit-user-select:none; touch-action:none}
+  .touch.left{left:14px; display:none; gap:10px}
+  .touch.right{right:14px; display:none}
+  .pad{
+    width:62px; height:62px; border-radius:16px; background:var(--panel); border:1px solid var(--line);
+    color:var(--mint); font-size:22px; display:flex; align-items:center; justify-content:center;
+    backdrop-filter:blur(6px); box-shadow:0 8px 24px rgba(0,0,0,.4);
+  }
+  .pad:active{background:rgba(100,240,200,.25)}
+  .pad.jump{width:74px;height:74px; color:var(--gold); font-size:24px}
+  body.touch-on .touch.left{display:flex}
+  body.touch-on .touch.right{display:flex}
+
+  /* Loading */
+  #loader{position:fixed; inset:0; z-index:120; background:var(--bg); display:flex; align-items:center; justify-content:center; flex-direction:column; gap:18px}
+  #loader .px{font-family:var(--pixel); color:var(--mint); font-size:14px; animation:blink 1s steps(2) infinite}
+  @keyframes blink{50%{opacity:.35}}
+  #loader.hide{opacity:0; pointer-events:none; transition:opacity .4s}
+
+  /* ===== Static / readable document ===== */
+  .doc{position:relative; z-index:5; max-width:880px; margin:0 auto; padding:84px 20px 80px; display:none}
+  body.read .doc{display:block}
+  body.read #stage,body.read .hud,body.read .hint,body.read .touch,body.read .sign{display:none !important}
+  body.read{overflow-y:auto}
+  body.read .topbar{position:sticky}
+
+  .doc .hero-card{
+    background:var(--panel); border:1px solid var(--line); border-radius:22px; padding:32px 28px; margin-bottom:26px;
+    position:relative; overflow:hidden;
+  }
+  .doc .hero-card::before{content:""; position:absolute; inset:0; background:radial-gradient(420px 240px at 90% -20%, rgba(100,240,200,.18), transparent 60%); pointer-events:none}
+  .doc .name{
+    font-family:var(--pixel); font-size:clamp(20px,5vw,34px); line-height:1.35; padding-bottom:6px; margin:0 0 6px;
+    background:linear-gradient(90deg,var(--mint),var(--sky),var(--violet)); -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .doc .title{font-size:clamp(15px,3vw,19px); font-weight:700; color:var(--ink); margin:0 0 14px}
+  .doc .tagline{color:var(--muted); line-height:1.85; max-width:62ch; margin:0 0 16px}
+  .badges{display:flex; flex-wrap:wrap; gap:10px; margin-top:4px}
+  .badge{font-size:13px; padding:7px 13px; border-radius:30px; border:1px solid var(--line); background:rgba(120,140,220,.1); display:inline-flex; gap:8px; align-items:center}
+  .badge.ok{color:var(--mint); border-color:rgba(100,240,200,.4)}
+  .badge.ok i{color:var(--mint)}
+
+  .stats{display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin:26px 0}
+  .stat{background:var(--panel); border:1px solid var(--line); border-radius:16px; padding:18px 14px; text-align:center}
+  .stat .n{font-family:var(--pixel); font-size:clamp(16px,4vw,22px); color:var(--gold); line-height:1.4; padding-bottom:4px}
+  .stat .l{font-size:12.5px; color:var(--muted); margin-top:6px}
+
+  .doc section{background:var(--panel); border:1px solid var(--line); border-radius:18px; padding:24px 24px; margin-bottom:20px}
+  .doc section > h2{
+    font-family:var(--pixel); font-size:14px; line-height:1.5; padding-bottom:8px; margin:0 0 16px;
+    color:var(--mint); display:flex; align-items:center; gap:10px; border-bottom:1px solid var(--line);
+  }
+  .doc section > h2 i{color:var(--sky)}
+  .doc p{line-height:1.95; color:#d6ddff; margin:0 0 14px}
+  .doc p:last-child{margin-bottom:0}
+
+  .skillrow{margin-bottom:14px}
+  .skillrow .k{font-weight:700; color:var(--mint); font-size:13.5px; margin-bottom:8px; display:flex; align-items:center; gap:8px}
+  .chips{display:flex; flex-wrap:wrap; gap:8px}
+  .chip{font-size:12.5px; padding:6px 11px; border-radius:8px; background:rgba(120,140,220,.12); border:1px solid var(--line); color:#dfe5ff}
+
+  .job{border-left:3px solid var(--mint); padding-left:16px; margin-bottom:8px}
+  .job h3{margin:0 0 4px; font-size:16px}
+  .job .meta{color:var(--muted); font-size:13px; margin-bottom:12px}
+  .job ul{margin:0; padding-left:18px}
+  .job li{line-height:1.85; margin-bottom:10px; color:#d6ddff}
+  .job li b{color:var(--mint)}
+
+  .work{display:grid; grid-template-columns:1fr 1fr; gap:16px}
+  .card{background:rgba(11,16,38,.55); border:1px solid var(--line); border-radius:14px; padding:18px}
+  .card h3{margin:0 0 4px; font-size:16px; display:flex; align-items:center; gap:9px; flex-wrap:wrap}
+  .card .sub{color:var(--gold); font-size:12.5px; margin-bottom:10px}
+  .card p{font-size:13.5px; line-height:1.8; color:#cdd5fb}
+  .card ul{margin:8px 0 12px; padding-left:18px}
+  .card li{font-size:13px; line-height:1.75; margin-bottom:6px; color:#cdd5fb}
+  .card .tags{display:flex; flex-wrap:wrap; gap:7px; margin-top:6px}
+  .card .tags .chip{font-size:11.5px; padding:4px 9px}
+
+  .ach{display:flex; gap:14px; align-items:flex-start; margin-bottom:16px}
+  .ach .ic{flex:0 0 auto; width:42px;height:42px;border-radius:12px;background:rgba(100,240,200,.12); border:1px solid var(--line); display:flex;align-items:center;justify-content:center; color:var(--mint); font-size:18px}
+  .ach h3{margin:0 0 5px; font-size:15px}
+  .ach p{font-size:13.5px; line-height:1.8; margin:0}
+
+  .contact-row{display:flex; flex-wrap:wrap; gap:12px; margin-top:4px}
+  .contact-row a{display:inline-flex; gap:9px; align-items:center; padding:10px 15px; border-radius:12px; border:1px solid var(--line); background:rgba(120,140,220,.1); color:var(--ink); font-weight:600; font-size:14px}
+  .contact-row a:hover{border-color:var(--mint); text-decoration:none}
+  .contact-row a i{color:var(--mint)}
+
+  .foot{text-align:center; color:var(--muted); font-size:13px; padding:26px 10px 8px}
+
+  @media (max-width:640px){
+    .work{grid-template-columns:1fr}
+    .stats{grid-template-columns:repeat(2,1fr)}
+    .brand{font-size:10px}
+    .btn span.lbl{display:none}
+    .btn{padding:8px 10px}
+  }
+
+  /* ===== Print ===== */
+  @media print{
+    body{background:#fff; color:#111; overflow:visible}
+    .topbar,.hud,.hint,.touch,.sign,#stage,#loader{display:none !important}
+    .doc{display:block !important; max-width:100%; padding:0}
+    .doc .hero-card,.doc section,.stat,.card{background:#fff; border:1px solid #ccc; box-shadow:none}
+    .doc .name,.doc section>h2,.stat .n{color:#111 !important; -webkit-text-fill-color:#111}
+    .doc p,.doc li,.tagline{color:#222 !important}
+    a{color:#111; text-decoration:underline}
+  }
+
+  /* Reduced motion: prefer document, but still allow toggling */
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:.001ms !important; transition-duration:.001ms !important}
+  }
+</style>
+</head>
+<body>
+<a class="skip" href="#about">跳至履歷全文</a>
+
+<!-- Loader -->
+<div id="loader"><div class="brand"><span class="dot"></span>IAN CHENG</div><div class="px">LOADING…</div></div>
+
+<!-- Top bar -->
+<header class="topbar">
+  <div class="brand"><span class="dot"></span>IAN CHENG</div>
+  <div class="spacer"></div>
+  <button class="btn" id="autoBtn" title="自動前進走完整個關卡"><i class="fa-solid fa-play"></i><span class="lbl">自動前進</span></button>
+  <div class="menu-wrap">
+    <button class="btn" id="jumpBtn"><i class="fa-solid fa-list"></i><span class="lbl">跳關選單</span></button>
+    <div class="menu" id="jumpMenu" role="menu" aria-label="區塊跳關選單"></div>
+  </div>
+  <button class="btn primary" id="readBtn"><i class="fa-solid fa-book-open"></i><span class="lbl">檢視全文</span></button>
+</header>
+
+<!-- Game stage -->
+<div id="stage">
+  <canvas id="game" aria-hidden="true"></canvas>
+</div>
+
+<!-- HUD -->
+<div class="hud" id="hud" aria-hidden="true">
+  <span class="coin"><i class="fa-solid fa-coins" style="color:var(--gold)"></i> <b id="coinCount">0</b>/<span id="coinTotal">0</span></span>
+  <span class="seg">區段 <b id="segNow">起點</b></span>
+</div>
+
+<div class="hint" id="hint" aria-hidden="true"><i class="fa-solid fa-arrows-left-right" style="color:var(--mint)"></i> <b>方向鍵 / A D</b> 移動，<b>空白 / W</b> 跳，走到看板前查看內容</div>
+
+<!-- Touch controls -->
+<div class="touch left" aria-hidden="true">
+  <div class="pad" id="tLeft"><i class="fa-solid fa-chevron-left"></i></div>
+  <div class="pad" id="tRight"><i class="fa-solid fa-chevron-right"></i></div>
+</div>
+<div class="touch right" aria-hidden="true">
+  <div class="pad jump" id="tJump"><i class="fa-solid fa-up-long"></i></div>
+</div>
+
+<!-- Sign popup -->
+<div class="sign" id="sign" role="dialog" aria-modal="true" aria-labelledby="signTitle">
+  <button class="close" id="signClose" aria-label="關閉">&times;</button>
+  <h2 id="signTitle"><i class="fa-solid fa-flag"></i><span></span></h2>
+  <div id="signBody"></div>
+  <div class="nav">
+    <button class="btn" id="signPrev"><i class="fa-solid fa-arrow-left"></i> 上一段</button>
+    <button class="btn primary" id="signNext">下一段 <i class="fa-solid fa-arrow-right"></i></button>
+  </div>
+</div>
+
+<!-- ===================== READABLE DOCUMENT (SEO + fallback) ===================== -->
+<main class="doc">
+  <div class="hero-card">
+    <h1 class="name">Ian Cheng</h1>
+    <p class="title">資深全端工程師 &amp; AI 工程師</p>
+    <p class="tagline">10 年開發經驗，擅長 AI 產品落地、微服務架構設計，具備從零到上線的完整交付能力。</p>
+    <div class="badges">
+      <span class="badge ok"><i class="fa-solid fa-circle-check"></i> Available for opportunities</span>
+      <span class="badge"><i class="fa-solid fa-envelope" style="color:var(--mint)"></i> <a href="mailto:serviceluna@luna-ai-life.com">serviceluna@luna-ai-life.com</a></span>
+    </div>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><div class="n">10+</div><div class="l">年開發經驗</div></div>
+    <div class="stat"><div class="n">5+</div><div class="l">大型專案交付</div></div>
+    <div class="stat"><div class="n">2</div><div class="l">自建產品上線</div></div>
+    <div class="stat"><div class="n">3</div><div class="l">AI 整合實戰</div></div>
+  </div>
+
+  <section id="about">
+    <h2><i class="fa-solid fa-user-astronaut"></i> 關於我</h2>
+    <p>10 年全端工程師，具備從系統架構設計到 AI 產品落地的端對端能力。曾在中部區域醫院主導多項院內大型系統開發，採微服務架構 + API Gateway + RBAC 集中控管，支援全院多部門運作。</p>
+    <p>自行開發並上線 璐娜健康管家（AI 健康 SaaS）與金連發電器（家電電商），整合 Gemini + OpenAI 多模態雙引擎。具備 Stable Diffusion + LoRA 模型微調及 RAG 系統建置實戰經驗，熟悉醫療資料處理與合規需求。</p>
+    <p>背景橫跨醫療資訊、電商、AI 三個領域，能同時勝任技術深度討論與跨部門架構溝通。目前積極尋求 AI 工程師 / Tech Lead / Solution Architect 相關機會。</p>
+  </section>
+
+  <section id="skills">
+    <h2><i class="fa-solid fa-gears"></i> 核心技能</h2>
+    <div class="skillrow"><div class="k"><i class="fa-solid fa-code"></i> 程式語言</div><div class="chips"><span class="chip">Python</span><span class="chip">Vue.js</span><span class="chip">PHP</span><span class="chip">JavaScript</span><span class="chip">HTML / CSS</span></div></div>
+    <div class="skillrow"><div class="k"><i class="fa-solid fa-database"></i> 資料庫</div><div class="chips"><span class="chip">MySQL</span><span class="chip">PostgreSQL</span><span class="chip">MongoDB</span><span class="chip">Redis</span></div></div>
+    <div class="skillrow"><div class="k"><i class="fa-solid fa-sitemap"></i> 系統架構</div><div class="chips"><span class="chip">微服務</span><span class="chip">API Gateway</span><span class="chip">RBAC</span><span class="chip">事件驅動</span><span class="chip">負載均衡</span><span class="chip">CDN</span></div></div>
+    <div class="skillrow"><div class="k"><i class="fa-solid fa-robot"></i> AI / ML</div><div class="chips"><span class="chip">OpenAI API</span><span class="chip">Gemini API</span><span class="chip">RAG</span><span class="chip">LoRA fine-tuning</span><span class="chip">Stable Diffusion</span><span class="chip">向量資料庫</span></div></div>
+    <div class="skillrow"><div class="k"><i class="fa-solid fa-server"></i> DevOps</div><div class="chips"><span class="chip">Docker</span><span class="chip">CI/CD</span><span class="chip">Linux</span><span class="chip">Nginx</span></div></div>
+    <div class="skillrow"><div class="k"><i class="fa-solid fa-stethoscope"></i> 領域知識</div><div class="chips"><span class="chip">醫療資訊系統</span><span class="chip">電商平台</span><span class="chip">醫療資料合規</span><span class="chip">HL7 / FHIR</span></div></div>
+  </section>
+
+  <section id="exp">
+    <h2><i class="fa-solid fa-briefcase"></i> 工作經歷</h2>
+    <div class="job">
+      <h3>程式設計師</h3>
+      <div class="meta">＠ 中部區域醫院 · 任職約 9 年 — 至今</div>
+      <ul>
+        <li><b>全院行動祕書（全院通用行動 App）</b>：微服務架構設計，各功能模組獨立部署並透過 API Gateway 統一入口管理；RBAC 集中式權限控管，支援多角色、多部門存取隔離；Vue.js 前端 + Python / PHP 後端，Redis 快取優化高頻讀取效能；負責架構設計、開發、部署與維運全流程。</li>
+        <li><b>個案管理系統</b>：跨科別病患個案追蹤平台，整合多部門護理流程與個案狀態管理；符合醫療資料安全規範，實作審計日誌與敏感欄位加密機制。</li>
+        <li><b>學習護照系統</b>：全院員工學習歷程平台，支援課程管理、學習進度追蹤與認證產出；模組化設計對應醫師、護理師、行政等不同職類的差異化學習路徑。</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="work">
+    <h2><i class="fa-solid fa-rocket"></i> 自建作品</h2>
+    <div class="work">
+      <div class="card">
+        <h3><i class="fa-solid fa-heart-pulse" style="color:var(--pink)"></i> 璐娜健康管家</h3>
+        <div class="sub">AI SaaS · LINE Bot · 健康管理 · <a href="https://luna-ai-life.com" target="_blank" rel="noopener">luna-ai-life.com</a></div>
+        <p>整合 Gemini + OpenAI 雙引擎的 AI 健康管理平台，提供拍照熱量辨識、社交陪跑配對與個人化健康報告。</p>
+        <ul>
+          <li>多模態 AI 辨識食物熱量（蛋白質、碳水、脂肪、鈉）</li>
+          <li>AI 配對陪跑夥伴 + 遊戲化打卡獎勵系統</li>
+          <li>個人化週報 / 月報含代謝評估與行動建議</li>
+          <li>Gemini + OpenAI 雙引擎備援架構</li>
+        </ul>
+        <div class="tags"><span class="chip">OpenAI</span><span class="chip">Gemini</span><span class="chip">Vue.js</span><span class="chip">Python</span><span class="chip">LINE Bot</span></div>
+      </div>
+      <div class="card">
+        <h3><i class="fa-solid fa-plug" style="color:var(--gold)"></i> 金連發電器</h3>
+        <div class="sub">電商平台 · 家電 · 全台配送 · <a href="https://jlfshop.com" target="_blank" rel="noopener">jlfshop.com</a></div>
+        <p>完整家電購物商城，涵蓋商品管理、訂單流程、安裝 / 回收 / 運送服務整合，為實際營運中的電商系統。</p>
+        <ul>
+          <li>完整電商流程（商品、購物車、訂單、金流）</li>
+          <li>物流整合（安裝、回收、運送服務調度）</li>
+          <li>Redis 快取 + CDN + 負載均衡效能優化</li>
+        </ul>
+        <div class="tags"><span class="chip">Vue.js</span><span class="chip">PHP</span><span class="chip">Redis</span><span class="chip">CDN</span><span class="chip">MySQL</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="ach">
+    <h2><i class="fa-solid fa-trophy"></i> 特殊技術實績</h2>
+    <div class="ach">
+      <div class="ic"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+      <div>
+        <h3>Stable Diffusion + LoRA 模型微調</h3>
+        <p>獨立完成圖像生成模型訓練，涵蓋資料標注、訓練參數調整至產出完整流程，具備 AI 模型層級的實戰能力，不只是 API 呼叫層。</p>
+      </div>
+    </div>
+    <div class="ach">
+      <div class="ic"><i class="fa-solid fa-file-medical"></i></div>
+      <div>
+        <h3>醫療文件 RAG 系統</h3>
+        <p>將 800+ 頁原文病歷向量化，建置可語義查詢的醫療知識庫，實際用於醫療諮詢輔助，具備高精度召回率與答案可追溯性需求的處理經驗。</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="edu">
+    <h2><i class="fa-solid fa-graduation-cap"></i> 學歷</h2>
+    <p><b>中山醫學大學</b> · 醫學資訊學系 · 學士</p>
+  </section>
+
+  <section id="contact">
+    <h2><i class="fa-solid fa-paper-plane"></i> 聯繫</h2>
+    <div class="contact-row">
+      <a href="mailto:serviceluna@luna-ai-life.com"><i class="fa-solid fa-envelope"></i> serviceluna@luna-ai-life.com</a>
+      <a href="https://luna-ai-life.com" target="_blank" rel="noopener"><i class="fa-solid fa-heart-pulse"></i> 璐娜健康管家</a>
+      <a href="https://jlfshop.com" target="_blank" rel="noopener"><i class="fa-solid fa-plug"></i> 金連發電器</a>
+      <a href="https://github.com/" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> GitHub</a>
+    </div>
+  </section>
+
+  <div class="foot">© 2026 Ian Cheng</div>
+</main>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ============ Resume data (drives both game signs & jump menu) ============ */
+  const SECTIONS = [
+    { id:"about", icon:"fa-user-astronaut", label:"關於我", title:"關於我",
+      html:`<p>10 年全端工程師，具備從系統架構設計到 AI 產品落地的端對端能力。曾在中部區域醫院主導多項院內大型系統開發，採微服務架構 + API Gateway + RBAC 集中控管，支援全院多部門運作。</p>
+            <p>自行開發並上線 璐娜健康管家（AI 健康 SaaS）與金連發電器（家電電商），整合 Gemini + OpenAI 多模態雙引擎。具備 Stable Diffusion + LoRA 模型微調及 RAG 系統建置實戰經驗，熟悉醫療資料處理與合規需求。</p>
+            <p>背景橫跨醫療資訊、電商、AI 三個領域，能同時勝任技術深度討論與跨部門架構溝通。目前積極尋求 AI 工程師 / Tech Lead / Solution Architect 相關機會。</p>` },
+    { id:"skills", icon:"fa-gears", label:"核心技能", title:"核心技能",
+      html:`<p><b style="color:var(--mint)">程式語言</b>：Python、Vue.js、PHP、JavaScript、HTML / CSS</p>
+            <p><b style="color:var(--mint)">資料庫</b>：MySQL、PostgreSQL、MongoDB、Redis</p>
+            <p><b style="color:var(--mint)">系統架構</b>：微服務、API Gateway、RBAC、事件驅動、負載均衡、CDN</p>
+            <p><b style="color:var(--mint)">AI / ML</b>：OpenAI API、Gemini API、RAG、LoRA fine-tuning、Stable Diffusion、向量資料庫</p>
+            <p><b style="color:var(--mint)">DevOps</b>：Docker、CI/CD、Linux、Nginx</p>
+            <p><b style="color:var(--mint)">領域知識</b>：醫療資訊系統、電商平台、醫療資料合規、HL7 / FHIR</p>` },
+    { id:"exp", icon:"fa-briefcase", label:"工作經歷", title:"工作經歷",
+      html:`<p><b style="color:var(--gold)">程式設計師 ＠ 中部區域醫院</b>（任職約 9 年 — 至今）</p>
+            <p><b style="color:var(--mint)">全院行動祕書</b>（全院通用行動 App）：微服務架構設計，各功能模組獨立部署並透過 API Gateway 統一入口管理；RBAC 集中式權限控管，支援多角色、多部門存取隔離；Vue.js 前端 + Python / PHP 後端，Redis 快取優化高頻讀取效能；負責架構設計、開發、部署與維運全流程。</p>
+            <p><b style="color:var(--mint)">個案管理系統</b>：跨科別病患個案追蹤平台，整合多部門護理流程與個案狀態管理；符合醫療資料安全規範，實作審計日誌與敏感欄位加密機制。</p>
+            <p><b style="color:var(--mint)">學習護照系統</b>：全院員工學習歷程平台，支援課程管理、學習進度追蹤與認證產出；模組化設計對應醫師、護理師、行政等不同職類的差異化學習路徑。</p>` },
+    { id:"work", icon:"fa-rocket", label:"自建作品", title:"自建作品",
+      html:`<p><b style="color:var(--pink)">璐娜健康管家</b>（<a href="https://luna-ai-life.com" target="_blank" rel="noopener">luna-ai-life.com</a>）— AI SaaS · LINE Bot · 健康管理<br>整合 Gemini + OpenAI 雙引擎的 AI 健康管理平台，提供拍照熱量辨識、社交陪跑配對與個人化健康報告。特色：多模態 AI 辨識食物熱量（蛋白質、碳水、脂肪、鈉）；AI 配對陪跑夥伴 + 遊戲化打卡獎勵系統；個人化週報 / 月報含代謝評估與行動建議；Gemini + OpenAI 雙引擎備援架構。<br><small style="color:var(--muted)">標籤：OpenAI、Gemini、Vue.js、Python、LINE Bot</small></p>
+            <p><b style="color:var(--gold)">金連發電器</b>（<a href="https://jlfshop.com" target="_blank" rel="noopener">jlfshop.com</a>）— 電商平台 · 家電 · 全台配送<br>完整家電購物商城，涵蓋商品管理、訂單流程、安裝 / 回收 / 運送服務整合，為實際營運中的電商系統。特色：完整電商流程（商品、購物車、訂單、金流）；物流整合（安裝、回收、運送服務調度）；Redis 快取 + CDN + 負載均衡效能優化。<br><small style="color:var(--muted)">標籤：Vue.js、PHP、Redis、CDN、MySQL</small></p>` },
+    { id:"ach", icon:"fa-trophy", label:"特殊技術實績", title:"特殊技術實績",
+      html:`<p><b style="color:var(--mint)">Stable Diffusion + LoRA 模型微調</b><br>獨立完成圖像生成模型訓練，涵蓋資料標注、訓練參數調整至產出完整流程，具備 AI 模型層級的實戰能力，不只是 API 呼叫層。</p>
+            <p><b style="color:var(--mint)">醫療文件 RAG 系統</b><br>將 800+ 頁原文病歷向量化，建置可語義查詢的醫療知識庫，實際用於醫療諮詢輔助，具備高精度召回率與答案可追溯性需求的處理經驗。</p>` },
+    { id:"edu", icon:"fa-graduation-cap", label:"學歷", title:"學歷",
+      html:`<p><b style="color:var(--mint)">中山醫學大學</b> · 醫學資訊學系 · 學士</p>` },
+    { id:"contact", icon:"fa-paper-plane", label:"聯繫", title:"聯繫",
+      html:`<p>Email：<a href="mailto:serviceluna@luna-ai-life.com">serviceluna@luna-ai-life.com</a></p>
+            <p>璐娜健康管家：<a href="https://luna-ai-life.com" target="_blank" rel="noopener">luna-ai-life.com</a><br>金連發電器：<a href="https://jlfshop.com" target="_blank" rel="noopener">jlfshop.com</a><br>GitHub：<a href="https://github.com/" target="_blank" rel="noopener">github.com</a></p>` }
+  ];
+
+  /* ============ DOM refs ============ */
+  const cv = document.getElementById('game');
+  const ctx = cv.getContext('2d');
+  const loader = document.getElementById('loader');
+  const hud = document.getElementById('hud');
+  const hint = document.getElementById('hint');
+  const coinCountEl = document.getElementById('coinCount');
+  const coinTotalEl = document.getElementById('coinTotal');
+  const segNowEl = document.getElementById('segNow');
+  const signEl = document.getElementById('sign');
+  const signTitle = document.querySelector('#signTitle span');
+  const signTitleIcon = document.querySelector('#signTitle i');
+  const signBody = document.getElementById('signBody');
+  const signPrev = document.getElementById('signPrev');
+  const signNext = document.getElementById('signNext');
+  const readBtn = document.getElementById('readBtn');
+  const autoBtn = document.getElementById('autoBtn');
+  const jumpBtn = document.getElementById('jumpBtn');
+  const jumpMenu = document.getElementById('jumpMenu');
+
+  /* ============ Touch detect ============ */
+  const isTouch = ('ontouchstart' in window) || navigator.maxTouchPoints > 0;
+  if(isTouch) document.body.classList.add('touch-on');
+
+  /* ============ World layout ============ */
+  const TILE = 48;
+  const GROUND_Y = 520;          // top of ground band (world coords)
+  const WORLD_H = 640;
+  // Hero start + one billboard per section, spaced along x.
+  const SEG_GAP = 760;
+  const START_X = 120;
+  const signs = SECTIONS.map((s,i)=>({
+    x: START_X + 380 + i*SEG_GAP,
+    sec: s, i
+  }));
+  const WORLD_W = signs[signs.length-1].x + 640;
+
+  // Floating platforms (decorative + jumpable) between signs
+  const platforms = [];
+  for(let i=0;i<signs.length;i++){
+    const baseX = (i===0? START_X+560 : signs[i-1].x+330);
+    platforms.push({x:baseX, y:GROUND_Y-150, w:120, h:18});
+    platforms.push({x:baseX+200, y:GROUND_Y-250, w:120, h:18});
+  }
+
+  // Coins: place above platforms and along path
+  const coins = [];
+  platforms.forEach(p=>coins.push({x:p.x+p.w/2, y:p.y-40, got:false}));
+  signs.forEach(s=>{ coins.push({x:s.x-90, y:GROUND_Y-120, got:false}); coins.push({x:s.x+90, y:GROUND_Y-120, got:false}); });
+  coinTotalEl.textContent = coins.length;
+
+  /* ============ Player ============ */
+  const player = {
+    x: START_X, y: GROUND_Y-60, w:30, h:42,
+    vx:0, vy:0, onGround:false, face:1, walkT:0, blink:0
+  };
+
+  const cam = { x:0 };
+  let coinsGot = 0;
+  let currentSign = -1;     // index of section being viewed (-1 none)
+  let nearSign = -1;        // sign player is in front of
+  let autoPlay = false;
+  let running = false;
+
+  /* ============ Input ============ */
+  const keys = { left:false, right:false, jump:false };
+  let jumpQueued = false;
+
+  function setKey(e, down){
+    const k = e.key.toLowerCase();
+    if(k==='arrowleft'||k==='a'){ keys.left=down; e.preventDefault(); }
+    else if(k==='arrowright'||k==='d'){ keys.right=down; e.preventDefault(); }
+    else if(k===' '||k==='arrowup'||k==='w'){ if(down){ keys.jump=true; jumpQueued=true; } else keys.jump=false; e.preventDefault(); }
+    else if(k==='escape'){ if(signEl.classList.contains('open')) closeSign(); }
+  }
+  window.addEventListener('keydown', e=>{ if(document.body.classList.contains('read')) return; setKey(e,true); });
+  window.addEventListener('keyup', e=>{ if(document.body.classList.contains('read')) return; setKey(e,false); });
+
+  // Touch buttons
+  function bindTouch(id, prop){
+    const el = document.getElementById(id);
+    const on = e=>{ e.preventDefault(); if(prop==='jump'){ keys.jump=true; jumpQueued=true; } else keys[prop]=true; autoPlay=false; };
+    const off = e=>{ e.preventDefault(); if(prop==='jump') keys.jump=false; else keys[prop]=false; };
+    el.addEventListener('touchstart', on, {passive:false});
+    el.addEventListener('touchend', off, {passive:false});
+    el.addEventListener('touchcancel', off, {passive:false});
+    el.addEventListener('mousedown', on);
+    window.addEventListener('mouseup', off);
+  }
+  bindTouch('tLeft','left'); bindTouch('tRight','right'); bindTouch('tJump','jump');
+
+  /* ============ Canvas sizing ============ */
+  let VW=0, VH=0, DPR=1;
+  function resize(){
+    DPR = Math.min(window.devicePixelRatio||1, 2);
+    VW = cv.clientWidth = window.innerWidth;
+    VH = cv.clientHeight = window.innerHeight;
+    cv.width = Math.floor(VW*DPR);
+    cv.height = Math.floor(VH*DPR);
+    ctx.setTransform(DPR,0,0,DPR,0,0);
+  }
+  window.addEventListener('resize', resize);
+
+  /* ============ Physics ============ */
+  const GRAV = 0.8, MOVE = 0.9, MAXVX = 5.2, FRICTION = 0.78, JUMP_V = -15;
+
+  function rectsOverlap(ax,ay,aw,ah,bx,by,bw,bh){
+    return ax<bx+bw && ax+aw>bx && ay<by+bh && ay+ah>by;
+  }
+
+  function update(){
+    // auto-play: drive toward next unread sign
+    if(autoPlay && !signEl.classList.contains('open')){
+      keys.left=false; keys.right=true;
+      // stop near a sign to "show" it
+      const target = signs[Math.min(autoTargetIndex, signs.length-1)];
+      if(target && Math.abs((player.x) - target.x) < 26){
+        keys.right=false;
+        openSign(target.i);
+      }
+    }
+
+    let ax = 0;
+    if(keys.left) ax -= MOVE;
+    if(keys.right) ax += MOVE;
+    player.vx += ax;
+    if(!keys.left && !keys.right) player.vx *= FRICTION;
+    player.vx = Math.max(-MAXVX, Math.min(MAXVX, player.vx));
+    if(Math.abs(player.vx)>0.05) player.face = player.vx>0?1:-1;
+
+    // jump
+    if(jumpQueued && player.onGround){ player.vy = JUMP_V; player.onGround=false; }
+    jumpQueued=false;
+
+    player.vy += GRAV;
+    if(player.vy>18) player.vy=18;
+
+    // horizontal move + bounds
+    player.x += player.vx;
+    if(player.x < 20){ player.x=20; player.vx=0; }
+    if(player.x > WORLD_W-40){ player.x=WORLD_W-40; player.vx=0; }
+
+    // vertical move
+    player.y += player.vy;
+
+    // ground collision
+    player.onGround=false;
+    if(player.y + player.h >= GROUND_Y){ player.y = GROUND_Y - player.h; player.vy=0; player.onGround=true; }
+
+    // platform collision (land on top only)
+    for(const p of platforms){
+      if(player.vy>=0 &&
+         player.x+player.w > p.x+4 && player.x < p.x+p.w-4 &&
+         (player.y+player.h) >= p.y && (player.y+player.h) <= p.y + 22 + player.vy){
+        player.y = p.y - player.h; player.vy=0; player.onGround=true;
+      }
+    }
+
+    // walk anim
+    if(player.onGround && Math.abs(player.vx)>0.4) player.walkT += 0.25; else player.walkT*=0.8;
+    player.blink = (player.blink+1)%220;
+
+    // coins
+    for(const c of coins){
+      if(!c.got && rectsOverlap(player.x,player.y,player.w,player.h, c.x-14,c.y-14,28,28)){
+        c.got=true; coinsGot++; coinCountEl.textContent=coinsGot;
+      }
+    }
+
+    // near sign?
+    nearSign=-1;
+    for(const s of signs){
+      if(Math.abs(player.x - s.x) < 60 && Math.abs((player.y+player.h)-(GROUND_Y)) < 120){
+        nearSign=s.i; break;
+      }
+    }
+    // current segment label
+    let segLbl = "起點";
+    for(const s of signs){ if(player.x > s.x-180) segLbl = s.sec.label; }
+    segNowEl.textContent = segLbl;
+
+    // auto-open on approach (manual play): show sign when standing in front and slow
+    if(nearSign>=0 && !signEl.classList.contains('open') && !autoPlay && Math.abs(player.vx)<0.6 && lastShown!==nearSign){
+      // require a brief dwell
+      dwell++;
+      if(dwell>18){ openSign(nearSign); }
+    } else if(nearSign<0){ dwell=0; lastShown=-1; }
+
+    // camera follow (smooth)
+    const targetCam = Math.max(0, Math.min(player.x - VW*0.42, WORLD_W - VW));
+    cam.x += (targetCam - cam.x)*0.12;
+  }
+  let dwell=0, lastShown=-1, autoTargetIndex=0;
+
+  /* ============ Rendering ============ */
+  function draw(){
+    ctx.clearRect(0,0,VW,VH);
+    // sky gradient bands (parallax-ish)
+    const g = ctx.createLinearGradient(0,0,0,VH);
+    g.addColorStop(0,'#10183f'); g.addColorStop(.6,'#0b1026'); g.addColorStop(1,'#080c1e');
+    ctx.fillStyle=g; ctx.fillRect(0,0,VW,VH);
+
+    // distant stars (parallax x0.25)
+    drawStars();
+
+    // mountains parallax x0.4
+    drawHills(cam.x*0.4, VH-180, '#161f4a', 220, 120);
+    drawHills(cam.x*0.55, VH-130, '#1c2a5e', 160, 80);
+
+    ctx.save();
+    ctx.translate(-cam.x, VH - WORLD_H); // map world(0..WORLD_H) into view bottom-aligned
+
+    drawGround();
+    platforms.forEach(drawPlatform);
+    coins.forEach(drawCoin);
+    signs.forEach(drawSign);
+    drawPlayer();
+
+    ctx.restore();
+
+    // proximity hint above player (screen space)
+    if(nearSign>=0 && !signEl.classList.contains('open')){
+      const sx = player.x - cam.x;
+      const sy = (player.y) + (VH - WORLD_H) - 26;
+      ctx.fillStyle='rgba(100,240,200,.95)';
+      ctx.font='bold 13px "Noto Sans TC", sans-serif';
+      ctx.textAlign='center';
+      ctx.fillText('▲ 查看', sx+player.w/2, sy);
+    }
+  }
+
+  // star field cache
+  let starsArr=null;
+  function drawStars(){
+    if(!starsArr){ starsArr=[]; for(let i=0;i<70;i++) starsArr.push({x:Math.random()*WORLD_W, y:Math.random()*VH*0.7, r:Math.random()*1.6+0.4}); }
+    ctx.fillStyle='rgba(180,200,255,.55)';
+    for(const s of starsArr){
+      const sx = (s.x - cam.x*0.25);
+      const mod = ((sx % (WORLD_W)) + WORLD_W) % WORLD_W;
+      ctx.beginPath(); ctx.arc(mod % VW + ( (sx<0||sx>VW)? 0:0 ), s.y, s.r, 0, 6.28); ctx.fill();
+    }
+  }
+
+  function drawHills(off, baseY, color, w, h){
+    ctx.fillStyle=color;
+    ctx.beginPath();
+    ctx.moveTo(-100, VH);
+    let x=-100 - (off % (w*2));
+    while(x < VW+w){
+      ctx.lineTo(x, baseY);
+      ctx.quadraticCurveTo(x+w/2, baseY-h, x+w, baseY);
+      x+=w;
+    }
+    ctx.lineTo(VW+100, VH); ctx.closePath(); ctx.fill();
+  }
+
+  function drawGround(){
+    // ground band
+    ctx.fillStyle='#1a2350';
+    ctx.fillRect(0, GROUND_Y, WORLD_W, WORLD_H-GROUND_Y);
+    // top grass line
+    ctx.fillStyle='#64f0c8';
+    ctx.fillRect(0, GROUND_Y, WORLD_W, 6);
+    ctx.fillStyle='rgba(100,240,200,.18)';
+    ctx.fillRect(0, GROUND_Y+6, WORLD_W, 4);
+    // brick texture
+    ctx.strokeStyle='rgba(120,140,220,.14)'; ctx.lineWidth=1;
+    for(let x=0;x<WORLD_W;x+=TILE){
+      ctx.beginPath(); ctx.moveTo(x, GROUND_Y+12); ctx.lineTo(x, WORLD_H); ctx.stroke();
+    }
+    ctx.beginPath(); ctx.moveTo(0, GROUND_Y+50); ctx.lineTo(WORLD_W, GROUND_Y+50); ctx.stroke();
+  }
+
+  function drawPlatform(p){
+    ctx.fillStyle='#26336b';
+    roundRect(p.x, p.y, p.w, p.h, 6); ctx.fill();
+    ctx.fillStyle='#5db8ff';
+    ctx.fillRect(p.x, p.y, p.w, 4);
+  }
+
+  function drawCoin(c){
+    if(c.got) return;
+    const t = Date.now()*0.005;
+    const sx = Math.abs(Math.cos(t + c.x*0.01));     // spin (width)
+    ctx.save();
+    ctx.translate(c.x, c.y);
+    ctx.scale(sx*0.85+0.15, 1);
+    ctx.beginPath(); ctx.arc(0,0,12,0,6.28);
+    ctx.fillStyle='#ffd166'; ctx.fill();
+    ctx.lineWidth=3; ctx.strokeStyle='#e0a93b'; ctx.stroke();
+    ctx.restore();
+    // glow
+    ctx.fillStyle='rgba(255,209,102,.25)';
+    ctx.beginPath(); ctx.arc(c.x,c.y,16,0,6.28); ctx.fill();
+  }
+
+  function drawSign(s){
+    const got = (lastShown===s.i) || readSet.has(s.i);
+    const px = s.x, base = GROUND_Y;
+    // pole
+    ctx.fillStyle='#3a4684';
+    ctx.fillRect(px-4, base-150, 8, 150);
+    // board
+    const bw=130, bh=78, by=base-238;
+    ctx.save();
+    ctx.shadowColor='rgba(0,0,0,.4)'; ctx.shadowBlur=14; ctx.shadowOffsetY=6;
+    ctx.fillStyle = got? '#1f8a6a' : '#222c5e';
+    roundRect(px-bw/2, by, bw, bh, 12); ctx.fill();
+    ctx.restore();
+    ctx.lineWidth=3; ctx.strokeStyle = got? '#64f0c8' : '#5db8ff';
+    roundRect(px-bw/2, by, bw, bh, 12); ctx.stroke();
+    // icon mark (simple geometric per section)
+    ctx.fillStyle = got? '#bff7e6' : '#cfe0ff';
+    ctx.font='bold 14px "Noto Sans TC", sans-serif';
+    ctx.textAlign='center';
+    ctx.fillText(s.sec.label, px, by+30);
+    ctx.font='10px "Press Start 2P", monospace';
+    ctx.fillStyle = got? '#9ff0d6' : '#9aa6d4';
+    ctx.fillText(got? 'READ' : 'OPEN', px, by+58);
+    // little flag for hero start
+  }
+
+  // Player: CSS/SVG-style robot drawn on canvas (no emoji)
+  function drawPlayer(){
+    const {x,y,w,h,face} = player;
+    const cx = x + w/2;
+    const bob = player.onGround ? Math.sin(player.walkT)*1.5 : 0;
+    ctx.save();
+    ctx.translate(cx, y + bob);
+    ctx.scale(face,1);
+
+    // shadow
+    ctx.fillStyle='rgba(0,0,0,.3)';
+    ctx.beginPath(); ctx.ellipse(0, h-bob+4, 16, 5, 0,0,6.28); ctx.fill();
+
+    // legs (walk cycle)
+    const stride = player.onGround ? Math.sin(player.walkT)*7 : 4;
+    ctx.fillStyle='#3a4684';
+    ctx.fillRect(-9, h-16, 7, 16 - (stride>0?0:0));
+    ctx.save(); ctx.translate(-5, h-16); ctx.rotate(stride*0.04); ctx.fillRect(-3,0,7,16); ctx.restore();
+    ctx.save(); ctx.translate(5, h-16); ctx.rotate(-stride*0.04); ctx.fillRect(-3,0,7,16); ctx.restore();
+
+    // body
+    const grd = ctx.createLinearGradient(0,0,0,h-14);
+    grd.addColorStop(0,'#64f0c8'); grd.addColorStop(1,'#5db8ff');
+    ctx.fillStyle=grd;
+    roundRectAbs(-13, 4, 26, h-18, 8); ctx.fill();
+    // chest panel
+    ctx.fillStyle='rgba(11,16,38,.55)';
+    roundRectAbs(-7, 12, 14, 12, 4); ctx.fill();
+    ctx.fillStyle='#ffd166';
+    ctx.fillRect(-2, 15, 4, 6);
+
+    // arm (front) swings opposite
+    ctx.fillStyle='#5db8ff';
+    ctx.save(); ctx.translate(8, 10); ctx.rotate(-stride*0.05); ctx.fillRect(-3,0,6,16); ctx.restore();
+
+    // head
+    ctx.fillStyle='#7df6d4';
+    roundRectAbs(-12, -16, 24, 22, 8); ctx.fill();
+    // visor
+    ctx.fillStyle='#0b1026';
+    roundRectAbs(-8, -10, 16, 9, 4); ctx.fill();
+    // eyes (blink)
+    const blinking = player.blink < 8;
+    ctx.fillStyle='#64f0c8';
+    if(!blinking){
+      ctx.fillRect(-5,-8,3,4); ctx.fillRect(2,-8,3,4);
+    } else {
+      ctx.fillRect(-5,-6,3,1.5); ctx.fillRect(2,-6,3,1.5);
+    }
+    // antenna
+    ctx.strokeStyle='#ffd166'; ctx.lineWidth=2;
+    ctx.beginPath(); ctx.moveTo(0,-16); ctx.lineTo(0,-22); ctx.stroke();
+    ctx.fillStyle='#ffd166'; ctx.beginPath(); ctx.arc(0,-24,3,0,6.28); ctx.fill();
+
+    ctx.restore();
+  }
+
+  function roundRect(x,y,w,h,r){ ctx.beginPath(); ctx.moveTo(x+r,y); ctx.arcTo(x+w,y,x+w,y+h,r); ctx.arcTo(x+w,y+h,x,y+h,r); ctx.arcTo(x,y+h,x,y,r); ctx.arcTo(x,y,x+w,y,r); ctx.closePath(); }
+  function roundRectAbs(x,y,w,h,r){ roundRect(x,y,w,h,r); }
+
+  /* ============ Game loop ============ */
+  let lastT=0;
+  function loop(t){
+    if(!running) return;
+    update();
+    draw();
+    requestAnimationFrame(loop);
+  }
+
+  /* ============ Signs / reading ============ */
+  const readSet = new Set();
+  function openSign(i){
+    currentSign=i; lastShown=i; readSet.add(i);
+    const s = SECTIONS[i];
+    signTitle.textContent = s.title;
+    signTitleIcon.className = 'fa-solid '+s.icon;
+    signBody.innerHTML = s.html;
+    signEl.classList.add('open');
+    // pause player drift
+    keys.left=keys.right=false; player.vx=0;
+    // advance auto target
+    if(autoPlay) autoTargetIndex = i+1;
+    signPrev.disabled = (i<=0); signNext.disabled = (i>=SECTIONS.length-1);
+  }
+  function closeSign(){
+    signEl.classList.remove('open');
+    if(autoPlay){
+      if(currentSign>=SECTIONS.length-1){ autoPlay=false; autoBtn.innerHTML='<i class="fa-solid fa-play"></i><span class="lbl">自動前進</span>'; }
+    }
+  }
+  document.getElementById('signClose').addEventListener('click', closeSign);
+  signPrev.addEventListener('click', ()=>{ if(currentSign>0) openSign(currentSign-1); });
+  signNext.addEventListener('click', ()=>{ if(currentSign<SECTIONS.length-1) openSign(currentSign+1); else closeSign(); });
+  // click backdrop to close
+  signEl.addEventListener('click', e=>{ if(e.target===signEl) closeSign(); });
+
+  /* ============ Jump menu ============ */
+  SECTIONS.forEach((s,i)=>{
+    const b=document.createElement('button');
+    b.innerHTML = `<i class="fa-solid ${s.icon}"></i> ${s.label}`;
+    b.addEventListener('click', ()=>{
+      jumpMenu.classList.remove('open');
+      if(document.body.classList.contains('read')){
+        document.getElementById(s.id).scrollIntoView({behavior:'smooth', block:'start'});
+      } else {
+        // teleport player to that sign, then open
+        autoPlay=false;
+        player.x = signs[i].x; player.y=GROUND_Y-player.h; player.vx=0; player.vy=0;
+        cam.x = Math.max(0, Math.min(player.x - VW*0.42, WORLD_W - VW));
+        openSign(i);
+      }
+    });
+    jumpMenu.appendChild(b);
+  });
+  jumpBtn.addEventListener('click', e=>{ e.stopPropagation(); jumpMenu.classList.toggle('open'); });
+  document.addEventListener('click', ()=> jumpMenu.classList.remove('open'));
+  jumpMenu.addEventListener('click', e=> e.stopPropagation());
+
+  /* ============ Auto-advance ============ */
+  autoBtn.addEventListener('click', ()=>{
+    if(document.body.classList.contains('read')) return;
+    autoPlay = !autoPlay;
+    if(autoPlay){
+      autoTargetIndex = 0;
+      // start auto from current nearest upcoming sign
+      autoBtn.innerHTML='<i class="fa-solid fa-pause"></i><span class="lbl">暫停</span>';
+      if(signEl.classList.contains('open')) closeSign();
+    } else {
+      autoBtn.innerHTML='<i class="fa-solid fa-play"></i><span class="lbl">自動前進</span>';
+      keys.right=false;
+    }
+  });
+
+  /* ============ Read mode toggle ============ */
+  function setRead(on){
+    if(on){
+      document.body.classList.add('read');
+      running=false; autoPlay=false;
+      readBtn.innerHTML='<i class="fa-solid fa-gamepad"></i><span class="lbl">回到遊戲</span>';
+      autoBtn.style.display='none';
+    } else {
+      document.body.classList.remove('read');
+      readBtn.innerHTML='<i class="fa-solid fa-book-open"></i><span class="lbl">檢視全文</span>';
+      autoBtn.style.display='';
+      if(!running){ running=true; resize(); requestAnimationFrame(loop); }
+    }
+  }
+  readBtn.addEventListener('click', ()=> setRead(!document.body.classList.contains('read')));
+
+  /* ============ Boot ============ */
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function boot(){
+    resize();
+    loader.classList.add('hide');
+    setTimeout(()=>{ loader.style.display='none'; }, 420);
+
+    if(reduceMotion){
+      // honor reduced-motion: start in static document
+      setRead(true);
+      return;
+    }
+    // start game
+    running=true;
+    hud.removeAttribute('aria-hidden'); hint.removeAttribute('aria-hidden');
+    requestAnimationFrame(loop);
+    // fade hint after a while
+    setTimeout(()=>{ if(hint) hint.style.transition='opacity .6s'; }, 100);
+    setTimeout(()=>{ if(hint && !document.body.classList.contains('read')) hint.style.opacity='0.0'; }, 9000);
+  }
+
+  if(document.readyState==='complete') boot();
+  else window.addEventListener('load', boot);
+
+})();
+</script>
+</body>
+</html>

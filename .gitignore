@@ -2,3 +2,9 @@
 CLAUDE.md
 .claude/settings.local.json
 .claude/launch.json
+
+# 機密 / API 金鑰 (絕對不上 git)
+.env
+.env.*
+*.key
+secrets/

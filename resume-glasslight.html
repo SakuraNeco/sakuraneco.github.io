@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ian Cheng｜資深全端工程師 & AI 工程師</title>
+<meta name="description" content="Ian Cheng 的個人履歷｜資深全端工程師 & AI 工程師。10 年開發經驗，擅長 AI 產品落地、微服務架構設計，具備從零到上線的完整交付能力。">
+<meta name="author" content="Ian Cheng">
+<meta property="og:type" content="profile">
+<meta property="og:title" content="Ian Cheng｜資深全端工程師 & AI 工程師">
+<meta property="og:description" content="10 年開發經驗，擅長 AI 產品落地、微服務架構設計，具備從零到上線的完整交付能力。">
+<meta property="og:locale" content="zh_TW">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#eaf2ff">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%2360a5fa'/%3E%3Cstop offset='0.5' stop-color='%23c084fc'/%3E%3Cstop offset='1' stop-color='%23fda4af'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100' height='100' rx='26' fill='url(%23g)'/%3E%3Ctext x='50' y='68' font-family='Arial,sans-serif' font-size='52' font-weight='700' text-anchor='middle' fill='white'%3EIC%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
+<style>
+:root{
+  --sky:#60a5fa; --violet:#c084fc; --peach:#fda4af;
+  --ink:#1e2a44; --ink-soft:#475069; --ink-faint:#6b7390;
+  --line:rgba(120,130,170,.20);
+  --card:rgba(255,255,255,.55);
+  --card-strong:rgba(255,255,255,.72);
+  --shadow:0 10px 30px -12px rgba(80,100,170,.30);
+  --shadow-lg:0 22px 48px -18px rgba(80,100,170,.42);
+  --radius:24px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Plus Jakarta Sans','Noto Sans TC',system-ui,-apple-system,sans-serif;
+  color:var(--ink); line-height:1.7; position:relative; overflow-x:hidden;
+  background:#eef3fc;
+}
+.bg-mesh{position:fixed;inset:0;z-index:-2;overflow:hidden;background:
+  radial-gradient(60% 55% at 18% 12%, #d7e8ff 0%, transparent 60%),
+  radial-gradient(55% 50% at 85% 18%, #f4dcff 0%, transparent 60%),
+  radial-gradient(60% 60% at 75% 88%, #ffe0e6 0%, transparent 62%),
+  radial-gradient(50% 50% at 12% 85%, #dff3ff 0%, transparent 60%),
+  linear-gradient(160deg,#eef4ff 0%,#f7f0ff 50%,#fff2f4 100%);}
+.blob{position:fixed;z-index:-1;border-radius:50%;filter:blur(60px);opacity:.55;
+  will-change:transform;animation:float 22s ease-in-out infinite;}
+.blob.b1{width:420px;height:420px;top:-80px;left:-60px;background:var(--sky);}
+.blob.b2{width:380px;height:380px;top:30%;right:-90px;background:var(--violet);animation-delay:-7s;animation-duration:27s;}
+.blob.b3{width:360px;height:360px;bottom:-100px;left:25%;background:var(--peach);animation-delay:-13s;animation-duration:31s;}
+@keyframes float{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(40px,-30px) scale(1.08)}66%{transform:translate(-30px,25px) scale(.95)}}
+
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+.glass{background:var(--card);backdrop-filter:blur(18px) saturate(150%);-webkit-backdrop-filter:blur(18px) saturate(150%);
+  border:1px solid rgba(255,255,255,.6);border-radius:var(--radius);box-shadow:var(--shadow);}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(16px) saturate(160%);-webkit-backdrop-filter:blur(16px) saturate(160%);
+  background:rgba(255,255,255,.55);border-bottom:1px solid var(--line);}
+.nav-inner{max-width:1080px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{font-weight:800;font-size:18px;letter-spacing:.3px;display:flex;align-items:center;gap:10px}
+.brand .mk{width:30px;height:30px;border-radius:9px;background:linear-gradient(135deg,var(--sky),var(--violet),var(--peach));
+  display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px;font-weight:800;box-shadow:0 4px 12px -3px rgba(120,90,220,.5)}
+.nav-links{display:flex;gap:4px;flex-wrap:wrap}
+.nav-links a{padding:8px 13px;border-radius:12px;font-size:14px;font-weight:600;color:var(--ink-soft);transition:.25s}
+.nav-links a:hover{background:rgba(255,255,255,.65);color:var(--ink)}
+.nav-links a.active{background:linear-gradient(135deg,rgba(96,165,250,.18),rgba(192,132,252,.18));color:var(--ink)}
+.nav-toggle{display:none;background:none;border:none;font-size:20px;color:var(--ink);cursor:pointer;padding:6px}
+
+section{padding:64px 0;scroll-margin-top:78px}
+.sec-tag{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  color:#7c5cd6;background:rgba(192,132,252,.14);padding:6px 14px;border-radius:30px;margin-bottom:18px}
+.sec-title{font-size:clamp(26px,3.4vw,36px);font-weight:800;line-height:1.3;padding-bottom:.08em;margin-bottom:8px}
+.grad-text{background:linear-gradient(110deg,#3b82f6,#a855f7 50%,#f4708a);-webkit-background-clip:text;background-clip:text;color:transparent;
+  line-height:1.3;padding-bottom:.08em;display:inline-block}
+
+/* HERO */
+.hero{padding-top:72px;padding-bottom:40px}
+.hero-card{padding:48px 44px}
+.badge-status{display:inline-flex;align-items:center;gap:9px;font-size:13.5px;font-weight:700;color:#0f7a52;
+  background:rgba(45,200,140,.14);border:1px solid rgba(45,200,140,.3);padding:7px 16px;border-radius:30px;margin-bottom:22px}
+.dot{width:9px;height:9px;border-radius:50%;background:#16b07a;box-shadow:0 0 0 0 rgba(22,176,122,.6);animation:pulse 2s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(22,176,122,.55)}70%{box-shadow:0 0 0 10px rgba(22,176,122,0)}100%{box-shadow:0 0 0 0 rgba(22,176,122,0)}}
+.hero h1{font-size:clamp(34px,6vw,58px);font-weight:800;line-height:1.18;letter-spacing:-.5px;margin-bottom:6px}
+.hero .role{font-size:clamp(17px,2.4vw,22px);font-weight:700;margin-bottom:20px;line-height:1.4}
+.hero .tagline{font-size:clamp(15px,1.9vw,18px);color:var(--ink-soft);max-width:680px;margin-bottom:26px;line-height:1.8}
+.hero-meta{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.chip{display:inline-flex;align-items:center;gap:9px;font-size:14.5px;font-weight:600;padding:10px 18px;border-radius:14px;
+  background:rgba(255,255,255,.62);border:1px solid rgba(255,255,255,.7);box-shadow:0 5px 14px -8px rgba(80,100,170,.4);transition:.28s}
+.chip i{color:#6f63d8}
+.chip.cta{background:linear-gradient(135deg,#5b8def,#a16bf0);color:#fff;border:none}
+.chip.cta i{color:#fff}
+.chip:hover{transform:translateY(-3px)}
+
+/* STATS */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:34px}
+.stat{padding:26px 18px;text-align:center}
+.stat .num{font-size:clamp(30px,4vw,44px);font-weight:800;line-height:1.1;margin-bottom:4px}
+.stat .lbl{font-size:14px;color:var(--ink-soft);font-weight:600}
+
+/* ABOUT */
+.about-grid{display:grid;gap:18px}
+.about-grid p{padding:26px 30px;font-size:15.5px;color:var(--ink-soft);line-height:1.95}
+.about-grid p strong{color:var(--ink);font-weight:700}
+
+/* SKILLS */
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+.skill-card{padding:26px 28px;transition:.3s}
+.skill-head{display:flex;align-items:center;gap:13px;margin-bottom:16px}
+.skill-ico{width:44px;height:44px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:18px;color:#fff;flex-shrink:0}
+.skill-head h3{font-size:17px;font-weight:700}
+.tags{display:flex;flex-wrap:wrap;gap:8px}
+.tag{font-size:13.5px;font-weight:600;color:#3f4a6a;background:rgba(255,255,255,.6);border:1px solid var(--line);padding:6px 13px;border-radius:11px;transition:.25s}
+.skill-card:hover .tag{background:rgba(255,255,255,.85)}
+
+/* TIMELINE */
+.exp-card{padding:34px 36px}
+.exp-head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px;margin-bottom:6px}
+.exp-head h3{font-size:21px;font-weight:800}
+.exp-head .org{font-size:15px;color:#6f63d8;font-weight:700}
+.exp-dur{font-size:14px;font-weight:700;color:#fff;background:linear-gradient(135deg,#5b8def,#a16bf0);padding:6px 15px;border-radius:30px;white-space:nowrap}
+.timeline{margin-top:26px;display:grid;gap:20px}
+.tl-item{position:relative;padding-left:28px}
+.tl-item::before{content:"";position:absolute;left:0;top:7px;width:13px;height:13px;border-radius:50%;
+  background:linear-gradient(135deg,var(--sky),var(--violet));box-shadow:0 0 0 4px rgba(150,140,240,.16)}
+.tl-item::after{content:"";position:absolute;left:6px;top:22px;bottom:-20px;width:2px;background:var(--line)}
+.tl-item:last-child::after{display:none}
+.tl-item h4{font-size:16.5px;font-weight:700;margin-bottom:6px}
+.tl-item p{font-size:14.5px;color:var(--ink-soft);line-height:1.85}
+
+/* PROJECTS */
+.proj-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:20px}
+.proj-card{padding:30px 30px 26px;transition:.3s;display:flex;flex-direction:column}
+.proj-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:6px}
+.proj-card h3{font-size:20px;font-weight:800}
+.proj-card .sub{font-size:13.5px;font-weight:700;color:#7c5cd6;margin-bottom:14px}
+.proj-link{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:16px;color:#fff;
+  background:linear-gradient(135deg,#5b8def,#a16bf0);flex-shrink:0;transition:.28s}
+.proj-link:hover{transform:rotate(8deg) scale(1.06)}
+.proj-card .desc{font-size:14.5px;color:var(--ink-soft);line-height:1.85;margin-bottom:14px}
+.feat-list{list-style:none;margin-bottom:16px;display:grid;gap:8px}
+.feat-list li{font-size:14px;color:var(--ink-soft);display:flex;gap:10px;line-height:1.6}
+.feat-list li i{color:#16b07a;margin-top:5px;font-size:13px;flex-shrink:0}
+.proj-card .tags{margin-top:auto}
+
+/* HIGHLIGHTS */
+.hl-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px}
+.hl-card{padding:30px 32px;transition:.3s}
+.hl-num{font-size:13px;font-weight:800;letter-spacing:2px;color:#a16bf0;margin-bottom:10px}
+.hl-card h3{font-size:18px;font-weight:800;margin-bottom:12px;line-height:1.45}
+.hl-card p{font-size:14.5px;color:var(--ink-soft);line-height:1.9}
+
+/* EDUCATION */
+.edu-card{padding:30px 34px;display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+.edu-ico{width:60px;height:60px;border-radius:17px;background:linear-gradient(135deg,#5b8def,#a16bf0);
+  display:flex;align-items:center;justify-content:center;font-size:24px;color:#fff;flex-shrink:0}
+.edu-card h3{font-size:19px;font-weight:800;margin-bottom:3px}
+.edu-card p{font-size:15px;color:var(--ink-soft);font-weight:600}
+
+/* CONTACT */
+.contact-card{padding:44px;text-align:center}
+.contact-card h2{font-size:clamp(24px,3vw,32px);font-weight:800;margin-bottom:10px;line-height:1.3;padding-bottom:.08em}
+.contact-card .lead{color:var(--ink-soft);font-size:16px;margin-bottom:28px;max-width:560px;margin-left:auto;margin-right:auto}
+.contact-links{display:flex;flex-wrap:wrap;gap:14px;justify-content:center}
+
+/* FOOTER */
+footer{padding:34px 0 46px;text-align:center;color:var(--ink-faint);font-size:14px}
+
+.reveal{opacity:0;transform:translateY(34px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
+.reveal.in{opacity:1;transform:none}
+.glass:hover{box-shadow:var(--shadow-lg)}
+.skill-card:hover,.proj-card:hover,.hl-card:hover{transform:translateY(-6px)}
+
+@media (max-width:860px){
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .nav-links{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;
+    background:rgba(255,255,255,.92);backdrop-filter:blur(18px);padding:12px 16px;border-bottom:1px solid var(--line)}
+  .nav-links.open{display:flex}
+  .nav-toggle{display:block}
+  .hero-card{padding:34px 26px}
+  .exp-card,.contact-card{padding:30px 24px}
+}
+@media (max-width:480px){.stats{grid-template-columns:1fr}}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .blob{animation:none}.dot{animation:none}
+  .reveal{opacity:1;transform:none;transition:none}
+  .glass:hover,.skill-card:hover,.proj-card:hover,.hl-card:hover,.chip:hover,.proj-link:hover{transform:none}
+}
+
+@media print{
+  .bg-mesh,.blob,nav{display:none!important}
+  body{background:#fff;color:#000}
+  .glass{background:#fff!important;border:1px solid #ccc!important;box-shadow:none!important;backdrop-filter:none!important}
+  section{padding:18px 0;page-break-inside:avoid}
+  .grad-text,.sec-title .grad-text{color:#1e2a44!important;-webkit-text-fill-color:#1e2a44}
+  .reveal{opacity:1!important;transform:none!important}
+  .chip.cta,.proj-link,.exp-dur,.skill-ico,.edu-ico{background:#444!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+</style>
+</head>
+<body>
+<div class="bg-mesh" aria-hidden="true"></div>
+<div class="blob b1" aria-hidden="true"></div>
+<div class="blob b2" aria-hidden="true"></div>
+<div class="blob b3" aria-hidden="true"></div>
+
+<nav>
+  <div class="nav-inner">
+    <a href="#hero" class="brand"><span class="mk">IC</span>Ian Cheng</a>
+    <button class="nav-toggle" aria-label="開啟選單" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
+    <div class="nav-links" id="navlinks">
+      <a href="#about">關於我</a>
+      <a href="#skills">核心技能</a>
+      <a href="#experience">工作經歷</a>
+      <a href="#projects">自建作品</a>
+      <a href="#highlights">技術實績</a>
+      <a href="#education">學歷</a>
+      <a href="#contact">聯繫</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero wrap" id="hero">
+  <div class="hero-card glass reveal">
+    <span class="badge-status"><span class="dot"></span>Available for opportunities</span>
+    <h1>Ian Cheng</h1>
+    <p class="role"><span class="grad-text">資深全端工程師 &amp; AI 工程師</span></p>
+    <p class="tagline">10 年開發經驗，擅長 AI 產品落地、微服務架構設計，具備從零到上線的完整交付能力。</p>
+    <div class="hero-meta">
+      <a class="chip cta" href="mailto:serviceluna@luna-ai-life.com"><i class="fa-solid fa-envelope"></i>serviceluna@luna-ai-life.com</a>
+      <span class="chip"><i class="fa-solid fa-location-dot"></i>AI 工程師 / Tech Lead / Solution Architect</span>
+    </div>
+  </div>
+
+  <div class="stats">
+    <div class="stat glass reveal"><div class="num grad-text" data-count="10" data-suffix="+">0</div><div class="lbl">年開發經驗</div></div>
+    <div class="stat glass reveal"><div class="num grad-text" data-count="5" data-suffix="+">0</div><div class="lbl">大型專案交付</div></div>
+    <div class="stat glass reveal"><div class="num grad-text" data-count="2" data-suffix="">0</div><div class="lbl">自建產品上線</div></div>
+    <div class="stat glass reveal"><div class="num grad-text" data-count="3" data-suffix="">0</div><div class="lbl">AI 整合實戰</div></div>
+  </div>
+</header>
+
+<main class="wrap">
+
+<section id="about">
+  <div class="reveal"><span class="sec-tag"><i class="fa-solid fa-user"></i>About</span></div>
+  <h2 class="sec-title reveal"><span class="grad-text">關於我</span></h2>
+  <div class="about-grid">
+    <p class="glass reveal"><strong>10 年全端工程師</strong>，具備從系統架構設計到 AI 產品落地的端對端能力。曾在中部區域醫院主導多項院內大型系統開發，採微服務架構 + API Gateway + RBAC 集中控管，支援全院多部門運作。</p>
+    <p class="glass reveal">自行開發並上線 <strong>璐娜健康管家</strong>（AI 健康 SaaS）與 <strong>金連發電器</strong>（家電電商），整合 Gemini + OpenAI 多模態雙引擎。具備 Stable Diffusion + LoRA 模型微調及 RAG 系統建置實戰經驗，熟悉醫療資料處理與合規需求。</p>
+    <p class="glass reveal">背景橫跨<strong>醫療資訊、電商、AI</strong> 三個領域，能同時勝任技術深度討論與跨部門架構溝通。目前積極尋求 AI 工程師 / Tech Lead / Solution Architect 相關機會。</p>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="reveal"><span class="sec-tag"><i class="fa-solid fa-layer-group"></i>Skills</span></div>
+  <h2 class="sec-title reveal"><span class="grad-text">核心技能</span></h2>
+  <div class="skills-grid">
+    <div class="skill-card glass reveal">
+      <div class="skill-head"><span class="skill-ico" style="background:linear-gradient(135deg,#5b8def,#7aa7f5)"><i class="fa-solid fa-code"></i></span><h3>程式語言</h3></div>
+      <div class="tags"><span class="tag">Python</span><span class="tag">Vue.js</span><span class="tag">PHP</span><span class="tag">JavaScript</span><span class="tag">HTML / CSS</span></div>
+    </div>
+    <div class="skill-card glass reveal">
+      <div class="skill-head"><span class="skill-ico" style="background:linear-gradient(135deg,#a16bf0,#bd8af4)"><i class="fa-solid fa-database"></i></span><h3>資料庫</h3></div>
+      <div class="tags"><span class="tag">MySQL</span><span class="tag">PostgreSQL</span><span class="tag">MongoDB</span><span class="tag">Redis</span></div>
+    </div>
+    <div class="skill-card glass reveal">
+      <div class="skill-head"><span class="skill-ico" style="background:linear-gradient(135deg,#f4708a,#f79aab)"><i class="fa-solid fa-sitemap"></i></span><h3>系統架構</h3></div>
+      <div class="tags"><span class="tag">微服務</span><span class="tag">API Gateway</span><span class="tag">RBAC</span><span class="tag">事件驅動</span><span class="tag">負載均衡</span><span class="tag">CDN</span></div>
+    </div>
+    <div class="skill-card glass reveal">
+      <div class="skill-head"><span class="skill-ico" style="background:linear-gradient(135deg,#5b8def,#a16bf0)"><i class="fa-solid fa-robot"></i></span><h3>AI / ML</h3></div>
+      <div class="tags"><span class="tag">OpenAI API</span><span class="tag">Gemini API</span><span class="tag">RAG</span><span class="tag">LoRA fine-tuning</span><span class="tag">Stable Diffusion</span><span class="tag">向量資料庫</span></div>
+    </div>
+    <div class="skill-card glass reveal">
+      <div class="skill-head"><span class="skill-ico" style="background:linear-gradient(135deg,#16b07a,#4fcf9e)"><i class="fa-solid fa-gears"></i></span><h3>DevOps</h3></div>
+      <div class="tags"><span class="tag">Docker</span><span class="tag">CI/CD</span><span class="tag">Linux</span><span class="tag">Nginx</span></div>
+    </div>
+    <div class="skill-card glass reveal">
+      <div class="skill-head"><span class="skill-ico" style="background:linear-gradient(135deg,#a16bf0,#f4708a)"><i class="fa-solid fa-stethoscope"></i></span><h3>領域知識</h3></div>
+      <div class="tags"><span class="tag">醫療資訊系統</span><span class="tag">電商平台</span><span class="tag">醫療資料合規</span><span class="tag">HL7 / FHIR</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="reveal"><span class="sec-tag"><i class="fa-solid fa-briefcase"></i>Experience</span></div>
+  <h2 class="sec-title reveal"><span class="grad-text">工作經歷</span></h2>
+  <div class="exp-card glass reveal">
+    <div class="exp-head">
+      <div>
+        <h3>程式設計師</h3>
+        <span class="org">＠ 中部區域醫院</span>
+      </div>
+      <span class="exp-dur">任職約 9 年 — 至今</span>
+    </div>
+    <div class="timeline">
+      <div class="tl-item">
+        <h4>全院行動祕書（全院通用行動 App）</h4>
+        <p>微服務架構設計，各功能模組獨立部署並透過 API Gateway 統一入口管理；RBAC 集中式權限控管，支援多角色、多部門存取隔離；Vue.js 前端 + Python / PHP 後端，Redis 快取優化高頻讀取效能；負責架構設計、開發、部署與維運全流程。</p>
+      </div>
+      <div class="tl-item">
+        <h4>個案管理系統</h4>
+        <p>跨科別病患個案追蹤平台，整合多部門護理流程與個案狀態管理；符合醫療資料安全規範，實作審計日誌與敏感欄位加密機制。</p>
+      </div>
+      <div class="tl-item">
+        <h4>學習護照系統</h4>
+        <p>全院員工學習歷程平台，支援課程管理、學習進度追蹤與認證產出；模組化設計對應醫師、護理師、行政等不同職類的差異化學習路徑。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="reveal"><span class="sec-tag"><i class="fa-solid fa-rocket"></i>Products</span></div>
+  <h2 class="sec-title reveal"><span class="grad-text">自建作品</span></h2>
+  <div class="proj-grid">
+    <article class="proj-card glass reveal">
+      <div class="proj-top">
+        <div>
+          <h3>璐娜健康管家</h3>
+          <p class="sub">AI SaaS · LINE Bot · 健康管理</p>
+        </div>
+        <a class="proj-link" href="https://luna-ai-life.com" target="_blank" rel="noopener" aria-label="開啟璐娜健康管家"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+      </div>
+      <p class="desc">整合 Gemini + OpenAI 雙引擎的 AI 健康管理平台，提供拍照熱量辨識、社交陪跑配對與個人化健康報告。</p>
+      <ul class="feat-list">
+        <li><i class="fa-solid fa-check"></i>多模態 AI 辨識食物熱量（蛋白質、碳水、脂肪、鈉）</li>
+        <li><i class="fa-solid fa-check"></i>AI 配對陪跑夥伴 + 遊戲化打卡獎勵系統</li>
+        <li><i class="fa-solid fa-check"></i>個人化週報 / 月報含代謝評估與行動建議</li>
+        <li><i class="fa-solid fa-check"></i>Gemini + OpenAI 雙引擎備援架構</li>
+      </ul>
+      <div class="tags"><span class="tag">OpenAI</span><span class="tag">Gemini</span><span class="tag">Vue.js</span><span class="tag">Python</span><span class="tag">LINE Bot</span></div>
+    </article>
+    <article class="proj-card glass reveal">
+      <div class="proj-top">
+        <div>
+          <h3>金連發電器</h3>
+          <p class="sub">電商平台 · 家電 · 全台配送</p>
+        </div>
+        <a class="proj-link" href="https://jlfshop.com" target="_blank" rel="noopener" aria-label="開啟金連發電器"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+      </div>
+      <p class="desc">完整家電購物商城，涵蓋商品管理、訂單流程、安裝 / 回收 / 運送服務整合，為實際營運中的電商系統。</p>
+      <ul class="feat-list">
+        <li><i class="fa-solid fa-check"></i>完整電商流程（商品、購物車、訂單、金流）</li>
+        <li><i class="fa-solid fa-check"></i>物流整合（安裝、回收、運送服務調度）</li>
+        <li><i class="fa-solid fa-check"></i>Redis 快取 + CDN + 負載均衡效能優化</li>
+      </ul>
+      <div class="tags"><span class="tag">Vue.js</span><span class="tag">PHP</span><span class="tag">Redis</span><span class="tag">CDN</span><span class="tag">MySQL</span></div>
+    </article>
+  </div>
+</section>
+
+<section id="highlights">
+  <div class="reveal"><span class="sec-tag"><i class="fa-solid fa-star"></i>Highlights</span></div>
+  <h2 class="sec-title reveal"><span class="grad-text">特殊技術實績</span></h2>
+  <div class="hl-grid">
+    <article class="hl-card glass reveal">
+      <div class="hl-num">01</div>
+      <h3>Stable Diffusion + LoRA 模型微調</h3>
+      <p>獨立完成圖像生成模型訓練，涵蓋資料標注、訓練參數調整至產出完整流程，具備 AI 模型層級的實戰能力，不只是 API 呼叫層。</p>
+    </article>
+    <article class="hl-card glass reveal">
+      <div class="hl-num">02</div>
+      <h3>醫療文件 RAG 系統</h3>
+      <p>將 800+ 頁原文病歷向量化，建置可語義查詢的醫療知識庫，實際用於醫療諮詢輔助，具備高精度召回率與答案可追溯性需求的處理經驗。</p>
+    </article>
+  </div>
+</section>
+
+<section id="education">
+  <div class="reveal"><span class="sec-tag"><i class="fa-solid fa-graduation-cap"></i>Education</span></div>
+  <h2 class="sec-title reveal"><span class="grad-text">學歷</span></h2>
+  <div class="edu-card glass reveal">
+    <span class="edu-ico"><i class="fa-solid fa-graduation-cap"></i></span>
+    <div>
+      <h3>中山醫學大學</h3>
+      <p>醫學資訊學系 · 學士</p>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="contact-card glass reveal">
+    <div><span class="sec-tag"><i class="fa-solid fa-paper-plane"></i>Contact</span></div>
+    <h2><span class="grad-text">讓我們開始對話</span></h2>
+    <p class="lead">目前積極尋求 AI 工程師 / Tech Lead / Solution Architect 相關機會，歡迎來信交流。</p>
+    <div class="contact-links">
+      <a class="chip cta" href="mailto:serviceluna@luna-ai-life.com"><i class="fa-solid fa-envelope"></i>serviceluna@luna-ai-life.com</a>
+      <a class="chip" href="https://luna-ai-life.com" target="_blank" rel="noopener"><i class="fa-solid fa-heart-pulse"></i>璐娜健康管家</a>
+      <a class="chip" href="https://jlfshop.com" target="_blank" rel="noopener"><i class="fa-solid fa-cart-shopping"></i>金連發電器</a>
+      <a class="chip" href="https://github.com/" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i>GitHub</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>© 2026 Ian Cheng</footer>
+
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* mobile nav toggle */
+  var toggle = document.querySelector('.nav-toggle');
+  var links = document.getElementById('navlinks');
+  toggle.addEventListener('click', function(){
+    var open = links.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  links.addEventListener('click', function(e){
+    if(e.target.tagName === 'A'){ links.classList.remove('open'); toggle.setAttribute('aria-expanded','false'); }
+  });
+
+  /* reveal on scroll */
+  var reveals = document.querySelectorAll('.reveal');
+  if(reduce || !('IntersectionObserver' in window)){
+    reveals.forEach(function(el){ el.classList.add('in'); });
+  } else {
+    var ro = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){ en.target.classList.add('in'); ro.unobserve(en.target); }
+      });
+    }, {threshold:0.12, rootMargin:'0px 0px -40px 0px'});
+    reveals.forEach(function(el){ ro.observe(el); });
+  }
+
+  /* number count-up */
+  var counters = document.querySelectorAll('[data-count]');
+  function runCount(el){
+    var target = parseFloat(el.getAttribute('data-count'));
+    var suffix = el.getAttribute('data-suffix') || '';
+    if(reduce){ el.textContent = target + suffix; return; }
+    var dur = 1400, start = null;
+    function step(ts){
+      if(!start) start = ts;
+      var p = Math.min((ts - start)/dur, 1);
+      var eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(target * eased) + suffix;
+      if(p < 1) requestAnimationFrame(step);
+      else el.textContent = target + suffix;
+    }
+    requestAnimationFrame(step);
+  }
+  if(!('IntersectionObserver' in window) || reduce){
+    counters.forEach(runCount);
+  } else {
+    var co = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){ runCount(en.target); co.unobserve(en.target); }
+      });
+    }, {threshold:0.6});
+    counters.forEach(function(el){ co.observe(el); });
+  }
+
+  /* scroll-spy nav highlight */
+  var navAnchors = Array.prototype.slice.call(document.querySelectorAll('.nav-links a'));
+  var sections = navAnchors.map(function(a){ return document.querySelector(a.getAttribute('href')); }).filter(Boolean);
+  if('IntersectionObserver' in window){
+    var spy = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){
+          navAnchors.forEach(function(a){ a.classList.remove('active'); });
+          var match = navAnchors.filter(function(a){ return a.getAttribute('href') === '#' + en.target.id; })[0];
+          if(match) match.classList.add('active');
+        }
+      });
+    }, {rootMargin:'-45% 0px -50% 0px'});
+    sections.forEach(function(s){ spy.observe(s); });
+  }
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ian Cheng — 資深全端工程師 &amp; AI 工程師｜互動工作室</title>
+<meta name="description" content="Ian Cheng — 資深全端工程師 &amp; AI 工程師。10 年開發經驗，擅長 AI 產品落地、微服務架構設計，具備從零到上線的完整交付能力。點擊探索互動工作室履歷。" />
+<meta name="author" content="Ian Cheng" />
+<meta name="keywords" content="Ian Cheng, 全端工程師, AI 工程師, 微服務, RAG, Stable Diffusion, LoRA, Vue.js, Python, 履歷" />
+<meta name="theme-color" content="#11131c" />
+<meta name="robots" content="index,follow" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="profile" />
+<meta property="og:title" content="Ian Cheng — 資深全端工程師 &amp; AI 工程師" />
+<meta property="og:description" content="10 年開發經驗，擅長 AI 產品落地、微服務架構設計，具備從零到上線的完整交付能力。點擊探索互動工作室履歷。" />
+<meta property="og:locale" content="zh_TW" />
+<meta property="profile:first_name" content="Ian" />
+<meta property="profile:last_name" content="Cheng" />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="Ian Cheng — 資深全端工程師 &amp; AI 工程師" />
+<meta name="twitter:description" content="互動工作室履歷：點擊探索作品、技能、經歷與 AI 實績。" />
+
+<!-- favicon: data URI SVG -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%3E%3Crect%20width='32'%20height='32'%20rx='7'%20fill='%2311131c'/%3E%3Crect%20x='6'%20y='8'%20width='20'%20height='13'%20rx='2'%20fill='none'%20stroke='%237c5cff'%20stroke-width='2'/%3E%3Cpath%20d='M11%2025h10'%20stroke='%2300e0c6'%20stroke-width='2'%20stroke-linecap='round'/%3E%3Ccircle%20cx='16'%20cy='14'%20r='2.6'%20fill='%2300e0c6'/%3E%3C/svg%3E" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<style>
+:root{
+  --bg:#0c0e16; --panel:#141826; --panel2:#1b2030; --ink:#eef1f8; --muted:#9aa3bd;
+  --line:#2a3146; --accent:#7c5cff; --accent2:#00e0c6; --gold:#ffcf5c;
+  --shadow:0 18px 50px rgba(0,0,0,.45);
+  --r:16px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:radial-gradient(1200px 700px at 70% -10%, #1a1f37 0%, var(--bg) 60%);
+  color:var(--ink); font-family:"Noto Sans TC",system-ui,sans-serif; line-height:1.6;
+  -webkit-font-smoothing:antialiased; min-height:100vh;
+}
+a{color:var(--accent2)}
+.wrap{max-width:1180px;margin:0 auto;padding:18px clamp(14px,3vw,32px) 60px}
+.font-d{font-family:"Space Grotesk","Noto Sans TC",sans-serif}
+
+/* skip link */
+.skip{position:absolute;left:-999px;top:0;background:var(--accent);color:#fff;padding:10px 14px;border-radius:8px;z-index:100}
+.skip:focus{left:12px;top:12px}
+
+/* top bar */
+.topbar{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;margin-bottom:16px}
+.brand{display:flex;align-items:center;gap:12px;min-width:0}
+.brand .logo{width:42px;height:42px;border-radius:11px;background:linear-gradient(135deg,var(--accent),var(--accent2));display:grid;place-items:center;color:#0c0e16;font-size:20px;flex:0 0 auto}
+.brand h1{font-size:clamp(16px,2.4vw,20px);margin:0;line-height:1.3;padding-bottom:2px}
+.brand small{color:var(--muted);display:block;font-weight:400}
+.toolbtns{display:flex;gap:8px;flex-wrap:wrap}
+.btn{cursor:pointer;border:1px solid var(--line);background:var(--panel2);color:var(--ink);
+  padding:9px 14px;border-radius:10px;font-size:14px;font-weight:500;display:inline-flex;gap:8px;align-items:center;transition:.18s;font-family:inherit}
+.btn:hover{border-color:var(--accent);transform:translateY(-1px)}
+.btn.primary{background:linear-gradient(135deg,var(--accent),#6a48ff);border-color:transparent}
+
+/* progress */
+.progress{display:flex;align-items:center;gap:14px;background:var(--panel);border:1px solid var(--line);
+  border-radius:var(--r);padding:12px 16px;margin-bottom:14px;flex-wrap:wrap}
+.progress .lab{font-weight:700;font-size:14px;display:flex;align-items:center;gap:8px}
+.bar{flex:1;min-width:160px;height:10px;background:#0a0c14;border-radius:99px;overflow:hidden;border:1px solid var(--line)}
+.bar > i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent2),var(--accent));transition:width .5s ease}
+.dots{display:flex;gap:6px;flex-wrap:wrap}
+.dots b{width:11px;height:11px;border-radius:50%;background:#2a3146;display:inline-block;transition:.3s}
+.dots b.on{background:var(--accent2);box-shadow:0 0 8px var(--accent2)}
+
+/* scene */
+.scene-card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);overflow:hidden;position:relative}
+.scene-hd{display:flex;justify-content:space-between;align-items:center;padding:10px 16px;border-bottom:1px solid var(--line);background:var(--panel2);flex-wrap:wrap;gap:8px}
+.scene-hd .ttl{font-weight:700;font-size:14px;color:var(--muted);display:flex;gap:8px;align-items:center}
+.scene-hd .hint{font-size:12px;color:var(--muted)}
+.scene-svg{display:block;width:100%;height:auto;touch-action:manipulation}
+
+/* interactive hotspots */
+.hot{cursor:pointer;outline:none}
+.hot .hit{fill:transparent}
+.hot .glow{opacity:0;transition:opacity .25s}
+.hot:hover .glow,.hot:focus-visible .glow{opacity:1}
+.hot:focus-visible{outline:none}
+.hot:focus-visible .ring{stroke:var(--gold);stroke-width:3;opacity:1}
+.ring{opacity:0;transition:opacity .2s}
+.hot.visited .badge-check{opacity:1}
+.badge-check{opacity:0;transition:.3s}
+/* attention pulse for unvisited */
+.hot:not(.visited) .pulse{animation:pulse 2.1s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:.15;r:3}50%{opacity:.9;r:6}}
+.hot:not(.visited) .pulse2{animation:pulse 2.1s ease-in-out .5s infinite}
+
+/* floating label */
+.flabel{position:absolute;transform:translate(-50%,-130%);background:#0a0c14ee;border:1px solid var(--accent);
+  color:var(--ink);padding:6px 11px;border-radius:9px;font-size:13px;font-weight:600;white-space:nowrap;
+  pointer-events:none;opacity:0;transition:.15s;z-index:5;box-shadow:0 6px 18px rgba(0,0,0,.5)}
+.flabel.show{opacity:1}
+.flabel small{color:var(--accent2);font-weight:500;margin-left:6px}
+
+/* tip row */
+.tip{display:flex;gap:10px;align-items:center;color:var(--muted);font-size:13px;padding:10px 4px 0}
+.tip i{color:var(--gold)}
+
+/* modal */
+.modal-bg{position:fixed;inset:0;background:rgba(6,8,14,.72);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;z-index:60;padding:18px}
+.modal-bg.open{display:flex}
+.modal{background:var(--panel);border:1px solid var(--line);border-radius:18px;max-width:680px;width:100%;max-height:88vh;overflow:auto;box-shadow:var(--shadow);animation:pop .25s ease}
+@keyframes pop{from{transform:translateY(14px) scale(.98);opacity:0}to{transform:none;opacity:1}}
+.modal-hd{position:sticky;top:0;background:var(--panel);display:flex;justify-content:space-between;align-items:center;
+  padding:18px 22px;border-bottom:1px solid var(--line);z-index:2}
+.modal-hd h2{margin:0;font-size:clamp(18px,3vw,22px);display:flex;gap:11px;align-items:center;line-height:1.3;padding-bottom:2px}
+.modal-hd h2 .ic{width:38px;height:38px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent2));display:grid;place-items:center;color:#0c0e16;flex:0 0 auto}
+.x{cursor:pointer;border:none;background:var(--panel2);color:var(--ink);width:38px;height:38px;border-radius:10px;font-size:16px}
+.x:hover{background:#2a3146}
+.modal-bd{padding:20px 22px 26px}
+
+/* content bits */
+.lead{color:var(--muted)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+.chip{background:var(--panel2);border:1px solid var(--line);border-radius:99px;padding:5px 12px;font-size:13px}
+.chip.k{border-color:var(--accent);color:#cfc4ff}
+.kgrid{display:grid;grid-template-columns:1fr;gap:12px}
+.kcard{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:13px 15px}
+.kcard h4{margin:0 0 8px;font-size:14px;display:flex;gap:8px;align-items:center}
+.kcard h4 i{color:var(--accent2)}
+.exp{border-left:3px solid var(--accent);padding:4px 0 4px 16px;margin-bottom:6px}
+.exp h4{margin:0 0 4px;font-size:15px}
+.exp .role{color:var(--muted);font-size:13px;margin-bottom:8px}
+.exp ul{margin:6px 0;padding-left:18px}
+.exp li{margin-bottom:6px}
+.proj{border:1px solid var(--line);border-radius:12px;padding:16px;margin-bottom:14px;background:var(--panel2)}
+.proj h4{margin:0 0 4px;font-size:16px}
+.proj .meta{color:var(--accent2);font-size:13px;margin-bottom:8px}
+.proj ul{margin:8px 0;padding-left:18px}
+.proj li{margin-bottom:5px}
+.feat{display:flex;gap:8px;margin-bottom:6px}
+.feat i{color:var(--accent2);margin-top:5px;font-size:11px;flex:0 0 auto}
+.ach{display:flex;gap:12px;margin-bottom:14px}
+.ach .n{width:34px;height:34px;border-radius:9px;background:linear-gradient(135deg,var(--gold),#ff9d5c);color:#1a1305;display:grid;place-items:center;font-weight:900;flex:0 0 auto}
+.contact-row{display:flex;flex-direction:column;gap:10px}
+.contact-row a{display:flex;gap:11px;align-items:center;background:var(--panel2);border:1px solid var(--line);
+  border-radius:11px;padding:12px 15px;text-decoration:none;color:var(--ink);transition:.15s}
+.contact-row a:hover{border-color:var(--accent2);transform:translateX(3px)}
+.contact-row i{color:var(--accent2);width:20px;text-align:center}
+.status{display:inline-flex;gap:8px;align-items:center;background:rgba(0,224,198,.12);border:1px solid var(--accent2);
+  color:var(--accent2);padding:5px 12px;border-radius:99px;font-size:13px;font-weight:600}
+.status .dot{width:8px;height:8px;border-radius:50%;background:var(--accent2);animation:blink 1.6s infinite}
+@keyframes blink{50%{opacity:.3}}
+
+/* stats wall (dashboard) */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:16px 0}
+.stat{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px;text-align:center}
+.stat .v{font-size:clamp(22px,4vw,30px);font-weight:900;font-family:"Space Grotesk",sans-serif;
+  background:linear-gradient(135deg,var(--accent2),var(--accent));-webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;line-height:1.3;padding-bottom:4px}
+.stat .l{color:var(--muted);font-size:12.5px;margin-top:2px}
+
+/* full text view */
+#fulltext{display:none}
+#fulltext.show{display:block}
+.doc{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:clamp(18px,4vw,40px);margin-top:18px}
+.doc h2{font-family:"Space Grotesk","Noto Sans TC",sans-serif;border-bottom:2px solid var(--line);padding-bottom:8px;margin:30px 0 14px;font-size:20px}
+.doc h2:first-child{margin-top:0}
+.doc h3{margin:16px 0 6px;font-size:16px;color:var(--accent2)}
+.doc ul{padding-left:20px}
+.doc li{margin-bottom:6px}
+.doc .sub{color:var(--muted)}
+.section-hint{text-align:center;color:var(--muted);font-size:13px;margin:14px 0}
+
+footer{text-align:center;color:var(--muted);font-size:13px;margin-top:34px;padding-top:18px;border-top:1px solid var(--line)}
+
+/* responsive */
+@media(max-width:720px){
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .brand h1{font-size:16px}
+  .scene-hd .hint{display:none}
+}
+
+/* reduced motion: hide scene, show full text */
+@media(prefers-reduced-motion:reduce){
+  *{animation:none !important;transition:none !important;scroll-behavior:auto !important}
+  #explorer{display:none}
+  #fulltext{display:block !important}
+  .rm-note{display:block !important}
+}
+.rm-note{display:none;background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:12px 16px;margin-bottom:16px;color:var(--muted);font-size:13px}
+
+/* print: clean full text only */
+@media print{
+  body{background:#fff;color:#000}
+  .topbar,.progress,#explorer,.toolbtns,.scene-card,.tip,.modal-bg,.section-hint,.rm-note{display:none !important}
+  #fulltext{display:block !important}
+  .doc{border:none;box-shadow:none;padding:0}
+  .doc h2{color:#000;border-color:#999}
+  .doc h3{color:#333}
+  a{color:#000;text-decoration:underline}
+  .stat .v{-webkit-text-fill-color:#000;color:#000}
+  .stats{display:grid}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">跳到主要內容</a>
+
+<div class="wrap" id="main">
+
+  <div class="topbar">
+    <div class="brand">
+      <span class="logo" aria-hidden="true"><i class="fa-solid fa-gamepad"></i></span>
+      <div>
+        <h1 class="font-d">Ian Cheng</h1>
+        <small>資深全端工程師 &amp; AI 工程師 · 互動工作室履歷</small>
+      </div>
+    </div>
+    <div class="toolbtns">
+      <button class="btn" id="toggleView" aria-pressed="false"><i class="fa-solid fa-list"></i> 檢視全部 / 全文清單</button>
+      <a class="btn primary" href="mailto:serviceluna@luna-ai-life.com"><i class="fa-solid fa-paper-plane"></i> 聯繫我</a>
+    </div>
+  </div>
+
+  <div class="rm-note">已偵測「減少動態」偏好，已切換為可捲動的靜態全文版本。</div>
+
+  <!-- ================= EXPLORER (interactive) ================= -->
+  <div id="explorer">
+
+    <div class="progress" aria-live="polite">
+      <span class="lab"><i class="fa-solid fa-compass" style="color:var(--accent2)"></i> 探索進度</span>
+      <span id="progTxt" class="font-d" style="font-weight:700">0 / 8</span>
+      <span class="bar"><i id="progBar"></i></span>
+      <span class="dots" id="dots" aria-hidden="true"></span>
+    </div>
+
+    <div class="scene-card">
+      <div class="scene-hd">
+        <span class="ttl"><i class="fa-solid fa-couch"></i> Ian 的工作室 · 點擊物件探索</span>
+        <span class="hint"><i class="fa-regular fa-hand-pointer"></i> 閃爍 = 尚未探索，hover 看名稱，點擊開啟面板</span>
+      </div>
+
+      <!-- floating label -->
+      <div class="flabel" id="flabel"></div>
+
+      <!-- isometric studio scene -->
+      <svg class="scene-svg" id="scene" viewBox="0 0 1000 600" role="img" aria-label="Ian 的等角工作室場景，含可互動物件" preserveAspectRatio="xMidYMid meet">
+        <defs>
+          <linearGradient id="floor" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1c2236"/><stop offset="1" stop-color="#141826"/></linearGradient>
+          <linearGradient id="wall" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#222a42"/><stop offset="1" stop-color="#1a2034"/></linearGradient>
+          <linearGradient id="wall2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1d2438"/><stop offset="1" stop-color="#161b2c"/></linearGradient>
+          <linearGradient id="screen" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#173a52"/><stop offset="1" stop-color="#0e2236"/></linearGradient>
+          <radialGradient id="amb" cx="50%" cy="20%" r="80%"><stop offset="0" stop-color="#2a3358" stop-opacity=".6"/><stop offset="1" stop-color="#0c0e16" stop-opacity="0"/></radialGradient>
+          <filter id="soft"><feGaussianBlur stdDeviation="6"/></filter>
+        </defs>
+
+        <!-- room shell -->
+        <rect x="0" y="0" width="1000" height="600" fill="url(#amb)"/>
+        <!-- back wall left -->
+        <polygon points="60,40 500,90 500,420 60,470" fill="url(#wall)"/>
+        <!-- back wall right -->
+        <polygon points="500,90 940,40 940,470 500,420" fill="url(#wall2)"/>
+        <!-- floor -->
+        <polygon points="60,470 500,420 940,470 500,560" fill="url(#floor)"/>
+        <!-- floor seams -->
+        <polyline points="280,445 500,490 720,445" fill="none" stroke="#2a3146" stroke-width="1.5" opacity=".5"/>
+        <polyline points="180,458 500,525 820,458" fill="none" stroke="#2a3146" stroke-width="1.5" opacity=".4"/>
+
+        <!-- ============ STATS DASHBOARD ON WALL (non-interactive display) ============ -->
+        <g aria-hidden="true">
+          <rect x="100" y="70" width="150" height="92" rx="8" fill="#0e1322" stroke="#2c3554"/>
+          <text x="112" y="92" fill="#6b7596" font-family="Space Grotesk, sans-serif" font-size="11">STUDIO METRICS</text>
+          <text x="112" y="120" fill="#00e0c6" font-family="Space Grotesk, sans-serif" font-size="22" font-weight="700">10+</text>
+          <text x="158" y="120" fill="#9aa3bd" font-size="11">年經驗</text>
+          <text x="112" y="146" fill="#7c5cff" font-family="Space Grotesk, sans-serif" font-size="22" font-weight="700">5+</text>
+          <text x="152" y="146" fill="#9aa3bd" font-size="11">大型專案</text>
+          <!-- mini bars -->
+          <rect x="112" y="152" width="120" height="4" rx="2" fill="#222a42"/>
+          <rect x="112" y="152" width="92" height="4" rx="2" fill="#00e0c6"/>
+        </g>
+
+        <!-- ============ 1. 名牌 / NAMEPLATE (Hero) ============ -->
+        <g class="hot" id="hot-hero" tabindex="0" role="button" aria-label="名牌：姓名與職稱（Hero）" data-key="hero" data-label="名牌" data-sub="姓名 / 職稱" data-x="660" data-y="120">
+          <rect class="glow" x="556" y="86" width="240" height="78" rx="10" fill="#7c5cff" opacity="0" filter="url(#soft)"/>
+          <rect x="560" y="90" width="232" height="70" rx="9" fill="#101627" stroke="#3a4468"/>
+          <rect class="ring" x="556" y="86" width="240" height="78" rx="11" fill="none" stroke="#7c5cff"/>
+          <text x="576" y="118" fill="#eef1f8" font-family="Space Grotesk, sans-serif" font-size="20" font-weight="700">Ian Cheng</text>
+          <text x="576" y="142" fill="#00e0c6" font-size="13">資深全端工程師 &amp; AI 工程師</text>
+          <circle class="pulse" cx="780" cy="102" r="3" fill="#ffcf5c"/>
+          <circle class="badge-check" cx="780" cy="102" r="9" fill="#00e0c6"/>
+          <path class="badge-check" d="M775 102l3 3 6-6" stroke="#0c0e16" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <rect class="hit" x="556" y="86" width="240" height="78"/>
+        </g>
+
+        <!-- ============ 2. 文憑 / DIPLOMA (Education) ============ -->
+        <g class="hot" id="hot-edu" tabindex="0" role="button" aria-label="牆上文憑：學歷" data-key="edu" data-label="文憑" data-sub="學歷" data-x="868" data-y="130">
+          <rect class="glow" x="824" y="96" width="92" height="74" rx="6" fill="#ffcf5c" opacity="0" filter="url(#soft)"/>
+          <rect x="828" y="100" width="84" height="66" rx="4" fill="#14182a" stroke="#caa44e"/>
+          <rect class="ring" x="824" y="96" width="92" height="74" rx="6" fill="none" stroke="#7c5cff"/>
+          <path d="M870 116l16 7-16 7-16-7z" fill="#ffcf5c"/>
+          <path d="M862 130v9l8 4 8-4v-9" fill="none" stroke="#ffcf5c" stroke-width="2"/>
+          <line x1="844" y1="152" x2="896" y2="152" stroke="#3a4468" stroke-width="2"/>
+          <line x1="850" y1="158" x2="890" y2="158" stroke="#3a4468" stroke-width="2"/>
+          <circle class="pulse" cx="900" cy="106" r="3" fill="#ffcf5c"/>
+          <circle class="badge-check" cx="900" cy="106" r="9" fill="#00e0c6"/>
+          <path class="badge-check" d="M895 106l3 3 6-6" stroke="#0c0e16" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <rect class="hit" x="824" y="96" width="92" height="74"/>
+        </g>
+
+        <!-- ============ 3. 白板 / WHITEBOARD (Skills) ============ -->
+        <g class="hot" id="hot-skills" tabindex="0" role="button" aria-label="白板：核心技能" data-key="skills" data-label="白板" data-sub="核心技能" data-x="190" data-y="240">
+          <rect class="glow" x="96" y="186" width="200" height="118" rx="8" fill="#00e0c6" opacity="0" filter="url(#soft)"/>
+          <rect x="100" y="190" width="192" height="110" rx="6" fill="#f3f6ff" stroke="#3a4468"/>
+          <rect class="ring" x="96" y="186" width="200" height="118" rx="8" fill="none" stroke="#7c5cff"/>
+          <text x="114" y="214" fill="#7c5cff" font-family="Space Grotesk, sans-serif" font-size="13" font-weight="700">SKILLS</text>
+          <line x1="114" y1="226" x2="270" y2="226" stroke="#00b8a0" stroke-width="2"/>
+          <line x1="114" y1="240" x2="250" y2="240" stroke="#7c5cff" stroke-width="3"/>
+          <line x1="114" y1="254" x2="230" y2="254" stroke="#222a42" stroke-width="2"/>
+          <line x1="114" y1="268" x2="262" y2="268" stroke="#222a42" stroke-width="2"/>
+          <circle cx="250" cy="282" r="9" fill="none" stroke="#ff9d5c" stroke-width="2"/>
+          <path d="M246 282h8M250 278v8" stroke="#ff9d5c" stroke-width="2"/>
+          <circle class="pulse" cx="282" cy="200" r="3" fill="#ffcf5c"/>
+          <circle class="badge-check" cx="282" cy="200" r="9" fill="#00e0c6"/>
+          <path class="badge-check" d="M277 200l3 3 6-6" stroke="#0c0e16" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <rect class="hit" x="96" y="186" width="200" height="118"/>
+        </g>
+
+        <!-- ============ 4. 獎盃 / TROPHY (Achievements) — on wall shelf ============ -->
+        <g class="hot" id="hot-ach" tabindex="0" role="button" aria-label="獎盃：特殊技術實績" data-key="ach" data-label="獎盃" data-sub="特殊技術實績" data-x="828" data-y="250">
+          <rect class="glow" x="788" y="206" width="84" height="92" rx="8" fill="#ffcf5c" opacity="0" filter="url(#soft)"/>
+          <rect class="ring" x="788" y="206" width="84" height="92" rx="8" fill="none" stroke="#7c5cff"/>
+          <!-- shelf -->
+          <rect x="784" y="288" width="92" height="7" rx="2" fill="#2a3146"/>
+          <!-- trophy -->
+          <path d="M812 220h36v14a18 18 0 0 1-36 0z" fill="#ffcf5c"/>
+          <path d="M812 222h-10a8 8 0 0 0 8 9" fill="none" stroke="#ffcf5c" stroke-width="3"/>
+          <path d="M848 222h10a8 8 0 0 1-8 9" fill="none" stroke="#ffcf5c" stroke-width="3"/>
+          <rect x="826" y="252" width="8" height="14" fill="#caa44e"/>
+          <rect x="816" y="266" width="28" height="8" rx="2" fill="#ffcf5c"/>
+          <path d="M825 230l5 4-2 6 5-4 5 4-2-6 5-4h-6l-2-6-2 6z" fill="#fff" opacity=".7"/>
+          <circle class="pulse" cx="862" cy="216" r="3" fill="#ffcf5c"/>
+          <circle class="badge-check" cx="862" cy="216" r="9" fill="#00e0c6"/>
+          <path class="badge-check" d="M857 216l3 3 6-6" stroke="#0c0e16" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <rect class="hit" x="788" y="206" width="84" height="92"/>
+        </g>
+
+        <!-- ============ DESK ============ -->
+        <g aria-hidden="true">
+          <polygon points="360,470 700,470 760,512 300,512" fill="#1a2034" stroke="#2a3146"/>
+          <polygon points="300,512 760,512 760,540 300,540" fill="#141826"/>
+          <rect x="330" y="540" width="14" height="40" fill="#10141f"/>
+          <rect x="716" y="540" width="14" height="40" fill="#10141f"/>
+        </g>
+
+        <!-- ============ 5. 電腦螢幕 / MONITOR (Projects) ============ -->
+        <g class="hot" id="hot-projects" tabindex="0" role="button" aria-label="電腦螢幕：自建作品" data-key="projects" data-label="電腦螢幕" data-sub="自建作品" data-x="470" data-y="380">
+          <rect class="glow" x="376" y="316" width="200" height="148" rx="10" fill="#00e0c6" opacity="0" filter="url(#soft)"/>
+          <rect class="ring" x="376" y="316" width="200" height="148" rx="10" fill="none" stroke="#7c5cff"/>
+          <!-- monitor -->
+          <rect x="380" y="320" width="190" height="120" rx="8" fill="#0a0e18" stroke="#3a4468" stroke-width="2"/>
+          <rect x="390" y="330" width="170" height="100" rx="4" fill="url(#screen)"/>
+          <!-- code lines -->
+          <rect x="400" y="342" width="60" height="6" rx="3" fill="#00e0c6"/>
+          <rect x="400" y="354" width="100" height="5" rx="2" fill="#3a5b78"/>
+          <rect x="412" y="364" width="80" height="5" rx="2" fill="#7c5cff"/>
+          <rect x="412" y="374" width="120" height="5" rx="2" fill="#3a5b78"/>
+          <rect x="400" y="392" width="50" height="22" rx="4" fill="#7c5cff"/>
+          <text x="408" y="407" fill="#fff" font-family="Space Grotesk, sans-serif" font-size="11">RUN</text>
+          <rect x="462" y="392" width="50" height="22" rx="4" fill="none" stroke="#00e0c6"/>
+          <!-- stand -->
+          <rect x="464" y="440" width="22" height="22" fill="#1a2034"/>
+          <rect x="440" y="460" width="70" height="8" rx="3" fill="#2a3146"/>
+          <circle class="pulse" cx="560" cy="330" r="3" fill="#ffcf5c"/>
+          <circle class="badge-check" cx="560" cy="330" r="9" fill="#00e0c6"/>
+          <path class="badge-check" d="M555 330l3 3 6-6" stroke="#0c0e16" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <rect class="hit" x="376" y="316" width="200" height="148"/>
+        </g>
+
+        <!-- ============ 6. 手機 / PHONE (Contact) — on desk ============ -->
+        <g class="hot" id="hot-contact" tabindex="0" role="button" aria-label="手機：聯繫方式" data-key="contact" data-label="手機" data-sub="聯繫" data-x="640" data-y="430">
+          <rect class="glow" x="612" y="392" width="56" height="86" rx="12" fill="#7c5cff" opacity="0" filter="url(#soft)"/>
+          <rect x="616" y="396" width="48" height="78" rx="9" fill="#0e1322" stroke="#3a4468" stroke-width="2"/>
+          <rect class="ring" x="612" y="392" width="56" height="86" rx="12" fill="none" stroke="#7c5cff"/>
+          <rect x="622" y="404" width="36" height="56" rx="3" fill="#152033"/>
+          <path d="M630 420h20M630 430h20M630 440h14" stroke="#00e0c6" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="640" cy="467" r="3" fill="#3a4468"/>
+          <circle class="pulse" cx="656" cy="402" r="3" fill="#ffcf5c"/>
+          <circle class="badge-check" cx="656" cy="402" r="8" fill="#00e0c6"/>
+          <path class="badge-check" d="M651 402l3 3 5-6" stroke="#0c0e16" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <rect class="hit" x="612" y="392" width="56" height="86"/>
+        </g>
+
+        <!-- ============ 7. 檔案櫃 / FILE CABINET (Experience) ============ -->
+        <g class="hot" id="hot-exp" tabindex="0" role="button" aria-label="檔案櫃：工作經歷" data-key="exp" data-label="檔案櫃" data-sub="工作經歷" data-x="170" data-y="470">
+          <rect class="glow" x="96" y="356" width="118" height="190" rx="8" fill="#00e0c6" opacity="0" filter="url(#soft)"/>
+          <rect class="ring" x="96" y="356" width="118" height="190" rx="8" fill="none" stroke="#7c5cff"/>
+          <rect x="100" y="360" width="110" height="182" rx="6" fill="#1c2338" stroke="#3a4468"/>
+          <rect x="108" y="372" width="94" height="48" rx="4" fill="#232c46"/>
+          <rect x="108" y="426" width="94" height="48" rx="4" fill="#232c46"/>
+          <rect x="108" y="480" width="94" height="48" rx="4" fill="#232c46"/>
+          <rect x="138" y="392" width="34" height="6" rx="3" fill="#00e0c6"/>
+          <rect x="138" y="446" width="34" height="6" rx="3" fill="#7c5cff"/>
+          <rect x="138" y="500" width="34" height="6" rx="3" fill="#ffcf5c"/>
+          <circle class="pulse" cx="202" cy="368" r="3" fill="#ffcf5c"/>
+          <circle class="badge-check" cx="202" cy="368" r="9" fill="#00e0c6"/>
+          <path class="badge-check" d="M197 368l3 3 6-6" stroke="#0c0e16" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <rect class="hit" x="96" y="356" width="118" height="190"/>
+        </g>
+
+        <!-- ============ 8. 人物 / 椅子 (About) ============ -->
+        <g class="hot" id="hot-about" tabindex="0" role="button" aria-label="人物與椅子：關於我" data-key="about" data-label="人物" data-sub="關於我" data-x="500" data-y="498">
+          <rect class="glow" x="452" y="430" width="116" height="150" rx="14" fill="#7c5cff" opacity="0" filter="url(#soft)"/>
+          <rect class="ring" x="452" y="430" width="116" height="150" rx="14" fill="none" stroke="#7c5cff"/>
+          <!-- chair back -->
+          <rect x="468" y="486" width="84" height="74" rx="14" fill="#232c46" stroke="#3a4468"/>
+          <!-- person head -->
+          <circle cx="510" cy="468" r="20" fill="#e8b88f"/>
+          <path d="M490 462a20 20 0 0 1 40 0c0-14-9-22-20-22s-20 8-20 22z" fill="#23303f"/>
+          <!-- body -->
+          <path d="M484 540v-18a26 26 0 0 1 52 0v18z" fill="#7c5cff"/>
+          <path d="M498 500l-2 -10M522 500l2 -10" stroke="#6a48ff" stroke-width="3" stroke-linecap="round"/>
+          <!-- chair base -->
+          <rect x="504" y="560" width="12" height="18" fill="#10141f"/>
+          <path d="M488 580h44" stroke="#2a3146" stroke-width="5" stroke-linecap="round"/>
+          <circle class="pulse" cx="556" cy="440" r="3" fill="#ffcf5c"/>
+          <circle class="badge-check" cx="556" cy="440" r="9" fill="#00e0c6"/>
+          <path class="badge-check" d="M551 440l3 3 6-6" stroke="#0c0e16" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <rect class="hit" x="452" y="430" width="116" height="150"/>
+        </g>
+
+        <!-- plant deco -->
+        <g aria-hidden="true">
+          <rect x="280" y="500" width="34" height="38" rx="4" fill="#243049"/>
+          <path d="M297 500c-10-18-2-36 0-40 2 4 10 22 0 40z" fill="#2f9e7a"/>
+          <path d="M297 502c-16-8-18-26-18-30 8 2 24 14 18 30z" fill="#3bb78c"/>
+          <path d="M297 502c16-8 18-26 18-30-8 2-24 14-18 30z" fill="#2f9e7a"/>
+        </g>
+      </svg>
+    </div>
+
+    <div class="tip">
+      <i class="fa-solid fa-lightbulb"></i>
+      <span>提示：閃爍的金點代表尚未探索的物件。使用 Tab 鍵也能逐一聚焦並用 Enter 開啟。全部探索後可解鎖完成提示。不想探索？右上角「檢視全部 / 全文清單」隨時看到完整內容。</span>
+    </div>
+
+    <div class="stats" id="statwall">
+      <div class="stat"><div class="v font-d">10+</div><div class="l">年開發經驗</div></div>
+      <div class="stat"><div class="v font-d">5+</div><div class="l">大型專案交付</div></div>
+      <div class="stat"><div class="v font-d">2</div><div class="l">自建產品上線</div></div>
+      <div class="stat"><div class="v font-d">3</div><div class="l">AI 整合實戰</div></div>
+    </div>
+  </div><!-- /explorer -->
+
+  <!-- ================= FULL TEXT (accessible / print / reduced-motion) ================= -->
+  <div id="fulltext">
+    <p class="section-hint">以下為完整履歷全文（可捲動、可列印、可搜尋）。點擊上方「檢視全部」可隨時切換回互動工作室。</p>
+    <article class="doc">
+      <h2>Ian Cheng — 資深全端工程師 &amp; AI 工程師</h2>
+      <p class="lead">10 年開發經驗，擅長 AI 產品落地、微服務架構設計，具備從零到上線的完整交付能力。</p>
+      <p><span class="status"><span class="dot"></span>Available for opportunities</span>
+        <a href="mailto:serviceluna@luna-ai-life.com">serviceluna@luna-ai-life.com</a></p>
+
+      <h2>數據亮點</h2>
+      <ul>
+        <li>10+ 年開發經驗</li>
+        <li>5+ 大型專案交付</li>
+        <li>2 自建產品上線</li>
+        <li>3 AI 整合實戰</li>
+      </ul>
+
+      <h2>關於我</h2>
+      <p>10 年全端工程師，具備從系統架構設計到 AI 產品落地的端對端能力。曾在中部區域醫院主導多項院內大型系統開發，採微服務架構 + API Gateway + RBAC 集中控管，支援全院多部門運作。</p>
+      <p>自行開發並上線 璐娜健康管家（AI 健康 SaaS）與金連發電器（家電電商），整合 Gemini + OpenAI 多模態雙引擎。具備 Stable Diffusion + LoRA 模型微調及 RAG 系統建置實戰經驗，熟悉醫療資料處理與合規需求。</p>
+      <p>背景橫跨醫療資訊、電商、AI 三個領域，能同時勝任技術深度討論與跨部門架構溝通。目前積極尋求 AI 工程師 / Tech Lead / Solution Architect 相關機會。</p>
+
+      <h2>核心技能</h2>
+      <h3>程式語言</h3><p>Python、Vue.js、PHP、JavaScript、HTML / CSS</p>
+      <h3>資料庫</h3><p>MySQL、PostgreSQL、MongoDB、Redis</p>
+      <h3>系統架構</h3><p>微服務、API Gateway、RBAC、事件驅動、負載均衡、CDN</p>
+      <h3>AI / ML</h3><p>OpenAI API、Gemini API、RAG、LoRA fine-tuning、Stable Diffusion、向量資料庫</p>
+      <h3>DevOps</h3><p>Docker、CI/CD、Linux、Nginx</p>
+      <h3>領域知識</h3><p>醫療資訊系統、電商平台、醫療資料合規、HL7 / FHIR</p>
+
+      <h2>工作經歷</h2>
+      <h3>程式設計師 ＠ 中部區域醫院（任職約 9 年 — 至今）</h3>
+      <p class="sub"><strong>全院行動祕書（全院通用行動 App）</strong></p>
+      <ul>
+        <li>微服務架構設計，各功能模組獨立部署並透過 API Gateway 統一入口管理</li>
+        <li>RBAC 集中式權限控管，支援多角色、多部門存取隔離</li>
+        <li>Vue.js 前端 + Python / PHP 後端，Redis 快取優化高頻讀取效能</li>
+        <li>負責架構設計、開發、部署與維運全流程</li>
+      </ul>
+      <p class="sub"><strong>個案管理系統</strong></p>
+      <ul>
+        <li>跨科別病患個案追蹤平台，整合多部門護理流程與個案狀態管理</li>
+        <li>符合醫療資料安全規範，實作審計日誌與敏感欄位加密機制</li>
+      </ul>
+      <p class="sub"><strong>學習護照系統</strong></p>
+      <ul>
+        <li>全院員工學習歷程平台，支援課程管理、學習進度追蹤與認證產出</li>
+        <li>模組化設計對應醫師、護理師、行政等不同職類的差異化學習路徑</li>
+      </ul>
+
+      <h2>自建作品</h2>
+      <h3>璐娜健康管家</h3>
+      <p class="sub">AI SaaS · LINE Bot · 健康管理 — <a href="https://luna-ai-life.com" target="_blank" rel="noopener">https://luna-ai-life.com</a></p>
+      <p>整合 Gemini + OpenAI 雙引擎的 AI 健康管理平台，提供拍照熱量辨識、社交陪跑配對與個人化健康報告。</p>
+      <ul>
+        <li>多模態 AI 辨識食物熱量（蛋白質、碳水、脂肪、鈉）</li>
+        <li>AI 配對陪跑夥伴 + 遊戲化打卡獎勵系統</li>
+        <li>個人化週報 / 月報含代謝評估與行動建議</li>
+        <li>Gemini + OpenAI 雙引擎備援架構</li>
+      </ul>
+      <p>標籤：OpenAI、Gemini、Vue.js、Python、LINE Bot</p>
+
+      <h3>金連發電器</h3>
+      <p class="sub">電商平台 · 家電 · 全台配送 — <a href="https://jlfshop.com" target="_blank" rel="noopener">https://jlfshop.com</a></p>
+      <p>完整家電購物商城，涵蓋商品管理、訂單流程、安裝 / 回收 / 運送服務整合，為實際營運中的電商系統。</p>
+      <ul>
+        <li>完整電商流程（商品、購物車、訂單、金流）</li>
+        <li>物流整合（安裝、回收、運送服務調度）</li>
+        <li>Redis 快取 + CDN + 負載均衡效能優化</li>
+      </ul>
+      <p>標籤：Vue.js、PHP、Redis、CDN、MySQL</p>
+
+      <h2>特殊技術實績</h2>
+      <h3>Stable Diffusion + LoRA 模型微調</h3>
+      <p>獨立完成圖像生成模型訓練，涵蓋資料標注、訓練參數調整至產出完整流程，具備 AI 模型層級的實戰能力，不只是 API 呼叫層。</p>
+      <h3>醫療文件 RAG 系統</h3>
+      <p>將 800+ 頁原文病歷向量化，建置可語義查詢的醫療知識庫，實際用於醫療諮詢輔助，具備高精度召回率與答案可追溯性需求的處理經驗。</p>
+
+      <h2>學歷</h2>
+      <p>中山醫學大學 · 醫學資訊學系 · 學士</p>
+
+      <h2>聯繫</h2>
+      <ul>
+        <li>Email：<a href="mailto:serviceluna@luna-ai-life.com">serviceluna@luna-ai-life.com</a></li>
+        <li>璐娜健康管家：<a href="https://luna-ai-life.com" target="_blank" rel="noopener">https://luna-ai-life.com</a></li>
+        <li>金連發電器：<a href="https://jlfshop.com" target="_blank" rel="noopener">https://jlfshop.com</a></li>
+        <li>GitHub：<a href="https://github.com/" target="_blank" rel="noopener">https://github.com/</a></li>
+      </ul>
+    </article>
+  </div>
+
+  <footer>© 2026 Ian Cheng</footer>
+</div>
+
+<!-- ================= MODAL ================= -->
+<div class="modal-bg" id="modalBg" role="dialog" aria-modal="true" aria-labelledby="mTitle">
+  <div class="modal">
+    <div class="modal-hd">
+      <h2 id="mTitle"><span class="ic" id="mIcon"><i class="fa-solid fa-cube"></i></span><span id="mTitleTxt">標題</span></h2>
+      <button class="x" id="closeModal" aria-label="關閉"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="modal-bd" id="mBody"></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var OBJECTS = ["hero","about","skills","exp","projects","ach","edu","contact"];
+  var visited = {};
+
+  var content = {
+    hero:{icon:"fa-id-card-clip", title:"Ian Cheng｜資深全端工程師 & AI 工程師",
+      html:'<p class="lead">10 年開發經驗，擅長 AI 產品落地、微服務架構設計，具備從零到上線的完整交付能力。</p>'
+        +'<p><span class="status"><span class="dot"></span>Available for opportunities</span></p>'
+        +'<div class="contact-row"><a href="mailto:serviceluna@luna-ai-life.com"><i class="fa-solid fa-envelope"></i>serviceluna@luna-ai-life.com</a></div>'
+        +'<div class="stats" style="margin-top:16px">'
+        +'<div class="stat"><div class="v font-d">10+</div><div class="l">年開發經驗</div></div>'
+        +'<div class="stat"><div class="v font-d">5+</div><div class="l">大型專案交付</div></div>'
+        +'<div class="stat"><div class="v font-d">2</div><div class="l">自建產品上線</div></div>'
+        +'<div class="stat"><div class="v font-d">3</div><div class="l">AI 整合實戰</div></div></div>'},
+    about:{icon:"fa-user", title:"關於我",
+      html:'<p>10 年全端工程師，具備從系統架構設計到 AI 產品落地的端對端能力。曾在中部區域醫院主導多項院內大型系統開發，採微服務架構 + API Gateway + RBAC 集中控管，支援全院多部門運作。</p>'
+        +'<p>自行開發並上線 璐娜健康管家（AI 健康 SaaS）與金連發電器（家電電商），整合 Gemini + OpenAI 多模態雙引擎。具備 Stable Diffusion + LoRA 模型微調及 RAG 系統建置實戰經驗，熟悉醫療資料處理與合規需求。</p>'
+        +'<p>背景橫跨醫療資訊、電商、AI 三個領域，能同時勝任技術深度討論與跨部門架構溝通。目前積極尋求 AI 工程師 / Tech Lead / Solution Architect 相關機會。</p>'},
+    skills:{icon:"fa-chalkboard", title:"核心技能",
+      html:'<div class="kgrid">'
+        +kcard("fa-code","程式語言",["Python","Vue.js","PHP","JavaScript","HTML / CSS"])
+        +kcard("fa-database","資料庫",["MySQL","PostgreSQL","MongoDB","Redis"])
+        +kcard("fa-sitemap","系統架構",["微服務","API Gateway","RBAC","事件驅動","負載均衡","CDN"])
+        +kcard("fa-robot","AI / ML",["OpenAI API","Gemini API","RAG","LoRA fine-tuning","Stable Diffusion","向量資料庫"])
+        +kcard("fa-gears","DevOps",["Docker","CI/CD","Linux","Nginx"])
+        +kcard("fa-hospital","領域知識",["醫療資訊系統","電商平台","醫療資料合規","HL7 / FHIR"])
+        +'</div>'},
+    exp:{icon:"fa-folder-open", title:"工作經歷",
+      html:'<div class="exp"><h4>程式設計師 ＠ 中部區域醫院</h4><div class="role">任職約 9 年 — 至今</div>'
+        +'<p style="margin:0 0 4px"><strong>全院行動祕書（全院通用行動 App）</strong></p><ul>'
+        +'<li>微服務架構設計，各功能模組獨立部署並透過 API Gateway 統一入口管理</li>'
+        +'<li>RBAC 集中式權限控管，支援多角色、多部門存取隔離</li>'
+        +'<li>Vue.js 前端 + Python / PHP 後端，Redis 快取優化高頻讀取效能</li>'
+        +'<li>負責架構設計、開發、部署與維運全流程</li></ul>'
+        +'<p style="margin:10px 0 4px"><strong>個案管理系統</strong></p><ul>'
+        +'<li>跨科別病患個案追蹤平台，整合多部門護理流程與個案狀態管理</li>'
+        +'<li>符合醫療資料安全規範，實作審計日誌與敏感欄位加密機制</li></ul>'
+        +'<p style="margin:10px 0 4px"><strong>學習護照系統</strong></p><ul>'
+        +'<li>全院員工學習歷程平台，支援課程管理、學習進度追蹤與認證產出</li>'
+        +'<li>模組化設計對應醫師、護理師、行政等不同職類的差異化學習路徑</li></ul></div>'},
+    projects:{icon:"fa-display", title:"自建作品",
+      html:proj("璐娜健康管家","AI SaaS · LINE Bot · 健康管理","https://luna-ai-life.com",
+          "整合 Gemini + OpenAI 雙引擎的 AI 健康管理平台，提供拍照熱量辨識、社交陪跑配對與個人化健康報告。",
+          ["多模態 AI 辨識食物熱量（蛋白質、碳水、脂肪、鈉）","AI 配對陪跑夥伴 + 遊戲化打卡獎勵系統","個人化週報 / 月報含代謝評估與行動建議","Gemini + OpenAI 雙引擎備援架構"],
+          ["OpenAI","Gemini","Vue.js","Python","LINE Bot"])
+        +proj("金連發電器","電商平台 · 家電 · 全台配送","https://jlfshop.com",
+          "完整家電購物商城，涵蓋商品管理、訂單流程、安裝 / 回收 / 運送服務整合，為實際營運中的電商系統。",
+          ["完整電商流程（商品、購物車、訂單、金流）","物流整合（安裝、回收、運送服務調度）","Redis 快取 + CDN + 負載均衡效能優化"],
+          ["Vue.js","PHP","Redis","CDN","MySQL"])},
+    ach:{icon:"fa-trophy", title:"特殊技術實績",
+      html:'<div class="ach"><div class="n">1</div><div><h4 style="margin:0 0 4px">Stable Diffusion + LoRA 模型微調</h4>'
+        +'<p style="margin:0">獨立完成圖像生成模型訓練，涵蓋資料標注、訓練參數調整至產出完整流程，具備 AI 模型層級的實戰能力，不只是 API 呼叫層。</p></div></div>'
+        +'<div class="ach"><div class="n">2</div><div><h4 style="margin:0 0 4px">醫療文件 RAG 系統</h4>'
+        +'<p style="margin:0">將 800+ 頁原文病歷向量化，建置可語義查詢的醫療知識庫，實際用於醫療諮詢輔助，具備高精度召回率與答案可追溯性需求的處理經驗。</p></div></div>'},
+    edu:{icon:"fa-graduation-cap", title:"學歷",
+      html:'<div class="kcard"><h4><i class="fa-solid fa-graduation-cap"></i> 中山醫學大學</h4>'
+        +'<p style="margin:0">醫學資訊學系 · 學士</p></div>'},
+    contact:{icon:"fa-mobile-screen-button", title:"聯繫",
+      html:'<div class="contact-row">'
+        +'<a href="mailto:serviceluna@luna-ai-life.com"><i class="fa-solid fa-envelope"></i>serviceluna@luna-ai-life.com</a>'
+        +'<a href="https://luna-ai-life.com" target="_blank" rel="noopener"><i class="fa-solid fa-heart-pulse"></i>璐娜健康管家 — luna-ai-life.com</a>'
+        +'<a href="https://jlfshop.com" target="_blank" rel="noopener"><i class="fa-solid fa-cart-shopping"></i>金連發電器 — jlfshop.com</a>'
+        +'<a href="https://github.com/" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i>GitHub — github.com</a>'
+        +'</div>'}
+  };
+
+  function kcard(ic,t,arr){
+    var c='<div class="kcard"><h4><i class="fa-solid '+ic+'"></i> '+t+'</h4><div class="chips">';
+    for(var i=0;i<arr.length;i++) c+='<span class="chip k">'+arr[i]+'</span>';
+    return c+'</div></div>';
+  }
+  function proj(name,meta,url,desc,feats,tags){
+    var c='<div class="proj"><h4>'+name+'</h4><div class="meta">'+meta+'</div>';
+    c+='<p style="margin:0 0 8px">'+desc+'</p>';
+    for(var i=0;i<feats.length;i++) c+='<div class="feat"><i class="fa-solid fa-circle"></i><span>'+feats[i]+'</span></div>';
+    c+='<div class="chips">';
+    for(var j=0;j<tags.length;j++) c+='<span class="chip">'+tags[j]+'</span>';
+    c+='</div><a class="btn" style="margin-top:6px" href="'+url+'" target="_blank" rel="noopener"><i class="fa-solid fa-arrow-up-right-from-square"></i> '+url.replace('https://','')+'</a></div>';
+    return c;
+  }
+
+  // ---- DOM refs ----
+  var scene=document.getElementById('scene');
+  var flabel=document.getElementById('flabel');
+  var sceneCard=scene ? scene.closest('.scene-card') : null;
+  var modalBg=document.getElementById('modalBg');
+  var mBody=document.getElementById('mBody');
+  var mTitleTxt=document.getElementById('mTitleTxt');
+  var mIcon=document.getElementById('mIcon');
+  var progTxt=document.getElementById('progTxt');
+  var progBar=document.getElementById('progBar');
+  var dotsBox=document.getElementById('dots');
+  var lastFocus=null;
+
+  // build dots
+  if(dotsBox){ for(var i=0;i<OBJECTS.length;i++){ var b=document.createElement('b'); b.id='dot-'+OBJECTS[i]; dotsBox.appendChild(b);} }
+
+  function updateProgress(){
+    var n=0; for(var k in visited) if(visited[k]) n++;
+    if(progTxt) progTxt.textContent=n+' / '+OBJECTS.length;
+    if(progBar) progBar.style.width=(n/OBJECTS.length*100)+'%';
+    if(n===OBJECTS.length && !updateProgress._done){
+      updateProgress._done=true;
+      var t=document.querySelector('.tip span');
+      if(t) t.innerHTML='<strong style="color:var(--accent2)">已 100% 探索完成！</strong> 你已看遍 Ian 的工作室。隨時可用「檢視全部 / 全文清單」回顧完整內容，或直接聯繫我。';
+    }
+  }
+
+  function openModal(key){
+    var c=content[key]; if(!c) return;
+    lastFocus=document.activeElement;
+    mTitleTxt.textContent=c.title;
+    mIcon.innerHTML='<i class="fa-solid '+c.icon+'"></i>';
+    mBody.innerHTML=c.html;
+    modalBg.classList.add('open');
+    document.getElementById('closeModal').focus();
+    // mark visited
+    if(!visited[key]){
+      visited[key]=true;
+      var g=document.getElementById('hot-'+key); if(g) g.classList.add('visited');
+      var dot=document.getElementById('dot-'+key); if(dot) dot.classList.add('on');
+      updateProgress();
+    }
+  }
+  function closeModal(){
+    modalBg.classList.remove('open');
+    if(lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+
+  // wire hotspots
+  var hots=document.querySelectorAll('.hot');
+  for(var h=0;h<hots.length;h++){
+    (function(g){
+      var key=g.getAttribute('data-key');
+      g.addEventListener('click',function(){ openModal(key); });
+      g.addEventListener('keydown',function(e){
+        if(e.key==='Enter'||e.key===' '){ e.preventDefault(); openModal(key); }
+      });
+      g.addEventListener('mouseenter',function(){ showLabel(g); });
+      g.addEventListener('mousemove',function(){ showLabel(g); });
+      g.addEventListener('mouseleave',hideLabel);
+      g.addEventListener('focus',function(){ showLabel(g); });
+      g.addEventListener('blur',hideLabel);
+    })(hots[h]);
+  }
+
+  function showLabel(g){
+    if(!flabel||!scene||!sceneCard) return;
+    var dx=+g.getAttribute('data-x'), dy=+g.getAttribute('data-y');
+    var rect=scene.getBoundingClientRect();
+    var cardRect=sceneCard.getBoundingClientRect();
+    var px=rect.left - cardRect.left + dx/1000*rect.width;
+    var py=rect.top - cardRect.top + dy/600*rect.height;
+    flabel.style.left=px+'px';
+    flabel.style.top=py+'px';
+    flabel.innerHTML=g.getAttribute('data-label')+'<small>'+g.getAttribute('data-sub')+'</small>';
+    flabel.classList.add('show');
+  }
+  function hideLabel(){ if(flabel) flabel.classList.remove('show'); }
+
+  // modal close events
+  document.getElementById('closeModal').addEventListener('click',closeModal);
+  modalBg.addEventListener('click',function(e){ if(e.target===modalBg) closeModal(); });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&modalBg.classList.contains('open')) closeModal(); });
+
+  // focus trap (simple)
+  modalBg.addEventListener('keydown',function(e){
+    if(e.key!=='Tab') return;
+    var f=modalBg.querySelectorAll('a[href],button,[tabindex]');
+    if(!f.length) return;
+    var first=f[0], last=f[f.length-1];
+    if(e.shiftKey && document.activeElement===first){ e.preventDefault(); last.focus(); }
+    else if(!e.shiftKey && document.activeElement===last){ e.preventDefault(); first.focus(); }
+  });
+
+  // ---- toggle full text view ----
+  var toggleBtn=document.getElementById('toggleView');
+  var explorer=document.getElementById('explorer');
+  var fulltext=document.getElementById('fulltext');
+  var showingFull=false;
+  toggleBtn.addEventListener('click',function(){
+    showingFull=!showingFull;
+    if(showingFull){
+      explorer.style.display='none';
+      fulltext.classList.add('show');
+      toggleBtn.innerHTML='<i class="fa-solid fa-gamepad"></i> 返回互動工作室';
+      toggleBtn.setAttribute('aria-pressed','true');
+    } else {
+      explorer.style.display='';
+      fulltext.classList.remove('show');
+      toggleBtn.innerHTML='<i class="fa-solid fa-list"></i> 檢視全部 / 全文清單';
+      toggleBtn.setAttribute('aria-pressed','false');
+    }
+  });
+
+  updateProgress();
+})();
+</script>
+</body>
+</html>

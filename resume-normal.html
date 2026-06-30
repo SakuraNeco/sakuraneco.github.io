@@ -1,0 +1,1855 @@
+<!doctype html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ian Cheng · 資深全端工程師 & AI 工程師</title>
+    <meta
+      name="description"
+      content="Ian Cheng — 10 年全端工程師，擅長 AI 產品落地與微服務架構設計，橫跨醫療資訊、電商、AI 三領域，具備從零到上線的完整交付能力。"
+    />
+    <meta property="og:title" content="Ian Cheng · 資深全端工程師 & AI 工程師" />
+    <meta
+      property="og:description"
+      content="10 年開發經驗｜微服務架構 × AI 產品落地｜2 個自建產品營運中"
+    />
+    <meta property="og:type" content="website" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⌁</text></svg>"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans+TC:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+
+    <style>
+      /* ════════════════════════════════════════════════
+         SYSTEM BLUEPRINT — 整頁即一張運行中的架構圖
+         領域色：醫療 = teal / 電商 = amber / AI = purple
+         ════════════════════════════════════════════════ */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --bg: #06090f;
+        --bg2: #0a111c;
+        --panel: rgba(12, 19, 32, 0.82);
+        --line: rgba(89, 158, 245, 0.16);
+        --line-strong: rgba(89, 158, 245, 0.38);
+        --blue: #5aa2f7;
+        --cyan: #38c8e8;
+        --text: #dce6f2;
+        --muted: #7e8ba0;
+        --dim: #55617a;
+        --green: #4ade80;
+        --med: #2dd4bf;
+        --com: #fbbf24;
+        --ai: #a78bfa;
+        --mono: "JetBrains Mono", monospace;
+        --sans: "Noto Sans TC", sans-serif;
+        --radius: 10px;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        background-color: var(--bg);
+        background-image:
+          linear-gradient(rgba(89, 158, 245, 0.045) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(89, 158, 245, 0.045) 1px, transparent 1px),
+          linear-gradient(rgba(89, 158, 245, 0.022) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(89, 158, 245, 0.022) 1px, transparent 1px);
+        background-size:
+          120px 120px,
+          120px 120px,
+          24px 24px,
+          24px 24px;
+        color: var(--text);
+        font-family: var(--sans);
+        font-size: 15px;
+        line-height: 1.75;
+        overflow-x: hidden;
+      }
+
+      ::selection {
+        background: rgba(90, 162, 247, 0.35);
+      }
+
+      section {
+        padding: 88px 0;
+        scroll-margin-top: 70px;
+      }
+      .container {
+        max-width: 880px;
+        margin: 0 auto;
+        padding: 0 24px;
+      }
+
+      /* ── 頂部狀態列 ─────────────────────────────── */
+      nav.topbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        height: 52px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 22px;
+        background: rgba(6, 9, 15, 0.85);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--line);
+        font-family: var(--mono);
+        font-size: 12px;
+      }
+      .topbar-logo {
+        color: var(--blue);
+        font-weight: 700;
+        letter-spacing: 0.04em;
+      }
+      .topbar-logo .path {
+        color: var(--dim);
+        font-weight: 400;
+      }
+      .topbar-status {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        color: var(--green);
+        letter-spacing: 0.03em;
+        white-space: nowrap;
+      }
+      .dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--green);
+        box-shadow: 0 0 8px rgba(74, 222, 128, 0.8);
+        animation: breathe 2.4s ease-in-out infinite;
+        flex-shrink: 0;
+      }
+      @keyframes breathe {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.35;
+        }
+      }
+
+      /* ── 迷你系統拓樸導覽（桌機） ─────────────────── */
+      aside.topo {
+        position: fixed;
+        left: 26px;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 90;
+        font-family: var(--mono);
+        font-size: 11px;
+      }
+      .topo-rail {
+        position: relative;
+        padding-left: 17px;
+      }
+      .topo-rail::before {
+        content: "";
+        position: absolute;
+        left: 5px;
+        top: 10px;
+        bottom: 10px;
+        width: 1px;
+        background: var(--line-strong);
+      }
+      .topo-node {
+        position: relative;
+        display: block;
+        padding: 7px 10px 7px 8px;
+        color: var(--dim);
+        text-decoration: none;
+        letter-spacing: 0.02em;
+        transition: color 0.25s;
+        white-space: nowrap;
+      }
+      .topo-node::before {
+        content: "";
+        position: absolute;
+        left: -16px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        border: 1.5px solid var(--dim);
+        background: var(--bg);
+        transition: all 0.25s;
+      }
+      .topo-node::after {
+        content: "";
+        position: absolute;
+        left: -7px;
+        top: 50%;
+        width: 0;
+        height: 1px;
+        background: var(--blue);
+        transition: width 0.25s;
+      }
+      .topo-node:hover {
+        color: var(--muted);
+      }
+      .topo-node.active {
+        color: var(--cyan);
+      }
+      .topo-node.active::before {
+        border-color: var(--cyan);
+        background: var(--cyan);
+        box-shadow: 0 0 10px rgba(56, 200, 232, 0.7);
+      }
+      .topo-node.active::after {
+        width: 12px;
+      }
+      .topo-gw {
+        color: var(--blue);
+        font-weight: 700;
+        padding-bottom: 12px;
+      }
+      .topo-gw::before {
+        border-color: var(--blue);
+        background: var(--blue);
+        border-radius: 2px;
+      }
+
+      /* ── 行動版底部狀態列 ─────────────────────────── */
+      .mobile-bar {
+        display: none;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        background: rgba(6, 9, 15, 0.92);
+        backdrop-filter: blur(12px);
+        border-top: 1px solid var(--line);
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+      }
+      .mobile-bar::-webkit-scrollbar {
+        display: none;
+      }
+      .mobile-bar-inner {
+        display: flex;
+        gap: 4px;
+        padding: 9px 14px;
+        font-family: var(--mono);
+        font-size: 11px;
+        width: max-content;
+      }
+      .mobile-bar a {
+        color: var(--dim);
+        text-decoration: none;
+        padding: 4px 10px;
+        border-radius: 6px;
+        border: 1px solid transparent;
+        white-space: nowrap;
+        transition: all 0.2s;
+      }
+      .mobile-bar a.active {
+        color: var(--cyan);
+        border-color: rgba(56, 200, 232, 0.35);
+        background: rgba(56, 200, 232, 0.08);
+      }
+
+      /* ── 區塊標題（工程註解風） ────────────────────── */
+      .sec-label {
+        font-family: var(--mono);
+        font-size: 12.5px;
+        color: var(--dim);
+        margin-bottom: 8px;
+        letter-spacing: 0.02em;
+      }
+      .sec-label .svc {
+        color: var(--blue);
+      }
+      .sec-heading {
+        font-size: 28px;
+        font-weight: 700;
+        margin-bottom: 42px;
+        line-height: 1.3;
+      }
+      .sec-heading span {
+        background: linear-gradient(90deg, var(--blue), var(--cyan));
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      /* ── Hero：系統總覽圖 ─────────────────────────── */
+      #hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        padding-top: 80px;
+        padding-bottom: 60px;
+      }
+      .diagram {
+        max-width: 680px;
+        margin: 0 auto;
+      }
+
+      .domain-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+      }
+      .domain-node {
+        flex: 1;
+        max-width: 200px;
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        padding: 12px 10px 10px;
+        text-align: center;
+        backdrop-filter: blur(8px);
+        transition:
+          border-color 0.3s,
+          box-shadow 0.3s;
+      }
+      .domain-node .d-icon {
+        font-size: 17px;
+        margin-bottom: 4px;
+      }
+      .domain-node .d-name {
+        font-size: 13.5px;
+        font-weight: 500;
+        color: var(--text);
+      }
+      .domain-node .d-tag {
+        font-family: var(--mono);
+        font-size: 10.5px;
+        color: var(--dim);
+        letter-spacing: 0.03em;
+      }
+      .domain-node.med {
+        border-top: 2px solid var(--med);
+      }
+      .domain-node.med .d-icon {
+        color: var(--med);
+      }
+      .domain-node.com {
+        border-top: 2px solid var(--com);
+      }
+      .domain-node.com .d-icon {
+        color: var(--com);
+      }
+      .domain-node.ai {
+        border-top: 2px solid var(--ai);
+      }
+      .domain-node.ai .d-icon {
+        color: var(--ai);
+      }
+      .domain-node:hover {
+        border-color: var(--line-strong);
+        box-shadow: 0 0 24px rgba(89, 158, 245, 0.12);
+      }
+
+      .conn {
+        display: block;
+        width: 100%;
+        height: 54px;
+      }
+      .conn path {
+        fill: none;
+        stroke-width: 1.2;
+        stroke-dasharray: 5 6;
+        animation: flow 1.4s linear infinite;
+      }
+      @keyframes flow {
+        to {
+          stroke-dashoffset: -22;
+        }
+      }
+      .conn .p-med {
+        stroke: var(--med);
+        opacity: 0.65;
+      }
+      .conn .p-com {
+        stroke: var(--com);
+        opacity: 0.65;
+      }
+      .conn .p-ai {
+        stroke: var(--ai);
+        opacity: 0.65;
+      }
+      .conn .p-out {
+        stroke: var(--blue);
+        opacity: 0.5;
+      }
+
+      .gateway {
+        background: linear-gradient(
+          160deg,
+          rgba(16, 26, 44, 0.95),
+          rgba(10, 17, 30, 0.95)
+        );
+        border: 1px solid var(--line-strong);
+        border-radius: 14px;
+        padding: 30px 34px 26px;
+        text-align: center;
+        position: relative;
+        box-shadow:
+          0 0 0 1px rgba(89, 158, 245, 0.06),
+          0 0 60px rgba(89, 158, 245, 0.12);
+      }
+      .gateway::before,
+      .gateway::after {
+        content: "";
+        position: absolute;
+        width: 14px;
+        height: 14px;
+        border-color: var(--blue);
+        border-style: solid;
+        opacity: 0.7;
+      }
+      .gateway::before {
+        top: -1px;
+        left: -1px;
+        border-width: 1.5px 0 0 1.5px;
+        border-radius: 3px 0 0 0;
+      }
+      .gateway::after {
+        bottom: -1px;
+        right: -1px;
+        border-width: 0 1.5px 1.5px 0;
+        border-radius: 0 0 3px 0;
+      }
+      .gw-meta {
+        font-family: var(--mono);
+        font-size: 11.5px;
+        color: var(--dim);
+        margin-bottom: 12px;
+        letter-spacing: 0.04em;
+      }
+      .gw-meta .id {
+        color: var(--blue);
+      }
+      .gw-status {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        font-family: var(--mono);
+        font-size: 11.5px;
+        color: var(--green);
+        border: 1px solid rgba(74, 222, 128, 0.3);
+        background: rgba(74, 222, 128, 0.07);
+        border-radius: 100px;
+        padding: 4px 13px;
+        margin-bottom: 18px;
+        letter-spacing: 0.02em;
+      }
+      .gw-name {
+        font-size: clamp(36px, 6vw, 54px);
+        font-weight: 700;
+        line-height: 1.3;
+        letter-spacing: -0.02em;
+        padding-bottom: 0.08em;
+        margin-bottom: 6px;
+        background: linear-gradient(
+          120deg,
+          #e8f1fc 10%,
+          var(--blue) 55%,
+          var(--cyan) 95%
+        );
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .gw-role {
+        font-size: 16px;
+        color: var(--text);
+        font-weight: 500;
+        margin-bottom: 8px;
+      }
+      .gw-sub {
+        font-size: 13.5px;
+        color: var(--muted);
+        max-width: 460px;
+        margin: 0 auto;
+      }
+
+      .svc-row {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .svc-chip {
+        font-family: var(--mono);
+        font-size: 11.5px;
+        color: var(--muted);
+        text-decoration: none;
+        border: 1px solid var(--line);
+        background: var(--panel);
+        border-radius: 7px;
+        padding: 5px 12px;
+        letter-spacing: 0.02em;
+        transition: all 0.2s;
+      }
+      .svc-chip:hover {
+        color: var(--cyan);
+        border-color: rgba(56, 200, 232, 0.45);
+        box-shadow: 0 0 14px rgba(56, 200, 232, 0.15);
+      }
+
+      .hero-cta {
+        display: flex;
+        justify-content: center;
+        gap: 14px;
+        flex-wrap: wrap;
+        margin-top: 38px;
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        padding: 11px 26px;
+        border-radius: 9px;
+        font-size: 14px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.2s;
+        font-family: var(--sans);
+      }
+      .btn-primary {
+        background: linear-gradient(135deg, #2563eb, var(--blue));
+        color: #fff;
+        box-shadow: 0 0 26px rgba(90, 162, 247, 0.35);
+      }
+      .btn-primary:hover {
+        box-shadow: 0 0 40px rgba(90, 162, 247, 0.55);
+        transform: translateY(-1px);
+      }
+      .btn-ghost {
+        color: var(--text);
+        border: 1px solid var(--line-strong);
+      }
+      .btn-ghost:hover {
+        border-color: var(--blue);
+        color: var(--blue);
+        background: rgba(90, 162, 247, 0.07);
+      }
+
+      /* ── 監控儀表（Stats） ────────────────────────── */
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+        margin-top: 44px;
+      }
+      .stat {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        padding: 14px 10px 12px;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+      .stat::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1.5px;
+        background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+        opacity: 0.55;
+      }
+      .stat-num {
+        font-family: var(--mono);
+        font-size: 27px;
+        font-weight: 700;
+        color: var(--cyan);
+        line-height: 1.15;
+      }
+      .stat-num .plus {
+        color: var(--blue);
+        font-size: 19px;
+      }
+      .stat-label {
+        font-size: 11.5px;
+        color: var(--muted);
+        margin-top: 2px;
+      }
+
+      /* ── 面板卡片通用 ─────────────────────────────── */
+      .panel {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        backdrop-filter: blur(8px);
+        transition:
+          border-color 0.25s,
+          box-shadow 0.25s;
+      }
+      .panel:hover {
+        border-color: var(--line-strong);
+      }
+      .panel-head {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        padding: 11px 18px;
+        border-bottom: 1px solid var(--line);
+        font-family: var(--mono);
+        font-size: 11.5px;
+        color: var(--dim);
+        letter-spacing: 0.03em;
+      }
+      .panel-head .h-dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        flex-shrink: 0;
+      }
+
+      /* ── About ──────────────────────────────────── */
+      .about-body {
+        padding: 28px 32px;
+      }
+      .about-body p {
+        color: var(--muted);
+        font-size: 15px;
+        line-height: 1.9;
+      }
+      .about-body p + p {
+        margin-top: 18px;
+      }
+      .about-body strong {
+        color: var(--text);
+        font-weight: 500;
+      }
+      .about-body .hl-med {
+        color: var(--med);
+        font-weight: 500;
+      }
+      .about-body .hl-com {
+        color: var(--com);
+        font-weight: 500;
+      }
+      .about-body .hl-ai {
+        color: var(--ai);
+        font-weight: 500;
+      }
+
+      /* ── Skills：服務註冊表 ────────────────────────── */
+      .registry {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(265px, 1fr));
+        gap: 16px;
+      }
+      .reg-entry .panel-head .name {
+        color: var(--muted);
+      }
+      .reg-entry:hover {
+        box-shadow: 0 0 26px rgba(89, 158, 245, 0.1);
+      }
+      .reg-body {
+        padding: 15px 18px 17px;
+      }
+      .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 7px;
+      }
+      .tag {
+        font-family: var(--mono);
+        font-size: 12px;
+        border-radius: 6px;
+        padding: 3px 10px;
+        border: 1px solid rgba(89, 158, 245, 0.25);
+        background: rgba(89, 158, 245, 0.07);
+        color: #b9d3f5;
+      }
+      .tag.t-ai {
+        border-color: rgba(167, 139, 250, 0.35);
+        background: rgba(167, 139, 250, 0.09);
+        color: #cabcf7;
+      }
+      .tag.t-med {
+        border-color: rgba(45, 212, 191, 0.32);
+        background: rgba(45, 212, 191, 0.08);
+        color: #8ee8db;
+      }
+      .tag.t-com {
+        border-color: rgba(251, 191, 36, 0.32);
+        background: rgba(251, 191, 36, 0.08);
+        color: #f3d488;
+      }
+
+      /* ── Experience：節點詳情 ─────────────────────── */
+      .timeline {
+        position: relative;
+        padding-left: 26px;
+      }
+      .timeline::before {
+        content: "";
+        position: absolute;
+        left: 4px;
+        top: 8px;
+        bottom: 0;
+        width: 1.5px;
+        background: linear-gradient(to bottom, var(--blue), transparent);
+      }
+      .tl-dot {
+        position: absolute;
+        left: -26px;
+        top: 7px;
+        width: 11px;
+        height: 11px;
+        border-radius: 50%;
+        background: var(--blue);
+        box-shadow: 0 0 12px var(--blue);
+      }
+      .tl-item {
+        position: relative;
+      }
+      .tl-header {
+        display: flex;
+        align-items: baseline;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+      .tl-role {
+        font-size: 18px;
+        font-weight: 600;
+      }
+      .tl-company {
+        font-size: 14px;
+        color: var(--blue);
+        font-weight: 500;
+      }
+      .tl-period {
+        font-family: var(--mono);
+        font-size: 12px;
+        color: var(--dim);
+        margin: 4px 0 22px;
+      }
+      .node-card {
+        margin-bottom: 16px;
+      }
+      .node-card .panel-head .h-dot {
+        background: var(--med);
+        box-shadow: 0 0 7px var(--med);
+      }
+      .node-card .panel-head .name {
+        color: var(--med);
+        font-weight: 500;
+      }
+      .node-card .panel-head .ver {
+        margin-left: auto;
+        color: var(--dim);
+      }
+      .node-body {
+        padding: 16px 20px 18px;
+      }
+      .node-title {
+        font-size: 15px;
+        font-weight: 600;
+        color: var(--text);
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        gap: 9px;
+      }
+      .node-title svg {
+        width: 18px;
+        height: 18px;
+        color: var(--med);
+        flex-shrink: 0;
+      }
+      .node-body ul {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 7px;
+      }
+      .node-body li {
+        font-size: 13.5px;
+        color: var(--muted);
+        padding-left: 17px;
+        position: relative;
+        line-height: 1.7;
+      }
+      .node-body li::before {
+        content: "▸";
+        position: absolute;
+        left: 0;
+        top: 0;
+        color: var(--med);
+        font-size: 11px;
+      }
+
+      /* ── Projects：production 服務 ─────────────────── */
+      .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+        gap: 20px;
+      }
+      .proj-card {
+        text-decoration: none;
+        display: block;
+        position: relative;
+        overflow: hidden;
+        transition:
+          border-color 0.25s,
+          box-shadow 0.25s,
+          transform 0.25s;
+      }
+      .proj-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 44px rgba(89, 158, 245, 0.14);
+      }
+      .proj-card.d-ai .panel-head {
+        border-bottom-color: rgba(167, 139, 250, 0.22);
+      }
+      .proj-card.d-com .panel-head {
+        border-bottom-color: rgba(251, 191, 36, 0.2);
+      }
+      .prod-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        color: var(--green);
+      }
+      .panel-head .url {
+        margin-left: auto;
+        color: var(--dim);
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+      }
+      .proj-card:hover .url {
+        color: var(--cyan);
+      }
+      .proj-body {
+        padding: 20px 24px 22px;
+      }
+      .proj-icon {
+        display: block;
+        margin-bottom: 12px;
+        line-height: 0;
+      }
+      .proj-icon svg {
+        width: 30px;
+        height: 30px;
+      }
+      .d-ai .proj-icon {
+        color: var(--ai);
+      }
+      .d-com .proj-icon {
+        color: var(--com);
+      }
+      .proj-name {
+        font-size: 19px;
+        font-weight: 700;
+        color: var(--text);
+        margin-bottom: 4px;
+      }
+      .proj-cat {
+        font-size: 12px;
+        font-weight: 500;
+        letter-spacing: 0.05em;
+        margin-bottom: 13px;
+      }
+      .d-ai .proj-cat {
+        color: var(--ai);
+      }
+      .d-com .proj-cat {
+        color: var(--com);
+      }
+      .proj-desc {
+        font-size: 13.5px;
+        color: var(--muted);
+        line-height: 1.75;
+        margin-bottom: 16px;
+      }
+      .features {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        margin-bottom: 18px;
+      }
+      .feature {
+        display: flex;
+        gap: 9px;
+        font-size: 13px;
+        color: var(--muted);
+        align-items: flex-start;
+        line-height: 1.65;
+      }
+      .feature i {
+        font-size: 11px;
+        margin-top: 5px;
+        flex-shrink: 0;
+      }
+      .d-ai .feature i {
+        color: var(--ai);
+      }
+      .d-com .feature i {
+        color: var(--com);
+      }
+
+      /* ── Highlights ────────────────────────────── */
+      .hl-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+        gap: 18px;
+      }
+      .hl-card {
+        padding: 24px 26px;
+        display: flex;
+        gap: 17px;
+        align-items: flex-start;
+      }
+      .hl-card:hover {
+        box-shadow: 0 0 30px rgba(167, 139, 250, 0.13);
+      }
+      .hl-icon {
+        width: 44px;
+        height: 44px;
+        border-radius: 11px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        color: var(--ai);
+        background: rgba(167, 139, 250, 0.1);
+        border: 1px solid rgba(167, 139, 250, 0.25);
+      }
+      .hl-icon svg {
+        width: 21px;
+        height: 21px;
+      }
+      .hl-icon.med {
+        color: var(--med);
+        background: rgba(45, 212, 191, 0.08);
+        border-color: rgba(45, 212, 191, 0.25);
+      }
+      .hl-title {
+        font-size: 15px;
+        font-weight: 600;
+        margin-bottom: 6px;
+      }
+      .hl-desc {
+        font-size: 13px;
+        color: var(--muted);
+        line-height: 1.7;
+      }
+      .hl-desc strong {
+        color: var(--ai);
+        font-weight: 500;
+      }
+      .hl-desc strong.med {
+        color: var(--med);
+      }
+
+      /* ── Education ─────────────────────────────── */
+      .edu-card {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        padding: 24px 28px;
+        max-width: 480px;
+      }
+      .edu-icon {
+        width: 50px;
+        height: 50px;
+        border-radius: 13px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        color: var(--blue);
+        background: rgba(90, 162, 247, 0.09);
+        border: 1px solid var(--line-strong);
+        flex-shrink: 0;
+      }
+      .edu-school {
+        font-size: 17px;
+        font-weight: 600;
+      }
+      .edu-dept {
+        font-size: 13px;
+        color: var(--muted);
+        margin-top: 2px;
+      }
+      .edu-badge {
+        display: inline-block;
+        font-family: var(--mono);
+        font-size: 11px;
+        color: var(--cyan);
+        border: 1px solid rgba(56, 200, 232, 0.3);
+        background: rgba(56, 200, 232, 0.07);
+        border-radius: 5px;
+        padding: 1px 9px;
+        margin-top: 7px;
+      }
+
+      /* ── Contact ───────────────────────────────── */
+      #contact {
+        text-align: center;
+      }
+      .contact-email {
+        font-family: var(--mono);
+        font-size: clamp(16px, 3.4vw, 22px);
+        font-weight: 600;
+        color: var(--blue);
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 30px;
+        transition: color 0.2s;
+      }
+      .contact-email:hover {
+        color: var(--cyan);
+      }
+      .social-links {
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+      .social-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 20px;
+        border: 1px solid var(--line);
+        background: var(--panel);
+        border-radius: 9px;
+        color: var(--muted);
+        text-decoration: none;
+        font-size: 13px;
+        font-weight: 500;
+        transition: all 0.2s;
+      }
+      .social-link:hover {
+        border-color: var(--blue);
+        color: var(--blue);
+        box-shadow: 0 0 16px rgba(90, 162, 247, 0.15);
+      }
+      .social-link.l-ai:hover {
+        border-color: var(--ai);
+        color: var(--ai);
+        box-shadow: 0 0 16px rgba(167, 139, 250, 0.18);
+      }
+      .social-link.l-com:hover {
+        border-color: var(--com);
+        color: var(--com);
+        box-shadow: 0 0 16px rgba(251, 191, 36, 0.15);
+      }
+
+      /* ── Footer ────────────────────────────────── */
+      footer {
+        text-align: center;
+        padding: 30px 24px 36px;
+        border-top: 1px solid var(--line);
+        color: var(--dim);
+        font-size: 12px;
+      }
+      footer .heart {
+        width: 13px;
+        height: 13px;
+        color: var(--ai);
+        vertical-align: -2px;
+        margin: 0 1px;
+      }
+      footer .uptime {
+        font-family: var(--mono);
+        font-size: 11.5px;
+        margin-top: 6px;
+      }
+      footer .uptime .ok {
+        color: var(--green);
+      }
+
+      /* ── 進場動畫 ──────────────────────────────── */
+      .fade-in {
+        opacity: 0;
+        transform: translateY(26px);
+        transition:
+          opacity 0.6s ease,
+          transform 0.6s ease;
+      }
+      .fade-in.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* ── 降低動態 ──────────────────────────────── */
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+        *,
+        *::before,
+        *::after {
+          animation: none !important;
+          transition: none !important;
+        }
+        .fade-in {
+          opacity: 1;
+          transform: none;
+        }
+      }
+
+      /* ── RWD ───────────────────────────────────── */
+      @media (max-width: 1180px) {
+        aside.topo {
+          display: none;
+        }
+        .mobile-bar {
+          display: block;
+        }
+        body {
+          padding-bottom: 46px;
+        }
+      }
+      @media (max-width: 640px) {
+        section {
+          padding: 64px 0;
+        }
+        .domain-row {
+          gap: 8px;
+        }
+        .domain-node {
+          padding: 10px 6px 8px;
+        }
+        .domain-node .d-tag {
+          display: none;
+        }
+        .gateway {
+          padding: 24px 18px 22px;
+        }
+        .stats {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .projects-grid,
+        .hl-grid {
+          grid-template-columns: 1fr;
+        }
+        .svc-row {
+          display: none;
+        }
+        .conn.conn-out {
+          display: none;
+        }
+        .topbar-status {
+          font-size: 10.5px;
+        }
+        .topbar-logo .path {
+          display: none;
+        }
+      }
+
+      /* ── 列印（存成乾淨 PDF 履歷） ─────────────────── */
+      @media print {
+        body {
+          background: #fff;
+          color: #111;
+          font-size: 12px;
+          padding-bottom: 0;
+        }
+        nav.topbar,
+        aside.topo,
+        .mobile-bar,
+        .conn,
+        .hero-cta,
+        .svc-row {
+          display: none !important;
+        }
+        section {
+          padding: 22px 0;
+        }
+        #hero {
+          min-height: auto;
+          padding-top: 10px;
+        }
+        .gateway,
+        .panel,
+        .domain-node,
+        .stat {
+          background: #fff;
+          border-color: #ccc;
+          box-shadow: none;
+          backdrop-filter: none;
+        }
+        .gw-name {
+          -webkit-text-fill-color: #111;
+          background: none;
+        }
+        .gw-role,
+        .tl-role,
+        .proj-name,
+        .node-title,
+        .hl-title,
+        .edu-school,
+        .sec-heading {
+          color: #111;
+        }
+        .sec-heading span {
+          -webkit-text-fill-color: #111;
+          background: none;
+        }
+        .about-body p,
+        .node-body li,
+        .proj-desc,
+        .feature,
+        .hl-desc,
+        .stat-label,
+        .edu-dept {
+          color: #444;
+        }
+        .tag {
+          color: #333;
+          background: #f3f5f8;
+          border-color: #ddd;
+        }
+        .fade-in {
+          opacity: 1;
+          transform: none;
+        }
+        a {
+          color: #1d4ed8;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- ── 頂部狀態列 ── -->
+    <nav class="topbar">
+      <div class="topbar-logo">IC <span class="path">⌁ /ian.gateway</span></div>
+      <div class="topbar-status">
+        <span class="dot"></span> available for opportunities
+      </div>
+    </nav>
+
+    <!-- ── 迷你系統拓樸導覽（桌機） ── -->
+    <aside class="topo" aria-label="系統拓樸導覽">
+      <div class="topo-rail">
+        <a class="topo-node topo-gw" href="#hero">ian.gateway</a>
+        <a class="topo-node" href="#about" data-spy="about">svc.about</a>
+        <a class="topo-node" href="#skills" data-spy="skills">svc.skills</a>
+        <a class="topo-node" href="#experience" data-spy="experience">svc.experience</a>
+        <a class="topo-node" href="#projects" data-spy="projects">svc.projects</a>
+        <a class="topo-node" href="#highlights" data-spy="highlights">svc.highlights</a>
+        <a class="topo-node" href="#education" data-spy="education">svc.education</a>
+        <a class="topo-node" href="#contact" data-spy="contact">svc.contact</a>
+      </div>
+    </aside>
+
+    <!-- ── Hero：系統總覽圖 ── -->
+    <section id="hero">
+      <div class="container">
+        <div class="diagram">
+          <!-- 上游：三領域節點 -->
+          <div class="domain-row">
+            <div class="domain-node med">
+              <div class="d-icon"><i class="fas fa-hospital"></i></div>
+              <div class="d-name">醫療資訊</div>
+              <div class="d-tag">upstream/medical</div>
+            </div>
+            <div class="domain-node com">
+              <div class="d-icon"><i class="fas fa-store"></i></div>
+              <div class="d-name">電商平台</div>
+              <div class="d-tag">upstream/commerce</div>
+            </div>
+            <div class="domain-node ai">
+              <div class="d-icon"><i class="fas fa-robot"></i></div>
+              <div class="d-name">AI 工程</div>
+              <div class="d-tag">upstream/ai</div>
+            </div>
+          </div>
+
+          <!-- 匯流連線 -->
+          <svg class="conn" viewBox="0 0 600 54" preserveAspectRatio="none" aria-hidden="true">
+            <path class="p-med" d="M100 0 V18 H300 V54" />
+            <path class="p-com" d="M300 0 V54" />
+            <path class="p-ai" d="M500 0 V18 H300 V54" />
+          </svg>
+
+          <!-- 中央：API Gateway = 本人 -->
+          <div class="gateway">
+            <div class="gw-meta">
+              <span class="id">ian.gateway</span> · uptime 10y · routes 3 domains
+            </div>
+            <div>
+              <span class="gw-status"><span class="dot"></span>available for opportunities</span>
+            </div>
+            <h1 class="gw-name">Ian Cheng</h1>
+            <p class="gw-role">資深全端工程師 & AI 工程師</p>
+            <p class="gw-sub">
+              10 年開發經驗，擅長 AI 產品落地、微服務架構設計，<br />具備從零到上線的完整交付能力。
+            </p>
+          </div>
+
+          <!-- 下游服務 -->
+          <svg class="conn conn-out" viewBox="0 0 600 54" preserveAspectRatio="none" aria-hidden="true">
+            <path class="p-out" d="M300 0 V20 H80 V54" />
+            <path class="p-out" d="M300 0 V20 H190 V54" />
+            <path class="p-out" d="M300 0 V54" />
+            <path class="p-out" d="M300 0 V20 H410 V54" />
+            <path class="p-out" d="M300 0 V20 H520 V54" />
+          </svg>
+          <div class="svc-row">
+            <a class="svc-chip" href="#about">svc.about</a>
+            <a class="svc-chip" href="#skills">svc.skills</a>
+            <a class="svc-chip" href="#experience">svc.experience</a>
+            <a class="svc-chip" href="#projects">svc.projects</a>
+            <a class="svc-chip" href="#contact">svc.contact</a>
+          </div>
+
+          <div class="hero-cta">
+            <a href="#projects" class="btn btn-primary">
+              <i class="fas fa-rocket"></i> 查看作品
+            </a>
+            <a href="#contact" class="btn btn-ghost">
+              <i class="fas fa-envelope"></i> 聯繫我
+            </a>
+          </div>
+
+          <!-- 監控儀表 -->
+          <div class="stats">
+            <div class="stat">
+              <div class="stat-num">
+                <span data-count="10">0</span><span class="plus">+</span>
+              </div>
+              <div class="stat-label">年開發經驗</div>
+            </div>
+            <div class="stat">
+              <div class="stat-num">
+                <span data-count="5">0</span><span class="plus">+</span>
+              </div>
+              <div class="stat-label">大型專案交付</div>
+            </div>
+            <div class="stat">
+              <div class="stat-num"><span data-count="2">0</span></div>
+              <div class="stat-label">自建產品上線</div>
+            </div>
+            <div class="stat">
+              <div class="stat-num"><span data-count="3">0</span></div>
+              <div class="stat-label">AI 整合實戰</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── About ── -->
+    <section id="about">
+      <div class="container">
+        <div class="fade-in">
+          <p class="sec-label">// 01 · <span class="svc">svc.about</span> — 服務說明</p>
+          <h2 class="sec-heading">關於<span>我</span></h2>
+        </div>
+        <div class="panel fade-in">
+          <div class="panel-head">
+            <span class="h-dot" style="background: var(--blue); box-shadow: 0 0 7px var(--blue)"></span>
+            <span>about.service · README.md</span>
+          </div>
+          <div class="about-body">
+            <p>
+              10 年全端工程師，具備從系統架構設計到 AI
+              產品落地的端對端能力。曾在<span class="hl-med">中部區域醫院</span>主導多項院內大型系統開發，採<strong>微服務架構
+              + API Gateway + RBAC 集中控管</strong>，支援全院多部門運作。
+            </p>
+            <p>
+              自行開發並上線 <span class="hl-ai">璐娜健康管家</span>（AI 健康
+              SaaS）與<span class="hl-com">金連發電器</span>（家電電商），整合
+              <strong>Gemini + OpenAI 多模態雙引擎</strong>。具備
+              <strong>Stable Diffusion + LoRA 模型微調</strong>及
+              <strong>RAG 系統建置</strong>實戰經驗，熟悉醫療資料處理與合規需求。
+            </p>
+            <p>
+              背景橫跨<span class="hl-med">醫療資訊</span>、<span class="hl-com">電商</span>、<span class="hl-ai">AI</span>
+              三個領域，能同時勝任技術深度討論與跨部門架構溝通。目前積極尋求
+              <strong>AI 工程師 / Tech Lead / Solution Architect</strong> 相關機會。
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Skills：服務註冊表 ── -->
+    <section id="skills">
+      <div class="container">
+        <div class="fade-in">
+          <p class="sec-label">// 02 · <span class="svc">svc.skills</span> — service registry</p>
+          <h2 class="sec-heading">核心<span>技能</span></h2>
+        </div>
+        <div class="registry">
+          <div class="panel reg-entry fade-in">
+            <div class="panel-head">
+              <span class="h-dot" style="background: var(--blue); box-shadow: 0 0 7px var(--blue)"></span>
+              <span class="name">registry/languages</span>
+            </div>
+            <div class="reg-body">
+              <div class="tags">
+                <span class="tag">Python</span>
+                <span class="tag">Vue.js</span>
+                <span class="tag">PHP</span>
+                <span class="tag">JavaScript</span>
+                <span class="tag">HTML / CSS</span>
+              </div>
+            </div>
+          </div>
+          <div class="panel reg-entry fade-in">
+            <div class="panel-head">
+              <span class="h-dot" style="background: var(--blue); box-shadow: 0 0 7px var(--blue)"></span>
+              <span class="name">registry/databases</span>
+            </div>
+            <div class="reg-body">
+              <div class="tags">
+                <span class="tag">MySQL</span>
+                <span class="tag">PostgreSQL</span>
+                <span class="tag">MongoDB</span>
+                <span class="tag">Redis</span>
+              </div>
+            </div>
+          </div>
+          <div class="panel reg-entry fade-in">
+            <div class="panel-head">
+              <span class="h-dot" style="background: var(--blue); box-shadow: 0 0 7px var(--blue)"></span>
+              <span class="name">registry/architecture</span>
+            </div>
+            <div class="reg-body">
+              <div class="tags">
+                <span class="tag">微服務</span>
+                <span class="tag">API Gateway</span>
+                <span class="tag">RBAC</span>
+                <span class="tag">事件驅動</span>
+                <span class="tag">負載均衡</span>
+                <span class="tag">CDN</span>
+              </div>
+            </div>
+          </div>
+          <div class="panel reg-entry fade-in">
+            <div class="panel-head">
+              <span class="h-dot" style="background: var(--ai); box-shadow: 0 0 7px var(--ai)"></span>
+              <span class="name" style="color: var(--ai)">registry/ai-ml</span>
+            </div>
+            <div class="reg-body">
+              <div class="tags">
+                <span class="tag t-ai">OpenAI API</span>
+                <span class="tag t-ai">Gemini API</span>
+                <span class="tag t-ai">RAG</span>
+                <span class="tag t-ai">LoRA fine-tuning</span>
+                <span class="tag t-ai">Stable Diffusion</span>
+                <span class="tag t-ai">向量資料庫</span>
+              </div>
+            </div>
+          </div>
+          <div class="panel reg-entry fade-in">
+            <div class="panel-head">
+              <span class="h-dot" style="background: var(--blue); box-shadow: 0 0 7px var(--blue)"></span>
+              <span class="name">registry/devops</span>
+            </div>
+            <div class="reg-body">
+              <div class="tags">
+                <span class="tag">Docker</span>
+                <span class="tag">CI/CD</span>
+                <span class="tag">Linux</span>
+                <span class="tag">Nginx</span>
+              </div>
+            </div>
+          </div>
+          <div class="panel reg-entry fade-in">
+            <div class="panel-head">
+              <span class="h-dot" style="background: var(--med); box-shadow: 0 0 7px var(--med)"></span>
+              <span class="name" style="color: var(--med)">registry/domain</span>
+            </div>
+            <div class="reg-body">
+              <div class="tags">
+                <span class="tag t-med">醫療資訊系統</span>
+                <span class="tag t-com">電商平台</span>
+                <span class="tag t-med">醫療資料合規</span>
+                <span class="tag t-med">HL7 / FHIR</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Experience ── -->
+    <section id="experience">
+      <div class="container">
+        <div class="fade-in">
+          <p class="sec-label">// 03 · <span class="svc">svc.experience</span> — deployment history</p>
+          <h2 class="sec-heading">工作<span>經歷</span></h2>
+        </div>
+        <div class="timeline fade-in">
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-header">
+              <span class="tl-role">程式設計師</span>
+              <span class="tl-company">中部區域醫院</span>
+            </div>
+            <p class="tl-period">任職約 9 年 — 至今</p>
+
+            <div class="panel node-card">
+              <div class="panel-head">
+                <span class="h-dot"></span>
+                <span class="name">node/mobile-secretary</span>
+                <span class="ver">domain: medical</span>
+              </div>
+              <div class="node-body">
+                <p class="node-title">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <rect x="6" y="2" width="12" height="20" rx="2.5" />
+                    <path d="M10 6h4" />
+                    <path d="M11 18h2" />
+                  </svg>
+                  全院行動祕書（全院通用行動 App）
+                </p>
+                <ul>
+                  <li>微服務架構設計，各功能模組獨立部署並透過 API Gateway 統一入口管理</li>
+                  <li>RBAC 集中式權限控管，支援多角色、多部門存取隔離</li>
+                  <li>Vue.js 前端 + Python / PHP 後端，Redis 快取優化高頻讀取效能</li>
+                  <li>負責架構設計、開發、部署與維運全流程</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="panel node-card">
+              <div class="panel-head">
+                <span class="h-dot"></span>
+                <span class="name">node/case-management</span>
+                <span class="ver">domain: medical</span>
+              </div>
+              <div class="node-body">
+                <p class="node-title">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <rect x="6" y="4" width="12" height="17" rx="2" />
+                    <path d="M9 4V3.2A1.2 1.2 0 0 1 10.2 2h3.6A1.2 1.2 0 0 1 15 3.2V4" />
+                    <path d="M9.5 11h5" />
+                    <path d="M9.5 15h3" />
+                  </svg>
+                  個案管理系統
+                </p>
+                <ul>
+                  <li>跨科別病患個案追蹤平台，整合多部門護理流程與個案狀態管理</li>
+                  <li>符合醫療資料安全規範，實作審計日誌與敏感欄位加密機制</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="panel node-card">
+              <div class="panel-head">
+                <span class="h-dot"></span>
+                <span class="name">node/learning-passport</span>
+                <span class="ver">domain: medical</span>
+              </div>
+              <div class="node-body">
+                <p class="node-title">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H19v15H6.5A2.5 2.5 0 0 0 4 20.5Z" />
+                    <path d="M4 20.5A2.5 2.5 0 0 1 6.5 18H19" />
+                    <path d="M9 8h6" />
+                  </svg>
+                  學習護照系統
+                </p>
+                <ul>
+                  <li>全院員工學習歷程平台，支援課程管理、學習進度追蹤與認證產出</li>
+                  <li>模組化設計對應醫師、護理師、行政等不同職類的差異化學習路徑</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Projects：production 服務 ── -->
+    <section id="projects">
+      <div class="container">
+        <div class="fade-in">
+          <p class="sec-label">// 04 · <span class="svc">svc.projects</span> — running in production</p>
+          <h2 class="sec-heading">自建<span>作品</span></h2>
+        </div>
+        <div class="projects-grid">
+          <a href="https://luna-ai-life.com" target="_blank" rel="noopener" class="panel proj-card d-ai fade-in">
+            <div class="panel-head">
+              <span class="prod-badge"><span class="dot"></span>status: production</span>
+              <span class="url">luna-ai-life.com <i class="fas fa-arrow-up-right-from-square" style="font-size: 10px"></i></span>
+            </div>
+            <div class="proj-body">
+              <span class="proj-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M20 13.2A7.5 7.5 0 0 1 10.8 4 7.5 7.5 0 1 0 20 13.2Z" />
+                  <path d="M16.5 4.5l.6 1.4 1.4.6-1.4.6-.6 1.4-.6-1.4-1.4-.6 1.4-.6Z" />
+                </svg>
+              </span>
+              <p class="proj-name">璐娜健康管家</p>
+              <p class="proj-cat">AI SAAS · LINE BOT · 健康管理</p>
+              <p class="proj-desc">
+                整合 Gemini + OpenAI 雙引擎的 AI
+                健康管理平台，提供拍照熱量辨識、社交陪跑配對與個人化健康報告。
+              </p>
+              <div class="features">
+                <div class="feature"><i class="fas fa-check-circle"></i>多模態 AI 辨識食物熱量（蛋白質、碳水、脂肪、鈉）</div>
+                <div class="feature"><i class="fas fa-check-circle"></i>AI 配對陪跑夥伴 + 遊戲化打卡獎勵系統</div>
+                <div class="feature"><i class="fas fa-check-circle"></i>個人化週報 / 月報，含代謝評估與行動建議</div>
+                <div class="feature"><i class="fas fa-check-circle"></i>Gemini + OpenAI 雙引擎備援架構</div>
+              </div>
+              <div class="tags">
+                <span class="tag t-ai">OpenAI</span>
+                <span class="tag t-ai">Gemini</span>
+                <span class="tag">Vue.js</span>
+                <span class="tag">Python</span>
+                <span class="tag">LINE Bot</span>
+              </div>
+            </div>
+          </a>
+
+          <a href="https://jlfshop.com" target="_blank" rel="noopener" class="panel proj-card d-com fade-in">
+            <div class="panel-head">
+              <span class="prod-badge"><span class="dot"></span>status: production</span>
+              <span class="url">jlfshop.com <i class="fas fa-arrow-up-right-from-square" style="font-size: 10px"></i></span>
+            </div>
+            <div class="proj-body">
+              <span class="proj-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M4 9.5 5.4 4h13.2L20 9.5" />
+                  <path d="M4.5 9.5v9a1.5 1.5 0 0 0 1.5 1.5h12a1.5 1.5 0 0 0 1.5-1.5v-9" />
+                  <path d="M4 9.5a2.4 2.4 0 0 0 4.7 0 2.4 2.4 0 0 0 4.6 0 2.4 2.4 0 0 0 4.7 0" />
+                  <path d="M9 20v-4.5h6V20" />
+                </svg>
+              </span>
+              <p class="proj-name">金連發電器</p>
+              <p class="proj-cat">電商平台 · 家電 · 全台配送</p>
+              <p class="proj-desc">
+                完整家電購物商城，涵蓋商品管理、訂單流程、安裝 / 回收 /
+                運送服務整合，為實際營運中的電商系統。
+              </p>
+              <div class="features">
+                <div class="feature"><i class="fas fa-check-circle"></i>完整電商流程：商品、購物車、訂單、金流</div>
+                <div class="feature"><i class="fas fa-check-circle"></i>物流整合：安裝、回收、運送服務調度</div>
+                <div class="feature"><i class="fas fa-check-circle"></i>Redis 快取 + CDN + 負載均衡效能優化</div>
+              </div>
+              <div class="tags">
+                <span class="tag">Vue.js</span>
+                <span class="tag">PHP</span>
+                <span class="tag">Redis</span>
+                <span class="tag t-com">CDN</span>
+                <span class="tag">MySQL</span>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Highlights ── -->
+    <section id="highlights">
+      <div class="container">
+        <div class="fade-in">
+          <p class="sec-label">// 05 · <span class="svc">svc.highlights</span> — beyond the API layer</p>
+          <h2 class="sec-heading">特殊<span>技術實績</span></h2>
+        </div>
+        <div class="hl-grid">
+          <div class="panel hl-card fade-in">
+            <div class="hl-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 3a9 9 0 1 0 0 18 1.5 1.5 0 0 0 1.2-2.4 1.5 1.5 0 0 1 1.2-2.4H16a5 5 0 0 0 5-5c0-3.6-4-6.2-9-6.2Z" />
+                <circle cx="7.7" cy="11.7" r="1" />
+                <circle cx="10.6" cy="7.8" r="1" />
+                <circle cx="14.8" cy="8.2" r="1" />
+              </svg>
+            </div>
+            <div>
+              <p class="hl-title">Stable Diffusion + LoRA 模型微調</p>
+              <p class="hl-desc">
+                獨立完成圖像生成模型訓練，涵蓋<strong>資料標注、訓練參數調整至產出</strong>完整流程，具備
+                AI 模型層級的實戰能力，不只是 API 呼叫層。
+              </p>
+            </div>
+          </div>
+          <div class="panel hl-card fade-in">
+            <div class="hl-icon med">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8Z" />
+                <path d="M14 3v5h5" />
+                <path d="M12 12v5" />
+                <path d="M9.5 14.5h5" />
+              </svg>
+            </div>
+            <div>
+              <p class="hl-title">醫療文件 RAG 系統</p>
+              <p class="hl-desc">
+                將
+                <strong class="med">800+ 頁原文病歷</strong>向量化，建置可語義查詢的醫療知識庫，實際用於醫療諮詢輔助，具備高精度召回率與答案可追溯性需求的處理經驗。
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Education ── -->
+    <section id="education">
+      <div class="container">
+        <div class="fade-in">
+          <p class="sec-label">// 06 · <span class="svc">svc.education</span></p>
+          <h2 class="sec-heading">學<span>歷</span></h2>
+        </div>
+        <div class="panel edu-card fade-in">
+          <div class="edu-icon"><i class="fas fa-graduation-cap"></i></div>
+          <div>
+            <p class="edu-school">中山醫學大學</p>
+            <p class="edu-dept">醫學資訊學系</p>
+            <span class="edu-badge">學士</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Contact ── -->
+    <section id="contact">
+      <div class="container">
+        <div class="fade-in">
+          <p class="sec-label" style="text-align: center">
+            // 07 · <span class="svc">svc.contact</span> — open connection
+          </p>
+          <h2 class="sec-heading">聯繫<span>我</span></h2>
+        </div>
+        <div class="fade-in">
+          <a href="mailto:serviceluna@luna-ai-life.com" class="contact-email">
+            <i class="fas fa-envelope"></i> serviceluna@luna-ai-life.com
+          </a>
+          <div class="social-links">
+            <a href="https://luna-ai-life.com" target="_blank" rel="noopener" class="social-link l-ai">
+              <i class="fas fa-globe"></i> 璐娜健康管家
+            </a>
+            <a href="https://jlfshop.com" target="_blank" rel="noopener" class="social-link l-com">
+              <i class="fas fa-store"></i> 金連發電器
+            </a>
+            <a href="https://github.com/" target="_blank" rel="noopener" class="social-link">
+              <i class="fab fa-github"></i> GitHub
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <p>
+        © 2026 Ian Cheng · Built with
+        <svg class="heart" viewBox="0 0 24 24" fill="currentColor" aria-label="love" role="img">
+          <path d="M12 20.3 4.6 13a4.6 4.6 0 0 1 6.5-6.5l.9.9.9-.9A4.6 4.6 0 0 1 19.4 13Z" />
+        </svg>
+      </p>
+      <p class="uptime">
+        uptime: <span class="ok">10 years</span> · services in production:
+        <span class="ok">2</span> · all systems operational
+      </p>
+    </footer>
+
+    <!-- ── 行動版底部狀態列 ── -->
+    <nav class="mobile-bar" aria-label="行動版導覽">
+      <div class="mobile-bar-inner">
+        <a href="#hero">gateway</a>
+        <a href="#about" data-spy="about">about</a>
+        <a href="#skills" data-spy="skills">skills</a>
+        <a href="#experience" data-spy="experience">exp</a>
+        <a href="#projects" data-spy="projects">projects</a>
+        <a href="#highlights" data-spy="highlights">highlights</a>
+        <a href="#education" data-spy="education">edu</a>
+        <a href="#contact" data-spy="contact">contact</a>
+      </div>
+    </nav>
+
+    <script>
+      // ── 捲動進場動畫 ─────────────────────────────
+      const fadeObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add("visible");
+              fadeObserver.unobserve(e.target);
+            }
+          });
+        },
+        { threshold: 0.12 },
+      );
+      document.querySelectorAll(".fade-in").forEach((el) => fadeObserver.observe(el));
+
+      // ── 數字滾動（監控儀表） ─────────────────────
+      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const countObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (!e.isIntersecting) return;
+            const el = e.target;
+            const target = +el.dataset.count;
+            countObserver.unobserve(el);
+            if (reduceMotion) {
+              el.textContent = target;
+              return;
+            }
+            const t0 = performance.now();
+            const dur = 1100;
+            const tick = (t) => {
+              const p = Math.min((t - t0) / dur, 1);
+              el.textContent = Math.round(target * (1 - Math.pow(1 - p, 3)));
+              if (p < 1) requestAnimationFrame(tick);
+            };
+            requestAnimationFrame(tick);
+          });
+        },
+        { threshold: 0.5 },
+      );
+      document.querySelectorAll("[data-count]").forEach((el) => countObserver.observe(el));
+
+      // ── 拓樸導覽 scroll-spy（路由點亮） ───────────
+      const spyTargets = document.querySelectorAll("section[id]");
+      const spyLinks = document.querySelectorAll("[data-spy]");
+      const spyObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (!e.isIntersecting) return;
+            const id = e.target.id;
+            spyLinks.forEach((l) => l.classList.toggle("active", l.dataset.spy === id));
+            const activeMobile = document.querySelector(".mobile-bar a.active");
+            if (activeMobile)
+              activeMobile.scrollIntoView({
+                block: "nearest",
+                inline: "center",
+                behavior: reduceMotion ? "auto" : "smooth",
+              });
+          });
+        },
+        { rootMargin: "-42% 0px -52% 0px" },
+      );
+      spyTargets.forEach((s) => spyObserver.observe(s));
+    </script>
+  </body>
+</html>

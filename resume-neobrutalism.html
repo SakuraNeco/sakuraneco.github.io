@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ian Cheng — 資深全端工程師 &amp; AI 工程師</title>
+<meta name="description" content="Ian Cheng｜資深全端工程師 &amp; AI 工程師。10 年開發經驗，擅長 AI 產品落地、微服務架構設計，具備從零到上線的完整交付能力。">
+<meta name="author" content="Ian Cheng">
+<meta name="theme-color" content="#ffe14d">
+
+<!-- Open Graph -->
+<meta property="og:type" content="profile">
+<meta property="og:title" content="Ian Cheng — 資深全端工程師 &amp; AI 工程師">
+<meta property="og:description" content="10 年開發經驗，擅長 AI 產品落地、微服務架構設計，具備從零到上線的完整交付能力。">
+<meta property="og:locale" content="zh_TW">
+<meta property="profile:first_name" content="Ian">
+<meta property="profile:last_name" content="Cheng">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Ian Cheng — 資深全端工程師 &amp; AI 工程師">
+<meta name="twitter:description" content="10 年開發經驗，擅長 AI 產品落地、微服務架構設計，具備從零到上線的完整交付能力。">
+
+<!-- data URI SVG favicon -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23ffe14d' stroke='%23000' stroke-width='8'/%3E%3Ctext x='50' y='72' font-family='Arial Black,sans-serif' font-size='62' font-weight='900' text-anchor='middle' fill='%23000'%3EIC%3C/text%3E%3C/svg%3E">
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+<!-- Font Awesome (cdnjs) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+<style>
+:root{
+  --yellow:#ffe14d;
+  --pink:#ff4dd2;
+  --blue:#2d6bff;
+  --cyan:#00e0d0;
+  --orange:#ff7a2d;
+  --lime:#b6ff3d;
+  --ink:#0a0a0a;
+  --paper:#f4f1e8;
+  --white:#ffffff;
+  --shadow:6px 6px 0 var(--ink);
+  --shadow-sm:4px 4px 0 var(--ink);
+  --shadow-lg:10px 10px 0 var(--ink);
+  --border:3px solid var(--ink);
+  --border-thick:4px solid var(--ink);
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+
+body{
+  font-family:'Space Grotesk','Noto Sans TC',system-ui,sans-serif;
+  background:var(--paper);
+  color:var(--ink);
+  line-height:1.6;
+  overflow-x:hidden;
+  background-image:
+    linear-gradient(rgba(0,0,0,.05) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(0,0,0,.05) 1px,transparent 1px);
+  background-size:32px 32px;
+}
+
+h1,h2,h3,.display{font-family:'Archivo Black','Noto Sans TC',sans-serif;font-weight:900;letter-spacing:-.01em}
+
+a{color:inherit}
+img,svg{display:block}
+
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+
+/* ===== NAV ===== */
+nav{
+  position:sticky;top:0;z-index:100;
+  background:var(--yellow);
+  border-bottom:var(--border-thick);
+}
+.nav-inner{
+  max-width:1120px;margin:0 auto;padding:12px 20px;
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+}
+.brand{
+  font-family:'Archivo Black',sans-serif;font-size:1.25rem;
+  background:var(--ink);color:var(--yellow);
+  padding:6px 12px;border:var(--border);box-shadow:var(--shadow-sm);
+  transform:rotate(-2deg);white-space:nowrap;
+}
+.nav-links{display:flex;gap:6px;flex-wrap:wrap;list-style:none}
+.nav-links a{
+  text-decoration:none;font-weight:700;font-size:.82rem;
+  padding:6px 10px;border:2px solid transparent;border-radius:2px;
+  transition:transform .12s,background .12s,border-color .12s,box-shadow .12s;
+}
+.nav-links a:hover{background:var(--white);border:2px solid var(--ink);box-shadow:3px 3px 0 var(--ink);transform:translate(-1px,-1px)}
+.nav-links a.active{background:var(--pink);color:var(--ink);border:2px solid var(--ink);box-shadow:3px 3px 0 var(--ink)}
+.nav-toggle{display:none;background:var(--ink);color:var(--yellow);border:var(--border);padding:6px 10px;cursor:pointer;box-shadow:var(--shadow-sm);font-size:1.1rem}
+
+/* ===== SECTION BASICS ===== */
+section{padding:72px 0;position:relative}
+.sec-tag{
+  display:inline-block;font-family:'Archivo Black',sans-serif;font-size:.78rem;
+  letter-spacing:.12em;text-transform:uppercase;
+  background:var(--ink);color:var(--white);padding:6px 14px;
+  border:var(--border);box-shadow:var(--shadow-sm);transform:rotate(-1.5deg);margin-bottom:18px;
+}
+.sec-title{font-size:clamp(2rem,5vw,3.2rem);line-height:1.05;margin-bottom:8px}
+.sec-sub{font-weight:600;color:#333;margin-bottom:34px;max-width:60ch}
+
+/* ===== HERO ===== */
+#hero{padding:64px 0 80px;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1.4fr .9fr;gap:36px;align-items:center}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:.85rem;
+  background:var(--lime);border:var(--border);box-shadow:var(--shadow-sm);
+  padding:7px 14px;transform:rotate(-2deg);margin-bottom:18px;
+}
+.hero-badge .dot{width:10px;height:10px;border-radius:50%;background:var(--ink);animation:blink 1.4s steps(1) infinite}
+@keyframes blink{50%{opacity:.25}}
+.hero h1{
+  font-size:clamp(2.6rem,8vw,5.2rem);line-height:1.04;margin-bottom:14px;
+}
+.hero h1 .hl{
+  background:var(--pink);color:var(--ink);padding:0 .12em;
+  border:var(--border);box-shadow:var(--shadow-sm);
+  display:inline-block;transform:rotate(-1deg);
+}
+.hero .role{
+  font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(1rem,2.4vw,1.5rem);
+  margin-bottom:18px;display:inline-block;
+  background:var(--blue);color:var(--white);padding:5px 12px;border:var(--border);box-shadow:var(--shadow-sm);
+}
+.hero .tagline{font-size:1.05rem;font-weight:500;max-width:54ch;margin-bottom:24px;color:#222}
+.hero-cta{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+.btn{
+  display:inline-flex;align-items:center;gap:9px;text-decoration:none;font-weight:700;
+  padding:12px 20px;border:var(--border-thick);box-shadow:var(--shadow);cursor:pointer;
+  transition:transform .12s ease,box-shadow .12s ease;background:var(--white);
+}
+.btn:hover{transform:translate(3px,3px);box-shadow:3px 3px 0 var(--ink)}
+.btn:active{transform:translate(6px,6px);box-shadow:0 0 0 var(--ink)}
+.btn.primary{background:var(--yellow)}
+.btn.dark{background:var(--ink);color:var(--white)}
+
+/* hero card / portrait block */
+.hero-card{
+  background:var(--cyan);border:var(--border-thick);box-shadow:var(--shadow-lg);
+  padding:24px;transform:rotate(2deg);position:relative;
+}
+.hero-card .mono{font-family:'Space Grotesk',monospace;font-weight:700;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase}
+.hero-card .face{
+  width:100%;aspect-ratio:1/1;background:var(--white);border:var(--border);
+  display:flex;align-items:center;justify-content:center;margin:14px 0;box-shadow:var(--shadow-sm);
+}
+.hero-card .face svg{width:62%;height:62%}
+.sticker{
+  position:absolute;font-family:'Archivo Black',sans-serif;font-size:.8rem;
+  background:var(--orange);border:var(--border);box-shadow:var(--shadow-sm);
+  padding:6px 10px;transform:rotate(8deg);top:-18px;right:-14px;z-index:2;
+}
+
+/* ===== STATS (counter) ===== */
+.stats{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:54px;
+}
+.stat{
+  background:var(--white);border:var(--border-thick);box-shadow:var(--shadow);
+  padding:20px 16px;text-align:center;transition:transform .12s,box-shadow .12s;
+}
+.stat:nth-child(1){background:var(--yellow)}
+.stat:nth-child(2){background:var(--pink);color:var(--ink)}
+.stat:nth-child(3){background:var(--cyan)}
+.stat:nth-child(4){background:var(--lime)}
+.stat:hover{transform:translate(3px,3px);box-shadow:3px 3px 0 var(--ink)}
+.stat .num{font-family:'Archivo Black',sans-serif;font-size:clamp(2.2rem,6vw,3.4rem);line-height:1}
+.stat .lbl{font-weight:700;font-size:.85rem;margin-top:6px}
+
+/* ===== ABOUT ===== */
+.about-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.about-card{
+  background:var(--white);border:var(--border-thick);box-shadow:var(--shadow);
+  padding:24px;position:relative;transition:transform .12s,box-shadow .12s;
+}
+.about-card:hover{transform:translate(-3px,-3px);box-shadow:var(--shadow-lg)}
+.about-card .n{
+  position:absolute;top:-16px;left:-12px;
+  font-family:'Archivo Black',sans-serif;font-size:1.1rem;
+  width:40px;height:40px;display:flex;align-items:center;justify-content:center;
+  background:var(--ink);color:var(--yellow);border:var(--border);box-shadow:var(--shadow-sm);transform:rotate(-6deg);
+}
+.about-card:nth-child(2){background:var(--yellow)}
+.about-card:nth-child(3){background:var(--cyan)}
+.about-card p{font-weight:500;font-size:.96rem}
+
+/* ===== SKILLS ===== */
+.marquee{
+  border-top:var(--border-thick);border-bottom:var(--border-thick);
+  background:var(--pink);overflow:hidden;margin-bottom:34px;
+}
+.marquee-track{
+  display:flex;gap:0;white-space:nowrap;width:max-content;
+  animation:marquee 22s linear infinite;
+}
+.marquee:hover .marquee-track{animation-play-state:paused}
+.marquee-track span{
+  font-family:'Archivo Black',sans-serif;font-size:1.3rem;padding:12px 26px;
+  display:inline-flex;align-items:center;gap:14px;
+}
+.marquee-track span::after{content:"";width:12px;height:12px;background:var(--ink);transform:rotate(45deg);display:inline-block}
+@keyframes marquee{to{transform:translateX(-50%)}}
+
+.skills-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+.skill-cat{
+  background:var(--white);border:var(--border-thick);box-shadow:var(--shadow);padding:22px;
+  transition:transform .12s,box-shadow .12s;
+}
+.skill-cat:hover{transform:translate(3px,3px);box-shadow:3px 3px 0 var(--ink)}
+.skill-cat h3{font-size:1.05rem;display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.skill-cat h3 .ic{
+  width:36px;height:36px;flex:0 0 36px;display:flex;align-items:center;justify-content:center;
+  background:var(--blue);color:var(--white);border:var(--border);box-shadow:2px 2px 0 var(--ink);
+}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{
+  font-weight:700;font-size:.82rem;padding:5px 11px;
+  background:var(--yellow);border:2px solid var(--ink);box-shadow:2px 2px 0 var(--ink);
+  transition:transform .1s,box-shadow .1s;cursor:default;
+}
+.chip:hover{transform:translate(2px,2px);box-shadow:0 0 0 var(--ink);background:var(--cyan)}
+
+/* ===== EXPERIENCE ===== */
+.exp-head{
+  background:var(--blue);color:var(--white);border:var(--border-thick);box-shadow:var(--shadow);
+  padding:22px 24px;margin-bottom:24px;display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;align-items:center;
+}
+.exp-head h3{font-size:1.4rem}
+.exp-head .when{
+  font-family:'Archivo Black',sans-serif;font-size:.85rem;background:var(--yellow);color:var(--ink);
+  padding:7px 13px;border:var(--border);box-shadow:var(--shadow-sm);transform:rotate(-2deg);white-space:nowrap;
+}
+.exp-list{display:grid;gap:18px}
+.exp-item{
+  background:var(--white);border:var(--border-thick);box-shadow:var(--shadow);padding:22px;
+  transition:transform .12s,box-shadow .12s;
+}
+.exp-item:hover{transform:translate(-3px,-3px);box-shadow:var(--shadow-lg)}
+.exp-item h4{font-family:'Archivo Black',sans-serif;font-size:1.1rem;margin-bottom:12px;display:inline-block;
+  background:var(--lime);padding:4px 10px;border:2px solid var(--ink);box-shadow:2px 2px 0 var(--ink);transform:rotate(-1deg)}
+.exp-item ul{list-style:none;display:grid;gap:9px}
+.exp-item li{padding-left:26px;position:relative;font-weight:500;font-size:.95rem}
+.exp-item li::before{
+  content:"";position:absolute;left:0;top:.45em;width:13px;height:13px;
+  background:var(--pink);border:2px solid var(--ink);
+}
+
+/* ===== PROJECTS ===== */
+.proj-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+.proj{
+  border:var(--border-thick);box-shadow:var(--shadow);padding:24px;position:relative;
+  transition:transform .12s,box-shadow .12s;display:flex;flex-direction:column;
+}
+.proj:nth-child(1){background:var(--cyan)}
+.proj:nth-child(2){background:var(--orange)}
+.proj:hover{transform:translate(4px,4px);box-shadow:3px 3px 0 var(--ink)}
+.proj .top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:10px}
+.proj h3{font-size:1.45rem;line-height:1.1}
+.proj .kicker{font-weight:700;font-size:.78rem;background:var(--ink);color:var(--white);padding:4px 9px;border:2px solid var(--ink);white-space:nowrap}
+.proj .link{
+  text-decoration:none;font-weight:700;font-size:.85rem;
+  background:var(--white);border:var(--border);box-shadow:2px 2px 0 var(--ink);
+  padding:6px 11px;display:inline-flex;align-items:center;gap:7px;align-self:flex-start;margin-bottom:14px;
+  transition:transform .1s,box-shadow .1s;
+}
+.proj .link:hover{transform:translate(2px,2px);box-shadow:0 0 0 var(--ink)}
+.proj .desc{font-weight:500;font-size:.95rem;margin-bottom:14px}
+.proj .feat{list-style:none;display:grid;gap:7px;margin-bottom:16px}
+.proj .feat li{padding-left:24px;position:relative;font-weight:600;font-size:.9rem}
+.proj .feat li::before{content:"\2715";position:absolute;left:4px;top:0;font-weight:900;font-family:'Archivo Black',sans-serif}
+.proj .tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:auto}
+.proj .tags .t{font-weight:700;font-size:.76rem;background:var(--white);border:2px solid var(--ink);box-shadow:2px 2px 0 var(--ink);padding:4px 9px}
+
+/* ===== HIGHLIGHTS (special tech) ===== */
+.hl-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+.hl-card{
+  background:var(--ink);color:var(--paper);border:var(--border-thick);box-shadow:var(--shadow);
+  padding:26px;position:relative;transition:transform .12s,box-shadow .12s;
+}
+.hl-card:hover{transform:translate(-3px,-3px);box-shadow:10px 10px 0 var(--pink)}
+.hl-card .ic{
+  width:54px;height:54px;display:flex;align-items:center;justify-content:center;margin-bottom:16px;
+  background:var(--yellow);color:var(--ink);border:var(--border);box-shadow:var(--shadow-sm);
+}
+.hl-card h3{font-size:1.2rem;color:var(--yellow);margin-bottom:12px;line-height:1.25}
+.hl-card p{font-weight:500;font-size:.95rem;color:#e8e5dc}
+
+/* ===== EDUCATION ===== */
+.edu{
+  display:flex;flex-wrap:wrap;align-items:center;gap:22px;
+  background:var(--yellow);border:var(--border-thick);box-shadow:var(--shadow-lg);padding:28px;
+}
+.edu .cap{
+  width:72px;height:72px;flex:0 0 72px;display:flex;align-items:center;justify-content:center;
+  background:var(--ink);color:var(--yellow);border:var(--border);box-shadow:var(--shadow-sm);transform:rotate(-3deg);
+}
+.edu h3{font-size:1.6rem;line-height:1.1}
+.edu .meta{font-weight:700;margin-top:4px}
+
+/* ===== CONTACT ===== */
+#contact{padding-bottom:60px}
+.contact-box{
+  background:var(--ink);color:var(--paper);border:var(--border-thick);box-shadow:var(--shadow-lg);
+  padding:40px;text-align:center;
+}
+.contact-box h2{font-size:clamp(1.8rem,5vw,3rem);color:var(--yellow);line-height:1.15;padding-bottom:.08em;margin-bottom:10px}
+.contact-box .em{
+  display:inline-flex;align-items:center;gap:10px;text-decoration:none;font-weight:700;font-size:1.05rem;
+  background:var(--yellow);color:var(--ink);border:var(--border);box-shadow:var(--shadow-sm);
+  padding:12px 20px;margin:18px 0 26px;transition:transform .12s,box-shadow .12s;word-break:break-all;
+}
+.contact-box .em:hover{transform:translate(3px,3px);box-shadow:0 0 0 var(--yellow)}
+.contact-links{display:flex;flex-wrap:wrap;gap:14px;justify-content:center}
+.contact-links a{
+  display:inline-flex;align-items:center;gap:9px;text-decoration:none;font-weight:700;font-size:.92rem;
+  background:var(--paper);color:var(--ink);border:var(--border);box-shadow:var(--shadow-sm);
+  padding:11px 17px;transition:transform .12s,box-shadow .12s;
+}
+.contact-links a:hover{transform:translate(3px,3px);box-shadow:0 0 0 var(--ink)}
+.contact-links a:nth-child(1):hover{background:var(--pink)}
+.contact-links a:nth-child(2):hover{background:var(--cyan)}
+.contact-links a:nth-child(3):hover{background:var(--lime)}
+
+/* ===== FOOTER ===== */
+footer{
+  border-top:var(--border-thick);background:var(--yellow);
+  padding:24px 0;text-align:center;font-weight:700;
+}
+
+/* ===== SCROLL REVEAL ===== */
+.reveal{opacity:0;transform:translateY(40px) rotate(-1deg)}
+.reveal.in{
+  opacity:1;transform:translateY(0) rotate(0);
+  transition:opacity .55s ease,transform .7s cubic-bezier(.18,1.5,.4,1);
+}
+.reveal.d1{transition-delay:.08s}
+.reveal.d2{transition-delay:.16s}
+.reveal.d3{transition-delay:.24s}
+.reveal.d4{transition-delay:.32s}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:900px){
+  .hero-grid{grid-template-columns:1fr}
+  .hero-card{max-width:340px;margin:0 auto}
+  .about-grid{grid-template-columns:1fr}
+  .skills-grid,.proj-grid,.hl-grid{grid-template-columns:1fr}
+  .stats{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:680px){
+  .nav-links{
+    display:none;position:absolute;top:100%;left:0;right:0;
+    flex-direction:column;background:var(--yellow);border-bottom:var(--border-thick);
+    padding:12px 20px;gap:8px;
+  }
+  .nav-links.open{display:flex}
+  .nav-toggle{display:block}
+  section{padding:54px 0}
+  .exp-head{flex-direction:column;align-items:flex-start}
+}
+@media(max-width:420px){
+  .stats{grid-template-columns:1fr}
+}
+
+/* ===== REDUCED MOTION ===== */
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .reveal{opacity:1;transform:none}
+  .marquee-track{width:100%;justify-content:space-around;flex-wrap:wrap}
+  .hero-badge .dot{animation:none}
+}
+
+/* ===== PRINT ===== */
+@media print{
+  nav,.nav-toggle,.hero-cta,.marquee,.sticker{display:none!important}
+  body{background:#fff;color:#000;background-image:none}
+  section{padding:18px 0;break-inside:avoid}
+  *{box-shadow:none!important;transform:none!important;color:#000!important;background:#fff!important;border-color:#000!important}
+  .reveal{opacity:1!important}
+  a{text-decoration:underline}
+  .hero h1{font-size:2rem}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#hero" class="brand" style="text-decoration:none">IAN CHENG</a>
+    <button class="nav-toggle" aria-label="開關選單" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#about">關於我</a></li>
+      <li><a href="#skills">核心技能</a></li>
+      <li><a href="#experience">工作經歷</a></li>
+      <li><a href="#projects">自建作品</a></li>
+      <li><a href="#highlights">技術實績</a></li>
+      <li><a href="#education">學歷</a></li>
+      <li><a href="#contact">聯繫</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header id="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <span class="hero-badge reveal"><span class="dot"></span>Available for opportunities</span>
+        <h1 class="reveal d1">資深全端<br><span class="hl">&amp; AI</span> 工程師</h1>
+        <span class="role reveal d2">Ian Cheng — 資深全端工程師 &amp; AI 工程師</span>
+        <p class="tagline reveal d3">10 年開發經驗，擅長 AI 產品落地、微服務架構設計，具備從零到上線的完整交付能力。</p>
+        <div class="hero-cta reveal d4">
+          <a href="#contact" class="btn primary"><i class="fa-solid fa-paper-plane"></i> 聯繫我</a>
+          <a href="#projects" class="btn dark"><i class="fa-solid fa-rocket"></i> 看作品</a>
+          <a href="mailto:serviceluna@luna-ai-life.com" class="btn"><i class="fa-regular fa-envelope"></i> Email</a>
+        </div>
+      </div>
+      <div class="hero-card reveal d2">
+        <span class="sticker">10Y+ EXP</span>
+        <div class="mono">// resume.dev</div>
+        <div class="face" aria-hidden="true">
+          <svg viewBox="0 0 100 100" fill="none" stroke="#0a0a0a" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="50" cy="34" r="18"/>
+            <path d="M18 86c0-18 14-30 32-30s32 12 32 30"/>
+            <path d="M40 32h6M54 32h6"/>
+          </svg>
+        </div>
+        <div class="mono">Full-Stack &middot; AI &middot; Architecture</div>
+      </div>
+    </div>
+
+    <!-- STATS -->
+    <div class="stats">
+      <div class="stat reveal"><div class="num" data-count="10" data-suffix="+">0</div><div class="lbl">年開發經驗</div></div>
+      <div class="stat reveal d1"><div class="num" data-count="5" data-suffix="+">0</div><div class="lbl">大型專案交付</div></div>
+      <div class="stat reveal d2"><div class="num" data-count="2">0</div><div class="lbl">自建產品上線</div></div>
+      <div class="stat reveal d3"><div class="num" data-count="3">0</div><div class="lbl">AI 整合實戰</div></div>
+    </div>
+  </div>
+</header>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="wrap">
+    <span class="sec-tag reveal">// 01 — About</span>
+    <h2 class="sec-title reveal d1">關於我</h2>
+    <p class="sec-sub reveal d2">橫跨醫療資訊、電商、AI 三個領域，從架構設計到產品落地一手包辦。</p>
+    <div class="about-grid">
+      <div class="about-card reveal">
+        <span class="n">1</span>
+        <p>10 年全端工程師，具備從系統架構設計到 AI 產品落地的端對端能力。曾在中部區域醫院主導多項院內大型系統開發，採微服務架構 + API Gateway + RBAC 集中控管，支援全院多部門運作。</p>
+      </div>
+      <div class="about-card reveal d1">
+        <span class="n">2</span>
+        <p>自行開發並上線 璐娜健康管家（AI 健康 SaaS）與金連發電器（家電電商），整合 Gemini + OpenAI 多模態雙引擎。具備 Stable Diffusion + LoRA 模型微調及 RAG 系統建置實戰經驗，熟悉醫療資料處理與合規需求。</p>
+      </div>
+      <div class="about-card reveal d2">
+        <span class="n">3</span>
+        <p>背景橫跨醫療資訊、電商、AI 三個領域，能同時勝任技術深度討論與跨部門架構溝通。目前積極尋求 AI 工程師 / Tech Lead / Solution Architect 相關機會。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="wrap">
+    <span class="sec-tag reveal">// 02 — Skills</span>
+    <h2 class="sec-title reveal d1">核心技能</h2>
+  </div>
+  <div class="marquee reveal d1" aria-hidden="true">
+    <div class="marquee-track">
+      <span>PYTHON</span><span>VUE.JS</span><span>OPENAI</span><span>GEMINI</span><span>RAG</span><span>DOCKER</span><span>MICROSERVICES</span><span>REDIS</span><span>STABLE DIFFUSION</span>
+      <span>PYTHON</span><span>VUE.JS</span><span>OPENAI</span><span>GEMINI</span><span>RAG</span><span>DOCKER</span><span>MICROSERVICES</span><span>REDIS</span><span>STABLE DIFFUSION</span>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="skills-grid">
+      <div class="skill-cat reveal">
+        <h3><span class="ic"><i class="fa-solid fa-code"></i></span>程式語言</h3>
+        <div class="chips"><span class="chip">Python</span><span class="chip">Vue.js</span><span class="chip">PHP</span><span class="chip">JavaScript</span><span class="chip">HTML / CSS</span></div>
+      </div>
+      <div class="skill-cat reveal d1">
+        <h3><span class="ic"><i class="fa-solid fa-database"></i></span>資料庫</h3>
+        <div class="chips"><span class="chip">MySQL</span><span class="chip">PostgreSQL</span><span class="chip">MongoDB</span><span class="chip">Redis</span></div>
+      </div>
+      <div class="skill-cat reveal">
+        <h3><span class="ic"><i class="fa-solid fa-sitemap"></i></span>系統架構</h3>
+        <div class="chips"><span class="chip">微服務</span><span class="chip">API Gateway</span><span class="chip">RBAC</span><span class="chip">事件驅動</span><span class="chip">負載均衡</span><span class="chip">CDN</span></div>
+      </div>
+      <div class="skill-cat reveal d1">
+        <h3><span class="ic"><i class="fa-solid fa-robot"></i></span>AI / ML</h3>
+        <div class="chips"><span class="chip">OpenAI API</span><span class="chip">Gemini API</span><span class="chip">RAG</span><span class="chip">LoRA fine-tuning</span><span class="chip">Stable Diffusion</span><span class="chip">向量資料庫</span></div>
+      </div>
+      <div class="skill-cat reveal">
+        <h3><span class="ic"><i class="fa-solid fa-gears"></i></span>DevOps</h3>
+        <div class="chips"><span class="chip">Docker</span><span class="chip">CI/CD</span><span class="chip">Linux</span><span class="chip">Nginx</span></div>
+      </div>
+      <div class="skill-cat reveal d1">
+        <h3><span class="ic"><i class="fa-solid fa-heart-pulse"></i></span>領域知識</h3>
+        <div class="chips"><span class="chip">醫療資訊系統</span><span class="chip">電商平台</span><span class="chip">醫療資料合規</span><span class="chip">HL7 / FHIR</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="wrap">
+    <span class="sec-tag reveal">// 03 — Experience</span>
+    <h2 class="sec-title reveal d1">工作經歷</h2>
+    <div class="exp-head reveal d1">
+      <div>
+        <h3>程式設計師</h3>
+        <div style="font-weight:700;margin-top:4px">＠ 中部區域醫院</div>
+      </div>
+      <span class="when">任職約 9 年 — 至今</span>
+    </div>
+    <div class="exp-list">
+      <div class="exp-item reveal">
+        <h4>全院行動祕書（全院通用行動 App）</h4>
+        <ul>
+          <li>微服務架構設計，各功能模組獨立部署並透過 API Gateway 統一入口管理</li>
+          <li>RBAC 集中式權限控管，支援多角色、多部門存取隔離</li>
+          <li>Vue.js 前端 + Python / PHP 後端，Redis 快取優化高頻讀取效能</li>
+          <li>負責架構設計、開發、部署與維運全流程</li>
+        </ul>
+      </div>
+      <div class="exp-item reveal d1">
+        <h4>個案管理系統</h4>
+        <ul>
+          <li>跨科別病患個案追蹤平台，整合多部門護理流程與個案狀態管理</li>
+          <li>符合醫療資料安全規範，實作審計日誌與敏感欄位加密機制</li>
+        </ul>
+      </div>
+      <div class="exp-item reveal d2">
+        <h4>學習護照系統</h4>
+        <ul>
+          <li>全院員工學習歷程平台，支援課程管理、學習進度追蹤與認證產出</li>
+          <li>模組化設計對應醫師、護理師、行政等不同職類的差異化學習路徑</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="wrap">
+    <span class="sec-tag reveal">// 04 — Products</span>
+    <h2 class="sec-title reveal d1">自建作品</h2>
+    <p class="sec-sub reveal d2">從零到上線、實際營運中的產品。</p>
+    <div class="proj-grid">
+      <div class="proj reveal">
+        <div class="top">
+          <h3>璐娜健康管家</h3>
+          <span class="kicker">LIVE</span>
+        </div>
+        <a class="link" href="https://luna-ai-life.com" target="_blank" rel="noopener"><i class="fa-solid fa-arrow-up-right-from-square"></i> AI SaaS · LINE Bot · 健康管理</a>
+        <p class="desc">整合 Gemini + OpenAI 雙引擎的 AI 健康管理平台，提供拍照熱量辨識、社交陪跑配對與個人化健康報告。</p>
+        <ul class="feat">
+          <li>多模態 AI 辨識食物熱量（蛋白質、碳水、脂肪、鈉）</li>
+          <li>AI 配對陪跑夥伴 + 遊戲化打卡獎勵系統</li>
+          <li>個人化週報 / 月報含代謝評估與行動建議</li>
+          <li>Gemini + OpenAI 雙引擎備援架構</li>
+        </ul>
+        <div class="tags"><span class="t">OpenAI</span><span class="t">Gemini</span><span class="t">Vue.js</span><span class="t">Python</span><span class="t">LINE Bot</span></div>
+      </div>
+      <div class="proj reveal d1">
+        <div class="top">
+          <h3>金連發電器</h3>
+          <span class="kicker">LIVE</span>
+        </div>
+        <a class="link" href="https://jlfshop.com" target="_blank" rel="noopener"><i class="fa-solid fa-arrow-up-right-from-square"></i> 電商平台 · 家電 · 全台配送</a>
+        <p class="desc">完整家電購物商城，涵蓋商品管理、訂單流程、安裝 / 回收 / 運送服務整合，為實際營運中的電商系統。</p>
+        <ul class="feat">
+          <li>完整電商流程（商品、購物車、訂單、金流）</li>
+          <li>物流整合（安裝、回收、運送服務調度）</li>
+          <li>Redis 快取 + CDN + 負載均衡效能優化</li>
+        </ul>
+        <div class="tags"><span class="t">Vue.js</span><span class="t">PHP</span><span class="t">Redis</span><span class="t">CDN</span><span class="t">MySQL</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HIGHLIGHTS -->
+<section id="highlights">
+  <div class="wrap">
+    <span class="sec-tag reveal">// 05 — Tech Highlights</span>
+    <h2 class="sec-title reveal d1">特殊技術實績</h2>
+    <div class="hl-grid">
+      <div class="hl-card reveal">
+        <div class="ic"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+        <h3>Stable Diffusion + LoRA 模型微調</h3>
+        <p>獨立完成圖像生成模型訓練，涵蓋資料標注、訓練參數調整至產出完整流程，具備 AI 模型層級的實戰能力，不只是 API 呼叫層。</p>
+      </div>
+      <div class="hl-card reveal d1">
+        <div class="ic"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
+        <h3>醫療文件 RAG 系統</h3>
+        <p>將 800+ 頁原文病歷向量化，建置可語義查詢的醫療知識庫，實際用於醫療諮詢輔助，具備高精度召回率與答案可追溯性需求的處理經驗。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="wrap">
+    <span class="sec-tag reveal">// 06 — Education</span>
+    <h2 class="sec-title reveal d1">學歷</h2>
+    <div class="edu reveal d1">
+      <div class="cap" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="38" height="38" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1 3 3 6 3s6-2 6-3v-5"/></svg>
+      </div>
+      <div>
+        <h3>中山醫學大學</h3>
+        <div class="meta">醫學資訊學系 · 學士</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="wrap">
+    <span class="sec-tag reveal">// 07 — Contact</span>
+    <h2 class="sec-title reveal d1">聯繫</h2>
+    <div class="contact-box reveal d1">
+      <h2>來打聲招呼吧</h2>
+      <p style="color:#ddd;font-weight:500">積極尋求 AI 工程師 / Tech Lead / Solution Architect 機會</p>
+      <a class="em" href="mailto:serviceluna@luna-ai-life.com"><i class="fa-regular fa-envelope"></i> serviceluna@luna-ai-life.com</a>
+      <div class="contact-links">
+        <a href="https://luna-ai-life.com" target="_blank" rel="noopener"><i class="fa-solid fa-heart-pulse"></i> 璐娜健康管家</a>
+        <a href="https://jlfshop.com" target="_blank" rel="noopener"><i class="fa-solid fa-cart-shopping"></i> 金連發電器</a>
+        <a href="https://github.com/" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> GitHub</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">© 2026 Ian Cheng</div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* mobile nav toggle */
+  var toggle = document.querySelector('.nav-toggle');
+  var navLinks = document.getElementById('navLinks');
+  if(toggle && navLinks){
+    toggle.addEventListener('click', function(){
+      var open = navLinks.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', open ? 'true':'false');
+    });
+    navLinks.addEventListener('click', function(e){
+      if(e.target.tagName === 'A'){ navLinks.classList.remove('open'); toggle.setAttribute('aria-expanded','false'); }
+    });
+  }
+
+  /* scroll reveal */
+  var reveals = document.querySelectorAll('.reveal');
+  if(reduce || !('IntersectionObserver' in window)){
+    reveals.forEach(function(el){ el.classList.add('in'); });
+  } else {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); }
+      });
+    },{threshold:.15, rootMargin:'0px 0px -8% 0px'});
+    reveals.forEach(function(el){ io.observe(el); });
+  }
+
+  /* counter */
+  function animateCount(el){
+    var target = parseFloat(el.getAttribute('data-count'));
+    var suffix = el.getAttribute('data-suffix') || '';
+    if(reduce){ el.textContent = target + suffix; return; }
+    var dur = 1100, start = null;
+    function step(ts){
+      if(!start) start = ts;
+      var p = Math.min((ts-start)/dur, 1);
+      var eased = 1 - Math.pow(1-p, 3);
+      el.textContent = Math.round(target*eased) + suffix;
+      if(p<1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  var nums = document.querySelectorAll('.num[data-count]');
+  if(!('IntersectionObserver' in window) || reduce){
+    nums.forEach(animateCount);
+  } else {
+    var cio = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){ animateCount(en.target); cio.unobserve(en.target); }
+      });
+    },{threshold:.6});
+    nums.forEach(function(el){ cio.observe(el); });
+  }
+
+  /* scrollspy nav highlight */
+  var sections = Array.prototype.slice.call(document.querySelectorAll('section[id], header[id]'));
+  var linkMap = {};
+  document.querySelectorAll('.nav-links a').forEach(function(a){
+    linkMap[a.getAttribute('href').slice(1)] = a;
+  });
+  if('IntersectionObserver' in window){
+    var sio = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){
+          var id = en.target.id;
+          Object.keys(linkMap).forEach(function(k){ linkMap[k].classList.remove('active'); });
+          if(linkMap[id]) linkMap[id].classList.add('active');
+        }
+      });
+    },{rootMargin:'-45% 0px -50% 0px'});
+    sections.forEach(function(s){ sio.observe(s); });
+  }
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ian Cheng — 資深全端工程師 &amp; AI 工程師</title>
+<meta name="description" content="Ian Cheng — 資深全端工程師 & AI 工程師。10 年開發經驗，擅長 AI 產品落地、微服務架構設計，具備從零到上線的完整交付能力。" />
+<meta name="author" content="Ian Cheng" />
+<meta name="theme-color" content="#0a0a0a" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Ian Cheng — 資深全端工程師 & AI 工程師" />
+<meta property="og:description" content="10 年開發經驗，擅長 AI 產品落地、微服務架構設計，具備從零到上線的完整交付能力。" />
+<meta property="og:locale" content="zh_TW" />
+<meta property="og:site_name" content="Ian Cheng Resume" />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Ian Cheng — 資深全端工程師 & AI 工程師" />
+<meta name="twitter:description" content="10 年開發經驗，擅長 AI 產品落地、微服務架構設計，具備從零到上線的完整交付能力。" />
+
+<!-- Favicon (data URI SVG) -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230a0a0a'/%3E%3Ctext x='32' y='45' font-family='Georgia,serif' font-size='38' font-weight='700' fill='%23ff4d2e' text-anchor='middle'%3EIC%3C/text%3E%3C/svg%3E" />
+
+<!-- Fonts + Font Awesome (CDN) -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;600;700;800;900&family=Noto+Sans+TC:wght@400;500;700;900&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<style>
+  :root {
+    --bg: #0a0a0a;
+    --bg-soft: #121212;
+    --ink: #f4f1ea;
+    --ink-dim: #9a958c;
+    --ink-faint: #5c5852;
+    --accent: #ff4d2e;
+    --accent-soft: rgba(255, 77, 46, 0.12);
+    --line: rgba(244, 241, 234, 0.10);
+    --maxw: 1180px;
+    --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Noto Sans TC', 'Archivo', system-ui, sans-serif;
+    line-height: 1.7;
+    overflow-x: hidden;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection { background: var(--accent); color: #fff; }
+
+  a { color: inherit; text-decoration: none; }
+
+  /* ---------- Background grain / vignette ---------- */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background:
+      radial-gradient(120% 90% at 80% -10%, rgba(255,77,46,0.10), transparent 55%),
+      radial-gradient(90% 80% at -10% 110%, rgba(255,77,46,0.06), transparent 50%);
+  }
+
+  /* ---------- Scroll progress bar ---------- */
+  .progress {
+    position: fixed;
+    top: 0; left: 0;
+    height: 3px;
+    width: 0%;
+    background: var(--accent);
+    z-index: 100;
+    transition: width 0.08s linear;
+    box-shadow: 0 0 12px rgba(255,77,46,0.6);
+  }
+
+  /* ---------- Layout ---------- */
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 clamp(20px, 5vw, 64px); position: relative; z-index: 1; }
+
+  section { padding: clamp(70px, 11vh, 150px) 0; position: relative; }
+
+  .eyebrow {
+    font-family: 'Space Grotesk', monospace;
+    font-size: clamp(0.72rem, 1.4vw, 0.85rem);
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7em;
+    margin-bottom: 1.4rem;
+  }
+  .eyebrow::before {
+    content: "";
+    width: clamp(28px, 5vw, 54px);
+    height: 1px;
+    background: var(--accent);
+    display: inline-block;
+  }
+
+  .section-title {
+    font-family: 'Anton', 'Archivo', sans-serif;
+    font-weight: 400;
+    font-size: clamp(2.6rem, 9vw, 6.6rem);
+    line-height: 0.95;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+    margin-bottom: clamp(2rem, 5vw, 3.6rem);
+  }
+  .section-title .sub {
+    display: block;
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: clamp(1rem, 2.4vw, 1.4rem);
+    letter-spacing: 0.04em;
+    color: var(--ink-dim);
+    font-weight: 500;
+    margin-top: 0.9rem;
+    text-transform: none;
+  }
+
+  /* ---------- Kinetic reveal (word / line stagger) ---------- */
+  .kin { display: inline-block; overflow: hidden; vertical-align: top; }
+  .kin > span {
+    display: inline-block;
+    transform: translateY(110%);
+    transition: transform 0.9s var(--ease);
+  }
+  .reveal-line {
+    display: block;
+    overflow: hidden;
+  }
+  .reveal-line > span {
+    display: block;
+    transform: translateY(105%);
+    opacity: 0;
+    transition: transform 0.9s var(--ease), opacity 0.9s var(--ease);
+  }
+  .in-view .reveal-line > span,
+  .in-view.reveal-line > span { transform: translateY(0); opacity: 1; }
+
+  .fade {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.85s var(--ease), transform 0.85s var(--ease);
+  }
+  .in-view.fade, .in-view .fade { opacity: 1; transform: none; }
+
+  /* stagger helper */
+  .in-view [data-d] { transition-delay: var(--d, 0ms); }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 90px;
+    padding-bottom: 60px;
+  }
+  .hero-top {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.9rem 1.4rem;
+    align-items: center;
+    margin-bottom: clamp(1.6rem, 4vw, 2.6rem);
+    font-family: 'Space Grotesk', monospace;
+    font-size: clamp(0.72rem, 1.5vw, 0.9rem);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+  }
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55em;
+    padding: 0.45em 1em;
+    border: 1px solid var(--line);
+    border-radius: 100px;
+    color: var(--ink);
+    background: var(--accent-soft);
+    letter-spacing: 0.1em;
+  }
+  .badge .dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 0 0 rgba(255,77,46,0.7);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(255,77,46,0.55); }
+    70% { box-shadow: 0 0 0 9px rgba(255,77,46,0); }
+    100% { box-shadow: 0 0 0 0 rgba(255,77,46,0); }
+  }
+
+  .hero-name {
+    font-family: 'Anton', 'Archivo', sans-serif;
+    font-weight: 400;
+    font-size: clamp(3.6rem, 18vw, 13rem);
+    line-height: 0.86;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    margin: 0 0 clamp(1.4rem, 4vw, 2.4rem);
+  }
+  .hero-name .nm {
+    display: block;
+    white-space: nowrap;
+  }
+  .hero-name .accent { color: var(--accent); }
+  .scramble { display: inline-block; }
+
+  .hero-role {
+    font-family: 'Archivo', 'Noto Sans TC', sans-serif;
+    font-weight: 800;
+    font-size: clamp(1.1rem, 3.4vw, 2rem);
+    letter-spacing: 0.01em;
+    line-height: 1.3;
+    margin-bottom: clamp(1.2rem, 3vw, 1.8rem);
+  }
+  .hero-role .pipe { color: var(--accent); padding: 0 0.3em; }
+
+  .hero-tagline {
+    max-width: 56ch;
+    font-size: clamp(1rem, 2vw, 1.22rem);
+    color: var(--ink-dim);
+    line-height: 1.75;
+    margin-bottom: clamp(2rem, 5vw, 2.8rem);
+  }
+
+  .hero-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem 1rem;
+    align-items: center;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6em;
+    padding: 0.85em 1.5em;
+    border-radius: 100px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 500;
+    font-size: 0.92rem;
+    letter-spacing: 0.04em;
+    border: 1px solid var(--line);
+    transition: all 0.35s var(--ease);
+    color: var(--ink);
+  }
+  .btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .btn.primary:hover { transform: translateY(-3px); box-shadow: 0 14px 34px rgba(255,77,46,0.35); }
+  .btn:hover { border-color: var(--ink); transform: translateY(-3px); }
+
+  .scroll-hint {
+    margin-top: clamp(2.5rem, 6vw, 4rem);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7em;
+    font-family: 'Space Grotesk', monospace;
+    font-size: 0.74rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+  .scroll-hint i { animation: bob 1.8s var(--ease) infinite; color: var(--accent); }
+  @keyframes bob { 0%,100%{transform:translateY(0)} 50%{transform:translateY(5px)} }
+
+  /* ---------- Stats / counters ---------- */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: clamp(1rem, 3vw, 2rem);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    padding: clamp(2.2rem, 5vw, 3.4rem) 0;
+  }
+  .stat .num {
+    font-family: 'Anton', sans-serif;
+    font-weight: 400;
+    font-size: clamp(2.6rem, 8vw, 5rem);
+    line-height: 1;
+    color: var(--accent);
+    letter-spacing: -0.01em;
+  }
+  .stat .num .suffix { color: var(--ink); }
+  .stat .lbl {
+    margin-top: 0.7rem;
+    font-size: clamp(0.78rem, 1.6vw, 0.95rem);
+    color: var(--ink-dim);
+    line-height: 1.5;
+    letter-spacing: 0.02em;
+  }
+
+  /* ---------- About ---------- */
+  .about-grid { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: clamp(2rem, 6vw, 5rem); align-items: start; }
+  .about-p {
+    font-size: clamp(1.02rem, 1.9vw, 1.28rem);
+    line-height: 1.95;
+    color: var(--ink);
+    margin-bottom: 1.7rem;
+    max-width: 60ch;
+  }
+  .about-p strong { color: var(--accent); font-weight: 700; }
+  .about-aside {
+    font-family: 'Space Grotesk', monospace;
+    font-size: 0.85rem;
+    color: var(--ink-dim);
+    line-height: 2.1;
+    border-left: 2px solid var(--accent);
+    padding-left: 1.4rem;
+    position: sticky;
+    top: 100px;
+  }
+  .about-aside .k { color: var(--ink-faint); display: block; letter-spacing: 0.2em; text-transform: uppercase; font-size: 0.68rem; margin-top: 1.1rem; }
+  .about-aside .v { color: var(--ink); font-size: 1rem; }
+
+  /* ---------- Marquee / skills ticker ---------- */
+  .marquee-band { padding: 0; overflow: hidden; }
+  .marquee {
+    display: flex;
+    overflow: hidden;
+    user-select: none;
+    gap: 0;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    padding: clamp(1rem, 2.6vw, 1.7rem) 0;
+    mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  }
+  .marquee.alt { border-top: none; }
+  .marquee-track {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    white-space: nowrap;
+    will-change: transform;
+    animation: scroll-l var(--dur, 38s) linear infinite;
+  }
+  .marquee.alt .marquee-track { animation-name: scroll-r; }
+  .marquee:hover .marquee-track { animation-play-state: paused; }
+  @keyframes scroll-l { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  @keyframes scroll-r { from { transform: translateX(-50%); } to { transform: translateX(0); } }
+
+  .tick-item {
+    font-family: 'Anton', sans-serif;
+    font-weight: 400;
+    font-size: clamp(1.5rem, 4.4vw, 3rem);
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+    color: var(--ink);
+    padding: 0 clamp(1rem, 3vw, 2.4rem);
+    display: inline-flex;
+    align-items: center;
+    gap: clamp(1rem, 3vw, 2.4rem);
+  }
+  .tick-item::after {
+    content: "";
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    background: var(--accent);
+    flex-shrink: 0;
+  }
+  .marquee.alt .tick-item { color: transparent; -webkit-text-stroke: 1px var(--ink-dim); }
+  .marquee.alt .tick-item::after { background: var(--ink-dim); }
+
+  /* ---------- Skills detail grid ---------- */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(1.4rem, 3vw, 2.4rem);
+    margin-top: clamp(2.2rem, 5vw, 3.4rem);
+  }
+  .skill-card {
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: clamp(1.5rem, 3vw, 2.1rem);
+    background: var(--bg-soft);
+    transition: border-color 0.4s var(--ease), transform 0.4s var(--ease);
+  }
+  .skill-card:hover { border-color: var(--accent); transform: translateY(-4px); }
+  .skill-card h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.78rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 700;
+    margin-bottom: 1.1rem;
+    display: flex; align-items: center; gap: 0.7em;
+  }
+  .chips { display: flex; flex-wrap: wrap; gap: 0.55rem; }
+  .chip {
+    font-size: 0.9rem;
+    padding: 0.42em 0.95em;
+    border-radius: 100px;
+    border: 1px solid var(--line);
+    color: var(--ink);
+    background: rgba(255,255,255,0.02);
+    transition: all 0.3s var(--ease);
+  }
+  .chip:hover { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+  /* ---------- Experience / timeline ---------- */
+  .exp-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.6rem 1.4rem; margin-bottom: 0.6rem; }
+  .exp-title {
+    font-family: 'Archivo', 'Noto Sans TC', sans-serif;
+    font-weight: 900;
+    font-size: clamp(1.5rem, 4vw, 2.6rem);
+    line-height: 1.2;
+  }
+  .exp-meta { font-family: 'Space Grotesk', monospace; color: var(--accent); font-size: 0.95rem; letter-spacing: 0.06em; }
+  .exp-list { list-style: none; margin-top: clamp(2rem, 4vw, 3rem); display: grid; gap: clamp(1.4rem, 3vw, 2.2rem); }
+  .exp-item {
+    border-top: 1px solid var(--line);
+    padding-top: clamp(1.4rem, 3vw, 2rem);
+    display: grid;
+    grid-template-columns: 0.4fr 1.6fr;
+    gap: clamp(0.8rem, 3vw, 2.4rem);
+  }
+  .exp-item .idx {
+    font-family: 'Anton', sans-serif;
+    font-size: clamp(1.4rem, 4vw, 2.6rem);
+    color: var(--ink-faint);
+    line-height: 1;
+  }
+  .exp-item h4 {
+    font-size: clamp(1.1rem, 2.4vw, 1.45rem);
+    font-weight: 700;
+    margin-bottom: 0.7rem;
+    color: var(--ink);
+  }
+  .exp-item p { color: var(--ink-dim); line-height: 1.85; font-size: clamp(0.96rem, 1.7vw, 1.06rem); max-width: 70ch; }
+
+  /* ---------- Projects ---------- */
+  .proj-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: clamp(1.6rem, 3vw, 2.4rem); }
+  .proj-card {
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    padding: clamp(1.8rem, 3.4vw, 2.6rem);
+    background: var(--bg-soft);
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.45s var(--ease), transform 0.45s var(--ease);
+    display: flex; flex-direction: column;
+  }
+  .proj-card::after {
+    content: "";
+    position: absolute; inset: 0;
+    background: radial-gradient(80% 60% at 100% 0%, var(--accent-soft), transparent 60%);
+    opacity: 0; transition: opacity 0.5s var(--ease);
+    pointer-events: none;
+  }
+  .proj-card:hover { border-color: var(--accent); transform: translateY(-6px); }
+  .proj-card:hover::after { opacity: 1; }
+  .proj-card .ph {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    gap: 1rem; margin-bottom: 1.1rem;
+  }
+  .proj-card h3 {
+    font-family: 'Archivo', 'Noto Sans TC', sans-serif;
+    font-weight: 900;
+    font-size: clamp(1.4rem, 3.4vw, 2rem);
+    line-height: 1.15;
+  }
+  .proj-card .cat { font-family: 'Space Grotesk', monospace; font-size: 0.74rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-top: 0.5rem; }
+  .proj-card .lnk { color: var(--ink-dim); font-size: 1.3rem; transition: color 0.3s, transform 0.3s; flex-shrink: 0; }
+  .proj-card:hover .lnk { color: var(--accent); transform: translate(3px,-3px); }
+  .proj-desc { color: var(--ink-dim); line-height: 1.8; margin-bottom: 1.3rem; font-size: 1rem; }
+  .proj-feat { list-style: none; display: grid; gap: 0.6rem; margin-bottom: 1.4rem; }
+  .proj-feat li { display: flex; gap: 0.7em; font-size: 0.96rem; color: var(--ink); line-height: 1.6; }
+  .proj-feat li i { color: var(--accent); margin-top: 0.35em; font-size: 0.7rem; flex-shrink: 0; }
+  .proj-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: auto; }
+  .proj-tags .t { font-size: 0.8rem; padding: 0.3em 0.8em; border-radius: 100px; background: rgba(255,255,255,0.04); border: 1px solid var(--line); color: var(--ink-dim); }
+
+  /* ---------- Highlights (special tech) ---------- */
+  .hl-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: clamp(1.6rem, 3vw, 2.4rem); }
+  .hl-card {
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    padding: clamp(1.8rem, 3.4vw, 2.6rem);
+    background: linear-gradient(160deg, var(--bg-soft), #0d0d0d);
+    transition: border-color 0.4s var(--ease), transform 0.4s var(--ease);
+  }
+  .hl-card:hover { border-color: var(--accent); transform: translateY(-4px); }
+  .hl-card .ico {
+    width: 52px; height: 52px;
+    display: grid; place-items: center;
+    border-radius: 14px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-size: 1.4rem;
+    margin-bottom: 1.3rem;
+  }
+  .hl-card h3 { font-size: clamp(1.2rem, 2.6vw, 1.55rem); font-weight: 700; line-height: 1.35; margin-bottom: 0.9rem; }
+  .hl-card p { color: var(--ink-dim); line-height: 1.85; font-size: 1rem; }
+
+  /* ---------- Education ---------- */
+  .edu {
+    display: flex; flex-wrap: wrap; align-items: center;
+    gap: clamp(1rem, 3vw, 2rem);
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    padding: clamp(1.8rem, 4vw, 2.8rem);
+    background: var(--bg-soft);
+  }
+  .edu .ico { font-size: clamp(2rem, 5vw, 3rem); color: var(--accent); }
+  .edu .deg { font-family: 'Archivo','Noto Sans TC',sans-serif; font-weight: 900; font-size: clamp(1.3rem, 3.4vw, 2rem); line-height: 1.3; }
+  .edu .meta { color: var(--ink-dim); margin-top: 0.4rem; font-size: 1.05rem; }
+
+  /* ---------- Contact ---------- */
+  .contact-cta {
+    font-family: 'Anton', sans-serif;
+    font-weight: 400;
+    font-size: clamp(2.4rem, 10vw, 7rem);
+    line-height: 0.95;
+    text-transform: uppercase;
+    margin-bottom: clamp(2rem, 5vw, 3rem);
+  }
+  .contact-cta a {
+    background: linear-gradient(90deg, var(--accent), #ff8a6e);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1.3;
+    padding-bottom: 0.12em;
+    display: inline-block;
+    transition: opacity 0.3s;
+  }
+  .contact-cta a:hover { opacity: 0.8; }
+  .contact-links { display: flex; flex-wrap: wrap; gap: 0.9rem; }
+  .clink {
+    display: inline-flex; align-items: center; gap: 0.7em;
+    padding: 0.9em 1.5em;
+    border: 1px solid var(--line);
+    border-radius: 100px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 500;
+    transition: all 0.35s var(--ease);
+  }
+  .clink i { color: var(--accent); transition: color 0.3s; }
+  .clink:hover { background: var(--accent); border-color: var(--accent); transform: translateY(-3px); }
+  .clink:hover i { color: #fff; }
+
+  /* ---------- Footer ---------- */
+  footer {
+    border-top: 1px solid var(--line);
+    padding: clamp(2.4rem, 5vw, 3.4rem) 0;
+    text-align: center;
+    color: var(--ink-faint);
+    font-family: 'Space Grotesk', monospace;
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 860px) {
+    .stats { grid-template-columns: repeat(2, 1fr); gap: 1.6rem 1rem; }
+    .about-grid { grid-template-columns: 1fr; }
+    .about-aside { position: static; }
+    .skills-grid, .proj-grid, .hl-grid { grid-template-columns: 1fr; }
+    .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
+    .exp-item .idx { font-size: 1.6rem; }
+    .hero-name .nm { white-space: normal; }
+  }
+
+  /* ---------- Reduced motion ---------- */
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+    }
+    .kin > span,
+    .reveal-line > span,
+    .fade { transform: none !important; opacity: 1 !important; }
+    .marquee-track { animation: none !important; transform: none !important; }
+    .badge .dot { animation: none !important; }
+  }
+
+  /* ---------- Print ---------- */
+  @media print {
+    body { background: #fff; color: #111; }
+    body::before, .progress, .scroll-hint, .marquee-band, .hero-meta .btn { display: none !important; }
+    section { padding: 18px 0; page-break-inside: avoid; }
+    .hero { min-height: auto; }
+    .hero-name, .section-title, .contact-cta { color: #111 !important; }
+    .contact-cta a { -webkit-text-fill-color: #c0392b; }
+    .accent, .eyebrow, .exp-meta, .stat .num { color: #c0392b !important; }
+    .kin > span, .reveal-line > span, .fade { transform: none !important; opacity: 1 !important; }
+    .skill-card, .proj-card, .hl-card, .edu { border-color: #ccc; background: #fff; }
+    a { color: #111; }
+  }
+</style>
+</head>
+<body>
+<div class="progress" id="progress" aria-hidden="true"></div>
+
+<main class="wrap">
+
+  <!-- ===================== HERO ===================== -->
+  <section class="hero" id="top">
+    <div class="hero-top fade">
+      <span class="badge"><span class="dot"></span>Available for opportunities</span>
+      <span><i class="fa-regular fa-envelope" aria-hidden="true"></i>&nbsp; serviceluna@luna-ai-life.com</span>
+    </div>
+
+    <h1 class="hero-name">
+      <span class="nm"><span class="scramble" data-final="Ian">Ian</span></span>
+      <span class="nm accent"><span class="scramble" data-final="Cheng">Cheng</span></span>
+    </h1>
+
+    <p class="hero-role fade" data-d style="--d:120ms">資深全端工程師 <span class="pipe">/</span> AI 工程師</p>
+
+    <p class="hero-tagline fade" data-d style="--d:200ms">
+      10 年開發經驗，擅長 AI 產品落地、微服務架構設計，具備從零到上線的完整交付能力。
+    </p>
+
+    <div class="hero-meta fade" data-d style="--d:280ms">
+      <a class="btn primary" href="#contact"><i class="fa-regular fa-paper-plane" aria-hidden="true"></i> 取得聯繫</a>
+      <a class="btn" href="#work"><i class="fa-solid fa-layer-group" aria-hidden="true"></i> 看作品</a>
+      <a class="btn" href="https://github.com/" target="_blank" rel="noopener"><i class="fa-brands fa-github" aria-hidden="true"></i> GitHub</a>
+    </div>
+
+    <div class="scroll-hint fade" data-d style="--d:380ms">
+      <i class="fa-solid fa-arrow-down" aria-hidden="true"></i> Scroll
+    </div>
+  </section>
+
+  <!-- ===================== STATS ===================== -->
+  <section style="padding-top:0">
+    <div class="stats reveal-on-scroll">
+      <div class="stat fade" data-d style="--d:0ms">
+        <div class="num"><span class="count" data-to="10">0</span><span class="suffix">+</span></div>
+        <div class="lbl">年開發經驗</div>
+      </div>
+      <div class="stat fade" data-d style="--d:90ms">
+        <div class="num"><span class="count" data-to="5">0</span><span class="suffix">+</span></div>
+        <div class="lbl">大型專案交付</div>
+      </div>
+      <div class="stat fade" data-d style="--d:180ms">
+        <div class="num"><span class="count" data-to="2">0</span></div>
+        <div class="lbl">自建產品上線</div>
+      </div>
+      <div class="stat fade" data-d style="--d:270ms">
+        <div class="num"><span class="count" data-to="3">0</span></div>
+        <div class="lbl">AI 整合實戰</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== ABOUT ===================== -->
+  <section id="about" class="reveal-on-scroll">
+    <span class="eyebrow fade">About</span>
+    <h2 class="section-title">
+      <span class="reveal-line"><span>關於我</span></span>
+      <span class="sub fade" data-d style="--d:120ms">醫療資訊 · 電商 · AI ── 三領域交會的端對端能力</span>
+    </h2>
+
+    <div class="about-grid">
+      <div class="about-aside fade" data-d style="--d:80ms">
+        <span class="k">Focus</span>
+        <span class="v">AI 產品落地</span>
+        <span class="k">Architecture</span>
+        <span class="v">微服務 / API Gateway</span>
+        <span class="k">Domain</span>
+        <span class="v">醫療 / 電商 / AI</span>
+        <span class="k">Seeking</span>
+        <span class="v">AI 工程師 · Tech Lead · Solution Architect</span>
+      </div>
+      <div>
+        <p class="about-p fade" data-d style="--d:120ms">
+          <strong>10 年全端工程師</strong>，具備從系統架構設計到 AI 產品落地的端對端能力。曾在中部區域醫院主導多項院內大型系統開發，採微服務架構 + API Gateway + RBAC 集中控管，支援全院多部門運作。
+        </p>
+        <p class="about-p fade" data-d style="--d:200ms">
+          自行開發並上線 <strong>璐娜健康管家</strong>（AI 健康 SaaS）與 <strong>金連發電器</strong>（家電電商），整合 Gemini + OpenAI 多模態雙引擎。具備 Stable Diffusion + LoRA 模型微調及 RAG 系統建置實戰經驗，熟悉醫療資料處理與合規需求。
+        </p>
+        <p class="about-p fade" data-d style="--d:280ms">
+          背景橫跨醫療資訊、電商、AI 三個領域，能同時勝任技術深度討論與跨部門架構溝通。目前積極尋求 <strong>AI 工程師 / Tech Lead / Solution Architect</strong> 相關機會。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SKILLS MARQUEE ===================== -->
+  <section class="marquee-band" id="skills-marquee" aria-label="技能跑馬燈" style="padding-bottom:0">
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track" data-marquee>
+        <span class="tick-item">Python</span><span class="tick-item">Vue.js</span><span class="tick-item">PHP</span><span class="tick-item">OpenAI</span><span class="tick-item">Gemini</span><span class="tick-item">RAG</span><span class="tick-item">LoRA</span><span class="tick-item">Docker</span><span class="tick-item">微服務</span>
+      </div>
+    </div>
+    <div class="marquee alt" aria-hidden="true">
+      <div class="marquee-track" data-marquee data-dir="r" style="--dur:32s">
+        <span class="tick-item">Stable Diffusion</span><span class="tick-item">PostgreSQL</span><span class="tick-item">Redis</span><span class="tick-item">CI/CD</span><span class="tick-item">Nginx</span><span class="tick-item">向量資料庫</span><span class="tick-item">HL7 / FHIR</span><span class="tick-item">API Gateway</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SKILLS DETAIL ===================== -->
+  <section id="skills" class="reveal-on-scroll">
+    <span class="eyebrow fade">Capabilities</span>
+    <h2 class="section-title">
+      <span class="reveal-line"><span>核心技能</span></span>
+    </h2>
+
+    <div class="skills-grid">
+      <div class="skill-card fade" data-d style="--d:0ms">
+        <h3><i class="fa-solid fa-code" aria-hidden="true"></i> 程式語言</h3>
+        <div class="chips">
+          <span class="chip">Python</span><span class="chip">Vue.js</span><span class="chip">PHP</span><span class="chip">JavaScript</span><span class="chip">HTML / CSS</span>
+        </div>
+      </div>
+      <div class="skill-card fade" data-d style="--d:80ms">
+        <h3><i class="fa-solid fa-database" aria-hidden="true"></i> 資料庫</h3>
+        <div class="chips">
+          <span class="chip">MySQL</span><span class="chip">PostgreSQL</span><span class="chip">MongoDB</span><span class="chip">Redis</span>
+        </div>
+      </div>
+      <div class="skill-card fade" data-d style="--d:0ms">
+        <h3><i class="fa-solid fa-sitemap" aria-hidden="true"></i> 系統架構</h3>
+        <div class="chips">
+          <span class="chip">微服務</span><span class="chip">API Gateway</span><span class="chip">RBAC</span><span class="chip">事件驅動</span><span class="chip">負載均衡</span><span class="chip">CDN</span>
+        </div>
+      </div>
+      <div class="skill-card fade" data-d style="--d:80ms">
+        <h3><i class="fa-solid fa-brain" aria-hidden="true"></i> AI / ML</h3>
+        <div class="chips">
+          <span class="chip">OpenAI API</span><span class="chip">Gemini API</span><span class="chip">RAG</span><span class="chip">LoRA fine-tuning</span><span class="chip">Stable Diffusion</span><span class="chip">向量資料庫</span>
+        </div>
+      </div>
+      <div class="skill-card fade" data-d style="--d:0ms">
+        <h3><i class="fa-solid fa-gears" aria-hidden="true"></i> DevOps</h3>
+        <div class="chips">
+          <span class="chip">Docker</span><span class="chip">CI/CD</span><span class="chip">Linux</span><span class="chip">Nginx</span>
+        </div>
+      </div>
+      <div class="skill-card fade" data-d style="--d:80ms">
+        <h3><i class="fa-solid fa-stethoscope" aria-hidden="true"></i> 領域知識</h3>
+        <div class="chips">
+          <span class="chip">醫療資訊系統</span><span class="chip">電商平台</span><span class="chip">醫療資料合規</span><span class="chip">HL7 / FHIR</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== EXPERIENCE ===================== -->
+  <section id="experience" class="reveal-on-scroll">
+    <span class="eyebrow fade">Experience</span>
+    <h2 class="section-title">
+      <span class="reveal-line"><span>工作經歷</span></span>
+    </h2>
+
+    <div class="exp-head fade" data-d style="--d:80ms">
+      <span class="exp-title">程式設計師 ＠ 中部區域醫院</span>
+      <span class="exp-meta">任職約 9 年 — 至今</span>
+    </div>
+
+    <ul class="exp-list">
+      <li class="exp-item fade" data-d style="--d:0ms">
+        <span class="idx">01</span>
+        <div>
+          <h4>全院行動祕書（全院通用行動 App）</h4>
+          <p>微服務架構設計，各功能模組獨立部署並透過 API Gateway 統一入口管理；RBAC 集中式權限控管，支援多角色、多部門存取隔離；Vue.js 前端 + Python / PHP 後端，Redis 快取優化高頻讀取效能；負責架構設計、開發、部署與維運全流程。</p>
+        </div>
+      </li>
+      <li class="exp-item fade" data-d style="--d:80ms">
+        <span class="idx">02</span>
+        <div>
+          <h4>個案管理系統</h4>
+          <p>跨科別病患個案追蹤平台，整合多部門護理流程與個案狀態管理；符合醫療資料安全規範，實作審計日誌與敏感欄位加密機制。</p>
+        </div>
+      </li>
+      <li class="exp-item fade" data-d style="--d:160ms">
+        <span class="idx">03</span>
+        <div>
+          <h4>學習護照系統</h4>
+          <p>全院員工學習歷程平台，支援課程管理、學習進度追蹤與認證產出；模組化設計對應醫師、護理師、行政等不同職類的差異化學習路徑。</p>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ===================== PROJECTS ===================== -->
+  <section id="work" class="reveal-on-scroll">
+    <span class="eyebrow fade">Selected Work</span>
+    <h2 class="section-title">
+      <span class="reveal-line"><span>自建作品</span></span>
+      <span class="sub fade" data-d style="--d:120ms">從零到上線，實際營運中的產品</span>
+    </h2>
+
+    <div class="proj-grid">
+      <article class="proj-card fade" data-d style="--d:0ms">
+        <div class="ph">
+          <div>
+            <h3>璐娜健康管家</h3>
+            <div class="cat">AI SaaS · LINE Bot · 健康管理</div>
+          </div>
+          <a class="lnk" href="https://luna-ai-life.com" target="_blank" rel="noopener" aria-label="開啟璐娜健康管家"><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+        </div>
+        <p class="proj-desc">整合 Gemini + OpenAI 雙引擎的 AI 健康管理平台，提供拍照熱量辨識、社交陪跑配對與個人化健康報告。</p>
+        <ul class="proj-feat">
+          <li><i class="fa-solid fa-circle" aria-hidden="true"></i> 多模態 AI 辨識食物熱量（蛋白質、碳水、脂肪、鈉）</li>
+          <li><i class="fa-solid fa-circle" aria-hidden="true"></i> AI 配對陪跑夥伴 + 遊戲化打卡獎勵系統</li>
+          <li><i class="fa-solid fa-circle" aria-hidden="true"></i> 個人化週報 / 月報含代謝評估與行動建議</li>
+          <li><i class="fa-solid fa-circle" aria-hidden="true"></i> Gemini + OpenAI 雙引擎備援架構</li>
+        </ul>
+        <div class="proj-tags">
+          <span class="t">OpenAI</span><span class="t">Gemini</span><span class="t">Vue.js</span><span class="t">Python</span><span class="t">LINE Bot</span>
+        </div>
+      </article>
+
+      <article class="proj-card fade" data-d style="--d:120ms">
+        <div class="ph">
+          <div>
+            <h3>金連發電器</h3>
+            <div class="cat">電商平台 · 家電 · 全台配送</div>
+          </div>
+          <a class="lnk" href="https://jlfshop.com" target="_blank" rel="noopener" aria-label="開啟金連發電器"><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+        </div>
+        <p class="proj-desc">完整家電購物商城，涵蓋商品管理、訂單流程、安裝 / 回收 / 運送服務整合，為實際營運中的電商系統。</p>
+        <ul class="proj-feat">
+          <li><i class="fa-solid fa-circle" aria-hidden="true"></i> 完整電商流程（商品、購物車、訂單、金流）</li>
+          <li><i class="fa-solid fa-circle" aria-hidden="true"></i> 物流整合（安裝、回收、運送服務調度）</li>
+          <li><i class="fa-solid fa-circle" aria-hidden="true"></i> Redis 快取 + CDN + 負載均衡效能優化</li>
+        </ul>
+        <div class="proj-tags">
+          <span class="t">Vue.js</span><span class="t">PHP</span><span class="t">Redis</span><span class="t">CDN</span><span class="t">MySQL</span>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ===================== HIGHLIGHTS ===================== -->
+  <section id="highlights" class="reveal-on-scroll">
+    <span class="eyebrow fade">Deep Tech</span>
+    <h2 class="section-title">
+      <span class="reveal-line"><span>特殊技術實績</span></span>
+      <span class="sub fade" data-d style="--d:120ms">不只 API 呼叫層，深入模型與系統本身</span>
+    </h2>
+
+    <div class="hl-grid">
+      <div class="hl-card fade" data-d style="--d:0ms">
+        <div class="ico"><i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i></div>
+        <h3>Stable Diffusion + LoRA 模型微調</h3>
+        <p>獨立完成圖像生成模型訓練，涵蓋資料標注、訓練參數調整至產出完整流程，具備 AI 模型層級的實戰能力，不只是 API 呼叫層。</p>
+      </div>
+      <div class="hl-card fade" data-d style="--d:120ms">
+        <div class="ico"><i class="fa-solid fa-magnifying-glass-chart" aria-hidden="true"></i></div>
+        <h3>醫療文件 RAG 系統</h3>
+        <p>將 800+ 頁原文病歷向量化，建置可語義查詢的醫療知識庫，實際用於醫療諮詢輔助，具備高精度召回率與答案可追溯性需求的處理經驗。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== EDUCATION ===================== -->
+  <section id="education" class="reveal-on-scroll">
+    <span class="eyebrow fade">Education</span>
+    <h2 class="section-title">
+      <span class="reveal-line"><span>學歷</span></span>
+    </h2>
+    <div class="edu fade" data-d style="--d:80ms">
+      <div class="ico"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i></div>
+      <div>
+        <div class="deg">中山醫學大學 · 醫學資訊學系</div>
+        <div class="meta">學士</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CONTACT ===================== -->
+  <section id="contact" class="reveal-on-scroll">
+    <span class="eyebrow fade">Get in touch</span>
+    <h2 class="contact-cta">
+      <span class="reveal-line"><span>聯繫</span></span>
+      <span class="reveal-line"><span><a href="mailto:serviceluna@luna-ai-life.com">Let&rsquo;s talk</a></span></span>
+    </h2>
+    <div class="contact-links fade" data-d style="--d:120ms">
+      <a class="clink" href="mailto:serviceluna@luna-ai-life.com"><i class="fa-regular fa-envelope" aria-hidden="true"></i> serviceluna@luna-ai-life.com</a>
+      <a class="clink" href="https://luna-ai-life.com" target="_blank" rel="noopener"><i class="fa-solid fa-heart-pulse" aria-hidden="true"></i> 璐娜健康管家</a>
+      <a class="clink" href="https://jlfshop.com" target="_blank" rel="noopener"><i class="fa-solid fa-bag-shopping" aria-hidden="true"></i> 金連發電器</a>
+      <a class="clink" href="https://github.com/" target="_blank" rel="noopener"><i class="fa-brands fa-github" aria-hidden="true"></i> GitHub</a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">© 2026 Ian Cheng</div>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* ---------- Scroll progress ---------- */
+  var progress = document.getElementById("progress");
+  function onScroll() {
+    var h = document.documentElement;
+    var max = h.scrollHeight - h.clientHeight;
+    var pct = max > 0 ? (h.scrollTop || document.body.scrollTop) / max * 100 : 0;
+    progress.style.width = pct + "%";
+  }
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+
+  /* ---------- Reveal on scroll ---------- */
+  var revealEls = document.querySelectorAll(".reveal-on-scroll, .reveal-line, .fade");
+  if ("IntersectionObserver" in window && !reduce) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          e.target.classList.add("in-view");
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: "0px 0px -8% 0px" });
+    revealEls.forEach(function (el) { io.observe(el); });
+  } else {
+    // No IO support or reduced motion: show everything immediately
+    revealEls.forEach(function (el) { el.classList.add("in-view"); });
+  }
+
+  /* ---------- Number counters ---------- */
+  var counters = document.querySelectorAll(".count");
+  function animateCount(el) {
+    var to = parseInt(el.getAttribute("data-to"), 10) || 0;
+    if (reduce) { el.textContent = to; return; }
+    var dur = 1400, start = null;
+    function step(ts) {
+      if (!start) start = ts;
+      var p = Math.min((ts - start) / dur, 1);
+      var eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(eased * to);
+      if (p < 1) requestAnimationFrame(step);
+      else el.textContent = to;
+    }
+    requestAnimationFrame(step);
+  }
+  if ("IntersectionObserver" in window) {
+    var cio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { animateCount(e.target); cio.unobserve(e.target); }
+      });
+    }, { threshold: 0.6 });
+    counters.forEach(function (c) { cio.observe(c); });
+  } else {
+    counters.forEach(function (c) { c.textContent = c.getAttribute("data-to"); });
+  }
+
+  /* ---------- Name scramble / decode ---------- */
+  var scrambles = document.querySelectorAll(".scramble");
+  var glyphs = "ABCDEFGHIJKLMNOPQRSTUVWXYZ#$%&*<>/01".split("");
+  function scrambleTo(el, final, delay) {
+    if (reduce) { el.textContent = final; return; }
+    var len = final.length;
+    var frame = 0;
+    var settle = []; // frame at which each char locks
+    for (var i = 0; i < len; i++) settle[i] = 8 + i * 3 + Math.floor(Math.random() * 4);
+    var maxFrames = Math.max.apply(null, settle) + 2;
+    function tick() {
+      var out = "";
+      for (var i = 0; i < len; i++) {
+        var ch = final.charAt(i);
+        if (ch === " ") { out += " "; continue; }
+        if (frame >= settle[i]) { out += ch; }
+        else { out += glyphs[Math.floor(Math.random() * glyphs.length)]; }
+      }
+      el.textContent = out;
+      frame++;
+      if (frame <= maxFrames) {
+        setTimeout(function () { requestAnimationFrame(tick); }, 38);
+      } else {
+        el.textContent = final; // guarantee correct final text
+      }
+    }
+    setTimeout(function () { requestAnimationFrame(tick); }, delay || 0);
+  }
+  scrambles.forEach(function (el, idx) {
+    var final = el.getAttribute("data-final") || el.textContent;
+    el.textContent = final; // safe default if JS races / fails
+    scrambleTo(el, final, 250 + idx * 350);
+  });
+
+  /* ---------- Marquee: duplicate track for seamless loop ---------- */
+  if (!reduce) {
+    document.querySelectorAll("[data-marquee]").forEach(function (track) {
+      track.innerHTML = track.innerHTML + track.innerHTML;
+    });
+  }
+})();
+</script>
+</body>
+</html>

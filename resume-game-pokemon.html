@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ian Cheng — 訓練家圖鑑 ｜ 資深全端工程師 &amp; AI 工程師</title>
+<meta name="description" content="Ian Cheng — 資深全端工程師 &amp; AI 工程師。10 年開發經驗，擅長 AI 產品落地、微服務架構設計，具備從零到上線的完整交付能力。以寶可夢圖鑑風格呈現的互動式履歷。" />
+<meta name="author" content="Ian Cheng" />
+<meta name="keywords" content="Ian Cheng, 全端工程師, AI 工程師, 微服務, RAG, LoRA, Stable Diffusion, Tech Lead, Solution Architect, 履歷" />
+<meta name="theme-color" content="#0f380f" />
+<meta name="robots" content="index,follow" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="profile" />
+<meta property="og:title" content="Ian Cheng — 資深全端工程師 &amp; AI 工程師" />
+<meta property="og:description" content="10 年開發經驗，擅長 AI 產品落地、微服務架構設計，具備從零到上線的完整交付能力。" />
+<meta property="og:locale" content="zh_TW" />
+<meta property="profile:first_name" content="Ian" />
+<meta property="profile:last_name" content="Cheng" />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="Ian Cheng — 資深全端工程師 &amp; AI 工程師" />
+<meta name="twitter:description" content="10 年開發經驗，擅長 AI 產品落地、微服務架構設計，具備從零到上線的完整交付能力。" />
+
+<!-- Favicon: data URI SVG (Game Boy 綠屏像素 Poké Ball) -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%3E%3Crect%20width='32'%20height='32'%20fill='%239bbc0f'/%3E%3Ccircle%20cx='16'%20cy='16'%20r='11'%20fill='%230f380f'/%3E%3Crect%20x='4'%20y='14'%20width='24'%20height='4'%20fill='%239bbc0f'/%3E%3Ccircle%20cx='16'%20cy='16'%20r='3'%20fill='%239bbc0f'/%3E%3C/svg%3E" />
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet" />
+
+<!-- Font Awesome (cdnjs) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" referrerpolicy="no-referrer" />
+
+<style>
+/* ============ Game Boy 4-shade green palette ============ */
+:root{
+  --gb-darkest:#0f380f;
+  --gb-dark:#306230;
+  --gb-light:#8bac0f;
+  --gb-lightest:#9bbc0f;
+  --gb-screen:#c4cfa1;     /* DMG washed screen */
+  --ink:#0f380f;
+  --paper:#dbe8b1;
+  --shadow:rgba(15,56,15,.35);
+  /* type colors (寶可夢屬性) */
+  --t-ghost:#7b62a3;
+  --t-steel:#8a99a8;
+  --t-water:#4f8fd6;
+  --t-electric:#e6b800;
+  --t-fire:#d96b3a;
+  --t-psychic:#cf5f8f;
+  --radius:0;
+  --pixel:2px;
+}
+
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;
+  font-family:'Noto Sans TC',sans-serif;
+  background:
+    repeating-linear-gradient(0deg, #0b2a0b 0 2px, #0d300d 2px 4px),
+    var(--gb-darkest);
+  color:var(--ink);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  padding:0;
+  min-height:100vh;
+}
+.font-pixel{font-family:'Press Start 2P',monospace;}
+.font-mono{font-family:'VT323',monospace;}
+
+/* ============ Layout shell — Game Boy console frame ============ */
+.console{
+  max-width:1000px;
+  margin:0 auto;
+  padding:clamp(12px,3vw,28px);
+}
+.shell{
+  background:var(--gb-screen);
+  border:4px solid var(--gb-darkest);
+  box-shadow:
+    0 0 0 4px var(--gb-light),
+    0 0 0 8px var(--gb-darkest),
+    8px 8px 0 8px var(--shadow);
+  padding:clamp(14px,3vw,30px);
+  position:relative;
+}
+.shell::before{
+  content:"DEX // TRAINER ID No.010";
+  position:absolute;top:-26px;left:0;
+  font-family:'Press Start 2P',monospace;
+  font-size:8px;color:var(--gb-light);
+  letter-spacing:1px;
+}
+
+/* pixel border helper */
+.pxbox{
+  background:var(--paper);
+  border:3px solid var(--gb-darkest);
+  box-shadow:4px 4px 0 var(--gb-dark);
+  position:relative;
+}
+
+/* ============ Section headings ============ */
+.sec{margin:34px 0;}
+.sec-title{
+  font-family:'Press Start 2P',monospace;
+  font-size:clamp(11px,2.4vw,15px);
+  color:var(--gb-darkest);
+  background:var(--gb-light);
+  display:inline-block;
+  padding:8px 12px;
+  border:3px solid var(--gb-darkest);
+  box-shadow:3px 3px 0 var(--gb-dark);
+  margin-bottom:18px;
+  line-height:1.4;
+}
+.sec-title i{margin-right:8px;}
+
+/* ============ Trainer card (Hero) ============ */
+.trainer{
+  display:grid;
+  grid-template-columns:auto 1fr;
+  gap:clamp(14px,3vw,26px);
+  padding:clamp(16px,3vw,26px);
+  align-items:center;
+}
+.trainer-sprite{
+  width:120px;height:120px;flex:none;
+  background:var(--gb-dark);
+  border:4px solid var(--gb-darkest);
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:inset 0 0 0 4px var(--gb-light);
+}
+.trainer-sprite svg{width:78px;height:78px;}
+.trainer-name{
+  font-family:'Press Start 2P',monospace;
+  font-size:clamp(16px,4vw,30px);
+  color:var(--gb-darkest);
+  line-height:1.35;
+  padding-bottom:4px;
+  margin:0 0 6px;
+}
+.trainer-role{
+  font-weight:900;font-size:clamp(14px,2.6vw,18px);
+  color:var(--gb-dark);margin-bottom:10px;
+}
+.trainer-tag{
+  font-size:clamp(13px,2.2vw,15px);
+  color:var(--ink);max-width:60ch;margin-bottom:14px;
+}
+.status-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;}
+.status-pill{
+  font-family:'VT323',monospace;font-size:18px;
+  background:var(--gb-darkest);color:var(--gb-lightest);
+  padding:4px 12px;border:2px solid var(--gb-darkest);
+  display:inline-flex;align-items:center;gap:8px;
+}
+.status-pill.live::before{
+  content:"";width:9px;height:9px;background:var(--gb-lightest);
+  border-radius:50%;animation:blink 1.1s steps(2) infinite;
+}
+.status-pill a{color:var(--gb-lightest);text-decoration:none;}
+.status-pill a:hover{text-decoration:underline;}
+@keyframes blink{50%{opacity:.2;}}
+
+/* badges row (徽章列) */
+.badges{margin-top:18px;}
+.badges-label{
+  font-family:'Press Start 2P',monospace;font-size:9px;
+  color:var(--gb-dark);margin-bottom:10px;display:block;letter-spacing:1px;
+}
+.badge-list{display:flex;flex-wrap:wrap;gap:12px;}
+.badge{
+  display:flex;align-items:center;gap:10px;
+  background:var(--gb-screen);
+  border:3px solid var(--gb-darkest);
+  box-shadow:3px 3px 0 var(--gb-dark);
+  padding:8px 12px;max-width:320px;cursor:default;
+  transition:transform .12s;
+}
+.badge:hover{transform:translate(-1px,-1px);}
+.badge-icon{
+  width:34px;height:34px;flex:none;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  border:3px solid var(--gb-darkest);color:#fff;font-size:14px;
+}
+.badge-text b{display:block;font-size:13px;line-height:1.3;color:var(--gb-darkest);}
+.badge-text span{font-size:11px;color:var(--gb-dark);}
+
+/* ============ Mode toggle / full-text controls ============ */
+.controls{
+  display:flex;flex-wrap:wrap;gap:10px;
+  margin:22px 0 4px;align-items:center;
+}
+.btn{
+  font-family:'Press Start 2P',monospace;font-size:9px;
+  color:var(--gb-darkest);background:var(--gb-light);
+  border:3px solid var(--gb-darkest);
+  box-shadow:3px 3px 0 var(--gb-dark);
+  padding:10px 12px;cursor:pointer;line-height:1.4;
+  transition:transform .1s,box-shadow .1s;
+}
+.btn:hover{transform:translate(-1px,-1px);box-shadow:4px 4px 0 var(--gb-dark);}
+.btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--gb-dark);}
+.btn[aria-pressed="true"]{background:var(--gb-dark);color:var(--gb-lightest);}
+.hint{font-family:'VT323',monospace;font-size:18px;color:var(--gb-dark);}
+
+/* ============ Stats (數據亮點，滾動數字) ============ */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+.stat{
+  background:var(--gb-darkest);color:var(--gb-lightest);
+  border:3px solid var(--gb-darkest);box-shadow:4px 4px 0 var(--gb-dark);
+  padding:16px 10px;text-align:center;
+}
+.stat .num{
+  font-family:'Press Start 2P',monospace;
+  font-size:clamp(15px,3.4vw,24px);line-height:1.4;
+  padding-bottom:4px;display:block;
+}
+.stat .lbl{font-size:12px;margin-top:8px;color:var(--gb-light);line-height:1.4;}
+
+/* ============ Team (技能 = 6 隻寶可夢) ============ */
+.team{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+.mon{
+  background:var(--paper);
+  border:3px solid var(--gb-darkest);
+  box-shadow:4px 4px 0 var(--gb-dark);
+  padding:14px;text-align:center;cursor:pointer;
+  transition:transform .12s,box-shadow .12s;
+  position:relative;
+}
+.mon:hover,.mon:focus-visible{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--gb-dark);outline:none;}
+.mon:focus-visible{outline:3px dashed var(--gb-dark);outline-offset:3px;}
+.mon-dex{font-family:'VT323',monospace;font-size:17px;color:var(--gb-dark);}
+.mon-sprite{
+  width:74px;height:74px;margin:6px auto;
+  border:3px solid var(--gb-darkest);
+  display:flex;align-items:center;justify-content:center;color:#fff;
+}
+.mon-sprite svg{width:44px;height:44px;}
+.mon-name{font-family:'Press Start 2P',monospace;font-size:9px;color:var(--gb-darkest);line-height:1.5;padding-bottom:2px;}
+.mon-cat{font-size:12px;color:var(--gb-dark);margin-top:4px;}
+.type-chip{
+  display:inline-block;font-family:'VT323',monospace;font-size:15px;
+  color:#fff;padding:1px 8px;margin-top:6px;
+  border:2px solid var(--gb-darkest);
+}
+.mon-tap{font-family:'VT323',monospace;font-size:14px;color:var(--gb-dark);margin-top:6px;opacity:.85;}
+
+/* type bg classes */
+.t-ghost{background:var(--t-ghost);}
+.t-steel{background:var(--t-steel);}
+.t-water{background:var(--t-water);}
+.t-electric{background:var(--t-electric);color:var(--gb-darkest)!important;}
+.t-fire{background:var(--t-fire);}
+.t-psychic{background:var(--t-psychic);}
+
+/* ============ Dialog (圖鑑詳情 / 對話框) ============ */
+.dlg-backdrop{
+  position:fixed;inset:0;background:rgba(15,56,15,.78);
+  display:none;align-items:center;justify-content:center;
+  z-index:50;padding:16px;
+}
+.dlg-backdrop.open{display:flex;}
+.dlg{
+  background:var(--gb-screen);
+  border:4px solid var(--gb-darkest);
+  box-shadow:0 0 0 4px var(--gb-light),0 0 0 8px var(--gb-darkest),10px 10px 0 var(--shadow);
+  max-width:560px;width:100%;max-height:86vh;overflow:auto;padding:22px;
+}
+.dlg-head{display:flex;align-items:center;gap:14px;margin-bottom:14px;}
+.dlg-sprite{width:60px;height:60px;flex:none;border:3px solid var(--gb-darkest);display:flex;align-items:center;justify-content:center;color:#fff;}
+.dlg-sprite svg{width:36px;height:36px;}
+.dlg-title{font-family:'Press Start 2P',monospace;font-size:12px;color:var(--gb-darkest);line-height:1.5;padding-bottom:2px;}
+.dlg-sub{font-size:13px;color:var(--gb-dark);margin-top:4px;}
+.dlg-body p{font-size:14px;}
+.dlg-list{list-style:none;padding:0;margin:10px 0 0;}
+.dlg-list li{
+  font-size:14px;padding:8px 10px 8px 28px;position:relative;
+  border-bottom:2px dotted var(--gb-dark);
+}
+.dlg-list li::before{
+  content:"\f0a9";font-family:"Font Awesome 6 Free";font-weight:900;
+  position:absolute;left:8px;top:8px;color:var(--gb-dark);font-size:12px;
+}
+.dlg-close{
+  margin-top:18px;width:100%;
+  font-family:'Press Start 2P',monospace;font-size:10px;
+  background:var(--gb-light);border:3px solid var(--gb-darkest);
+  box-shadow:3px 3px 0 var(--gb-dark);color:var(--gb-darkest);
+  padding:12px;cursor:pointer;line-height:1.4;
+}
+.dlg-close:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--gb-dark);}
+
+/* ============ About (對話框文字) ============ */
+.about-box{padding:18px clamp(16px,3vw,24px);}
+.about-box p{font-size:15px;margin:0 0 14px;}
+.about-box p:last-child{margin-bottom:0;}
+.about-box p::before{content:"\25B8";color:var(--gb-dark);margin-right:8px;}
+
+/* ============ Gym (工作經歷，可展開) ============ */
+.gym{margin-bottom:14px;}
+.gym summary{
+  list-style:none;cursor:pointer;padding:14px 16px;
+  display:flex;align-items:center;gap:12px;
+  background:var(--gb-dark);color:var(--gb-lightest);
+  border:3px solid var(--gb-darkest);box-shadow:4px 4px 0 var(--gb-darkest);
+}
+.gym summary::-webkit-details-marker{display:none;}
+.gym summary .gicon{
+  width:38px;height:38px;flex:none;background:var(--gb-screen);
+  border:2px solid var(--gb-darkest);display:flex;align-items:center;justify-content:center;
+  color:var(--gb-darkest);font-size:16px;
+}
+.gym summary .gtxt b{display:block;font-family:'Press Start 2P',monospace;font-size:10px;line-height:1.5;padding-bottom:2px;}
+.gym summary .gtxt span{font-size:13px;color:var(--gb-light);}
+.gym summary .chev{margin-left:auto;font-family:'VT323',monospace;font-size:20px;}
+.gym[open] summary .chev{transform:rotate(90deg);}
+.gym-body{
+  background:var(--paper);border:3px solid var(--gb-darkest);border-top:none;
+  box-shadow:4px 4px 0 var(--gb-dark);padding:16px;
+}
+.battle{margin-bottom:16px;}
+.battle:last-child{margin-bottom:0;}
+.battle h4{
+  font-size:14px;margin:0 0 6px;color:var(--gb-darkest);
+  display:flex;align-items:center;gap:8px;
+}
+.battle h4 i{color:var(--gb-dark);}
+.battle p{font-size:14px;margin:0;color:var(--ink);}
+
+/* ============ Pokédex entries (作品，翻頁) ============ */
+.dexbook{
+  background:var(--paper);border:3px solid var(--gb-darkest);
+  box-shadow:5px 5px 0 var(--gb-dark);padding:18px;
+}
+.dex-nav{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px;}
+.dex-arrow{
+  font-family:'Press Start 2P',monospace;font-size:11px;
+  background:var(--gb-light);border:3px solid var(--gb-darkest);
+  box-shadow:3px 3px 0 var(--gb-dark);color:var(--gb-darkest);
+  padding:10px 14px;cursor:pointer;
+}
+.dex-arrow:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--gb-dark);}
+.dex-arrow[disabled]{opacity:.4;cursor:not-allowed;}
+.dex-counter{font-family:'VT323',monospace;font-size:20px;color:var(--gb-dark);}
+.dex-page{display:none;}
+.dex-page.active{display:block;animation:fadein .25s;}
+@keyframes fadein{from{opacity:0;}to{opacity:1;}}
+.dex-page h3{
+  font-family:'Press Start 2P',monospace;font-size:12px;color:var(--gb-darkest);
+  line-height:1.5;padding-bottom:2px;margin:0 0 6px;
+}
+.dex-meta{font-size:13px;color:var(--gb-dark);margin-bottom:10px;font-weight:700;}
+.dex-page p{font-size:14px;margin:0 0 10px;}
+.dex-feat{list-style:none;padding:0;margin:0 0 12px;}
+.dex-feat li{font-size:14px;padding:6px 0 6px 24px;position:relative;border-bottom:1px dotted var(--gb-dark);}
+.dex-feat li::before{content:"\f111";font-family:"Font Awesome 6 Free";font-weight:900;font-size:8px;position:absolute;left:6px;top:11px;color:var(--gb-dark);}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px;}
+.tag{font-family:'VT323',monospace;font-size:16px;background:var(--gb-dark);color:var(--gb-lightest);padding:2px 10px;border:2px solid var(--gb-darkest);}
+.dex-link{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:'Press Start 2P',monospace;font-size:9px;
+  background:var(--gb-darkest);color:var(--gb-lightest);
+  border:3px solid var(--gb-darkest);box-shadow:3px 3px 0 var(--gb-dark);
+  padding:10px 12px;text-decoration:none;line-height:1.4;
+}
+.dex-link:hover{background:var(--gb-dark);}
+
+/* ============ Education / Contact / Footer ============ */
+.simple-card{padding:18px;}
+.simple-card p{font-size:15px;margin:0;}
+.contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;}
+.contact-item{
+  display:flex;align-items:center;gap:12px;padding:14px;
+  background:var(--paper);border:3px solid var(--gb-darkest);box-shadow:3px 3px 0 var(--gb-dark);
+}
+.contact-item i{font-size:18px;color:var(--gb-dark);width:24px;text-align:center;}
+.contact-item a,.contact-item span{font-size:14px;color:var(--ink);text-decoration:none;word-break:break-all;}
+.contact-item a:hover{text-decoration:underline;}
+footer{text-align:center;margin-top:30px;padding:18px;}
+footer p{font-family:'VT323',monospace;font-size:18px;color:var(--gb-light);margin:0;}
+
+/* ============ Full-text reveal (檢視全文) ============ */
+.fulltext{display:none;}
+body.show-fulltext .fulltext{display:block;}
+.fulltext-note{
+  font-size:13px;color:var(--gb-dark);font-style:italic;margin:6px 0 12px;
+}
+.ft-block{margin-bottom:16px;}
+.ft-block h4{font-size:14px;margin:0 0 4px;color:var(--gb-darkest);}
+.ft-block ul{margin:4px 0;padding-left:22px;}
+.ft-block li,.ft-block p{font-size:14px;}
+
+/* ============ Responsive ============ */
+@media(max-width:760px){
+  .stats{grid-template-columns:repeat(2,1fr);}
+  .team{grid-template-columns:repeat(2,1fr);}
+  .trainer{grid-template-columns:1fr;text-align:center;justify-items:center;}
+  .trainer-tag{margin-left:auto;margin-right:auto;}
+  .status-row,.badge-list{justify-content:center;}
+}
+@media(max-width:430px){
+  .team{grid-template-columns:1fr;}
+  .shell::before{font-size:7px;}
+}
+
+/* ============ Reduced motion -> 靜態文件版 ============ */
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto;}
+  *{animation:none!important;transition:none!important;}
+  body{padding-top:0;}
+  /* 自動展開全文，確保純文件可讀 */
+  body{}
+}
+.reduced .fulltext{display:block;}
+
+/* ============ Print: 乾淨全文 ============ */
+@media print{
+  body{background:#fff;color:#000;}
+  .shell{box-shadow:none;border:1px solid #000;background:#fff;}
+  .shell::before,.controls,.dex-nav,.mon-tap,.dlg-backdrop,.hint,.dex-link i,.status-pill::before{display:none!important;}
+  .pxbox,.mon,.stat,.gym summary,.gym-body,.dexbook,.contact-item,.badge{
+    box-shadow:none!important;border:1px solid #000!important;background:#fff!important;color:#000!important;
+  }
+  .stat,.status-pill,.tag,.gym summary{color:#000!important;}
+  .sec-title{background:#fff;color:#000;border:1px solid #000;box-shadow:none;}
+  .dex-page{display:block!important;}
+  .gym-body{display:block!important;}
+  .fulltext{display:block!important;}
+  .team,.dex-page.active~.dex-page{}
+  a{color:#000;text-decoration:underline;}
+  .font-pixel,.trainer-name,.mon-name,.dex-page h3,.gym summary .gtxt b{font-family:'Noto Sans TC',sans-serif!important;}
+}
+</style>
+</head>
+<body>
+<div class="console">
+<main class="shell" role="main">
+
+  <!-- ===================== HERO / TRAINER CARD ===================== -->
+  <header class="pxbox trainer" id="top">
+    <div class="trainer-sprite" aria-hidden="true">
+      <!-- inline SVG pixel trainer -->
+      <svg viewBox="0 0 16 16" fill="none" shape-rendering="crispEdges">
+        <rect x="5" y="1" width="6" height="2" fill="#306230"/>
+        <rect x="4" y="3" width="8" height="3" fill="#9bbc0f"/>
+        <rect x="6" y="4" width="1" height="1" fill="#0f380f"/>
+        <rect x="9" y="4" width="1" height="1" fill="#0f380f"/>
+        <rect x="5" y="6" width="6" height="5" fill="#306230"/>
+        <rect x="4" y="7" width="1" height="3" fill="#8bac0f"/>
+        <rect x="11" y="7" width="1" height="3" fill="#8bac0f"/>
+        <rect x="6" y="11" width="2" height="4" fill="#0f380f"/>
+        <rect x="8" y="11" width="2" height="4" fill="#0f380f"/>
+      </svg>
+    </div>
+    <div class="trainer-info">
+      <h1 class="trainer-name">Ian Cheng</h1>
+      <p class="trainer-role">資深全端工程師 &amp; AI 工程師</p>
+      <p class="trainer-tag">10 年開發經驗，擅長 AI 產品落地、微服務架構設計，具備從零到上線的完整交付能力。</p>
+      <div class="status-row">
+        <span class="status-pill live">Available for opportunities</span>
+        <span class="status-pill"><i class="fa-solid fa-envelope" aria-hidden="true"></i><a href="mailto:serviceluna@luna-ai-life.com">serviceluna@luna-ai-life.com</a></span>
+      </div>
+
+      <!-- badges = 特殊技術實績 -->
+      <div class="badges">
+        <span class="badges-label">GYM BADGES // 特殊技術實績</span>
+        <div class="badge-list">
+          <div class="badge">
+            <span class="badge-icon" style="background:var(--t-psychic)"><i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i></span>
+            <span class="badge-text"><b>Stable Diffusion + LoRA 模型微調</b><span>圖像生成模型訓練徽章</span></span>
+          </div>
+          <div class="badge">
+            <span class="badge-icon" style="background:var(--t-ghost)"><i class="fa-solid fa-book-medical" aria-hidden="true"></i></span>
+            <span class="badge-text"><b>醫療文件 RAG 系統</b><span>800+ 頁向量化知識庫徽章</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===================== CONTROLS ===================== -->
+  <div class="controls">
+    <button class="btn" id="toggleFull" aria-pressed="false">圖鑑全覽 / 檢視全文</button>
+    <button class="btn" id="toggleMotion" aria-pressed="false">動態：開</button>
+    <a class="btn" href="#contact" style="text-decoration:none;display:inline-flex;align-items:center;">前往聯繫 ▸</a>
+  </div>
+  <p class="hint">提示：不玩互動也沒關係 — 按「圖鑑全覽 / 檢視全文」可一次讀到全部內容。</p>
+
+  <!-- ===================== STATS ===================== -->
+  <section class="sec" aria-label="數據亮點">
+    <h2 class="sec-title"><i class="fa-solid fa-chart-simple" aria-hidden="true"></i>STATS</h2>
+    <div class="stats">
+      <div class="stat"><span class="num" data-to="10" data-suffix="+">0</span><span class="lbl">年開發經驗</span></div>
+      <div class="stat"><span class="num" data-to="5" data-suffix="+">0</span><span class="lbl">大型專案交付</span></div>
+      <div class="stat"><span class="num" data-to="2" data-suffix="">0</span><span class="lbl">自建產品上線</span></div>
+      <div class="stat"><span class="num" data-to="3" data-suffix="">0</span><span class="lbl">AI 整合實戰</span></div>
+    </div>
+  </section>
+
+  <!-- ===================== ABOUT ===================== -->
+  <section class="sec" aria-label="關於我">
+    <h2 class="sec-title"><i class="fa-solid fa-comment-dots" aria-hidden="true"></i>ABOUT</h2>
+    <div class="pxbox about-box">
+      <p>10 年全端工程師，具備從系統架構設計到 AI 產品落地的端對端能力。曾在中部區域醫院主導多項院內大型系統開發，採微服務架構 + API Gateway + RBAC 集中控管，支援全院多部門運作。</p>
+      <p>自行開發並上線 璐娜健康管家（AI 健康 SaaS）與金連發電器（家電電商），整合 Gemini + OpenAI 多模態雙引擎。具備 Stable Diffusion + LoRA 模型微調及 RAG 系統建置實戰經驗，熟悉醫療資料處理與合規需求。</p>
+      <p>背景橫跨醫療資訊、電商、AI 三個領域，能同時勝任技術深度討論與跨部門架構溝通。目前積極尋求 AI 工程師 / Tech Lead / Solution Architect 相關機會。</p>
+    </div>
+  </section>
+
+  <!-- ===================== TEAM (SKILLS) ===================== -->
+  <section class="sec" aria-label="核心技能隊伍">
+    <h2 class="sec-title"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i>PARTY // 核心技能</h2>
+    <p class="hint" style="margin:0 0 14px;">點擊任一隻寶可夢，打開圖鑑詳情看該分類的所有技能。</p>
+    <div class="team" id="team"><!-- monsters injected by JS, fallback below for no-JS --></div>
+
+    <!-- No-JS / full-text fallback for skills -->
+    <noscript>
+      <div class="pxbox about-box">
+        <p><b>程式語言：</b>Python、Vue.js、PHP、JavaScript、HTML / CSS</p>
+        <p><b>資料庫：</b>MySQL、PostgreSQL、MongoDB、Redis</p>
+        <p><b>系統架構：</b>微服務、API Gateway、RBAC、事件驅動、負載均衡、CDN</p>
+        <p><b>AI / ML：</b>OpenAI API、Gemini API、RAG、LoRA fine-tuning、Stable Diffusion、向量資料庫</p>
+        <p><b>DevOps：</b>Docker、CI/CD、Linux、Nginx</p>
+        <p><b>領域知識：</b>醫療資訊系統、電商平台、醫療資料合規、HL7 / FHIR</p>
+      </div>
+    </noscript>
+  </section>
+
+  <!-- ===================== GYM RECORDS (EXPERIENCE) ===================== -->
+  <section class="sec" aria-label="工作經歷">
+    <h2 class="sec-title"><i class="fa-solid fa-trophy" aria-hidden="true"></i>GYM LOG // 道館戰紀錄</h2>
+    <details class="gym" open>
+      <summary>
+        <span class="gicon"><i class="fa-solid fa-hospital" aria-hidden="true"></i></span>
+        <span class="gtxt"><b>程式設計師 ＠ 中部區域醫院</b><span>任職約 9 年 — 至今</span></span>
+        <span class="chev" aria-hidden="true">▸</span>
+      </summary>
+      <div class="gym-body">
+        <div class="battle">
+          <h4><i class="fa-solid fa-mobile-screen-button" aria-hidden="true"></i>全院行動祕書（全院通用行動 App）</h4>
+          <p>微服務架構設計，各功能模組獨立部署並透過 API Gateway 統一入口管理；RBAC 集中式權限控管，支援多角色、多部門存取隔離；Vue.js 前端 + Python / PHP 後端，Redis 快取優化高頻讀取效能；負責架構設計、開發、部署與維運全流程。</p>
+        </div>
+        <div class="battle">
+          <h4><i class="fa-solid fa-user-nurse" aria-hidden="true"></i>個案管理系統</h4>
+          <p>跨科別病患個案追蹤平台，整合多部門護理流程與個案狀態管理；符合醫療資料安全規範，實作審計日誌與敏感欄位加密機制。</p>
+        </div>
+        <div class="battle">
+          <h4><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i>學習護照系統</h4>
+          <p>全院員工學習歷程平台，支援課程管理、學習進度追蹤與認證產出；模組化設計對應醫師、護理師、行政等不同職類的差異化學習路徑。</p>
+        </div>
+      </div>
+    </details>
+  </section>
+
+  <!-- ===================== POKÉDEX ENTRIES (PROJECTS) ===================== -->
+  <section class="sec" aria-label="自建作品圖鑑">
+    <h2 class="sec-title"><i class="fa-solid fa-book-open" aria-hidden="true"></i>POKéDEX // 自建作品</h2>
+    <div class="dexbook">
+      <div class="dex-nav">
+        <button class="dex-arrow" id="dexPrev" aria-label="上一頁">◂ PREV</button>
+        <span class="dex-counter" id="dexCounter">No.001 / 002</span>
+        <button class="dex-arrow" id="dexNext" aria-label="下一頁">NEXT ▸</button>
+      </div>
+
+      <article class="dex-page active" data-page="0">
+        <h3>璐娜健康管家</h3>
+        <p class="dex-meta">No.001 · AI SaaS · LINE Bot · 健康管理</p>
+        <p>整合 Gemini + OpenAI 雙引擎的 AI 健康管理平台，提供拍照熱量辨識、社交陪跑配對與個人化健康報告。</p>
+        <ul class="dex-feat">
+          <li>多模態 AI 辨識食物熱量（蛋白質、碳水、脂肪、鈉）</li>
+          <li>AI 配對陪跑夥伴 + 遊戲化打卡獎勵系統</li>
+          <li>個人化週報 / 月報含代謝評估與行動建議</li>
+          <li>Gemini + OpenAI 雙引擎備援架構</li>
+        </ul>
+        <div class="tags">
+          <span class="tag">OpenAI</span><span class="tag">Gemini</span><span class="tag">Vue.js</span><span class="tag">Python</span><span class="tag">LINE Bot</span>
+        </div>
+        <a class="dex-link" href="https://luna-ai-life.com" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i>luna-ai-life.com</a>
+      </article>
+
+      <article class="dex-page" data-page="1">
+        <h3>金連發電器</h3>
+        <p class="dex-meta">No.002 · 電商平台 · 家電 · 全台配送</p>
+        <p>完整家電購物商城，涵蓋商品管理、訂單流程、安裝 / 回收 / 運送服務整合，為實際營運中的電商系統。</p>
+        <ul class="dex-feat">
+          <li>完整電商流程（商品、購物車、訂單、金流）</li>
+          <li>物流整合（安裝、回收、運送服務調度）</li>
+          <li>Redis 快取 + CDN + 負載均衡效能優化</li>
+        </ul>
+        <div class="tags">
+          <span class="tag">Vue.js</span><span class="tag">PHP</span><span class="tag">Redis</span><span class="tag">CDN</span><span class="tag">MySQL</span>
+        </div>
+        <a class="dex-link" href="https://jlfshop.com" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i>jlfshop.com</a>
+      </article>
+    </div>
+  </section>
+
+  <!-- ===================== SPECIAL ACHIEVEMENTS (full detail) ===================== -->
+  <section class="sec" aria-label="特殊技術實績">
+    <h2 class="sec-title"><i class="fa-solid fa-medal" aria-hidden="true"></i>BADGES // 特殊技術實績</h2>
+    <div class="pxbox about-box">
+      <div class="ft-block">
+        <h4><i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true" style="color:var(--t-psychic)"></i> Stable Diffusion + LoRA 模型微調</h4>
+        <p>獨立完成圖像生成模型訓練，涵蓋資料標注、訓練參數調整至產出完整流程，具備 AI 模型層級的實戰能力，不只是 API 呼叫層。</p>
+      </div>
+      <div class="ft-block">
+        <h4><i class="fa-solid fa-book-medical" aria-hidden="true" style="color:var(--t-ghost)"></i> 醫療文件 RAG 系統</h4>
+        <p>將 800+ 頁原文病歷向量化，建置可語義查詢的醫療知識庫，實際用於醫療諮詢輔助，具備高精度召回率與答案可追溯性需求的處理經驗。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== EDUCATION ===================== -->
+  <section class="sec" aria-label="學歷">
+    <h2 class="sec-title"><i class="fa-solid fa-school" aria-hidden="true"></i>EDU // 學歷</h2>
+    <div class="pxbox simple-card">
+      <p><b>中山醫學大學</b> · 醫學資訊學系 · 學士</p>
+    </div>
+  </section>
+
+  <!-- ===================== CONTACT ===================== -->
+  <section class="sec" aria-label="聯繫" id="contact">
+    <h2 class="sec-title"><i class="fa-solid fa-paper-plane" aria-hidden="true"></i>CONTACT // 聯繫</h2>
+    <div class="contact-grid">
+      <div class="contact-item"><i class="fa-solid fa-envelope" aria-hidden="true"></i><a href="mailto:serviceluna@luna-ai-life.com">serviceluna@luna-ai-life.com</a></div>
+      <div class="contact-item"><i class="fa-solid fa-heart-pulse" aria-hidden="true"></i><a href="https://luna-ai-life.com" target="_blank" rel="noopener noreferrer">璐娜健康管家</a></div>
+      <div class="contact-item"><i class="fa-solid fa-store" aria-hidden="true"></i><a href="https://jlfshop.com" target="_blank" rel="noopener noreferrer">金連發電器</a></div>
+      <div class="contact-item"><i class="fa-brands fa-github" aria-hidden="true"></i><a href="https://github.com/" target="_blank" rel="noopener noreferrer">GitHub</a></div>
+    </div>
+  </section>
+
+  <!-- ===================== FULL TEXT (檢視全文 — 不鎖在互動後) ===================== -->
+  <section class="sec fulltext" aria-label="完整文字版">
+    <h2 class="sec-title"><i class="fa-solid fa-file-lines" aria-hidden="true"></i>FULL TEXT // 完整文字版</h2>
+    <div class="pxbox about-box">
+      <p class="fulltext-note">以下為完整純文字版本，方便閱讀、複製與列印，內容與上方互動內容一致。</p>
+
+      <div class="ft-block">
+        <h4>核心技能</h4>
+        <ul>
+          <li><b>程式語言：</b>Python、Vue.js、PHP、JavaScript、HTML / CSS</li>
+          <li><b>資料庫：</b>MySQL、PostgreSQL、MongoDB、Redis</li>
+          <li><b>系統架構：</b>微服務、API Gateway、RBAC、事件驅動、負載均衡、CDN</li>
+          <li><b>AI / ML：</b>OpenAI API、Gemini API、RAG、LoRA fine-tuning、Stable Diffusion、向量資料庫</li>
+          <li><b>DevOps：</b>Docker、CI/CD、Linux、Nginx</li>
+          <li><b>領域知識：</b>醫療資訊系統、電商平台、醫療資料合規、HL7 / FHIR</li>
+        </ul>
+      </div>
+
+      <div class="ft-block">
+        <h4>工作經歷 — 程式設計師 ＠ 中部區域醫院（任職約 9 年 — 至今）</h4>
+        <ul>
+          <li><b>全院行動祕書：</b>微服務架構設計，各功能模組獨立部署並透過 API Gateway 統一入口管理；RBAC 集中式權限控管，支援多角色、多部門存取隔離；Vue.js 前端 + Python / PHP 後端，Redis 快取優化高頻讀取效能；負責架構設計、開發、部署與維運全流程。</li>
+          <li><b>個案管理系統：</b>跨科別病患個案追蹤平台，整合多部門護理流程與個案狀態管理；符合醫療資料安全規範，實作審計日誌與敏感欄位加密機制。</li>
+          <li><b>學習護照系統：</b>全院員工學習歷程平台，支援課程管理、學習進度追蹤與認證產出；模組化設計對應醫師、護理師、行政等不同職類的差異化學習路徑。</li>
+        </ul>
+      </div>
+
+      <div class="ft-block">
+        <h4>自建作品</h4>
+        <p><b>1. 璐娜健康管家（https://luna-ai-life.com）— AI SaaS · LINE Bot · 健康管理。</b>整合 Gemini + OpenAI 雙引擎的 AI 健康管理平台，提供拍照熱量辨識、社交陪跑配對與個人化健康報告。特色：多模態 AI 辨識食物熱量（蛋白質、碳水、脂肪、鈉）；AI 配對陪跑夥伴 + 遊戲化打卡獎勵系統；個人化週報 / 月報含代謝評估與行動建議；Gemini + OpenAI 雙引擎備援架構。標籤：OpenAI、Gemini、Vue.js、Python、LINE Bot。</p>
+        <p><b>2. 金連發電器（https://jlfshop.com）— 電商平台 · 家電 · 全台配送。</b>完整家電購物商城，涵蓋商品管理、訂單流程、安裝 / 回收 / 運送服務整合，為實際營運中的電商系統。特色：完整電商流程（商品、購物車、訂單、金流）；物流整合（安裝、回收、運送服務調度）；Redis 快取 + CDN + 負載均衡效能優化。標籤：Vue.js、PHP、Redis、CDN、MySQL。</p>
+      </div>
+
+      <div class="ft-block">
+        <h4>特殊技術實績</h4>
+        <ul>
+          <li><b>Stable Diffusion + LoRA 模型微調：</b>獨立完成圖像生成模型訓練，涵蓋資料標注、訓練參數調整至產出完整流程，具備 AI 模型層級的實戰能力，不只是 API 呼叫層。</li>
+          <li><b>醫療文件 RAG 系統：</b>將 800+ 頁原文病歷向量化，建置可語義查詢的醫療知識庫，實際用於醫療諮詢輔助，具備高精度召回率與答案可追溯性需求的處理經驗。</li>
+        </ul>
+      </div>
+
+      <div class="ft-block">
+        <h4>學歷</h4>
+        <p>中山醫學大學 · 醫學資訊學系 · 學士</p>
+      </div>
+
+      <div class="ft-block">
+        <h4>聯繫</h4>
+        <p>Email：serviceluna@luna-ai-life.com｜璐娜健康管家（https://luna-ai-life.com）、金連發電器（https://jlfshop.com）、GitHub（https://github.com/）</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 Ian Cheng</p>
+  </footer>
+
+</main>
+</div>
+
+<!-- ===================== DEX DIALOG ===================== -->
+<div class="dlg-backdrop" id="dlgBackdrop" role="dialog" aria-modal="true" aria-labelledby="dlgTitle">
+  <div class="dlg">
+    <div class="dlg-head">
+      <div class="dlg-sprite" id="dlgSprite" aria-hidden="true"></div>
+      <div>
+        <div class="dlg-title" id="dlgTitle">—</div>
+        <div class="dlg-sub" id="dlgSub">—</div>
+      </div>
+    </div>
+    <div class="dlg-body">
+      <p id="dlgDesc"></p>
+      <ul class="dlg-list" id="dlgList"></ul>
+    </div>
+    <button class="dlg-close" id="dlgClose">▸ 關閉 (ESC)</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduced){ document.documentElement.classList.add('reduced'); }
+
+  /* ---------- SVG pixel sprites ---------- */
+  function svg(paths){
+    return '<svg viewBox="0 0 16 16" shape-rendering="crispEdges" fill="none">'+paths+'</svg>';
+  }
+  var spriteGhost = svg('<rect x="4" y="3" width="8" height="7" fill="#ffffff" opacity=".85"/><rect x="4" y="10" width="2" height="2" fill="#ffffff" opacity=".85"/><rect x="7" y="10" width="2" height="2" fill="#ffffff" opacity=".85"/><rect x="10" y="10" width="2" height="2" fill="#ffffff" opacity=".85"/><rect x="6" y="5" width="2" height="2" fill="#0f380f"/><rect x="9" y="5" width="2" height="2" fill="#0f380f"/>');
+  var spriteSteel = svg('<rect x="6" y="2" width="4" height="3" fill="#fff"/><rect x="4" y="5" width="8" height="6" fill="#fff"/><rect x="5" y="11" width="2" height="3" fill="#fff"/><rect x="9" y="11" width="2" height="3" fill="#fff"/><rect x="6" y="7" width="4" height="2" fill="#0f380f"/>');
+  var spriteWater = svg('<rect x="7" y="2" width="2" height="2" fill="#fff"/><rect x="6" y="4" width="4" height="2" fill="#fff"/><rect x="5" y="6" width="6" height="4" fill="#fff"/><rect x="6" y="10" width="4" height="2" fill="#fff"/><rect x="7" y="7" width="2" height="2" fill="#0f380f"/>');
+  var spriteElectric = svg('<rect x="8" y="2" width="3" height="3" fill="#fff"/><rect x="6" y="5" width="3" height="3" fill="#fff"/><rect x="8" y="8" width="3" height="3" fill="#fff"/><rect x="5" y="11" width="3" height="3" fill="#fff"/>');
+  var spritePsychic = svg('<rect x="5" y="3" width="6" height="6" fill="#fff"/><rect x="4" y="9" width="8" height="2" fill="#fff"/><rect x="6" y="11" width="4" height="2" fill="#fff"/><rect x="6" y="5" width="1" height="1" fill="#0f380f"/><rect x="9" y="5" width="1" height="1" fill="#0f380f"/><rect x="7" y="7" width="2" height="1" fill="#0f380f"/>');
+  var spriteFire = svg('<rect x="7" y="2" width="2" height="2" fill="#fff"/><rect x="6" y="4" width="4" height="3" fill="#fff"/><rect x="5" y="7" width="6" height="5" fill="#fff"/><rect x="6" y="12" width="4" height="2" fill="#fff"/><rect x="7" y="9" width="2" height="2" fill="#d96b3a"/>');
+
+  /* ---------- Team data (6 skill mons) ---------- */
+  var team = [
+    { dex:'No.001', name:'PYTHONIX', cat:'程式語言', type:'幽靈', typeClass:'t-ghost', sprite:spriteGhost,
+      desc:'掌握多語言全端開發，前後端與腳本通吃的核心隊長。',
+      items:['Python','Vue.js','PHP','JavaScript','HTML / CSS'] },
+    { dex:'No.002', name:'AQUADEX', cat:'資料庫', type:'水', typeClass:'t-water', sprite:spriteWater,
+      desc:'關聯式、文件式與快取資料庫全面掌控，資料流動如水。',
+      items:['MySQL','PostgreSQL','MongoDB','Redis'] },
+    { dex:'No.003', name:'STEELARCH', cat:'系統架構', type:'鋼', typeClass:'t-steel', sprite:spriteSteel,
+      desc:'微服務與分散式架構的鋼鐵骨幹，撐起全院級系統。',
+      items:['微服務','API Gateway','RBAC','事件驅動','負載均衡','CDN'] },
+    { dex:'No.004', name:'PSYGEN', cat:'AI / ML', type:'超能力', typeClass:'t-psychic', sprite:spritePsychic,
+      desc:'多模態 AI 與生成模型的超能力者，從 API 到模型微調全包。',
+      items:['OpenAI API','Gemini API','RAG','LoRA fine-tuning','Stable Diffusion','向量資料庫'] },
+    { dex:'No.005', name:'VOLTOPS', cat:'DevOps', type:'電', typeClass:'t-electric', sprite:spriteElectric,
+      desc:'容器化與自動化部署的高速電擊，讓上線流程一氣呵成。',
+      items:['Docker','CI/CD','Linux','Nginx'] },
+    { dex:'No.006', name:'MEDIFLARE', cat:'領域知識', type:'火', typeClass:'t-fire', sprite:spriteFire,
+      desc:'跨醫療、電商與合規的領域火力，技術深度結合產業理解。',
+      items:['醫療資訊系統','電商平台','醫療資料合規','HL7 / FHIR'] }
+  ];
+
+  /* ---------- Render team ---------- */
+  var teamEl = document.getElementById('team');
+  if(teamEl){
+    team.forEach(function(m, i){
+      var el = document.createElement('button');
+      el.className = 'mon';
+      el.setAttribute('type','button');
+      el.setAttribute('aria-label', m.cat + ' 技能圖鑑');
+      el.innerHTML =
+        '<div class="mon-dex">'+m.dex+'</div>'+
+        '<div class="mon-sprite '+m.typeClass+'">'+m.sprite+'</div>'+
+        '<div class="mon-name">'+m.name+'</div>'+
+        '<div class="mon-cat">'+m.cat+'</div>'+
+        '<div class="type-chip '+m.typeClass+'">'+m.type+'</div>'+
+        '<div class="mon-tap">▸ 點擊查看</div>';
+      el.addEventListener('click', function(){ openDlg(i); });
+      teamEl.appendChild(el);
+    });
+  }
+
+  /* ---------- Dialog ---------- */
+  var backdrop = document.getElementById('dlgBackdrop');
+  var dlgSprite = document.getElementById('dlgSprite');
+  var dlgTitle = document.getElementById('dlgTitle');
+  var dlgSub = document.getElementById('dlgSub');
+  var dlgDesc = document.getElementById('dlgDesc');
+  var dlgList = document.getElementById('dlgList');
+  var lastFocus = null;
+
+  function openDlg(i){
+    var m = team[i];
+    lastFocus = document.activeElement;
+    dlgSprite.className = 'dlg-sprite ' + m.typeClass;
+    dlgSprite.innerHTML = m.sprite;
+    dlgTitle.textContent = m.name + ' · ' + m.cat;
+    dlgSub.textContent = m.dex + ' ｜ 屬性：' + m.type;
+    dlgDesc.textContent = m.desc;
+    dlgList.innerHTML = m.items.map(function(it){ return '<li>'+it+'</li>'; }).join('');
+    backdrop.classList.add('open');
+    document.getElementById('dlgClose').focus();
+  }
+  function closeDlg(){
+    backdrop.classList.remove('open');
+    if(lastFocus){ lastFocus.focus(); }
+  }
+  document.getElementById('dlgClose').addEventListener('click', closeDlg);
+  backdrop.addEventListener('click', function(e){ if(e.target === backdrop){ closeDlg(); } });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape'){ closeDlg(); } });
+
+  /* ---------- Pokédex flip ---------- */
+  var pages = Array.prototype.slice.call(document.querySelectorAll('.dex-page'));
+  var dexIdx = 0;
+  var prevBtn = document.getElementById('dexPrev');
+  var nextBtn = document.getElementById('dexNext');
+  var counter = document.getElementById('dexCounter');
+  function pad(n){ return ('00'+n).slice(-3); }
+  function showPage(i){
+    dexIdx = Math.max(0, Math.min(pages.length-1, i));
+    pages.forEach(function(p,idx){ p.classList.toggle('active', idx===dexIdx); });
+    counter.textContent = 'No.'+pad(dexIdx+1)+' / '+pad(pages.length);
+    prevBtn.disabled = dexIdx===0;
+    nextBtn.disabled = dexIdx===pages.length-1;
+  }
+  if(prevBtn && nextBtn){
+    prevBtn.addEventListener('click', function(){ showPage(dexIdx-1); });
+    nextBtn.addEventListener('click', function(){ showPage(dexIdx+1); });
+    showPage(0);
+  }
+
+  /* ---------- Counting stats ---------- */
+  function runCount(el){
+    var to = parseInt(el.getAttribute('data-to'),10) || 0;
+    var suffix = el.getAttribute('data-suffix') || '';
+    if(reduced){ el.textContent = to + suffix; return; }
+    var start = null, dur = 900;
+    function step(ts){
+      if(!start) start = ts;
+      var p = Math.min((ts-start)/dur, 1);
+      var val = Math.round(p*to);
+      el.textContent = val + (p===1 ? suffix : '');
+      if(p<1){ requestAnimationFrame(step); } else { el.textContent = to + suffix; }
+    }
+    requestAnimationFrame(step);
+  }
+  var statNums = Array.prototype.slice.call(document.querySelectorAll('.stat .num'));
+  if('IntersectionObserver' in window && !reduced){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){ runCount(en.target); io.unobserve(en.target); }
+      });
+    }, {threshold:.4});
+    statNums.forEach(function(n){ io.observe(n); });
+  } else {
+    statNums.forEach(runCount);
+  }
+
+  /* ---------- Toggle full text ---------- */
+  var ftBtn = document.getElementById('toggleFull');
+  ftBtn.addEventListener('click', function(){
+    var on = document.body.classList.toggle('show-fulltext');
+    ftBtn.setAttribute('aria-pressed', on ? 'true':'false');
+    if(on){
+      var ft = document.querySelector('.fulltext');
+      if(ft){ ft.scrollIntoView({behavior: reduced ? 'auto':'smooth'}); }
+    }
+  });
+
+  /* ---------- Toggle motion (manual reduced) ---------- */
+  var mBtn = document.getElementById('toggleMotion');
+  mBtn.addEventListener('click', function(){
+    var off = document.documentElement.classList.toggle('reduced');
+    mBtn.setAttribute('aria-pressed', off ? 'true':'false');
+    mBtn.textContent = off ? '動態：關' : '動態：開';
+  });
+})();
+</script>
+</body>
+</html>

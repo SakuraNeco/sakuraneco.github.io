@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ian Cheng｜資深全端工程師 & AI 工程師</title>
+<meta name="description" content="Ian Cheng — 資深全端工程師 & AI 工程師。10 年開發經驗，擅長 AI 產品落地、微服務架構設計，具備從零到上線的完整交付能力。">
+<meta name="author" content="Ian Cheng">
+<meta name="theme-color" content="#0a0014">
+<!-- Open Graph -->
+<meta property="og:type" content="profile">
+<meta property="og:title" content="Ian Cheng｜資深全端工程師 & AI 工程師">
+<meta property="og:description" content="10 年開發經驗，擅長 AI 產品落地、微服務架構設計，具備從零到上線的完整交付能力。">
+<meta property="og:locale" content="zh_TW">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Ian Cheng｜資深全端工程師 & AI 工程師">
+<meta name="twitter:description" content="10 年開發經驗，擅長 AI 產品落地、微服務架構設計，具備從零到上線的完整交付能力。">
+<!-- data URI SVG favicon -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230a0014'/%3E%3Ctext x='16' y='23' font-family='monospace' font-size='18' font-weight='bold' text-anchor='middle' fill='%23ff2bd6'%3EIC%3C/text%3E%3C/svg%3E">
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@500;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
+<style>
+  :root{
+    --bg:#0a0014;
+    --bg2:#120024;
+    --panel:rgba(22,8,40,0.72);
+    --panel-bd:rgba(255,43,214,0.28);
+    --magenta:#ff2bd6;
+    --cyan:#21e6ff;
+    --violet:#9b5cff;
+    --ink:#f3e9ff;
+    --muted:#b39fd0;
+    --grid:rgba(33,230,255,0.35);
+    --maxw:1080px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:"Noto Sans TC","Rajdhani",system-ui,sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+    line-height:1.75;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--cyan);text-decoration:none;transition:color .2s,text-shadow .2s;}
+  a:hover{color:var(--magenta);text-shadow:0 0 10px var(--magenta);}
+  h1,h2,h3{font-family:"Orbitron","Rajdhani",sans-serif;line-height:1.3;}
+  ::selection{background:var(--magenta);color:#0a0014;}
+
+  /* ---------- Background layers ---------- */
+  .bg-fixed{position:fixed;inset:0;z-index:-3;background:
+     radial-gradient(120% 80% at 50% 0%, #1a0033 0%, var(--bg2) 40%, var(--bg) 75%);}
+  /* sun disk */
+  .sun{position:fixed;left:50%;top:14vh;transform:translateX(-50%);
+    width:min(58vw,520px);height:min(58vw,520px);z-index:-2;border-radius:50%;
+    background:linear-gradient(180deg,#ffb43c 0%,#ff6ad5 45%,#b026ff 100%);
+    filter:blur(.5px);opacity:.85;
+    -webkit-mask:repeating-linear-gradient(180deg,#000 0 18px,transparent 18px 26px),
+       linear-gradient(180deg,#000 52%,transparent 88%);
+    mask:repeating-linear-gradient(180deg,#000 0 18px,transparent 18px 26px),
+       linear-gradient(180deg,#000 52%,transparent 88%);
+    -webkit-mask-composite:source-in;mask-composite:intersect;
+    box-shadow:0 0 120px 40px rgba(255,43,214,.35);}
+  /* perspective grid */
+  .grid-floor{position:fixed;left:50%;bottom:0;transform:translateX(-50%);
+    width:300vw;height:55vh;z-index:-2;overflow:hidden;
+    -webkit-mask:linear-gradient(180deg,transparent 0%,#000 35%);
+    mask:linear-gradient(180deg,transparent 0%,#000 35%);}
+  .grid-floor::before{content:"";position:absolute;inset:-20% -20% 0 -20%;
+    background-image:
+      linear-gradient(var(--grid) 2px,transparent 2px),
+      linear-gradient(90deg,var(--grid) 2px,transparent 2px);
+    background-size:64px 64px;
+    transform:perspective(340px) rotateX(72deg);
+    transform-origin:bottom center;
+    animation:gridmove 2.4s linear infinite;}
+  @keyframes gridmove{from{background-position:0 0;}to{background-position:0 64px;}}
+  .scanlines{position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.5;
+    background:repeating-linear-gradient(0deg,rgba(0,0,0,.18) 0 1px,transparent 1px 3px);}
+
+  /* ---------- Nav ---------- */
+  nav{position:sticky;top:0;z-index:50;
+    backdrop-filter:blur(12px);
+    background:linear-gradient(180deg,rgba(10,0,20,.92),rgba(10,0,20,.55));
+    border-bottom:1px solid var(--panel-bd);}
+  .nav-inner{max-width:var(--maxw);margin:0 auto;display:flex;align-items:center;
+    justify-content:space-between;padding:.7rem 1.2rem;gap:1rem;}
+  .brand{font-family:"Orbitron";font-weight:900;font-size:1.05rem;letter-spacing:1px;
+    color:var(--cyan);text-shadow:0 0 12px rgba(33,230,255,.6);white-space:nowrap;}
+  .brand span{color:var(--magenta);text-shadow:0 0 12px rgba(255,43,214,.6);}
+  .nav-links{display:flex;gap:.3rem;flex-wrap:wrap;}
+  .nav-links a{font-family:"Rajdhani";font-weight:600;font-size:.92rem;color:var(--muted);
+    padding:.3rem .65rem;border-radius:6px;letter-spacing:.5px;text-shadow:none;}
+  .nav-links a:hover{color:var(--ink);background:rgba(255,43,214,.12);}
+  .nav-links a.active{color:var(--cyan);background:rgba(33,230,255,.1);
+    box-shadow:inset 0 0 0 1px rgba(33,230,255,.4);text-shadow:0 0 8px rgba(33,230,255,.5);}
+  .nav-toggle{display:none;background:none;border:1px solid var(--panel-bd);color:var(--cyan);
+    border-radius:6px;padding:.35rem .6rem;font-size:1.1rem;cursor:pointer;}
+
+  /* ---------- Layout ---------- */
+  main{max-width:var(--maxw);margin:0 auto;padding:0 1.2rem;}
+  section{padding:4.5rem 0 1rem;scroll-margin-top:72px;}
+  .sec-title{display:flex;align-items:center;gap:.8rem;margin:0 0 2rem;
+    font-size:clamp(1.4rem,3.5vw,2.1rem);font-weight:700;letter-spacing:2px;
+    color:var(--ink);text-transform:uppercase;}
+  .sec-title .idx{font-size:.85rem;color:var(--magenta);font-family:"Rajdhani";
+    border:1px solid var(--magenta);border-radius:5px;padding:.1rem .45rem;
+    text-shadow:0 0 8px var(--magenta);box-shadow:0 0 14px rgba(255,43,214,.3);}
+  .sec-title .line{flex:1;height:1px;background:linear-gradient(90deg,var(--magenta),transparent);}
+
+  .panel{background:var(--panel);border:1px solid var(--panel-bd);border-radius:14px;
+    padding:1.6rem;backdrop-filter:blur(6px);position:relative;
+    box-shadow:0 0 0 1px rgba(33,230,255,.05),0 18px 50px -20px rgba(0,0,0,.7);}
+
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(34px);
+    transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1);}
+  .reveal.in{opacity:1;transform:none;}
+
+  /* ---------- Hero ---------- */
+  .hero{min-height:92vh;display:flex;flex-direction:column;justify-content:center;
+    padding-top:5rem;padding-bottom:2rem;}
+  .hero .role-tag{font-family:"Rajdhani";font-weight:600;letter-spacing:4px;
+    color:var(--cyan);text-transform:uppercase;font-size:.9rem;margin-bottom:1rem;
+    text-shadow:0 0 10px rgba(33,230,255,.5);}
+  .glitch{font-family:"Orbitron";font-weight:900;
+    font-size:clamp(2.6rem,9vw,5.6rem);line-height:1.3;margin:0;letter-spacing:2px;
+    position:relative;color:#fff;padding-bottom:.12em;
+    text-shadow:0 0 18px rgba(255,43,214,.55),0 0 40px rgba(155,92,255,.35);}
+  .glitch::before,.glitch::after{content:attr(data-text);position:absolute;left:0;top:0;
+    width:100%;overflow:hidden;}
+  .glitch::before{color:var(--cyan);z-index:-1;animation:glx 3.6s infinite linear alternate-reverse;}
+  .glitch::after{color:var(--magenta);z-index:-2;animation:glx2 2.8s infinite linear alternate-reverse;}
+  @keyframes glx{0%{clip-path:inset(0 0 82% 0);transform:translate(-2px,-1px);}
+    20%{clip-path:inset(40% 0 38% 0);transform:translate(2px,1px);}
+    40%{clip-path:inset(78% 0 8% 0);transform:translate(-1px,0);}
+    60%{clip-path:inset(10% 0 70% 0);transform:translate(2px,-1px);}
+    100%{clip-path:inset(55% 0 28% 0);transform:translate(-2px,1px);}}
+  @keyframes glx2{0%{clip-path:inset(20% 0 60% 0);transform:translate(2px,1px);}
+    30%{clip-path:inset(70% 0 12% 0);transform:translate(-2px,0);}
+    60%{clip-path:inset(5% 0 80% 0);transform:translate(1px,-1px);}
+    100%{clip-path:inset(48% 0 35% 0);transform:translate(-1px,1px);}}
+  .tagline{max-width:60ch;color:var(--muted);font-size:clamp(1rem,2.4vw,1.25rem);
+    margin:1.4rem 0 1.8rem;}
+  .badges{display:flex;flex-wrap:wrap;gap:.7rem;align-items:center;}
+  .badge{display:inline-flex;align-items:center;gap:.5rem;font-family:"Rajdhani";
+    font-weight:600;font-size:.92rem;padding:.45rem .9rem;border-radius:40px;
+    border:1px solid var(--cyan);color:var(--cyan);background:rgba(33,230,255,.06);
+    box-shadow:0 0 14px rgba(33,230,255,.18);}
+  .badge.avail{border-color:var(--magenta);color:var(--magenta);
+    box-shadow:0 0 14px rgba(255,43,214,.22);}
+  .badge .dot{width:8px;height:8px;border-radius:50%;background:var(--magenta);
+    box-shadow:0 0 8px var(--magenta);animation:pulse 1.6s infinite;}
+  @keyframes pulse{0%,100%{opacity:1;}50%{opacity:.3;}}
+  .badge svg{width:15px;height:15px;}
+
+  /* stats */
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:2.6rem;}
+  .stat{background:var(--panel);border:1px solid var(--panel-bd);border-radius:12px;
+    padding:1.3rem 1rem;text-align:center;position:relative;overflow:hidden;}
+  .stat::after{content:"";position:absolute;inset:0;border-radius:12px;pointer-events:none;
+    box-shadow:inset 0 0 22px rgba(255,43,214,.08);}
+  .stat .num{font-family:"Orbitron";font-weight:900;font-size:clamp(1.8rem,5vw,2.7rem);
+    line-height:1.3;color:#fff;
+    background:linear-gradient(180deg,var(--cyan),var(--magenta));
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+    padding-bottom:.06em;text-shadow:0 0 24px rgba(33,230,255,.25);}
+  .stat .lbl{font-size:.82rem;color:var(--muted);font-family:"Rajdhani";font-weight:600;
+    letter-spacing:.5px;margin-top:.3rem;}
+
+  /* about */
+  .about p{margin:0 0 1.1rem;color:#e3d6ff;}
+  .about p:last-child{margin-bottom:0;}
+  .about strong{color:var(--cyan);font-weight:700;}
+
+  /* skills */
+  .skills-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.2rem;}
+  .skill-card{background:var(--panel);border:1px solid var(--panel-bd);border-radius:12px;
+    padding:1.3rem;}
+  .skill-card h3{margin:0 0 1rem;font-size:1rem;letter-spacing:1px;color:var(--cyan);
+    display:flex;align-items:center;gap:.6rem;text-shadow:0 0 10px rgba(33,230,255,.4);}
+  .skill-card h3 svg{width:18px;height:18px;stroke:var(--magenta);}
+  .chips{display:flex;flex-wrap:wrap;gap:.55rem;}
+  .chip{font-family:"Rajdhani";font-weight:600;font-size:.88rem;padding:.32rem .8rem;
+    border-radius:6px;border:1px solid var(--violet);color:#e8dcff;
+    background:rgba(155,92,255,.08);transition:.2s;}
+  .chip:hover{border-color:var(--magenta);color:#fff;
+    box-shadow:0 0 14px rgba(255,43,214,.5);text-shadow:0 0 8px var(--magenta);}
+
+  /* experience */
+  .xp{position:relative;padding-left:1.8rem;border-left:2px solid var(--panel-bd);}
+  .xp-head{margin-bottom:1.4rem;}
+  .xp-head .role{font-family:"Orbitron";font-size:1.15rem;color:#fff;margin:0;}
+  .xp-head .meta{color:var(--muted);font-family:"Rajdhani";font-weight:600;margin-top:.3rem;}
+  .xp-item{margin-bottom:1.3rem;position:relative;}
+  .xp-item::before{content:"";position:absolute;left:calc(-1.8rem - 6px);top:.55rem;
+    width:11px;height:11px;border-radius:50%;background:var(--magenta);
+    box-shadow:0 0 12px var(--magenta);}
+  .xp-item h4{margin:0 0 .5rem;font-family:"Rajdhani";font-weight:700;font-size:1.05rem;
+    color:var(--cyan);letter-spacing:.5px;}
+  .xp-item ul{margin:0;padding-left:1.1rem;}
+  .xp-item li{margin-bottom:.4rem;color:#ddd0f5;}
+  .xp-item li::marker{color:var(--magenta);}
+
+  /* projects */
+  .proj-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.3rem;}
+  .proj{display:flex;flex-direction:column;}
+  .proj-top{display:flex;justify-content:space-between;align-items:flex-start;gap:.8rem;
+    margin-bottom:.7rem;}
+  .proj h3{margin:0;font-size:1.2rem;color:#fff;letter-spacing:.5px;}
+  .proj .ext{color:var(--cyan);font-size:1.1rem;flex-shrink:0;}
+  .proj .kind{font-family:"Rajdhani";font-weight:600;font-size:.8rem;color:var(--magenta);
+    letter-spacing:1px;text-transform:uppercase;margin-bottom:.8rem;}
+  .proj p{color:#ddd0f5;margin:0 0 .9rem;font-size:.95rem;}
+  .proj .feat{list-style:none;margin:0 0 1rem;padding:0;}
+  .proj .feat li{position:relative;padding-left:1.3rem;margin-bottom:.45rem;
+    color:#cabfe6;font-size:.9rem;}
+  .proj .feat li::before{content:"";position:absolute;left:0;top:.55em;width:7px;height:7px;
+    transform:rotate(45deg);background:var(--cyan);box-shadow:0 0 8px var(--cyan);}
+  .proj .tags{margin-top:auto;display:flex;flex-wrap:wrap;gap:.45rem;}
+  .proj .tags .t{font-family:"Rajdhani";font-weight:600;font-size:.78rem;
+    padding:.2rem .6rem;border-radius:5px;color:var(--cyan);
+    border:1px solid rgba(33,230,255,.4);background:rgba(33,230,255,.05);}
+
+  /* feats / achievements */
+  .ach{display:grid;grid-template-columns:repeat(2,1fr);gap:1.3rem;}
+  .ach .panel{padding-top:1.3rem;}
+  .ach h3{margin:0 0 .7rem;font-size:1.05rem;color:var(--cyan);
+    display:flex;gap:.6rem;align-items:flex-start;text-shadow:0 0 10px rgba(33,230,255,.35);}
+  .ach h3 .ico{flex-shrink:0;color:var(--magenta);font-size:1.3rem;margin-top:.1rem;}
+  .ach p{margin:0;color:#ddd0f5;font-size:.95rem;}
+
+  /* education */
+  .edu{display:flex;align-items:center;gap:1.2rem;}
+  .edu .cap{font-size:2rem;color:var(--magenta);text-shadow:0 0 16px rgba(255,43,214,.5);}
+  .edu .deg{font-family:"Orbitron";font-size:1.1rem;color:#fff;margin:0;}
+  .edu .sub{color:var(--muted);font-family:"Rajdhani";font-weight:600;margin-top:.25rem;}
+
+  /* contact */
+  .contact-grid{display:flex;flex-wrap:wrap;gap:1rem;}
+  .c-card{flex:1 1 220px;display:flex;align-items:center;gap:.9rem;
+    background:var(--panel);border:1px solid var(--panel-bd);border-radius:12px;
+    padding:1.1rem 1.2rem;transition:.25s;}
+  .c-card:hover{border-color:var(--magenta);transform:translateY(-3px);
+    box-shadow:0 0 26px rgba(255,43,214,.25);}
+  .c-card .ci{font-size:1.4rem;color:var(--cyan);width:30px;text-align:center;}
+  .c-card .ct{font-family:"Rajdhani";font-weight:700;color:#fff;}
+  .c-card .cs{font-size:.85rem;color:var(--muted);word-break:break-all;}
+
+  footer{text-align:center;padding:3rem 1rem 4rem;color:var(--muted);
+    font-family:"Rajdhani";letter-spacing:1px;margin-top:2rem;
+    border-top:1px solid var(--panel-bd);}
+  footer .hr{font-family:"Orbitron";color:var(--magenta);text-shadow:0 0 10px var(--magenta);}
+
+  /* ---------- Responsive ---------- */
+  @media(max-width:760px){
+    .nav-links{position:fixed;top:54px;right:0;flex-direction:column;
+      background:rgba(10,0,20,.97);border:1px solid var(--panel-bd);border-radius:0 0 0 12px;
+      padding:.8rem;gap:.2rem;transform:translateX(110%);transition:transform .3s;min-width:180px;}
+    .nav-links.open{transform:none;}
+    .nav-toggle{display:block;}
+    .stats{grid-template-columns:repeat(2,1fr);}
+    .skills-grid,.proj-grid,.ach{grid-template-columns:1fr;}
+  }
+  @media(max-width:420px){
+    .stats{grid-template-columns:1fr;}
+  }
+
+  /* ---------- Reduced motion ---------- */
+  @media(prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+    .grid-floor::before{animation:none;}
+    .glitch::before,.glitch::after{animation:none;display:none;}
+    .badge .dot{animation:none;}
+    .reveal{opacity:1;transform:none;transition:none;}
+    .sun{box-shadow:none;}
+  }
+
+  /* ---------- Print ---------- */
+  @media print{
+    .bg-fixed,.sun,.grid-floor,.scanlines,nav,.nav-toggle{display:none!important;}
+    body{background:#fff;color:#111;}
+    a{color:#111;}
+    .panel,.stat,.skill-card,.c-card{background:#fff;border:1px solid #ccc;box-shadow:none;}
+    .glitch{color:#111;text-shadow:none;}
+    .glitch::before,.glitch::after{display:none;}
+    .stat .num{-webkit-text-fill-color:#111;color:#111;}
+    section{padding:1.2rem 0;page-break-inside:avoid;}
+    .sec-title{color:#111;}
+  }
+</style>
+</head>
+<body>
+<div class="bg-fixed" aria-hidden="true"></div>
+<div class="sun" aria-hidden="true"></div>
+<div class="grid-floor" aria-hidden="true"></div>
+<div class="scanlines" aria-hidden="true"></div>
+
+<nav>
+  <div class="nav-inner">
+    <div class="brand">IAN<span>.</span>CHENG</div>
+    <button class="nav-toggle" aria-label="開啟選單" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
+    <div class="nav-links" id="navlinks">
+      <a href="#hero">首頁</a>
+      <a href="#about">關於</a>
+      <a href="#skills">技能</a>
+      <a href="#experience">經歷</a>
+      <a href="#projects">作品</a>
+      <a href="#feats">技術實績</a>
+      <a href="#education">學歷</a>
+      <a href="#contact">聯繫</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <!-- HERO -->
+  <section id="hero" class="hero">
+    <div class="reveal">
+      <p class="role-tag">資深全端工程師 &amp; AI 工程師</p>
+      <h1 class="glitch" data-text="Ian Cheng">Ian Cheng</h1>
+      <p class="tagline">10 年開發經驗，擅長 AI 產品落地、微服務架構設計，具備從零到上線的完整交付能力。</p>
+      <div class="badges">
+        <span class="badge avail"><span class="dot"></span>Available for opportunities</span>
+        <a class="badge" href="mailto:serviceluna@luna-ai-life.com">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+          serviceluna@luna-ai-life.com</a>
+      </div>
+    </div>
+    <div class="stats">
+      <div class="stat reveal"><div class="num" data-target="10" data-suffix="+">0</div><div class="lbl">年開發經驗</div></div>
+      <div class="stat reveal"><div class="num" data-target="5" data-suffix="+">0</div><div class="lbl">大型專案交付</div></div>
+      <div class="stat reveal"><div class="num" data-target="2" data-suffix="">0</div><div class="lbl">自建產品上線</div></div>
+      <div class="stat reveal"><div class="num" data-target="3" data-suffix="">0</div><div class="lbl">AI 整合實戰</div></div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <h2 class="sec-title reveal"><span class="idx">01</span>關於我<span class="line"></span></h2>
+    <div class="panel about reveal">
+      <p>10 年全端工程師，具備從系統架構設計到 AI 產品落地的端對端能力。曾在中部區域醫院主導多項院內大型系統開發，採微服務架構 + API Gateway + RBAC 集中控管，支援全院多部門運作。</p>
+      <p>自行開發並上線 <strong>璐娜健康管家</strong>（AI 健康 SaaS）與 <strong>金連發電器</strong>（家電電商），整合 Gemini + OpenAI 多模態雙引擎。具備 Stable Diffusion + LoRA 模型微調及 RAG 系統建置實戰經驗，熟悉醫療資料處理與合規需求。</p>
+      <p>背景橫跨醫療資訊、電商、AI 三個領域，能同時勝任技術深度討論與跨部門架構溝通。目前積極尋求 AI 工程師 / Tech Lead / Solution Architect 相關機會。</p>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <h2 class="sec-title reveal"><span class="idx">02</span>核心技能<span class="line"></span></h2>
+    <div class="skills-grid">
+      <div class="skill-card reveal">
+        <h3><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="m8 6-6 6 6 6"/><path d="m16 6 6 6-6 6"/></svg>程式語言</h3>
+        <div class="chips"><span class="chip">Python</span><span class="chip">Vue.js</span><span class="chip">PHP</span><span class="chip">JavaScript</span><span class="chip">HTML / CSS</span></div>
+      </div>
+      <div class="skill-card reveal">
+        <h3><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.7 4 3 9 3s9-1.3 9-3V5"/><path d="M3 12c0 1.7 4 3 9 3s9-1.3 9-3"/></svg>資料庫</h3>
+        <div class="chips"><span class="chip">MySQL</span><span class="chip">PostgreSQL</span><span class="chip">MongoDB</span><span class="chip">Redis</span></div>
+      </div>
+      <div class="skill-card reveal">
+        <h3><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg>系統架構</h3>
+        <div class="chips"><span class="chip">微服務</span><span class="chip">API Gateway</span><span class="chip">RBAC</span><span class="chip">事件驅動</span><span class="chip">負載均衡</span><span class="chip">CDN</span></div>
+      </div>
+      <div class="skill-card reveal">
+        <h3><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 2a3 3 0 0 0-3 3v1a3 3 0 0 0-3 3 3 3 0 0 0 0 6 3 3 0 0 0 3 3v1a3 3 0 0 0 6 0v-1a3 3 0 0 0 3-3 3 3 0 0 0 0-6 3 3 0 0 0-3-3V5a3 3 0 0 0-3-3Z"/></svg>AI / ML</h3>
+        <div class="chips"><span class="chip">OpenAI API</span><span class="chip">Gemini API</span><span class="chip">RAG</span><span class="chip">LoRA fine-tuning</span><span class="chip">Stable Diffusion</span><span class="chip">向量資料庫</span></div>
+      </div>
+      <div class="skill-card reveal">
+        <h3><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 2v4M12 18v4M2 12h4M18 12h4M5 5l3 3M16 16l3 3M19 5l-3 3M8 16l-3 3"/><circle cx="12" cy="12" r="3"/></svg>DevOps</h3>
+        <div class="chips"><span class="chip">Docker</span><span class="chip">CI/CD</span><span class="chip">Linux</span><span class="chip">Nginx</span></div>
+      </div>
+      <div class="skill-card reveal">
+        <h3><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 2 2 7l10 5 10-5-10-5Z"/><path d="m2 17 10 5 10-5M2 12l10 5 10-5"/></svg>領域知識</h3>
+        <div class="chips"><span class="chip">醫療資訊系統</span><span class="chip">電商平台</span><span class="chip">醫療資料合規</span><span class="chip">HL7 / FHIR</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <h2 class="sec-title reveal"><span class="idx">03</span>工作經歷<span class="line"></span></h2>
+    <div class="panel reveal">
+      <div class="xp">
+        <div class="xp-head">
+          <p class="role">程式設計師 ＠ 中部區域醫院</p>
+          <p class="meta">任職約 9 年 — 至今</p>
+        </div>
+        <div class="xp-item">
+          <h4>全院行動祕書（全院通用行動 App）</h4>
+          <ul>
+            <li>微服務架構設計，各功能模組獨立部署並透過 API Gateway 統一入口管理</li>
+            <li>RBAC 集中式權限控管，支援多角色、多部門存取隔離</li>
+            <li>Vue.js 前端 + Python / PHP 後端，Redis 快取優化高頻讀取效能</li>
+            <li>負責架構設計、開發、部署與維運全流程</li>
+          </ul>
+        </div>
+        <div class="xp-item">
+          <h4>個案管理系統</h4>
+          <ul>
+            <li>跨科別病患個案追蹤平台，整合多部門護理流程與個案狀態管理</li>
+            <li>符合醫療資料安全規範，實作審計日誌與敏感欄位加密機制</li>
+          </ul>
+        </div>
+        <div class="xp-item">
+          <h4>學習護照系統</h4>
+          <ul>
+            <li>全院員工學習歷程平台，支援課程管理、學習進度追蹤與認證產出</li>
+            <li>模組化設計對應醫師、護理師、行政等不同職類的差異化學習路徑</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <h2 class="sec-title reveal"><span class="idx">04</span>自建作品<span class="line"></span></h2>
+    <div class="proj-grid">
+      <article class="panel proj reveal">
+        <div class="proj-top">
+          <h3>璐娜健康管家</h3>
+          <a class="ext" href="https://luna-ai-life.com" target="_blank" rel="noopener" aria-label="開啟璐娜健康管家"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+        </div>
+        <div class="kind">AI SaaS · LINE Bot · 健康管理</div>
+        <p>整合 Gemini + OpenAI 雙引擎的 AI 健康管理平台，提供拍照熱量辨識、社交陪跑配對與個人化健康報告。</p>
+        <ul class="feat">
+          <li>多模態 AI 辨識食物熱量（蛋白質、碳水、脂肪、鈉）</li>
+          <li>AI 配對陪跑夥伴 + 遊戲化打卡獎勵系統</li>
+          <li>個人化週報 / 月報含代謝評估與行動建議</li>
+          <li>Gemini + OpenAI 雙引擎備援架構</li>
+        </ul>
+        <div class="tags"><span class="t">OpenAI</span><span class="t">Gemini</span><span class="t">Vue.js</span><span class="t">Python</span><span class="t">LINE Bot</span></div>
+      </article>
+      <article class="panel proj reveal">
+        <div class="proj-top">
+          <h3>金連發電器</h3>
+          <a class="ext" href="https://jlfshop.com" target="_blank" rel="noopener" aria-label="開啟金連發電器"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+        </div>
+        <div class="kind">電商平台 · 家電 · 全台配送</div>
+        <p>完整家電購物商城，涵蓋商品管理、訂單流程、安裝 / 回收 / 運送服務整合，為實際營運中的電商系統。</p>
+        <ul class="feat">
+          <li>完整電商流程（商品、購物車、訂單、金流）</li>
+          <li>物流整合（安裝、回收、運送服務調度）</li>
+          <li>Redis 快取 + CDN + 負載均衡效能優化</li>
+        </ul>
+        <div class="tags"><span class="t">Vue.js</span><span class="t">PHP</span><span class="t">Redis</span><span class="t">CDN</span><span class="t">MySQL</span></div>
+      </article>
+    </div>
+  </section>
+
+  <!-- FEATS -->
+  <section id="feats">
+    <h2 class="sec-title reveal"><span class="idx">05</span>特殊技術實績<span class="line"></span></h2>
+    <div class="ach">
+      <div class="panel reveal">
+        <h3><span class="ico"><i class="fa-solid fa-wand-magic-sparkles"></i></span>Stable Diffusion + LoRA 模型微調</h3>
+        <p>獨立完成圖像生成模型訓練，涵蓋資料標注、訓練參數調整至產出完整流程，具備 AI 模型層級的實戰能力，不只是 API 呼叫層。</p>
+      </div>
+      <div class="panel reveal">
+        <h3><span class="ico"><i class="fa-solid fa-file-shield"></i></span>醫療文件 RAG 系統</h3>
+        <p>將 800+ 頁原文病歷向量化，建置可語義查詢的醫療知識庫，實際用於醫療諮詢輔助，具備高精度召回率與答案可追溯性需求的處理經驗。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <h2 class="sec-title reveal"><span class="idx">06</span>學歷<span class="line"></span></h2>
+    <div class="panel edu reveal">
+      <span class="cap"><i class="fa-solid fa-graduation-cap"></i></span>
+      <div>
+        <p class="deg">中山醫學大學</p>
+        <p class="sub">醫學資訊學系 · 學士</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <h2 class="sec-title reveal"><span class="idx">07</span>聯繫<span class="line"></span></h2>
+    <div class="contact-grid reveal">
+      <a class="c-card" href="mailto:serviceluna@luna-ai-life.com">
+        <span class="ci"><i class="fa-solid fa-envelope"></i></span>
+        <span><span class="ct">Email</span><br><span class="cs">serviceluna@luna-ai-life.com</span></span>
+      </a>
+      <a class="c-card" href="https://luna-ai-life.com" target="_blank" rel="noopener">
+        <span class="ci"><i class="fa-solid fa-heart-pulse"></i></span>
+        <span><span class="ct">璐娜健康管家</span><br><span class="cs">luna-ai-life.com</span></span>
+      </a>
+      <a class="c-card" href="https://jlfshop.com" target="_blank" rel="noopener">
+        <span class="ci"><i class="fa-solid fa-cart-shopping"></i></span>
+        <span><span class="ct">金連發電器</span><br><span class="cs">jlfshop.com</span></span>
+      </a>
+      <a class="c-card" href="https://github.com/" target="_blank" rel="noopener">
+        <span class="ci"><i class="fa-brands fa-github"></i></span>
+        <span><span class="ct">GitHub</span><br><span class="cs">github.com</span></span>
+      </a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <span class="hr">&lt;/&gt;</span> &copy; 2026 Ian Cheng
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* mobile nav toggle */
+  var toggle = document.querySelector(".nav-toggle");
+  var links = document.getElementById("navlinks");
+  if(toggle){
+    toggle.addEventListener("click", function(){
+      var open = links.classList.toggle("open");
+      toggle.setAttribute("aria-expanded", open ? "true":"false");
+    });
+    links.addEventListener("click", function(e){
+      if(e.target.tagName === "A"){ links.classList.remove("open");
+        toggle.setAttribute("aria-expanded","false"); }
+    });
+  }
+
+  /* reveal on scroll */
+  var revealEls = Array.prototype.slice.call(document.querySelectorAll(".reveal"));
+  if(reduce || !("IntersectionObserver" in window)){
+    revealEls.forEach(function(el){ el.classList.add("in"); });
+  } else {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){ en.target.classList.add("in"); io.unobserve(en.target); }
+      });
+    },{threshold:0.14});
+    revealEls.forEach(function(el){ io.observe(el); });
+  }
+
+  /* number count-up */
+  function runCount(el){
+    var target = parseFloat(el.getAttribute("data-target"))||0;
+    var suffix = el.getAttribute("data-suffix")||"";
+    if(reduce){ el.textContent = target + suffix; return; }
+    var start = null, dur = 1200;
+    function step(ts){
+      if(!start) start = ts;
+      var p = Math.min((ts-start)/dur,1);
+      var ease = 1-Math.pow(1-p,3);
+      el.textContent = Math.round(target*ease) + suffix;
+      if(p<1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  var nums = Array.prototype.slice.call(document.querySelectorAll(".num"));
+  if(reduce || !("IntersectionObserver" in window)){
+    nums.forEach(runCount);
+  } else {
+    var io2 = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){ runCount(en.target); io2.unobserve(en.target); }
+      });
+    },{threshold:0.6});
+    nums.forEach(function(el){ io2.observe(el); });
+  }
+
+  /* scroll spy */
+  var navAnchors = Array.prototype.slice.call(document.querySelectorAll(".nav-links a"));
+  var sections = navAnchors.map(function(a){ return document.querySelector(a.getAttribute("href")); });
+  if("IntersectionObserver" in window){
+    var spy = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){
+          var id = en.target.getAttribute("id");
+          navAnchors.forEach(function(a){
+            a.classList.toggle("active", a.getAttribute("href") === "#"+id);
+          });
+        }
+      });
+    },{rootMargin:"-45% 0px -50% 0px"});
+    sections.forEach(function(s){ if(s) spy.observe(s); });
+  }
+})();
+</script>
+</body>
+</html>

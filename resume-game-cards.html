@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ian Cheng — 資深全端工程師 &amp; AI 工程師 ｜ 卡牌履歷</title>
+<meta name="description" content="Ian Cheng — 資深全端工程師 &amp; AI 工程師。10 年開發經驗，擅長 AI 產品落地、微服務架構設計，具備從零到上線的完整交付能力。互動式卡牌風格履歷。" />
+<meta name="author" content="Ian Cheng" />
+<meta name="theme-color" content="#0b0a1a" />
+<meta name="robots" content="index,follow" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="profile" />
+<meta property="og:title" content="Ian Cheng — 資深全端工程師 &amp; AI 工程師" />
+<meta property="og:description" content="10 年開發經驗，擅長 AI 產品落地、微服務架構設計，具備從零到上線的完整交付能力。互動式卡牌風格履歷。" />
+<meta property="og:locale" content="zh_TW" />
+<meta property="profile:first_name" content="Ian" />
+<meta property="profile:last_name" content="Cheng" />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="Ian Cheng — 資深全端工程師 &amp; AI 工程師 ｜ 卡牌履歷" />
+<meta name="twitter:description" content="10 年開發經驗，擅長 AI 產品落地、微服務架構設計，具備從零到上線的完整交付能力。" />
+
+<!-- Favicon (data URI SVG) -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20100%20100'%3E%3Cdefs%3E%3ClinearGradient%20id='g'%20x1='0'%20y1='0'%20x2='1'%20y2='1'%3E%3Cstop%20offset='0'%20stop-color='%23ffd45e'/%3E%3Cstop%20offset='1'%20stop-color='%23c062ff'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width='100'%20height='100'%20rx='18'%20fill='%230b0a1a'/%3E%3Crect%20x='24'%20y='14'%20width='52'%20height='72'%20rx='8'%20fill='none'%20stroke='url(%23g)'%20stroke-width='6'/%3E%3Ctext%20x='50'%20y='62'%20font-family='Georgia,serif'%20font-size='40'%20font-weight='700'%20fill='url(%23g)'%20text-anchor='middle'%3EIC%3C/text%3E%3C/svg%3E" />
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet" />
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<style>
+  :root {
+    --bg: #0b0a1a;
+    --bg-2: #14122b;
+    --panel: #1b1838;
+    --panel-2: #221d44;
+    --ink: #ece9ff;
+    --ink-soft: #b9b3d8;
+    --ink-dim: #8a84ad;
+    --gold: #ffd45e;
+    --gold-deep: #c79a2e;
+    --line: rgba(255,255,255,.10);
+    --line-strong: rgba(255,255,255,.18);
+
+    /* rarity */
+    --r-common: #9aa3b2;
+    --r-rare: #4ea1ff;
+    --r-epic: #c062ff;
+    --r-legend: #ffb13d;
+
+    --radius: 16px;
+    --shadow: 0 14px 40px rgba(0,0,0,.45);
+    --maxw: 1180px;
+    --ease: cubic-bezier(.2,.8,.25,1);
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    font-family: "Noto Sans TC", system-ui, sans-serif;
+    color: var(--ink);
+    background:
+      radial-gradient(1100px 700px at 12% -8%, rgba(192,98,255,.16), transparent 60%),
+      radial-gradient(900px 600px at 100% 0%, rgba(78,161,255,.14), transparent 55%),
+      radial-gradient(800px 600px at 50% 120%, rgba(255,212,94,.10), transparent 60%),
+      var(--bg);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  a { color: inherit; }
+
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 20px; }
+
+  h1,h2,h3 { font-family: "Cinzel", "Noto Sans TC", serif; line-height: 1.3; }
+
+  .gradient-text {
+    background: linear-gradient(100deg, var(--gold) 0%, #ffe9a8 35%, #c062ff 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    line-height: 1.3;
+    padding-bottom: .12em;
+    display: inline-block;
+  }
+
+  .sr-only {
+    position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+    overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+  }
+
+  /* ---------- Top bar ---------- */
+  .topbar {
+    position: sticky; top: 0; z-index: 60;
+    backdrop-filter: blur(10px);
+    background: rgba(11,10,26,.72);
+    border-bottom: 1px solid var(--line);
+  }
+  .topbar .wrap { display: flex; align-items: center; gap: 14px; padding-top: 12px; padding-bottom: 12px; }
+  .brand { display: flex; align-items: center; gap: 10px; font-family: "Cinzel", serif; font-weight: 700; letter-spacing: .5px; }
+  .brand .crest {
+    width: 30px; height: 30px; flex: none;
+    border: 2px solid var(--gold); border-radius: 7px;
+    display: grid; place-items: center; color: var(--gold); font-size: 13px;
+  }
+  .topbar .spacer { flex: 1; }
+  .toolbar { display: flex; gap: 8px; flex-wrap: wrap; }
+  .btn {
+    appearance: none; cursor: pointer;
+    font-family: inherit; font-size: 13px; font-weight: 700;
+    color: var(--ink); background: var(--panel-2);
+    border: 1px solid var(--line-strong); border-radius: 999px;
+    padding: 8px 14px; display: inline-flex; align-items: center; gap: 7px;
+    transition: transform .15s var(--ease), background .2s, border-color .2s;
+  }
+  .btn:hover { transform: translateY(-1px); border-color: var(--gold); }
+  .btn:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+  .btn.primary { background: linear-gradient(120deg, var(--gold-deep), var(--gold)); color: #1a1408; border-color: transparent; }
+  .btn[aria-pressed="true"] { border-color: var(--gold); box-shadow: 0 0 0 2px rgba(255,212,94,.25) inset; }
+
+  /* ---------- Sections ---------- */
+  section { padding: 56px 0; position: relative; }
+  .section-head { display: flex; align-items: center; gap: 14px; margin-bottom: 26px; }
+  .section-head .num {
+    font-family: "Cinzel", serif; font-size: 13px; letter-spacing: 2px;
+    color: var(--gold); border: 1px solid var(--gold-deep); border-radius: 6px;
+    padding: 4px 9px; flex: none;
+  }
+  .section-head h2 { margin: 0; font-size: clamp(22px, 3.4vw, 30px); }
+  .section-head p { margin: 2px 0 0; color: var(--ink-dim); font-size: 13.5px; font-family: "Noto Sans TC"; }
+
+  /* ---------- Hero ---------- */
+  .hero { padding-top: 46px; }
+  .hero-grid { display: grid; grid-template-columns: minmax(0,1fr) 340px; gap: 38px; align-items: center; }
+  .hero-copy h1 { font-size: clamp(30px, 5.4vw, 52px); margin: 0 0 6px; }
+  .hero-role { font-size: clamp(15px, 2.2vw, 19px); color: var(--gold); font-weight: 700; letter-spacing: .5px; margin-bottom: 16px; }
+  .hero-tag { color: var(--ink-soft); font-size: 16px; max-width: 52ch; }
+  .badges { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+  .badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(50,200,120,.10); border: 1px solid rgba(80,220,140,.4);
+    color: #74e6a6; border-radius: 999px; padding: 7px 14px; font-size: 13px; font-weight: 700;
+  }
+  .badge.alt { background: var(--panel-2); border-color: var(--line-strong); color: var(--ink-soft); }
+  .badge .dot { width: 8px; height: 8px; border-radius: 50%; background: #45e08a; box-shadow: 0 0 0 0 rgba(69,224,138,.7); animation: pulse 2.2s infinite; }
+  @keyframes pulse { 0%{box-shadow:0 0 0 0 rgba(69,224,138,.6)} 70%{box-shadow:0 0 0 9px rgba(69,224,138,0)} 100%{box-shadow:0 0 0 0 rgba(69,224,138,0)} }
+
+  /* ---------- Hero card (champion) ---------- */
+  .hero-card-stage { display: grid; place-items: center; perspective: 1200px; }
+  .hero-card {
+    width: 300px; max-width: 100%;
+    border-radius: 20px; padding: 4px;
+    background: linear-gradient(140deg, #ffe9a8, var(--r-legend) 40%, #ff7bd0 75%, #c062ff);
+    box-shadow: 0 24px 60px rgba(192,98,255,.30), var(--shadow);
+    transform: rotateY(-8deg) rotateX(6deg);
+    transition: transform .5s var(--ease);
+    animation: floaty 5.5s ease-in-out infinite;
+  }
+  .hero-card:hover { transform: rotateY(0) rotateX(0) scale(1.02); }
+  @keyframes floaty { 0%,100%{translate:0 0} 50%{translate:0 -10px} }
+  .hero-card-inner {
+    background: radial-gradient(120% 90% at 50% 0%, #2a2350, #15122c 70%);
+    border-radius: 16px; padding: 16px; position: relative; overflow: hidden;
+  }
+  .hero-card-inner::after {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    background: linear-gradient(115deg, transparent 40%, rgba(255,255,255,.14) 50%, transparent 60%);
+    background-size: 250% 250%; animation: sheen 6s linear infinite;
+  }
+  @keyframes sheen { 0%{background-position:120% 0} 100%{background-position:-60% 0} }
+  .hc-top { display: flex; justify-content: space-between; align-items: flex-start; }
+  .hc-cost {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, #7ec8ff, #1565c0);
+    border: 2px solid #cfe8ff; color: #fff; font-weight: 900; font-size: 19px;
+    display: grid; place-items: center; box-shadow: 0 4px 10px rgba(0,0,0,.4); font-family: "Cinzel", serif;
+  }
+  .hc-class { font-size: 11px; letter-spacing: 1.5px; color: var(--gold); text-align: right; font-family: "Cinzel"; }
+  .hc-art { height: 130px; margin: 10px 0; border-radius: 12px; overflow: hidden; border: 1px solid var(--line); background: #0d0b1f; }
+  .hc-art svg { width: 100%; height: 100%; display: block; }
+  .hc-name { font-family: "Cinzel", serif; font-weight: 700; font-size: 21px; text-align: center; margin: 2px 0; }
+  .hc-name .gradient-text { padding-bottom: .15em; }
+  .hc-title { text-align: center; font-size: 12px; color: var(--ink-soft); margin-bottom: 10px; }
+  .hc-stats { display: flex; justify-content: space-between; gap: 6px; }
+  .hc-stat { flex: 1; text-align: center; background: rgba(255,255,255,.05); border: 1px solid var(--line); border-radius: 10px; padding: 6px 2px; }
+  .hc-stat b { display: block; font-size: 18px; font-family: "Cinzel", serif; color: var(--gold); line-height: 1.2; }
+  .hc-stat span { font-size: 10px; color: var(--ink-dim); }
+
+  /* ---------- Stat counters ---------- */
+  .stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 40px; }
+  .stat-cell {
+    background: linear-gradient(180deg, var(--panel-2), var(--panel));
+    border: 1px solid var(--line); border-radius: var(--radius); padding: 18px 14px; text-align: center;
+  }
+  .stat-cell .v { font-family: "Cinzel", serif; font-size: clamp(26px, 4vw, 38px); font-weight: 700; }
+  .stat-cell .l { font-size: 12.5px; color: var(--ink-dim); margin-top: 4px; }
+
+  /* ---------- Card grid ---------- */
+  .deck { display: grid; gap: 22px; }
+  .deck.cols-3 { grid-template-columns: repeat(3, 1fr); }
+  .deck.cols-2 { grid-template-columns: repeat(2, 1fr); }
+
+  /* Card */
+  .card {
+    position: relative; border-radius: 18px; padding: 3px;
+    background: var(--rar, var(--r-common));
+    box-shadow: var(--shadow);
+    cursor: pointer;
+    opacity: 0; transform: translateY(28px) scale(.96);
+    transition: transform .5s var(--ease), opacity .5s var(--ease), box-shadow .3s;
+  }
+  .card.in { opacity: 1; transform: translateY(0) scale(1); }
+  .card[data-rarity="common"]  { --rar: linear-gradient(160deg,#c7ccd6,#7d8696); --rcol: var(--r-common); }
+  .card[data-rarity="rare"]    { --rar: linear-gradient(160deg,#9fd0ff,#2f6fc0); --rcol: var(--r-rare); }
+  .card[data-rarity="epic"]    { --rar: linear-gradient(160deg,#e3a9ff,#8a36c9); --rcol: var(--r-epic); }
+  .card[data-rarity="legend"]  { --rar: linear-gradient(140deg,#ffe9a8,#ffb13d 50%,#ff7bd0); --rcol: var(--r-legend); }
+  .card:hover { transform: translateY(-12px) scale(1.035); box-shadow: 0 26px 56px rgba(0,0,0,.5), 0 0 26px -6px var(--rcol); z-index: 5; }
+  .card:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+
+  .card-inner {
+    background: radial-gradient(130% 100% at 50% -10%, #2a2350, #16132e 72%);
+    border-radius: 16px; padding: 14px; height: 100%;
+    display: flex; flex-direction: column; gap: 10px; position: relative; overflow: hidden;
+  }
+  .card-top { display: flex; align-items: flex-start; gap: 10px; }
+  .cost {
+    width: 36px; height: 36px; flex: none; border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, #8fd2ff, #1769c8);
+    border: 2px solid #d4ecff; color: #fff; font-weight: 900; font-size: 17px;
+    display: grid; place-items: center; font-family: "Cinzel", serif; box-shadow: 0 3px 8px rgba(0,0,0,.4);
+  }
+  .card-titles { min-width: 0; }
+  .card-titles h3 { margin: 0; font-size: 16.5px; line-height: 1.3; }
+  .rar-tag {
+    font-size: 10.5px; letter-spacing: 1px; font-weight: 700; text-transform: uppercase;
+    color: var(--rcol); font-family: "Cinzel", serif;
+  }
+  .card-art { height: 96px; border-radius: 11px; overflow: hidden; border: 1px solid var(--line); background: #0d0b1f; flex: none; }
+  .card-art svg { width: 100%; height: 100%; display: block; }
+  .card-desc { font-size: 13px; color: var(--ink-soft); flex: 1; }
+  .card-foot { display: flex; gap: 6px; }
+  .pip { flex: 1; text-align: center; background: rgba(255,255,255,.05); border: 1px solid var(--line); border-radius: 9px; padding: 5px 2px; }
+  .pip b { display: block; font-family: "Cinzel", serif; font-size: 15px; color: var(--gold); }
+  .pip span { font-size: 9.5px; color: var(--ink-dim); }
+  .card .flip-hint { position: absolute; top: 10px; right: 10px; font-size: 11px; color: var(--ink-dim); opacity: .7; }
+
+  /* ---------- Skills (mana / attribute cards) ---------- */
+  .skill-deck { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+  .skill-card {
+    background: linear-gradient(180deg, var(--panel-2), var(--panel));
+    border: 1px solid var(--line); border-radius: var(--radius); padding: 16px;
+    border-top: 3px solid var(--accent, var(--gold));
+  }
+  .skill-card h3 { margin: 0 0 4px; font-size: 15px; display: flex; align-items: center; gap: 9px; }
+  .skill-card h3 i { color: var(--accent, var(--gold)); width: 20px; text-align: center; }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 10px; }
+  .tag { font-size: 12px; background: rgba(255,255,255,.06); border: 1px solid var(--line); border-radius: 7px; padding: 4px 9px; color: var(--ink-soft); }
+
+  /* ---------- Experience quest list ---------- */
+  .quest {
+    background: linear-gradient(180deg, var(--panel-2), var(--panel));
+    border: 1px solid var(--line); border-left: 4px solid var(--gold);
+    border-radius: 14px; padding: 18px 20px; margin-bottom: 16px;
+  }
+  .quest-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 14px; }
+  .quest-head h3 { margin: 0; font-size: 17px; }
+  .quest-head .org { color: var(--gold); font-weight: 700; }
+  .quest-head .when { margin-left: auto; color: var(--ink-dim); font-size: 13px; font-family: "Noto Sans TC"; }
+  .quest-list { margin: 12px 0 0; padding: 0; list-style: none; display: grid; gap: 12px; }
+  .quest-list > li {
+    background: rgba(255,255,255,.035); border: 1px solid var(--line); border-radius: 11px; padding: 12px 14px;
+  }
+  .quest-list .obj { font-weight: 700; display: flex; align-items: center; gap: 9px; }
+  .quest-list .obj i { color: var(--r-rare); }
+  .quest-list p { margin: 6px 0 0; font-size: 13.5px; color: var(--ink-soft); }
+
+  /* ---------- Education / contact ---------- */
+  .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+  .info-card { background: linear-gradient(180deg, var(--panel-2), var(--panel)); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; }
+  .info-card h3 { margin: 0 0 14px; font-size: 16px; display: flex; align-items: center; gap: 10px; }
+  .info-card h3 i { color: var(--gold); }
+  .contact-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+  .contact-list a, .contact-list span { display: flex; align-items: center; gap: 11px; color: var(--ink-soft); text-decoration: none; font-size: 14.5px; word-break: break-all; }
+  .contact-list i { color: var(--gold); width: 20px; text-align: center; flex: none; }
+  .contact-list a:hover { color: var(--gold); }
+
+  /* ---------- About ---------- */
+  .about-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; }
+  .about-card { background: linear-gradient(180deg, var(--panel-2), var(--panel)); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; font-size: 14.5px; color: var(--ink-soft); position: relative; }
+  .about-card .qn { font-family: "Cinzel", serif; font-size: 28px; color: var(--r-epic); opacity: .55; line-height: 1; }
+
+  /* ---------- Modal ---------- */
+  .modal-back {
+    position: fixed; inset: 0; z-index: 100; display: none;
+    background: rgba(6,5,16,.82); backdrop-filter: blur(6px);
+    padding: 24px; overflow-y: auto;
+  }
+  .modal-back.open { display: grid; place-items: center; animation: fade .2s ease; }
+  @keyframes fade { from{opacity:0} to{opacity:1} }
+  .modal {
+    width: min(560px, 100%); border-radius: 20px; padding: 3px;
+    background: var(--rar, var(--r-epic));
+    box-shadow: 0 30px 80px rgba(0,0,0,.6);
+    animation: pop .35s var(--ease);
+  }
+  @keyframes pop { from{transform:scale(.85) translateY(20px); opacity:0} to{transform:none; opacity:1} }
+  .modal-inner { background: radial-gradient(130% 90% at 50% 0%, #241f48, #14122c 72%); border-radius: 17px; padding: 22px; position: relative; }
+  .modal-close {
+    position: absolute; top: 12px; right: 12px; width: 36px; height: 36px;
+    border-radius: 50%; background: var(--panel-2); border: 1px solid var(--line-strong);
+    color: var(--ink); cursor: pointer; font-size: 15px;
+  }
+  .modal-close:hover { border-color: var(--gold); color: var(--gold); }
+  .modal-art { height: 150px; border-radius: 13px; overflow: hidden; border: 1px solid var(--line); margin-bottom: 14px; background: #0d0b1f; }
+  .modal-art svg { width: 100%; height: 100%; }
+  .modal h3 { margin: 0 0 2px; font-size: 22px; }
+  .modal .m-sub { color: var(--gold); font-size: 13px; margin-bottom: 14px; font-family: "Noto Sans TC"; }
+  .modal .m-meta { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
+  .modal ul { margin: 8px 0 0; padding-left: 18px; color: var(--ink-soft); font-size: 14px; }
+  .modal ul li { margin-bottom: 6px; }
+  .modal .m-tags { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 14px; }
+  .modal .m-link { display: inline-flex; align-items: center; gap: 8px; margin-top: 16px; color: var(--gold); font-weight: 700; text-decoration: none; }
+  .modal .m-link:hover { text-decoration: underline; }
+
+  /* ---------- Footer ---------- */
+  footer { padding: 40px 0 60px; text-align: center; color: var(--ink-dim); border-top: 1px solid var(--line); margin-top: 30px; }
+  footer .crest { color: var(--gold); font-size: 18px; }
+
+  /* ---------- Expand-all state: render full text inline ---------- */
+  body.show-all .card-desc { display: block; }
+  .full-only { display: none; }
+  body.show-all .full-only { display: block; }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 940px) {
+    .hero-grid { grid-template-columns: 1fr; }
+    .hero-card-stage { order: -1; }
+    .deck.cols-3, .deck.cols-2 { grid-template-columns: repeat(2, 1fr); }
+    .skill-deck { grid-template-columns: 1fr 1fr; }
+    .about-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 640px) {
+    .stats-row { grid-template-columns: 1fr 1fr; }
+    .deck.cols-3, .deck.cols-2 { grid-template-columns: 1fr; }
+    .skill-deck { grid-template-columns: 1fr; }
+    .info-grid { grid-template-columns: 1fr; }
+    .quest-head .when { margin-left: 0; width: 100%; }
+    section { padding: 42px 0; }
+    .hero-card { animation: none; transform: none; }
+  }
+
+  /* ---------- Reduced motion: static document mode ---------- */
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+    .card { opacity: 1 !important; transform: none !important; }
+    .hero-card { transform: none !important; }
+    .card-desc { display: block !important; }
+    .full-only { display: block !important; }
+  }
+
+  /* ---------- Print: clean full document ---------- */
+  @media print {
+    body { background: #fff; color: #000; line-height: 1.5; }
+    .topbar, .toolbar, .flip-hint, .hero-card-stage, .modal-back, .section-head .num { display: none !important; }
+    .card, .skill-card, .quest, .info-card, .about-card, .stat-cell {
+      background: #fff !important; border: 1px solid #999 !important; color: #000 !important;
+      box-shadow: none !important; opacity: 1 !important; transform: none !important; break-inside: avoid;
+    }
+    .card { padding: 0; }
+    .card-inner, .modal-inner { background: #fff !important; color: #000 !important; }
+    .card-art, .modal-art { display: none !important; }
+    .card-desc, .full-only, .card.in { display: block !important; opacity: 1 !important; }
+    .gradient-text { color: #000 !important; -webkit-text-fill-color: #000 !important; }
+    .deck.cols-3, .deck.cols-2, .skill-deck, .about-grid, .info-grid, .stats-row { display: block; }
+    .card, .skill-card, .about-card, .info-card, .stat-cell { margin-bottom: 12px; }
+    a { color: #000; text-decoration: underline; }
+    h1,h2,h3 { color: #000; }
+    section { padding: 14px 0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ TOP BAR ============ -->
+<header class="topbar">
+  <div class="wrap">
+    <div class="brand"><span class="crest">IC</span> Ian Cheng</div>
+    <div class="spacer"></div>
+    <nav class="toolbar" aria-label="檢視工具">
+      <button class="btn" id="dealBtn" type="button"><i class="fa-solid fa-shuffle" aria-hidden="true"></i> 重新發牌</button>
+      <button class="btn" id="expandBtn" type="button" aria-pressed="false"><i class="fa-solid fa-expand" aria-hidden="true"></i> 展開全部卡面 / 檢視全文</button>
+      <button class="btn primary" id="printBtn" type="button"><i class="fa-solid fa-print" aria-hidden="true"></i> 列印 / PDF</button>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="hero" aria-labelledby="heroName">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <h1 id="heroName"><span class="gradient-text">Ian Cheng</span></h1>
+        <div class="hero-role">資深全端工程師 &amp; AI 工程師</div>
+        <p class="hero-tag">10 年開發經驗，擅長 AI 產品落地、微服務架構設計，具備從零到上線的完整交付能力。</p>
+        <div class="badges">
+          <span class="badge"><span class="dot" aria-hidden="true"></span> Available for opportunities</span>
+          <a class="badge alt" href="mailto:serviceluna@luna-ai-life.com"><i class="fa-solid fa-envelope" aria-hidden="true"></i> serviceluna@luna-ai-life.com</a>
+        </div>
+
+        <div class="stats-row" role="list" aria-label="數據亮點">
+          <div class="stat-cell" role="listitem"><div class="v gradient-text" data-count="10" data-suffix="+">0</div><div class="l">年開發經驗</div></div>
+          <div class="stat-cell" role="listitem"><div class="v gradient-text" data-count="5" data-suffix="+">0</div><div class="l">大型專案交付</div></div>
+          <div class="stat-cell" role="listitem"><div class="v gradient-text" data-count="2" data-suffix="">0</div><div class="l">自建產品上線</div></div>
+          <div class="stat-cell" role="listitem"><div class="v gradient-text" data-count="3" data-suffix="">0</div><div class="l">AI 整合實戰</div></div>
+        </div>
+      </div>
+
+      <!-- Champion / Hero card -->
+      <div class="hero-card-stage" aria-hidden="false">
+        <div class="hero-card">
+          <div class="hero-card-inner">
+            <div class="hc-top">
+              <div class="hc-cost" title="費用">10</div>
+              <div class="hc-class">LEGENDARY<br>全端 · AI</div>
+            </div>
+            <div class="hc-art">
+              <svg viewBox="0 0 300 160" role="img" aria-label="英雄卡插圖：發光的工程師頭像">
+                <defs>
+                  <radialGradient id="hcg" cx="50%" cy="35%" r="70%">
+                    <stop offset="0" stop-color="#3a2f6e"/><stop offset="1" stop-color="#120f28"/>
+                  </radialGradient>
+                  <linearGradient id="hcl" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0" stop-color="#ffd45e"/><stop offset="1" stop-color="#c062ff"/>
+                  </linearGradient>
+                </defs>
+                <rect width="300" height="160" fill="url(#hcg)"/>
+                <circle cx="150" cy="70" r="46" fill="none" stroke="url(#hcl)" stroke-width="3" opacity=".8"/>
+                <circle cx="150" cy="62" r="20" fill="url(#hcl)"/>
+                <path d="M112 118c6-22 24-30 38-30s32 8 38 30" fill="none" stroke="url(#hcl)" stroke-width="6" stroke-linecap="round"/>
+                <g stroke="#9fd0ff" stroke-width="2" opacity=".7">
+                  <path d="M40 30 L70 50 L40 70" fill="none"/><path d="M260 30 L230 50 L260 70" fill="none"/>
+                </g>
+                <g fill="#ffd45e"><circle cx="56" cy="120" r="3"/><circle cx="244" cy="120" r="3"/><circle cx="150" cy="14" r="3"/></g>
+              </svg>
+            </div>
+            <div class="hc-name"><span class="gradient-text">Ian Cheng</span></div>
+            <div class="hc-title">資深全端工程師 &amp; AI 工程師</div>
+            <div class="hc-stats">
+              <div class="hc-stat"><b>10+</b><span>年經驗</span></div>
+              <div class="hc-stat"><b>5+</b><span>專案</span></div>
+              <div class="hc-stat"><b>3</b><span>領域</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section id="about" aria-labelledby="aboutH">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="num">I</span>
+      <div><h2 id="aboutH">英雄背景 · 關於我</h2><p>Champion Lore</p></div>
+    </div>
+    <div class="about-grid">
+      <div class="about-card"><div class="qn">01</div>10 年全端工程師，具備從系統架構設計到 AI 產品落地的端對端能力。曾在中部區域醫院主導多項院內大型系統開發，採微服務架構 + API Gateway + RBAC 集中控管，支援全院多部門運作。</div>
+      <div class="about-card"><div class="qn">02</div>自行開發並上線 璐娜健康管家（AI 健康 SaaS）與金連發電器（家電電商），整合 Gemini + OpenAI 多模態雙引擎。具備 Stable Diffusion + LoRA 模型微調及 RAG 系統建置實戰經驗，熟悉醫療資料處理與合規需求。</div>
+      <div class="about-card"><div class="qn">03</div>背景橫跨醫療資訊、電商、AI 三個領域，能同時勝任技術深度討論與跨部門架構溝通。目前積極尋求 AI 工程師 / Tech Lead / Solution Architect 相關機會。</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SKILLS ============ -->
+<section id="skills" aria-labelledby="skillsH">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="num">II</span>
+      <div><h2 id="skillsH">技能牌組 · 核心技能</h2><p>Skill Deck</p></div>
+    </div>
+    <div class="skill-deck" id="skillDeck">
+      <div class="skill-card" style="--accent:#4ea1ff"><h3><i class="fa-solid fa-code" aria-hidden="true"></i> 程式語言</h3><div class="skill-tags"><span class="tag">Python</span><span class="tag">Vue.js</span><span class="tag">PHP</span><span class="tag">JavaScript</span><span class="tag">HTML / CSS</span></div></div>
+      <div class="skill-card" style="--accent:#45e08a"><h3><i class="fa-solid fa-database" aria-hidden="true"></i> 資料庫</h3><div class="skill-tags"><span class="tag">MySQL</span><span class="tag">PostgreSQL</span><span class="tag">MongoDB</span><span class="tag">Redis</span></div></div>
+      <div class="skill-card" style="--accent:#ffb13d"><h3><i class="fa-solid fa-sitemap" aria-hidden="true"></i> 系統架構</h3><div class="skill-tags"><span class="tag">微服務</span><span class="tag">API Gateway</span><span class="tag">RBAC</span><span class="tag">事件驅動</span><span class="tag">負載均衡</span><span class="tag">CDN</span></div></div>
+      <div class="skill-card" style="--accent:#c062ff"><h3><i class="fa-solid fa-robot" aria-hidden="true"></i> AI / ML</h3><div class="skill-tags"><span class="tag">OpenAI API</span><span class="tag">Gemini API</span><span class="tag">RAG</span><span class="tag">LoRA fine-tuning</span><span class="tag">Stable Diffusion</span><span class="tag">向量資料庫</span></div></div>
+      <div class="skill-card" style="--accent:#ff7bd0"><h3><i class="fa-solid fa-gears" aria-hidden="true"></i> DevOps</h3><div class="skill-tags"><span class="tag">Docker</span><span class="tag">CI/CD</span><span class="tag">Linux</span><span class="tag">Nginx</span></div></div>
+      <div class="skill-card" style="--accent:#74e6a6"><h3><i class="fa-solid fa-stethoscope" aria-hidden="true"></i> 領域知識</h3><div class="skill-tags"><span class="tag">醫療資訊系統</span><span class="tag">電商平台</span><span class="tag">醫療資料合規</span><span class="tag">HL7 / FHIR</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROJECTS (interactive cards) ============ -->
+<section id="projects" aria-labelledby="projH">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="num">III</span>
+      <div><h2 id="projH">傳說作品 · 自建產品</h2><p>Legendary Cards — 點擊卡牌翻面檢視詳情</p></div>
+    </div>
+    <div class="deck cols-2" id="projDeck"><!-- JS injects cards; full text always present in noscript fallback below --></div>
+    <noscript>
+      <div class="info-card" style="margin-top:16px">
+        <h3>璐娜健康管家（AI SaaS · LINE Bot · 健康管理）— <a href="https://luna-ai-life.com">https://luna-ai-life.com</a></h3>
+        <p>整合 Gemini + OpenAI 雙引擎的 AI 健康管理平台，提供拍照熱量辨識、社交陪跑配對與個人化健康報告。特色：多模態 AI 辨識食物熱量（蛋白質、碳水、脂肪、鈉）；AI 配對陪跑夥伴 + 遊戲化打卡獎勵系統；個人化週報 / 月報含代謝評估與行動建議；Gemini + OpenAI 雙引擎備援架構。標籤：OpenAI、Gemini、Vue.js、Python、LINE Bot</p>
+        <h3>金連發電器（電商平台 · 家電 · 全台配送）— <a href="https://jlfshop.com">https://jlfshop.com</a></h3>
+        <p>完整家電購物商城，涵蓋商品管理、訂單流程、安裝 / 回收 / 運送服務整合，為實際營運中的電商系統。特色：完整電商流程（商品、購物車、訂單、金流）；物流整合（安裝、回收、運送服務調度）；Redis 快取 + CDN + 負載均衡效能優化。標籤：Vue.js、PHP、Redis、CDN、MySQL</p>
+      </div>
+    </noscript>
+  </div>
+</section>
+
+<!-- ============ SPECIAL ACHIEVEMENTS (cards) ============ -->
+<section id="achievements" aria-labelledby="achH">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="num">IV</span>
+      <div><h2 id="achH">史詩實績 · 特殊技術</h2><p>Epic Achievements</p></div>
+    </div>
+    <div class="deck cols-2" id="achDeck"></div>
+  </div>
+</section>
+
+<!-- ============ EXPERIENCE (quest list) ============ -->
+<section id="experience" aria-labelledby="expH">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="num">V</span>
+      <div><h2 id="expH">任務日誌 · 工作經歷</h2><p>Quest Log</p></div>
+    </div>
+    <article class="quest">
+      <div class="quest-head">
+        <h3>程式設計師</h3>
+        <span class="org">＠ 中部區域醫院</span>
+        <span class="when">任職約 9 年 — 至今</span>
+      </div>
+      <ul class="quest-list">
+        <li>
+          <div class="obj"><i class="fa-solid fa-flag-checkered" aria-hidden="true"></i> 全院行動祕書（全院通用行動 App）</div>
+          <p>微服務架構設計，各功能模組獨立部署並透過 API Gateway 統一入口管理；RBAC 集中式權限控管，支援多角色、多部門存取隔離；Vue.js 前端 + Python / PHP 後端，Redis 快取優化高頻讀取效能；負責架構設計、開發、部署與維運全流程。</p>
+        </li>
+        <li>
+          <div class="obj"><i class="fa-solid fa-flag-checkered" aria-hidden="true"></i> 個案管理系統</div>
+          <p>跨科別病患個案追蹤平台，整合多部門護理流程與個案狀態管理；符合醫療資料安全規範，實作審計日誌與敏感欄位加密機制。</p>
+        </li>
+        <li>
+          <div class="obj"><i class="fa-solid fa-flag-checkered" aria-hidden="true"></i> 學習護照系統</div>
+          <p>全院員工學習歷程平台，支援課程管理、學習進度追蹤與認證產出；模組化設計對應醫師、護理師、行政等不同職類的差異化學習路徑。</p>
+        </li>
+      </ul>
+    </article>
+  </div>
+</section>
+
+<!-- ============ EDUCATION / CONTACT ============ -->
+<section id="contact" aria-labelledby="contactH">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="num">VI</span>
+      <div><h2 id="contactH">學歷與聯繫 · Stats</h2><p>Education &amp; Contact</p></div>
+    </div>
+    <div class="info-grid">
+      <div class="info-card">
+        <h3><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i> 學歷</h3>
+        <ul class="contact-list">
+          <li><span><i class="fa-solid fa-school" aria-hidden="true"></i> 中山醫學大學 · 醫學資訊學系 · 學士</span></li>
+        </ul>
+      </div>
+      <div class="info-card">
+        <h3><i class="fa-solid fa-link" aria-hidden="true"></i> 聯繫與連結</h3>
+        <ul class="contact-list">
+          <li><a href="mailto:serviceluna@luna-ai-life.com"><i class="fa-solid fa-envelope" aria-hidden="true"></i> serviceluna@luna-ai-life.com</a></li>
+          <li><a href="https://luna-ai-life.com" target="_blank" rel="noopener"><i class="fa-solid fa-heart-pulse" aria-hidden="true"></i> 璐娜健康管家（luna-ai-life.com）</a></li>
+          <li><a href="https://jlfshop.com" target="_blank" rel="noopener"><i class="fa-solid fa-cart-shopping" aria-hidden="true"></i> 金連發電器（jlfshop.com）</a></li>
+          <li><a href="https://github.com/" target="_blank" rel="noopener"><i class="fa-brands fa-github" aria-hidden="true"></i> GitHub（github.com）</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="crest"><i class="fa-solid fa-chess-rook" aria-hidden="true"></i></div>
+    <p>&copy; 2026 Ian Cheng</p>
+  </div>
+</footer>
+
+<!-- ============ MODAL ============ -->
+<div class="modal-back" id="modalBack" role="dialog" aria-modal="true" aria-labelledby="modalTitle" tabindex="-1">
+  <div class="modal" id="modalCard" data-rarity="legend">
+    <div class="modal-inner">
+      <button class="modal-close" id="modalClose" type="button" aria-label="關閉詳情"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+      <div class="modal-art" id="modalArt"></div>
+      <h3 id="modalTitle"></h3>
+      <div class="m-sub" id="modalSub"></div>
+      <div class="m-meta" id="modalMeta"></div>
+      <div id="modalBody"></div>
+      <div class="m-tags" id="modalTags"></div>
+      <a class="m-link" id="modalLink" target="_blank" rel="noopener" style="display:none"><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> <span id="modalLinkText"></span></a>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  "use strict";
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // ---- SVG art generators (inline, no external assets) ----
+  function artLuna() {
+    return '<svg viewBox="0 0 300 160" role="img" aria-label="璐娜健康管家插圖">' +
+      '<defs><linearGradient id="lg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff7bd0"/><stop offset="1" stop-color="#c062ff"/></linearGradient></defs>' +
+      '<rect width="300" height="160" fill="#1a1330"/>' +
+      '<circle cx="150" cy="80" r="52" fill="none" stroke="url(#lg1)" stroke-width="3"/>' +
+      '<path d="M150 110c-22-14-38-26-38-46a20 20 0 0 1 38-8 20 20 0 0 1 38 8c0 20-16 32-38 46z" fill="url(#lg1)"/>' +
+      '<path d="M96 80h22l8-16 12 30 9-22 7 8h44" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>' +
+      '</svg>';
+  }
+  function artJlf() {
+    return '<svg viewBox="0 0 300 160" role="img" aria-label="金連發電器插圖">' +
+      '<defs><linearGradient id="jg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#9fd0ff"/><stop offset="1" stop-color="#2f6fc0"/></linearGradient></defs>' +
+      '<rect width="300" height="160" fill="#101a2c"/>' +
+      '<rect x="92" y="44" width="116" height="74" rx="8" fill="none" stroke="url(#jg1)" stroke-width="3"/>' +
+      '<path d="M92 64h116" stroke="url(#jg1)" stroke-width="3"/>' +
+      '<circle cx="108" cy="54" r="3" fill="#ffd45e"/><circle cx="122" cy="54" r="3" fill="#74e6a6"/>' +
+      '<circle cx="150" cy="92" r="18" fill="none" stroke="url(#jg1)" stroke-width="3"/>' +
+      '<path d="M150 80v12l8 6" stroke="#ffd45e" stroke-width="2.5" fill="none" stroke-linecap="round"/>' +
+      '<path d="M120 130h60" stroke="url(#jg1)" stroke-width="3" stroke-linecap="round"/>' +
+      '</svg>';
+  }
+  function artSD() {
+    return '<svg viewBox="0 0 300 160" role="img" aria-label="Stable Diffusion LoRA 微調插圖">' +
+      '<defs><linearGradient id="sg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e3a9ff"/><stop offset="1" stop-color="#8a36c9"/></linearGradient></defs>' +
+      '<rect width="300" height="160" fill="#1c1430"/>' +
+      '<g stroke="url(#sg1)" stroke-width="2.5" fill="none">' +
+      '<circle cx="80" cy="50" r="10"/><circle cx="80" cy="110" r="10"/><circle cx="150" cy="80" r="12"/><circle cx="220" cy="60" r="10"/><circle cx="220" cy="105" r="10"/>' +
+      '<path d="M90 54l50 22M90 106l50 -22M162 74l48 -12M162 86l48 16"/></g>' +
+      '<g fill="#ffd45e"><circle cx="80" cy="50" r="3"/><circle cx="80" cy="110" r="3"/><circle cx="150" cy="80" r="3.5"/><circle cx="220" cy="60" r="3"/><circle cx="220" cy="105" r="3"/></g>' +
+      '</svg>';
+  }
+  function artRAG() {
+    return '<svg viewBox="0 0 300 160" role="img" aria-label="醫療文件 RAG 系統插圖">' +
+      '<defs><linearGradient id="rg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#74e6a6"/><stop offset="1" stop-color="#2f9ec0"/></linearGradient></defs>' +
+      '<rect width="300" height="160" fill="#10221f"/>' +
+      '<g fill="none" stroke="url(#rg1)" stroke-width="2.5">' +
+      '<rect x="70" y="40" width="64" height="80" rx="6"/><rect x="80" y="32" width="64" height="80" rx="6" opacity=".6"/>' +
+      '<path d="M150 80h40"/><circle cx="214" cy="80" r="24"/><path d="M205 80l6 6 12-14"/></g>' +
+      '<g stroke="#ffd45e" stroke-width="2"><path d="M86 56h40M86 70h40M86 84h28"/></g>' +
+      '</svg>';
+  }
+
+  // ---- Card data (full content, also used by modal) ----
+  var projects = [
+    {
+      rarity: "legend", cost: "9", name: "璐娜健康管家",
+      sub: "AI SaaS · LINE Bot · 健康管理",
+      atk: "AI", def: "雙引擎", val: "SaaS",
+      art: artLuna,
+      desc: "整合 Gemini + OpenAI 雙引擎的 AI 健康管理平台，提供拍照熱量辨識、社交陪跑配對與個人化健康報告。",
+      bullets: [
+        "多模態 AI 辨識食物熱量（蛋白質、碳水、脂肪、鈉）",
+        "AI 配對陪跑夥伴 + 遊戲化打卡獎勵系統",
+        "個人化週報 / 月報含代謝評估與行動建議",
+        "Gemini + OpenAI 雙引擎備援架構"
+      ],
+      tags: ["OpenAI","Gemini","Vue.js","Python","LINE Bot"],
+      link: "https://luna-ai-life.com", linkText: "luna-ai-life.com"
+    },
+    {
+      rarity: "epic", cost: "8", name: "金連發電器",
+      sub: "電商平台 · 家電 · 全台配送",
+      atk: "電商", def: "物流", val: "營運中",
+      art: artJlf,
+      desc: "完整家電購物商城，涵蓋商品管理、訂單流程、安裝 / 回收 / 運送服務整合，為實際營運中的電商系統。",
+      bullets: [
+        "完整電商流程（商品、購物車、訂單、金流）",
+        "物流整合（安裝、回收、運送服務調度）",
+        "Redis 快取 + CDN + 負載均衡效能優化"
+      ],
+      tags: ["Vue.js","PHP","Redis","CDN","MySQL"],
+      link: "https://jlfshop.com", linkText: "jlfshop.com"
+    }
+  ];
+
+  var achievements = [
+    {
+      rarity: "epic", cost: "7", name: "Stable Diffusion + LoRA 模型微調",
+      sub: "AI 模型層級實戰",
+      atk: "訓練", def: "標注", val: "全流程",
+      art: artSD,
+      desc: "獨立完成圖像生成模型訓練，涵蓋資料標注、訓練參數調整至產出完整流程。",
+      bullets: [
+        "獨立完成圖像生成模型訓練，涵蓋資料標注、訓練參數調整至產出完整流程",
+        "具備 AI 模型層級的實戰能力，不只是 API 呼叫層"
+      ],
+      tags: ["Stable Diffusion","LoRA","資料標注","模型訓練"],
+      link: "", linkText: ""
+    },
+    {
+      rarity: "epic", cost: "7", name: "醫療文件 RAG 系統",
+      sub: "向量化 · 語義查詢知識庫",
+      atk: "800+頁", def: "高召回", val: "可追溯",
+      art: artRAG,
+      desc: "將 800+ 頁原文病歷向量化，建置可語義查詢的醫療知識庫，實際用於醫療諮詢輔助。",
+      bullets: [
+        "將 800+ 頁原文病歷向量化，建置可語義查詢的醫療知識庫",
+        "實際用於醫療諮詢輔助",
+        "具備高精度召回率與答案可追溯性需求的處理經驗"
+      ],
+      tags: ["RAG","向量資料庫","醫療資料","語義查詢"],
+      link: "", linkText: ""
+    }
+  ];
+
+  var rarityLabel = { common: "Common", rare: "Rare", epic: "Epic", legend: "Legendary" };
+
+  function buildCard(d, idx) {
+    var el = document.createElement("button");
+    el.type = "button";
+    el.className = "card";
+    el.setAttribute("data-rarity", d.rarity);
+    el.setAttribute("aria-label", d.name + "（" + rarityLabel[d.rarity] + "）— 點擊檢視詳情");
+    var bulletsHtml = '<div class="full-only"><ul style="margin:8px 0 0;padding-left:18px;font-size:12.5px;color:var(--ink-soft)">' +
+      d.bullets.map(function (b) { return "<li>" + b + "</li>"; }).join("") + "</ul></div>";
+    el.innerHTML =
+      '<div class="card-inner">' +
+        '<span class="flip-hint"><i class="fa-solid fa-hand-pointer" aria-hidden="true"></i></span>' +
+        '<div class="card-top">' +
+          '<div class="cost" title="費用">' + d.cost + '</div>' +
+          '<div class="card-titles"><div class="rar-tag">' + rarityLabel[d.rarity] + '</div><h3>' + d.name + '</h3></div>' +
+        '</div>' +
+        '<div class="card-art">' + d.art() + '</div>' +
+        '<p class="card-desc">' + d.desc + '</p>' +
+        bulletsHtml +
+        '<div class="card-foot">' +
+          '<div class="pip"><b>' + d.atk + '</b><span>核心</span></div>' +
+          '<div class="pip"><b>' + d.def + '</b><span>能力</span></div>' +
+          '<div class="pip"><b>' + d.val + '</b><span>狀態</span></div>' +
+        '</div>' +
+      '</div>';
+    el.addEventListener("click", function () { openModal(d); });
+    return el;
+  }
+
+  function renderDeck(containerId, list) {
+    var c = document.getElementById(containerId);
+    if (!c) return [];
+    var cards = list.map(function (d, i) { var el = buildCard(d, i); c.appendChild(el); return el; });
+    return cards;
+  }
+
+  var projCards = renderDeck("projDeck", projects);
+  var achCards = renderDeck("achDeck", achievements);
+  var allCards = projCards.concat(achCards);
+
+  // ---- Deal / entrance animation ----
+  function deal() {
+    if (reduce) { allCards.forEach(function (c) { c.classList.add("in"); }); return; }
+    allCards.forEach(function (c) { c.classList.remove("in"); });
+    allCards.forEach(function (c, i) {
+      setTimeout(function () { c.classList.add("in"); }, 90 * i + 40);
+    });
+  }
+
+  // IntersectionObserver entrance for cards within view
+  if ("IntersectionObserver" in window && !reduce) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.18 });
+    allCards.forEach(function (c) { io.observe(c); });
+  } else {
+    allCards.forEach(function (c) { c.classList.add("in"); });
+  }
+
+  document.getElementById("dealBtn").addEventListener("click", deal);
+
+  // ---- Expand all / read full text ----
+  var expandBtn = document.getElementById("expandBtn");
+  expandBtn.addEventListener("click", function () {
+    var on = document.body.classList.toggle("show-all");
+    expandBtn.setAttribute("aria-pressed", on ? "true" : "false");
+    if (on) allCards.forEach(function (c) { c.classList.add("in"); });
+  });
+
+  // ---- Print ----
+  document.getElementById("printBtn").addEventListener("click", function () { window.print(); });
+
+  // ---- Modal ----
+  var back = document.getElementById("modalBack");
+  var modalCard = document.getElementById("modalCard");
+  var lastFocus = null;
+
+  function openModal(d) {
+    lastFocus = document.activeElement;
+    modalCard.setAttribute("data-rarity", d.rarity);
+    document.getElementById("modalArt").innerHTML = d.art();
+    document.getElementById("modalTitle").textContent = d.name;
+    document.getElementById("modalSub").textContent = d.sub;
+    var meta = document.getElementById("modalMeta");
+    meta.innerHTML =
+      '<span class="badge alt"><i class="fa-solid fa-coins" aria-hidden="true"></i> 費用 ' + d.cost + '</span>' +
+      '<span class="badge alt">' + rarityLabel[d.rarity] + '</span>';
+    var body = document.getElementById("modalBody");
+    body.innerHTML = '<p style="color:var(--ink-soft);font-size:14.5px;margin:0">' + d.desc + '</p>' +
+      '<ul>' + d.bullets.map(function (b) { return "<li>" + b + "</li>"; }).join("") + '</ul>';
+    var tags = document.getElementById("modalTags");
+    tags.innerHTML = d.tags.map(function (t) { return '<span class="tag">' + t + '</span>'; }).join("");
+    var link = document.getElementById("modalLink");
+    if (d.link) {
+      link.href = d.link; document.getElementById("modalLinkText").textContent = "前往 " + d.linkText;
+      link.style.display = "inline-flex";
+    } else { link.style.display = "none"; }
+    back.classList.add("open");
+    document.body.style.overflow = "hidden";
+    document.getElementById("modalClose").focus();
+  }
+  function closeModal() {
+    back.classList.remove("open");
+    document.body.style.overflow = "";
+    if (lastFocus) lastFocus.focus();
+  }
+  document.getElementById("modalClose").addEventListener("click", closeModal);
+  back.addEventListener("click", function (e) { if (e.target === back) closeModal(); });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape" && back.classList.contains("open")) closeModal(); });
+
+  // ---- Stat counters ----
+  function runCount(el) {
+    var target = parseInt(el.getAttribute("data-count"), 10);
+    var suffix = el.getAttribute("data-suffix") || "";
+    if (reduce) { el.textContent = target + suffix; return; }
+    var start = null, dur = 1100;
+    function step(ts) {
+      if (!start) start = ts;
+      var p = Math.min((ts - start) / dur, 1);
+      var eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(target * eased) + suffix;
+      if (p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  var counters = document.querySelectorAll("[data-count]");
+  if ("IntersectionObserver" in window && !reduce) {
+    var io2 = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (e.isIntersecting) { runCount(e.target); io2.unobserve(e.target); } });
+    }, { threshold: 0.5 });
+    counters.forEach(function (c) { io2.observe(c); });
+  } else {
+    counters.forEach(runCount);
+  }
+
+  // initial deal of project/achievement cards (visible-first)
+  if (!reduce) {
+    setTimeout(deal, 200);
+  } else {
+    allCards.forEach(function (c) { c.classList.add("in"); });
+  }
+})();
+</script>
+</body>
+</html>

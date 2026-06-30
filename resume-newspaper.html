@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ian Cheng — 資深全端工程師 &amp; AI 工程師｜THE IAN TIMES</title>
+<meta name="description" content="Ian Cheng — 資深全端工程師 &amp; AI 工程師。10 年開發經驗，擅長 AI 產品落地、微服務架構設計，具備從零到上線的完整交付能力。" />
+<meta name="author" content="Ian Cheng" />
+<meta name="theme-color" content="#f4efe2" />
+<meta name="robots" content="index,follow" />
+<meta name="keywords" content="Ian Cheng, 全端工程師, AI 工程師, 微服務, RAG, LoRA, Stable Diffusion, 醫療資訊, Tech Lead, Solution Architect" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="profile" />
+<meta property="og:title" content="Ian Cheng — 資深全端工程師 &amp; AI 工程師" />
+<meta property="og:description" content="10 年開發經驗，擅長 AI 產品落地、微服務架構設計，具備從零到上線的完整交付能力。" />
+<meta property="og:locale" content="zh_TW" />
+<meta property="profile:first_name" content="Ian" />
+<meta property="profile:last_name" content="Cheng" />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="Ian Cheng — 資深全端工程師 &amp; AI 工程師" />
+<meta name="twitter:description" content="10 年開發經驗，擅長 AI 產品落地、微服務架構設計，具備從零到上線的完整交付能力。" />
+
+<!-- Favicon (data URI SVG) -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20100%20100'%3E%3Crect%20width='100'%20height='100'%20fill='%23f4efe2'/%3E%3Crect%20x='8'%20y='8'%20width='84'%20height='84'%20fill='none'%20stroke='%231a1a1a'%20stroke-width='4'/%3E%3Ctext%20x='50'%20y='70'%20text-anchor='middle'%20font-family='Georgia,serif'%20font-size='62'%20font-weight='700'%20fill='%231a1a1a'%3EIT%3C/text%3E%3Crect%20x='20'%20y='80'%20width='60'%20height='4'%20fill='%23b3261e'/%3E%3C/svg%3E" />
+
+<!-- Google Fonts: Playfair Display + Noto Serif TC -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Noto+Serif+TC:wght@400;500;700;900&display=swap" rel="stylesheet" />
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<style>
+  :root {
+    --paper:        #f4efe2;
+    --paper-2:      #efe8d6;
+    --paper-edge:   #e7dec7;
+    --ink:          #1a1714;
+    --ink-soft:     #3a352e;
+    --ink-faint:    #6b6357;
+    --rule:         #1a1714;
+    --rule-soft:    #cbc1ab;
+    --accent:       #b3261e;
+    --accent-dark:  #8c1c16;
+    --serif-en: "Playfair Display", "Noto Serif TC", Georgia, serif;
+    --serif-tc: "Noto Serif TC", "Playfair Display", serif;
+    --col-gap: 2.4rem;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+  body {
+    margin: 0;
+    background:
+      radial-gradient(circle at 20% 10%, rgba(0,0,0,0.025), transparent 40%),
+      radial-gradient(circle at 80% 70%, rgba(0,0,0,0.03), transparent 45%),
+      var(--paper);
+    color: var(--ink);
+    font-family: var(--serif-tc);
+    line-height: 1.75;
+    font-size: 17px;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* paper grain overlay */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.5;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
+  }
+
+  a { color: inherit; text-decoration: none; }
+
+  .wrap {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0 1.5rem 4rem;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* ===== Navigation ===== */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(244,239,226,0.93);
+    backdrop-filter: blur(4px);
+    border-bottom: 2px solid var(--rule);
+    border-top: 1px solid var(--rule);
+  }
+  nav .nav-inner {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0.45rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  nav .brand {
+    font-family: var(--serif-en);
+    font-weight: 900;
+    letter-spacing: 0.04em;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  nav .brand .dot { color: var(--accent); }
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 0.2rem;
+    margin: 0;
+    padding: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  nav ul::-webkit-scrollbar { display: none; }
+  nav a.navlink {
+    display: block;
+    padding: 0.35rem 0.7rem;
+    font-family: var(--serif-tc);
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    color: var(--ink-soft);
+    border-bottom: 2px solid transparent;
+    white-space: nowrap;
+    transition: color .2s, border-color .2s;
+  }
+  nav a.navlink:hover { color: var(--accent); }
+  nav a.navlink.active {
+    color: var(--ink);
+    border-bottom-color: var(--accent);
+  }
+
+  /* ===== Masthead ===== */
+  .masthead {
+    text-align: center;
+    padding: 2.6rem 0 0.8rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  .masthead .ear {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    font-family: var(--serif-tc);
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 0.5rem;
+    margin-bottom: 0.9rem;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+  .masthead .ear .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--accent-dark);
+    font-weight: 700;
+  }
+  .masthead .ear .badge .pulse {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 0 0 rgba(179,38,30,0.6);
+    animation: pulse 2.2s infinite;
+  }
+  @keyframes pulse {
+    0%   { box-shadow: 0 0 0 0 rgba(179,38,30,0.55); }
+    70%  { box-shadow: 0 0 0 9px rgba(179,38,30,0); }
+    100% { box-shadow: 0 0 0 0 rgba(179,38,30,0); }
+  }
+  .masthead h1.title {
+    font-family: var(--serif-en);
+    font-weight: 900;
+    font-size: clamp(2.6rem, 9vw, 6.2rem);
+    line-height: 1.32;
+    padding-bottom: 0.12em;
+    margin: 0;
+    letter-spacing: 0.01em;
+  }
+  .masthead .subline {
+    font-family: var(--serif-tc);
+    letter-spacing: 0.34em;
+    text-transform: uppercase;
+    font-size: clamp(0.6rem, 1.6vw, 0.82rem);
+    color: var(--ink-faint);
+    margin: 0.1rem 0 0.7rem;
+    padding-left: 0.34em;
+  }
+  .masthead .dateline {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 3px double var(--rule);
+    border-bottom: 3px double var(--rule);
+    padding: 0.4rem 0.2rem;
+    font-family: var(--serif-tc);
+    font-size: 0.74rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    flex-wrap: wrap;
+    gap: 0.3rem;
+  }
+  .masthead .dateline .mid { font-weight: 700; letter-spacing: 0.18em; }
+
+  /* ===== Hero / front headline ===== */
+  .frontpage {
+    padding-top: 1.8rem;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 1.8rem;
+  }
+  .frontpage .kicker {
+    text-align: center;
+    font-family: var(--serif-tc);
+    font-weight: 700;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--accent-dark);
+    font-size: 0.78rem;
+    margin-bottom: 0.6rem;
+  }
+  .frontpage h2.headline {
+    font-family: var(--serif-en);
+    font-weight: 900;
+    text-align: center;
+    font-size: clamp(1.7rem, 4.6vw, 3.2rem);
+    line-height: 1.34;
+    padding-bottom: 0.1em;
+    margin: 0 auto 0.4rem;
+    max-width: 16ch;
+    min-height: 1.34em;
+  }
+  .frontpage h2.headline .caret {
+    display: inline-block;
+    width: 0.5ch;
+    background: var(--accent);
+    color: transparent;
+    margin-left: 2px;
+    animation: blink 1s steps(2) infinite;
+  }
+  @keyframes blink { 0%,50% { opacity: 1; } 50.01%,100% { opacity: 0; } }
+  .frontpage .standfirst {
+    font-family: var(--serif-tc);
+    text-align: center;
+    font-size: clamp(1rem, 2.2vw, 1.18rem);
+    color: var(--ink-soft);
+    max-width: 56ch;
+    margin: 0 auto 1.4rem;
+    font-style: italic;
+  }
+  .frontpage .hero-meta {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+    border-top: 1px solid var(--rule-soft);
+    border-bottom: 1px solid var(--rule-soft);
+    padding: 0.7rem 0;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-family: var(--serif-tc);
+    font-size: 0.85rem;
+    letter-spacing: 0.04em;
+    padding: 0.3rem 0.7rem;
+    border: 1px solid var(--rule);
+    background: var(--paper-2);
+  }
+  .chip.accent { color: var(--accent-dark); border-color: var(--accent-dark); }
+  .chip svg { width: 14px; height: 14px; flex: none; }
+
+  /* ===== Statistics row ===== */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    text-align: center;
+    border-bottom: 3px double var(--rule);
+  }
+  .stats .stat {
+    padding: 1.4rem 0.6rem;
+    border-right: 1px solid var(--rule-soft);
+  }
+  .stats .stat:last-child { border-right: none; }
+  .stats .num {
+    font-family: var(--serif-en);
+    font-weight: 900;
+    font-size: clamp(2.2rem, 6vw, 3.4rem);
+    line-height: 1.2;
+    color: var(--ink);
+  }
+  .stats .num .plus { color: var(--accent); }
+  .stats .label {
+    font-family: var(--serif-tc);
+    font-size: 0.82rem;
+    letter-spacing: 0.05em;
+    color: var(--ink-faint);
+    margin-top: 0.2rem;
+  }
+
+  /* ===== Generic section ===== */
+  section { padding-top: 2.6rem; scroll-margin-top: 70px; }
+  .sec-head {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.4rem;
+  }
+  .sec-head .sec-no {
+    font-family: var(--serif-en);
+    font-weight: 900;
+    color: var(--accent);
+    font-size: 1.4rem;
+    line-height: 1;
+  }
+  .sec-head h3 {
+    font-family: var(--serif-en);
+    font-weight: 900;
+    font-size: clamp(1.4rem, 3.6vw, 2.1rem);
+    line-height: 1.34;
+    padding-bottom: 0.06em;
+    margin: 0;
+    white-space: nowrap;
+  }
+  .sec-head .hr {
+    flex: 1;
+    height: 0;
+    border-top: 3px double var(--rule);
+  }
+  .sec-head .tag {
+    font-family: var(--serif-tc);
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    white-space: nowrap;
+  }
+
+  /* ===== About (multi-column with drop cap) ===== */
+  .about-body {
+    column-count: 3;
+    column-gap: var(--col-gap);
+    column-rule: 1px solid var(--rule-soft);
+    text-align: justify;
+    hyphens: auto;
+  }
+  .about-body p { margin: 0 0 1rem; }
+  .about-body p:first-of-type::first-letter {
+    font-family: var(--serif-en);
+    font-weight: 900;
+    float: left;
+    font-size: 3.6rem;
+    line-height: 0.8;
+    padding: 0.08em 0.12em 0 0;
+    margin-right: 0.04em;
+    color: var(--accent);
+  }
+  .about-body p.break { break-inside: avoid; }
+
+  /* ===== Skills ===== */
+  .skills-grid {
+    column-count: 2;
+    column-gap: var(--col-gap);
+  }
+  .skill-block {
+    break-inside: avoid;
+    margin-bottom: 1.3rem;
+    border-top: 2px solid var(--rule);
+    padding-top: 0.7rem;
+  }
+  .skill-block h4 {
+    font-family: var(--serif-tc);
+    font-weight: 700;
+    font-size: 0.95rem;
+    letter-spacing: 0.08em;
+    margin: 0 0 0.6rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-transform: uppercase;
+  }
+  .skill-block h4 svg { width: 16px; height: 16px; color: var(--accent); flex: none; }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .skill-tags span {
+    font-family: var(--serif-tc);
+    font-size: 0.82rem;
+    padding: 0.18rem 0.55rem;
+    border: 1px solid var(--rule-soft);
+    background: var(--paper-2);
+  }
+
+  /* ===== Experience ===== */
+  .exp-lead {
+    border-left: 4px solid var(--accent);
+    padding-left: 1rem;
+    margin-bottom: 1.6rem;
+  }
+  .exp-lead .role {
+    font-family: var(--serif-en);
+    font-weight: 700;
+    font-size: clamp(1.2rem, 3vw, 1.6rem);
+    line-height: 1.36;
+    padding-bottom: 0.04em;
+  }
+  .exp-lead .org {
+    font-family: var(--serif-tc);
+    color: var(--ink-faint);
+    font-style: italic;
+    letter-spacing: 0.04em;
+  }
+  .reports {
+    column-count: 2;
+    column-gap: var(--col-gap);
+  }
+  .report {
+    break-inside: avoid;
+    margin-bottom: 1.4rem;
+    padding-bottom: 1.1rem;
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .report h4 {
+    font-family: var(--serif-tc);
+    font-weight: 700;
+    font-size: 1.05rem;
+    letter-spacing: 0.03em;
+    margin: 0 0 0.5rem;
+    padding-bottom: 0.3rem;
+    border-bottom: 2px solid var(--rule);
+  }
+  .report p { margin: 0; color: var(--ink-soft); font-size: 0.96rem; }
+
+  /* ===== Works ===== */
+  .works { display: grid; grid-template-columns: 1fr 1fr; gap: var(--col-gap); }
+  .work {
+    border: 2px solid var(--rule);
+    background: var(--paper-2);
+    padding: 1.3rem;
+    position: relative;
+  }
+  .work::after {
+    content: attr(data-stamp);
+    position: absolute;
+    top: 0.9rem;
+    right: 0.9rem;
+    font-family: var(--serif-en);
+    font-weight: 700;
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    border: 2px solid var(--accent);
+    padding: 0.18rem 0.5rem;
+    transform: rotate(-7deg);
+    opacity: 0.85;
+  }
+  .work h4 {
+    font-family: var(--serif-en);
+    font-weight: 900;
+    font-size: 1.4rem;
+    line-height: 1.34;
+    padding-bottom: 0.04em;
+    margin: 0 0.5rem 0.2rem 0;
+    max-width: 80%;
+  }
+  .work .work-sub {
+    font-family: var(--serif-tc);
+    font-style: italic;
+    color: var(--ink-faint);
+    font-size: 0.88rem;
+    margin-bottom: 0.7rem;
+  }
+  .work .desc { font-size: 0.95rem; color: var(--ink-soft); margin: 0 0 0.8rem; }
+  .work ul {
+    list-style: none;
+    margin: 0 0 0.9rem;
+    padding: 0;
+  }
+  .work ul li {
+    position: relative;
+    padding-left: 1.1rem;
+    font-size: 0.92rem;
+    color: var(--ink-soft);
+    margin-bottom: 0.35rem;
+    line-height: 1.6;
+  }
+  .work ul li::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 0.62em;
+    width: 6px; height: 6px;
+    background: var(--accent);
+  }
+  .work .work-tags { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-bottom: 0.9rem; }
+  .work .work-tags span {
+    font-family: var(--serif-tc);
+    font-size: 0.76rem;
+    letter-spacing: 0.04em;
+    padding: 0.14rem 0.5rem;
+    border: 1px solid var(--rule);
+  }
+  .work .work-link {
+    font-family: var(--serif-tc);
+    font-weight: 700;
+    font-size: 0.86rem;
+    letter-spacing: 0.04em;
+    color: var(--accent-dark);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    border-bottom: 1px solid var(--accent-dark);
+    padding-bottom: 1px;
+  }
+  .work .work-link svg { width: 13px; height: 13px; }
+
+  /* ===== Feats ===== */
+  .feats { column-count: 2; column-gap: var(--col-gap); }
+  .feat {
+    break-inside: avoid;
+    margin-bottom: 1.3rem;
+    border: 1px solid var(--rule);
+    background: var(--paper-2);
+    padding: 1.1rem 1.2rem;
+  }
+  .feat .feat-no {
+    font-family: var(--serif-en);
+    font-weight: 900;
+    color: var(--accent);
+    font-size: 1.2rem;
+    margin-right: 0.4rem;
+  }
+  .feat h4 {
+    display: inline;
+    font-family: var(--serif-tc);
+    font-weight: 700;
+    font-size: 1.02rem;
+  }
+  .feat p { margin: 0.6rem 0 0; color: var(--ink-soft); font-size: 0.94rem; }
+
+  /* ===== Education ===== */
+  .edu {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    border-top: 3px double var(--rule);
+    border-bottom: 3px double var(--rule);
+    padding: 1.3rem 0;
+    flex-wrap: wrap;
+  }
+  .edu .edu-icon {
+    width: 54px; height: 54px; flex: none;
+    border: 2px solid var(--rule);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--accent);
+  }
+  .edu .edu-icon svg { width: 28px; height: 28px; }
+  .edu .edu-main .school {
+    font-family: var(--serif-en);
+    font-weight: 700;
+    font-size: 1.3rem;
+    line-height: 1.36;
+    padding-bottom: 0.04em;
+  }
+  .edu .edu-main .deg { font-family: var(--serif-tc); color: var(--ink-faint); font-style: italic; }
+
+  /* ===== Contact ===== */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+    margin-top: 0.4rem;
+  }
+  .contact-card {
+    border: 1px solid var(--rule);
+    padding: 1rem 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    background: var(--paper-2);
+    transition: transform .2s, box-shadow .2s;
+  }
+  .contact-card:hover { transform: translateY(-3px); box-shadow: 4px 4px 0 var(--rule); }
+  .contact-card .ci {
+    width: 40px; height: 40px; flex: none;
+    border: 1px solid var(--rule);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--accent);
+  }
+  .contact-card .ci svg, .contact-card .ci i { width: 18px; height: 18px; font-size: 18px; }
+  .contact-card .ct .k {
+    font-family: var(--serif-tc);
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+  .contact-card .ct .v {
+    font-family: var(--serif-tc);
+    font-weight: 700;
+    font-size: 0.95rem;
+    word-break: break-all;
+  }
+
+  /* ===== Footer ===== */
+  footer {
+    text-align: center;
+    border-top: 3px double var(--rule);
+    margin-top: 3rem;
+    padding-top: 1.4rem;
+    font-family: var(--serif-tc);
+    color: var(--ink-faint);
+    font-size: 0.82rem;
+    letter-spacing: 0.08em;
+  }
+  footer .fin {
+    font-family: var(--serif-en);
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--ink);
+    margin-bottom: 0.4rem;
+  }
+  footer .fin::before, footer .fin::after { content: "— "; color: var(--accent); }
+  footer .fin::after { content: " —"; }
+
+  /* ===== Scroll reveal ===== */
+  .reveal { opacity: 0; transform: translateY(22px); transition: opacity .7s ease, transform .7s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+
+  /* ===== Responsive ===== */
+  @media (max-width: 900px) {
+    .about-body { column-count: 2; }
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .stats .stat:nth-child(2) { border-right: none; }
+    .stats .stat:nth-child(1), .stats .stat:nth-child(2) { border-bottom: 1px solid var(--rule-soft); }
+    .works { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 640px) {
+    body { font-size: 16px; }
+    .about-body, .skills-grid, .reports, .feats { column-count: 1; }
+    .stats { grid-template-columns: 1fr; }
+    .stats .stat { border-right: none; border-bottom: 1px solid var(--rule-soft); }
+    .stats .stat:last-child { border-bottom: none; }
+    .sec-head h3 { white-space: normal; }
+    nav .brand { font-size: 0.8rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+    .masthead .ear .badge .pulse { animation: none; }
+    .frontpage h2.headline .caret { animation: none; }
+  }
+
+  /* ===== Print ===== */
+  @media print {
+    nav { display: none; }
+    body { background: #fff; font-size: 12px; color: #000; }
+    body::before { display: none; }
+    .wrap { max-width: none; padding: 0; }
+    .reveal { opacity: 1 !important; transform: none !important; }
+    .frontpage h2.headline .caret { display: none; }
+    .work, .feat, .contact-card { break-inside: avoid; }
+    section { padding-top: 1rem; }
+    a { text-decoration: none; }
+    .contact-card:hover, .work:hover { box-shadow: none; transform: none; }
+    .work::after { color: #000; border-color: #000; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== NAV ===== -->
+<nav aria-label="主要導覽">
+  <div class="nav-inner">
+    <a href="#top" class="brand">THE IAN TIMES<span class="dot">.</span></a>
+    <ul>
+      <li><a class="navlink" href="#about">關於</a></li>
+      <li><a class="navlink" href="#skills">技能</a></li>
+      <li><a class="navlink" href="#experience">經歷</a></li>
+      <li><a class="navlink" href="#works">作品</a></li>
+      <li><a class="navlink" href="#feats">技術實績</a></li>
+      <li><a class="navlink" href="#education">學歷</a></li>
+      <li><a class="navlink" href="#contact">聯繫</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="wrap" id="top">
+
+  <!-- ===== MASTHEAD ===== -->
+  <header class="masthead">
+    <div class="ear">
+      <span>第 X 卷 · 第 I 期</span>
+      <span class="badge"><span class="pulse" aria-hidden="true"></span> Available for opportunities</span>
+      <span>定價：一杯咖啡</span>
+    </div>
+    <h1 class="title">THE IAN TIMES</h1>
+    <p class="subline">Engineering &amp; Artificial Intelligence Edition</p>
+    <div class="dateline">
+      <span>臺灣 · 中部</span>
+      <span class="mid">資深全端工程師 &amp; AI 工程師</span>
+      <span>2026 年 · 履歷特刊</span>
+    </div>
+  </header>
+
+  <!-- ===== HERO / FRONT HEADLINE ===== -->
+  <section class="frontpage" aria-label="頭版">
+    <p class="kicker">頭版頭條 · Front Page</p>
+    <h2 class="headline" id="typed"><span class="caret" aria-hidden="true">_</span></h2>
+    <p class="standfirst">「10 年開發經驗，擅長 AI 產品落地、微服務架構設計，具備從零到上線的完整交付能力。」</p>
+    <div class="hero-meta">
+      <span class="chip accent">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+        Available for opportunities
+      </span>
+      <a class="chip" href="mailto:serviceluna@luna-ai-life.com">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="1"/><path d="m3 7 9 6 9-6"/></svg>
+        serviceluna@luna-ai-life.com
+      </a>
+    </div>
+  </section>
+
+  <!-- ===== STATS ===== -->
+  <section class="stats reveal" aria-label="數據亮點">
+    <div class="stat">
+      <div class="num"><span class="count" data-to="10">0</span><span class="plus">+</span></div>
+      <div class="label">年開發經驗</div>
+    </div>
+    <div class="stat">
+      <div class="num"><span class="count" data-to="5">0</span><span class="plus">+</span></div>
+      <div class="label">大型專案交付</div>
+    </div>
+    <div class="stat">
+      <div class="num"><span class="count" data-to="2">0</span></div>
+      <div class="label">自建產品上線</div>
+    </div>
+    <div class="stat">
+      <div class="num"><span class="count" data-to="3">0</span></div>
+      <div class="label">AI 整合實戰</div>
+    </div>
+  </section>
+
+  <!-- ===== ABOUT ===== -->
+  <section id="about">
+    <div class="sec-head reveal">
+      <span class="sec-no">01</span>
+      <h3>關於本人</h3>
+      <span class="hr" aria-hidden="true"></span>
+      <span class="tag">Profile / 特稿</span>
+    </div>
+    <div class="about-body reveal">
+      <p>10 年全端工程師，具備從系統架構設計到 AI 產品落地的端對端能力。曾在中部區域醫院主導多項院內大型系統開發，採微服務架構 + API Gateway + RBAC 集中控管，支援全院多部門運作。</p>
+      <p class="break">自行開發並上線 璐娜健康管家（AI 健康 SaaS）與金連發電器（家電電商），整合 Gemini + OpenAI 多模態雙引擎。具備 Stable Diffusion + LoRA 模型微調及 RAG 系統建置實戰經驗，熟悉醫療資料處理與合規需求。</p>
+      <p class="break">背景橫跨醫療資訊、電商、AI 三個領域，能同時勝任技術深度討論與跨部門架構溝通。目前積極尋求 AI 工程師 / Tech Lead / Solution Architect 相關機會。</p>
+    </div>
+  </section>
+
+  <!-- ===== SKILLS ===== -->
+  <section id="skills">
+    <div class="sec-head reveal">
+      <span class="sec-no">02</span>
+      <h3>核心技能</h3>
+      <span class="hr" aria-hidden="true"></span>
+      <span class="tag">Capabilities / 工具欄</span>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-block reveal">
+        <h4><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m8 6-6 6 6 6M16 6l6 6-6 6"/></svg> 程式語言</h4>
+        <div class="skill-tags"><span>Python</span><span>Vue.js</span><span>PHP</span><span>JavaScript</span><span>HTML / CSS</span></div>
+      </div>
+      <div class="skill-block reveal">
+        <h4><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg> 資料庫</h4>
+        <div class="skill-tags"><span>MySQL</span><span>PostgreSQL</span><span>MongoDB</span><span>Redis</span></div>
+      </div>
+      <div class="skill-block reveal">
+        <h4><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg> 系統架構</h4>
+        <div class="skill-tags"><span>微服務</span><span>API Gateway</span><span>RBAC</span><span>事件驅動</span><span>負載均衡</span><span>CDN</span></div>
+      </div>
+      <div class="skill-block reveal">
+        <h4><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2a4 4 0 0 0-4 4 4 4 0 0 0-2 7 4 4 0 0 0 2 7 4 4 0 0 0 8 0 4 4 0 0 0 2-7 4 4 0 0 0-2-7 4 4 0 0 0-4-4Z"/><path d="M12 6v14"/></svg> AI / ML</h4>
+        <div class="skill-tags"><span>OpenAI API</span><span>Gemini API</span><span>RAG</span><span>LoRA fine-tuning</span><span>Stable Diffusion</span><span>向量資料庫</span></div>
+      </div>
+      <div class="skill-block reveal">
+        <h4><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2v4M12 18v4M2 12h4M18 12h4M5 5l3 3M16 16l3 3M19 5l-3 3M8 16l-3 3"/><circle cx="12" cy="12" r="3"/></svg> DevOps</h4>
+        <div class="skill-tags"><span>Docker</span><span>CI/CD</span><span>Linux</span><span>Nginx</span></div>
+      </div>
+      <div class="skill-block reveal">
+        <h4><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2 4 6v6c0 5 3.4 8.5 8 10 4.6-1.5 8-5 8-10V6Z"/><path d="m9 12 2 2 4-4"/></svg> 領域知識</h4>
+        <div class="skill-tags"><span>醫療資訊系統</span><span>電商平台</span><span>醫療資料合規</span><span>HL7 / FHIR</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== EXPERIENCE ===== -->
+  <section id="experience">
+    <div class="sec-head reveal">
+      <span class="sec-no">03</span>
+      <h3>工作經歷</h3>
+      <span class="hr" aria-hidden="true"></span>
+      <span class="tag">Career / 連載</span>
+    </div>
+    <div class="exp-lead reveal">
+      <div class="role">程式設計師 ＠ 中部區域醫院</div>
+      <div class="org">任職約 9 年 — 至今</div>
+    </div>
+    <div class="reports">
+      <div class="report reveal">
+        <h4>全院行動祕書（全院通用行動 App）</h4>
+        <p>微服務架構設計，各功能模組獨立部署並透過 API Gateway 統一入口管理；RBAC 集中式權限控管，支援多角色、多部門存取隔離；Vue.js 前端 + Python / PHP 後端，Redis 快取優化高頻讀取效能；負責架構設計、開發、部署與維運全流程。</p>
+      </div>
+      <div class="report reveal">
+        <h4>個案管理系統</h4>
+        <p>跨科別病患個案追蹤平台，整合多部門護理流程與個案狀態管理；符合醫療資料安全規範，實作審計日誌與敏感欄位加密機制。</p>
+      </div>
+      <div class="report reveal">
+        <h4>學習護照系統</h4>
+        <p>全院員工學習歷程平台，支援課程管理、學習進度追蹤與認證產出；模組化設計對應醫師、護理師、行政等不同職類的差異化學習路徑。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== WORKS ===== -->
+  <section id="works">
+    <div class="sec-head reveal">
+      <span class="sec-no">04</span>
+      <h3>自建作品</h3>
+      <span class="hr" aria-hidden="true"></span>
+      <span class="tag">Products / 專題</span>
+    </div>
+    <div class="works">
+      <article class="work reveal" data-stamp="Live">
+        <h4>璐娜健康管家</h4>
+        <div class="work-sub">AI SaaS · LINE Bot · 健康管理</div>
+        <p class="desc">整合 Gemini + OpenAI 雙引擎的 AI 健康管理平台，提供拍照熱量辨識、社交陪跑配對與個人化健康報告。</p>
+        <ul>
+          <li>多模態 AI 辨識食物熱量（蛋白質、碳水、脂肪、鈉）</li>
+          <li>AI 配對陪跑夥伴 + 遊戲化打卡獎勵系統</li>
+          <li>個人化週報 / 月報含代謝評估與行動建議</li>
+          <li>Gemini + OpenAI 雙引擎備援架構</li>
+        </ul>
+        <div class="work-tags"><span>OpenAI</span><span>Gemini</span><span>Vue.js</span><span>Python</span><span>LINE Bot</span></div>
+        <a class="work-link" href="https://luna-ai-life.com" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M10 14a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 10a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg>
+          luna-ai-life.com
+        </a>
+      </article>
+      <article class="work reveal" data-stamp="Live">
+        <h4>金連發電器</h4>
+        <div class="work-sub">電商平台 · 家電 · 全台配送</div>
+        <p class="desc">完整家電購物商城，涵蓋商品管理、訂單流程、安裝 / 回收 / 運送服務整合，為實際營運中的電商系統。</p>
+        <ul>
+          <li>完整電商流程（商品、購物車、訂單、金流）</li>
+          <li>物流整合（安裝、回收、運送服務調度）</li>
+          <li>Redis 快取 + CDN + 負載均衡效能優化</li>
+        </ul>
+        <div class="work-tags"><span>Vue.js</span><span>PHP</span><span>Redis</span><span>CDN</span><span>MySQL</span></div>
+        <a class="work-link" href="https://jlfshop.com" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M10 14a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 10a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg>
+          jlfshop.com
+        </a>
+      </article>
+    </div>
+  </section>
+
+  <!-- ===== FEATS ===== -->
+  <section id="feats">
+    <div class="sec-head reveal">
+      <span class="sec-no">05</span>
+      <h3>特殊技術實績</h3>
+      <span class="hr" aria-hidden="true"></span>
+      <span class="tag">Highlights / 焦點</span>
+    </div>
+    <div class="feats">
+      <div class="feat reveal">
+        <span class="feat-no">壹</span><h4>Stable Diffusion + LoRA 模型微調</h4>
+        <p>獨立完成圖像生成模型訓練，涵蓋資料標注、訓練參數調整至產出完整流程，具備 AI 模型層級的實戰能力，不只是 API 呼叫層。</p>
+      </div>
+      <div class="feat reveal">
+        <span class="feat-no">貳</span><h4>醫療文件 RAG 系統</h4>
+        <p>將 800+ 頁原文病歷向量化，建置可語義查詢的醫療知識庫，實際用於醫療諮詢輔助，具備高精度召回率與答案可追溯性需求的處理經驗。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== EDUCATION ===== -->
+  <section id="education">
+    <div class="sec-head reveal">
+      <span class="sec-no">06</span>
+      <h3>學歷</h3>
+      <span class="hr" aria-hidden="true"></span>
+      <span class="tag">Education / 學記</span>
+    </div>
+    <div class="edu reveal">
+      <div class="edu-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 9 12 4 2 9l10 5 10-5Z"/><path d="M6 11v5c0 1.5 2.7 3 6 3s6-1.5 6-3v-5"/><path d="M22 9v6"/></svg>
+      </div>
+      <div class="edu-main">
+        <div class="school">中山醫學大學</div>
+        <div class="deg">醫學資訊學系 · 學士</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT ===== -->
+  <section id="contact">
+    <div class="sec-head reveal">
+      <span class="sec-no">07</span>
+      <h3>聯繫方式</h3>
+      <span class="hr" aria-hidden="true"></span>
+      <span class="tag">Contact / 通訊欄</span>
+    </div>
+    <div class="contact-grid">
+      <a class="contact-card reveal" href="mailto:serviceluna@luna-ai-life.com">
+        <span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="1"/><path d="m3 7 9 6 9-6"/></svg></span>
+        <span class="ct"><span class="k">Email</span><span class="v">serviceluna@luna-ai-life.com</span></span>
+      </a>
+      <a class="contact-card reveal" href="https://luna-ai-life.com" target="_blank" rel="noopener">
+        <span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2a4 4 0 0 0-4 4 4 4 0 0 0-2 7 4 4 0 0 0 2 7 4 4 0 0 0 8 0 4 4 0 0 0 2-7 4 4 0 0 0-2-7 4 4 0 0 0-4-4Z"/></svg></span>
+        <span class="ct"><span class="k">產品</span><span class="v">璐娜健康管家</span></span>
+      </a>
+      <a class="contact-card reveal" href="https://jlfshop.com" target="_blank" rel="noopener">
+        <span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6h15l-1.5 9H7.5L6 3H3"/><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/></svg></span>
+        <span class="ct"><span class="k">產品</span><span class="v">金連發電器</span></span>
+      </a>
+      <a class="contact-card reveal" href="https://github.com/" target="_blank" rel="noopener">
+        <span class="ci"><i class="fa-brands fa-github" aria-hidden="true"></i></span>
+        <span class="ct"><span class="k">原始碼</span><span class="v">GitHub</span></span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="fin">End of Edition</div>
+    <div>© 2026 Ian Cheng</div>
+  </footer>
+
+</div>
+
+<script>
+(function () {
+  "use strict";
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* ---- Typewriter headline ---- */
+  var headline = "從零到上線，AI 與架構的完整交付";
+  var el = document.getElementById("typed");
+  if (el) {
+    var caret = el.querySelector(".caret");
+    if (reduce) {
+      el.textContent = headline;
+    } else {
+      var i = 0;
+      var node = document.createTextNode("");
+      el.insertBefore(node, caret);
+      var tick = function () {
+        if (i <= headline.length) {
+          node.textContent = headline.slice(0, i);
+          i++;
+          setTimeout(tick, 78);
+        }
+      };
+      setTimeout(tick, 450);
+    }
+  }
+
+  /* ---- Scroll reveal ---- */
+  var reveals = document.querySelectorAll(".reveal");
+  if (reduce || !("IntersectionObserver" in window)) {
+    reveals.forEach(function (r) { r.classList.add("in"); });
+  } else {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
+    reveals.forEach(function (r) { io.observe(r); });
+  }
+
+  /* ---- Count up ---- */
+  var counters = document.querySelectorAll(".count");
+  var runCount = function (c) {
+    var to = parseInt(c.getAttribute("data-to"), 10) || 0;
+    if (reduce) { c.textContent = to; return; }
+    var dur = 1100, start = null;
+    var step = function (ts) {
+      if (!start) start = ts;
+      var p = Math.min((ts - start) / dur, 1);
+      var eased = 1 - Math.pow(1 - p, 3);
+      c.textContent = Math.round(to * eased);
+      if (p < 1) requestAnimationFrame(step);
+      else c.textContent = to;
+    };
+    requestAnimationFrame(step);
+  };
+  if (!("IntersectionObserver" in window)) {
+    counters.forEach(runCount);
+  } else {
+    var cio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { runCount(e.target); cio.unobserve(e.target); }
+      });
+    }, { threshold: 0.5 });
+    counters.forEach(function (c) { cio.observe(c); });
+  }
+
+  /* ---- Scroll spy ---- */
+  var sections = Array.prototype.slice.call(document.querySelectorAll("section[id]"));
+  var links = {};
+  document.querySelectorAll("nav a.navlink").forEach(function (a) {
+    links[a.getAttribute("href").slice(1)] = a;
+  });
+  var spy = function () {
+    var pos = window.scrollY + 120;
+    var current = null;
+    sections.forEach(function (s) {
+      if (s.offsetTop <= pos) current = s.id;
+    });
+    Object.keys(links).forEach(function (k) {
+      links[k].classList.toggle("active", k === current);
+    });
+  };
+  window.addEventListener("scroll", spy, { passive: true });
+  spy();
+})();
+</script>
+</body>
+</html>

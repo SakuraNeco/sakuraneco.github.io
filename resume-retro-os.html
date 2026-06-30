@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ian Cheng — 資深全端工程師 &amp; AI 工程師｜Retro OS 履歷</title>
+<meta name="description" content="Ian Cheng｜資深全端工程師 &amp; AI 工程師。10 年開發經驗，擅長 AI 產品落地、微服務架構設計，具備從零到上線的完整交付能力。">
+<meta name="author" content="Ian Cheng">
+<meta name="theme-color" content="#008080">
+<!-- Open Graph -->
+<meta property="og:type" content="profile">
+<meta property="og:title" content="Ian Cheng — 資深全端工程師 &amp; AI 工程師">
+<meta property="og:description" content="10 年開發經驗，擅長 AI 產品落地、微服務架構設計，具備從零到上線的完整交付能力。">
+<meta property="og:locale" content="zh_TW">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Ian Cheng — 資深全端工程師 &amp; AI 工程師">
+<meta name="twitter:description" content="10 年開發經驗，擅長 AI 產品落地、微服務架構設計，具備從零到上線的完整交付能力。">
+<!-- data URI SVG favicon: retro window -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%23c0c0c0'/%3E%3Crect x='1' y='1' width='14' height='3' fill='%23000080'/%3E%3Crect x='1' y='5' width='14' height='10' fill='%23fff'/%3E%3Crect x='12' y='1.5' width='2' height='2' fill='%23c0c0c0'/%3E%3C/svg%3E">
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&amp;family=VT323&amp;family=Noto+Sans+TC:wght@400;500;700&amp;display=swap" rel="stylesheet">
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
+<style>
+  :root{
+    --gray:#c0c0c0; --gray-dark:#808080; --gray-darker:#404040;
+    --white:#ffffff; --black:#000000;
+    --navy:#000080; --navy2:#1084d0;
+    --teal:#008080; --teal-dot:#0a8a8a;
+    --hi:#dfdfdf; --shadow:#808080; --shadow2:#000000;
+    --face:#c0c0c0;
+    --pixel:'Press Start 2P', monospace;
+    --vt:'VT323', monospace;
+    --body:'Noto Sans TC', sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0; font-family:var(--body); color:var(--black);
+    background:var(--teal);
+    background-image:
+      linear-gradient(45deg, rgba(255,255,255,.03) 25%, transparent 25%, transparent 75%, rgba(255,255,255,.03) 75%),
+      linear-gradient(45deg, rgba(255,255,255,.03) 25%, transparent 25%, transparent 75%, rgba(255,255,255,.03) 75%);
+    background-size:8px 8px;
+    background-position:0 0, 4px 4px;
+    line-height:1.7;
+    padding-bottom:48px; /* taskbar */
+    -webkit-font-smoothing:none;
+  }
+  a{color:var(--navy);}
+  img{max-width:100%;}
+
+  /* ---------- bevel helpers ---------- */
+  .bevel-out{
+    border:2px solid;
+    border-color:var(--white) var(--shadow2) var(--shadow2) var(--white);
+    box-shadow:inset 1px 1px 0 var(--hi), inset -1px -1px 0 var(--shadow);
+  }
+  .bevel-in{
+    border:2px solid;
+    border-color:var(--shadow2) var(--white) var(--white) var(--shadow2);
+    box-shadow:inset 1px 1px 0 var(--shadow), inset -1px -1px 0 var(--hi);
+  }
+
+  /* ---------- window ---------- */
+  .win{
+    background:var(--face);
+    border:2px solid;
+    border-color:var(--white) var(--shadow2) var(--shadow2) var(--white);
+    box-shadow:inset 1px 1px 0 var(--hi), inset -1px -1px 0 var(--shadow), 4px 4px 0 rgba(0,0,0,.25);
+    margin:0 0 26px;
+    transition:transform .18s ease, box-shadow .18s ease;
+  }
+  .win:hover{
+    transform:translateY(-4px);
+    box-shadow:inset 1px 1px 0 var(--hi), inset -1px -1px 0 var(--shadow), 7px 9px 0 rgba(0,0,0,.3);
+  }
+  @media (prefers-reduced-motion:reduce){
+    .win, .win:hover{transition:none; transform:none;}
+  }
+  .titlebar{
+    display:flex; align-items:center; gap:6px;
+    background:linear-gradient(90deg,var(--navy),var(--navy2));
+    color:#fff; padding:4px 4px 4px 7px; user-select:none;
+  }
+  .titlebar .ttl{
+    font-family:var(--pixel); font-size:9px; letter-spacing:.5px;
+    flex:1; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+    text-shadow:1px 1px 0 rgba(0,0,0,.4);
+  }
+  .titlebar .tdot{ font-size:11px; }
+  .tbtns{display:flex; gap:3px;}
+  .tbtn{
+    width:18px; height:16px; background:var(--face);
+    border:2px solid; border-color:var(--white) var(--shadow2) var(--shadow2) var(--white);
+    box-shadow:inset 1px 1px 0 var(--hi), inset -1px -1px 0 var(--shadow);
+    display:flex; align-items:center; justify-content:center;
+    font-family:var(--pixel); font-size:7px; color:#000; cursor:default;
+    padding:0; line-height:1;
+  }
+  .tbtn:active{
+    border-color:var(--shadow2) var(--white) var(--white) var(--shadow2);
+    box-shadow:inset 1px 1px 0 var(--shadow);
+  }
+  .win-body{padding:18px 20px;}
+
+  /* ---------- layout ---------- */
+  .desktop{
+    max-width:1080px; margin:0 auto; padding:18px 16px 0;
+  }
+  .row2{display:grid; grid-template-columns:1fr 1fr; gap:0 22px;}
+  @media(max-width:760px){ .row2{grid-template-columns:1fr;} }
+
+  h2.sec{
+    font-family:var(--pixel); font-size:13px; line-height:1.5;
+    margin:0; color:var(--navy);
+    padding-bottom:2px;
+  }
+  h3{font-family:var(--body); font-weight:700; margin:0 0 4px; font-size:1.05rem; color:#111;}
+  p{margin:0 0 12px;}
+  .muted{color:#333;}
+
+  /* ---------- menu/nav bar ---------- */
+  .menubar{
+    position:sticky; top:8px; z-index:50;
+    display:flex; flex-wrap:wrap; align-items:center; gap:2px;
+    background:var(--face); padding:3px 6px;
+    border:2px solid; border-color:var(--white) var(--shadow2) var(--shadow2) var(--white);
+    box-shadow:inset 1px 1px 0 var(--hi), inset -1px -1px 0 var(--shadow), 3px 3px 0 rgba(0,0,0,.25);
+    margin-bottom:18px;
+  }
+  .menubar .brand{
+    font-family:var(--pixel); font-size:9px; color:var(--navy);
+    padding:5px 8px; margin-right:4px;
+  }
+  .menubar a{
+    font-family:var(--vt); font-size:18px; line-height:1;
+    color:#000; text-decoration:none; padding:5px 9px; border:1px solid transparent;
+  }
+  .menubar a:hover{ background:var(--navy); color:#fff; }
+  .menubar a.active{
+    background:#000; color:#0f0;
+    border:1px dotted #fff;
+  }
+  @media(max-width:760px){
+    .menubar{top:4px;}
+    .menubar a{font-size:16px; padding:4px 7px;}
+    .menubar .brand{display:none;}
+  }
+
+  /* ---------- boot screen ---------- */
+  #boot{
+    position:fixed; inset:0; z-index:9999; background:#000; color:#0f0;
+    font-family:var(--vt); font-size:20px; line-height:1.5;
+    padding:8vh 6vw; overflow:hidden;
+  }
+  #boot .logo{font-family:var(--pixel); font-size:18px; color:#0f0; margin-bottom:24px;}
+  #boot .line{white-space:pre-wrap; opacity:0; animation:bootline .01s forwards;}
+  #boot .bar-wrap{margin-top:22px; max-width:360px;}
+  #boot .bar-track{height:20px; background:#001a00; border:1px solid #0f0; padding:2px;}
+  #boot .bar-fill{height:100%; width:0; background:repeating-linear-gradient(90deg,#0f0 0 8px,#063 8px 12px); animation:bootbar 2.1s linear forwards;}
+  #boot .blink{animation:blink 1s steps(1) infinite;}
+  @keyframes bootline{to{opacity:1;}}
+  @keyframes bootbar{from{width:0;} to{width:100%;}}
+  @keyframes blink{50%{opacity:0;}}
+
+  /* hero */
+  .hero-win .win-body{padding:0;}
+  .hero-grid{display:grid; grid-template-columns:118px 1fr; gap:20px; padding:22px 24px;}
+  @media(max-width:560px){ .hero-grid{grid-template-columns:1fr; text-align:center; justify-items:center;} }
+  .avatar{
+    width:118px; height:118px; background:var(--white);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .avatar svg{width:74px; height:74px;}
+  .hero-name{font-family:var(--pixel); font-size:22px; line-height:1.4; color:var(--navy); margin:0 0 8px; padding-bottom:4px;}
+  @media(max-width:560px){ .hero-name{font-size:16px;} }
+  .hero-role{font-family:var(--vt); font-size:24px; color:#a00; margin:0 0 12px; line-height:1.3;}
+  .hero-tag{font-size:1rem; margin:0 0 16px; max-width:60ch;}
+  .badges{display:flex; flex-wrap:wrap; gap:8px;}
+  .badge{
+    display:inline-flex; align-items:center; gap:7px;
+    background:var(--face); padding:6px 11px; font-size:.9rem;
+    border:2px solid; border-color:var(--white) var(--shadow2) var(--shadow2) var(--white);
+    box-shadow:inset 1px 1px 0 var(--hi), inset -1px -1px 0 var(--shadow);
+  }
+  .badge .led{width:9px; height:9px; border-radius:50%; background:#1a1; box-shadow:0 0 5px #2f2; animation:pulse 1.4s ease-in-out infinite;}
+  @keyframes pulse{50%{opacity:.35;}}
+  @media (prefers-reduced-motion:reduce){ .badge .led{animation:none;} }
+  .badge a{color:var(--navy); text-decoration:none;}
+  .badge a:hover{text-decoration:underline;}
+
+  /* stats */
+  .stats{display:grid; grid-template-columns:repeat(4,1fr); gap:14px;}
+  @media(max-width:680px){ .stats{grid-template-columns:repeat(2,1fr);} }
+  .stat{ text-align:center; padding:16px 8px; background:var(--white);}
+  .stat .num{font-family:var(--vt); font-size:42px; line-height:1; color:var(--navy); display:block;}
+  .stat .lbl{font-size:.85rem; color:#222; margin-top:6px;}
+
+  /* skills */
+  .skill-group{margin-bottom:16px;}
+  .skill-group h3{font-family:var(--vt); font-size:21px; color:var(--navy); margin-bottom:8px; display:flex; align-items:center; gap:8px;}
+  .skill-group h3 .ic{width:18px; height:18px; color:var(--teal);}
+  .chips{display:flex; flex-wrap:wrap; gap:7px;}
+  .chip{
+    font-size:.86rem; padding:5px 10px; background:var(--face);
+    border:2px solid; border-color:var(--white) var(--shadow2) var(--shadow2) var(--white);
+    box-shadow:inset 1px 1px 0 var(--hi), inset -1px -1px 0 var(--shadow);
+    transition:transform .12s ease;
+  }
+  .chip:hover{ transform:translateY(-2px); background:#d8d8d8; }
+  @media (prefers-reduced-motion:reduce){ .chip:hover{transform:none;} }
+
+  /* experience / timeline list */
+  .joblead{font-family:var(--vt); font-size:21px; color:#a00; margin-bottom:14px;}
+  .joblead .co{color:var(--navy);}
+  .exp-item{
+    background:var(--white); padding:14px 16px; margin-bottom:14px;
+  }
+  .exp-item:last-child{margin-bottom:0;}
+  ul.feat{margin:8px 0 0; padding-left:0; list-style:none;}
+  ul.feat li{position:relative; padding-left:22px; margin-bottom:7px;}
+  ul.feat li::before{
+    content:"\25A0"; color:var(--teal); position:absolute; left:4px; top:1px; font-size:.7em;
+  }
+
+  /* projects */
+  .proj{ background:var(--white); padding:0; margin-bottom:0; }
+  .proj .ptitle{
+    background:linear-gradient(90deg,var(--teal),#0aa);
+    color:#fff; padding:8px 12px; font-weight:700;
+    display:flex; align-items:center; gap:8px; flex-wrap:wrap;
+  }
+  .proj .ptitle .pn{font-family:var(--vt); font-size:21px; letter-spacing:.5px;}
+  .proj .pmeta{font-size:.8rem; opacity:.92;}
+  .proj .pbody{padding:14px 16px;}
+  .tags{display:flex; flex-wrap:wrap; gap:6px; margin-top:10px;}
+  .tag{font-size:.78rem; padding:3px 8px; background:var(--navy); color:#fff;}
+  .plink{display:inline-flex; align-items:center; gap:6px; margin-top:12px; font-weight:700; color:var(--navy); text-decoration:none;}
+  .plink:hover{text-decoration:underline;}
+
+  /* feats achievements */
+  .ach{ background:var(--white); padding:14px 16px; margin-bottom:14px; }
+  .ach:last-child{margin-bottom:0;}
+  .ach h3{display:flex; align-items:center; gap:9px;}
+  .ach h3 .ic{width:20px; height:20px; color:var(--teal); flex:0 0 auto;}
+
+  /* education */
+  .edu{display:flex; align-items:center; gap:16px; background:var(--white); padding:16px;}
+  .edu .ic{width:46px; height:46px; color:var(--navy); flex:0 0 auto;}
+
+  /* contact */
+  .contact-grid{display:flex; flex-wrap:wrap; gap:12px;}
+  .cbtn{
+    display:inline-flex; align-items:center; gap:9px;
+    font-family:var(--body); font-size:.95rem; color:#000; text-decoration:none;
+    padding:10px 16px; background:var(--face);
+    border:2px solid; border-color:var(--white) var(--shadow2) var(--shadow2) var(--white);
+    box-shadow:inset 1px 1px 0 var(--hi), inset -1px -1px 0 var(--shadow);
+  }
+  .cbtn:hover{ background:#d6d6d6; }
+  .cbtn:active{
+    border-color:var(--shadow2) var(--white) var(--white) var(--shadow2);
+    box-shadow:inset 1px 1px 0 var(--shadow); transform:translateY(1px);
+  }
+  .cbtn .ic{width:18px; height:18px; color:var(--navy);}
+
+  footer.deskfoot{
+    text-align:center; color:#fff; font-family:var(--vt); font-size:18px;
+    padding:6px 0 24px; text-shadow:1px 1px 0 rgba(0,0,0,.4);
+  }
+
+  /* ---------- taskbar ---------- */
+  .taskbar{
+    position:fixed; left:0; right:0; bottom:0; z-index:200;
+    height:40px; display:flex; align-items:center; gap:8px; padding:4px 6px;
+    background:var(--face);
+    border-top:2px solid var(--white);
+    box-shadow:inset 0 1px 0 var(--hi), 0 -2px 4px rgba(0,0,0,.3);
+  }
+  .startbtn{
+    display:inline-flex; align-items:center; gap:7px;
+    font-family:var(--pixel); font-size:9px; color:#000;
+    padding:6px 12px; background:var(--face); cursor:default;
+    border:2px solid; border-color:var(--white) var(--shadow2) var(--shadow2) var(--white);
+    box-shadow:inset 1px 1px 0 var(--hi), inset -1px -1px 0 var(--shadow);
+  }
+  .startbtn:active{ border-color:var(--shadow2) var(--white) var(--white) var(--shadow2); box-shadow:inset 1px 1px 0 var(--shadow);}
+  .startbtn .flag{width:16px; height:16px;}
+  .task-open{
+    flex:1; min-width:0; display:flex; gap:6px; overflow:hidden;
+  }
+  .task-open .tw{
+    font-family:var(--vt); font-size:17px; padding:4px 12px; max-width:240px;
+    white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+  }
+  .clock{
+    font-family:var(--vt); font-size:18px; padding:6px 12px; min-width:78px; text-align:center;
+    border:2px solid; border-color:var(--shadow2) var(--white) var(--white) var(--shadow2);
+    box-shadow:inset 1px 1px 0 var(--shadow);
+    background:var(--face);
+  }
+  @media(max-width:560px){
+    .task-open{display:none;}
+    .startbtn{font-size:8px;}
+  }
+
+  /* print */
+  @media print{
+    #boot, .taskbar, .menubar, .titlebar .tbtns{display:none !important;}
+    body{background:#fff; color:#000; padding:0;}
+    .win{box-shadow:none; border:1px solid #999; transform:none; page-break-inside:avoid; margin-bottom:14px;}
+    .win:hover{transform:none; box-shadow:none;}
+    .titlebar{background:#fff; color:#000; border-bottom:1px solid #999;}
+    .titlebar .ttl{color:#000; text-shadow:none;}
+    .hero-name, h2.sec{color:#000;}
+    .stat .num, .skill-group h3, .joblead .co{color:#000;}
+    .proj .ptitle{background:#eee; color:#000;}
+    a{color:#000; text-decoration:underline;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== BOOT SCREEN ===== -->
+<div id="boot" aria-hidden="true">
+  <div class="logo">IanOS&nbsp;v10.0</div>
+  <div class="line" style="animation-delay:.1s">Initializing system memory ........... OK</div>
+  <div class="line" style="animation-delay:.4s">Loading full-stack modules ........... OK</div>
+  <div class="line" style="animation-delay:.7s">Mounting AI engines (Gemini + OpenAI)  OK</div>
+  <div class="line" style="animation-delay:1.0s">Connecting microservices / API Gateway OK</div>
+  <div class="line" style="animation-delay:1.3s">Starting RESUME.EXE ...</div>
+  <div class="bar-wrap line" style="animation-delay:1.4s">
+    <div class="bar-track"><div class="bar-fill"></div></div>
+  </div>
+  <div class="line blink" style="animation-delay:1.6s; margin-top:18px">_</div>
+</div>
+
+<div class="desktop">
+
+  <!-- ===== MENU BAR / NAV ===== -->
+  <nav class="menubar" aria-label="主導覽">
+    <span class="brand">RESUME.EXE</span>
+    <a href="#hero">關於</a>
+    <a href="#about">簡介</a>
+    <a href="#skills">技能</a>
+    <a href="#exp">經歷</a>
+    <a href="#projects">作品</a>
+    <a href="#feats">實績</a>
+    <a href="#edu">學歷</a>
+    <a href="#contact">聯繫</a>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <section id="hero" class="win hero-win">
+    <div class="titlebar">
+      <span class="tdot"><i class="fa-regular fa-user" aria-hidden="true"></i></span>
+      <span class="ttl">Ian_Cheng — Profile.exe</span>
+      <span class="tbtns" aria-hidden="true">
+        <span class="tbtn">_</span><span class="tbtn">&#9633;</span><span class="tbtn">&#10005;</span>
+      </span>
+    </div>
+    <div class="win-body">
+      <div class="hero-grid">
+        <div class="avatar bevel-in" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#000080" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/>
+          </svg>
+        </div>
+        <div>
+          <h1 class="hero-name">Ian Cheng</h1>
+          <div class="hero-role">資深全端工程師 &amp; AI 工程師</div>
+          <p class="hero-tag">10 年開發經驗，擅長 AI 產品落地、微服務架構設計，具備從零到上線的完整交付能力。</p>
+          <div class="badges">
+            <span class="badge"><span class="led" aria-hidden="true"></span>Available for opportunities</span>
+            <span class="badge">
+              <svg class="ic" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#000080" stroke-width="1.6" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="1"/><path d="m3 7 9 6 9-6"/></svg>
+              <a href="mailto:serviceluna@luna-ai-life.com">serviceluna@luna-ai-life.com</a>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== STATS ===== -->
+  <section class="win" aria-label="數據亮點">
+    <div class="titlebar">
+      <span class="tdot"><i class="fa-solid fa-chart-simple" aria-hidden="true"></i></span>
+      <span class="ttl">Stats.dll</span>
+      <span class="tbtns" aria-hidden="true"><span class="tbtn">_</span><span class="tbtn">&#9633;</span><span class="tbtn">&#10005;</span></span>
+    </div>
+    <div class="win-body">
+      <div class="stats">
+        <div class="stat bevel-in"><span class="num" data-count="10" data-suffix="+">0</span><div class="lbl">年開發經驗</div></div>
+        <div class="stat bevel-in"><span class="num" data-count="5" data-suffix="+">0</span><div class="lbl">大型專案交付</div></div>
+        <div class="stat bevel-in"><span class="num" data-count="2" data-suffix="">0</span><div class="lbl">自建產品上線</div></div>
+        <div class="stat bevel-in"><span class="num" data-count="3" data-suffix="">0</span><div class="lbl">AI 整合實戰</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ABOUT ===== -->
+  <section id="about" class="win">
+    <div class="titlebar">
+      <span class="tdot"><i class="fa-regular fa-file-lines" aria-hidden="true"></i></span>
+      <span class="ttl">About_Me.txt — Notepad</span>
+      <span class="tbtns" aria-hidden="true"><span class="tbtn">_</span><span class="tbtn">&#9633;</span><span class="tbtn">&#10005;</span></span>
+    </div>
+    <div class="win-body">
+      <h2 class="sec">關於我</h2>
+      <div style="height:14px"></div>
+      <p>10 年全端工程師，具備從系統架構設計到 AI 產品落地的端對端能力。曾在中部區域醫院主導多項院內大型系統開發，採微服務架構 + API Gateway + RBAC 集中控管，支援全院多部門運作。</p>
+      <p>自行開發並上線 璐娜健康管家（AI 健康 SaaS）與金連發電器（家電電商），整合 Gemini + OpenAI 多模態雙引擎。具備 Stable Diffusion + LoRA 模型微調及 RAG 系統建置實戰經驗，熟悉醫療資料處理與合規需求。</p>
+      <p style="margin-bottom:0">背景橫跨醫療資訊、電商、AI 三個領域，能同時勝任技術深度討論與跨部門架構溝通。目前積極尋求 AI 工程師 / Tech Lead / Solution Architect 相關機會。</p>
+    </div>
+  </section>
+
+  <!-- ===== SKILLS ===== -->
+  <section id="skills" class="win">
+    <div class="titlebar">
+      <span class="tdot"><i class="fa-solid fa-microchip" aria-hidden="true"></i></span>
+      <span class="ttl">Skills — Control Panel</span>
+      <span class="tbtns" aria-hidden="true"><span class="tbtn">_</span><span class="tbtn">&#9633;</span><span class="tbtn">&#10005;</span></span>
+    </div>
+    <div class="win-body">
+      <h2 class="sec">核心技能</h2>
+      <div style="height:16px"></div>
+      <div class="row2">
+        <div>
+          <div class="skill-group">
+            <h3><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m8 6-6 6 6 6"/><path d="m16 6 6 6-6 6"/></svg>程式語言</h3>
+            <div class="chips"><span class="chip">Python</span><span class="chip">Vue.js</span><span class="chip">PHP</span><span class="chip">JavaScript</span><span class="chip">HTML / CSS</span></div>
+          </div>
+          <div class="skill-group">
+            <h3><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.7 4 3 9 3s9-1.3 9-3V5"/><path d="M3 12c0 1.7 4 3 9 3s9-1.3 9-3"/></svg>資料庫</h3>
+            <div class="chips"><span class="chip">MySQL</span><span class="chip">PostgreSQL</span><span class="chip">MongoDB</span><span class="chip">Redis</span></div>
+          </div>
+          <div class="skill-group">
+            <h3><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>系統架構</h3>
+            <div class="chips"><span class="chip">微服務</span><span class="chip">API Gateway</span><span class="chip">RBAC</span><span class="chip">事件驅動</span><span class="chip">負載均衡</span><span class="chip">CDN</span></div>
+          </div>
+        </div>
+        <div>
+          <div class="skill-group">
+            <h3><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6v6H9z"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M1 9h3M1 15h3M20 9h3M20 15h3"/></svg>AI / ML</h3>
+            <div class="chips"><span class="chip">OpenAI API</span><span class="chip">Gemini API</span><span class="chip">RAG</span><span class="chip">LoRA fine-tuning</span><span class="chip">Stable Diffusion</span><span class="chip">向量資料庫</span></div>
+          </div>
+          <div class="skill-group">
+            <h3><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-2.4.59 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 8 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4 15.6 1.65 1.65 0 0 0 2.5 14.6H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9"/></svg>DevOps</h3>
+            <div class="chips"><span class="chip">Docker</span><span class="chip">CI/CD</span><span class="chip">Linux</span><span class="chip">Nginx</span></div>
+          </div>
+          <div class="skill-group">
+            <h3><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2v20M2 12h20"/><circle cx="12" cy="12" r="9"/></svg>領域知識</h3>
+            <div class="chips"><span class="chip">醫療資訊系統</span><span class="chip">電商平台</span><span class="chip">醫療資料合規</span><span class="chip">HL7 / FHIR</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== EXPERIENCE ===== -->
+  <section id="exp" class="win">
+    <div class="titlebar">
+      <span class="tdot"><i class="fa-solid fa-briefcase" aria-hidden="true"></i></span>
+      <span class="ttl">Experience — Task Manager</span>
+      <span class="tbtns" aria-hidden="true"><span class="tbtn">_</span><span class="tbtn">&#9633;</span><span class="tbtn">&#10005;</span></span>
+    </div>
+    <div class="win-body">
+      <h2 class="sec">工作經歷</h2>
+      <div style="height:12px"></div>
+      <div class="joblead">程式設計師 ＠ <span class="co">中部區域醫院</span>（任職約 9 年 — 至今）</div>
+
+      <div class="exp-item bevel-in">
+        <h3>全院行動祕書（全院通用行動 App）</h3>
+        <ul class="feat">
+          <li>微服務架構設計，各功能模組獨立部署並透過 API Gateway 統一入口管理</li>
+          <li>RBAC 集中式權限控管，支援多角色、多部門存取隔離</li>
+          <li>Vue.js 前端 + Python / PHP 後端，Redis 快取優化高頻讀取效能</li>
+          <li>負責架構設計、開發、部署與維運全流程</li>
+        </ul>
+      </div>
+
+      <div class="exp-item bevel-in">
+        <h3>個案管理系統</h3>
+        <ul class="feat">
+          <li>跨科別病患個案追蹤平台，整合多部門護理流程與個案狀態管理</li>
+          <li>符合醫療資料安全規範，實作審計日誌與敏感欄位加密機制</li>
+        </ul>
+      </div>
+
+      <div class="exp-item bevel-in">
+        <h3>學習護照系統</h3>
+        <ul class="feat">
+          <li>全院員工學習歷程平台，支援課程管理、學習進度追蹤與認證產出</li>
+          <li>模組化設計對應醫師、護理師、行政等不同職類的差異化學習路徑</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PROJECTS ===== -->
+  <section id="projects" class="win">
+    <div class="titlebar">
+      <span class="tdot"><i class="fa-solid fa-folder-open" aria-hidden="true"></i></span>
+      <span class="ttl">My Projects — Explorer</span>
+      <span class="tbtns" aria-hidden="true"><span class="tbtn">_</span><span class="tbtn">&#9633;</span><span class="tbtn">&#10005;</span></span>
+    </div>
+    <div class="win-body">
+      <h2 class="sec">自建作品</h2>
+      <div style="height:16px"></div>
+      <div class="row2" style="gap:18px;">
+        <div class="proj bevel-in">
+          <div class="ptitle">
+            <span class="pn">璐娜健康管家</span>
+            <span class="pmeta">AI SaaS · LINE Bot · 健康管理</span>
+          </div>
+          <div class="pbody">
+            <p>整合 Gemini + OpenAI 雙引擎的 AI 健康管理平台，提供拍照熱量辨識、社交陪跑配對與個人化健康報告。</p>
+            <ul class="feat">
+              <li>多模態 AI 辨識食物熱量（蛋白質、碳水、脂肪、鈉）</li>
+              <li>AI 配對陪跑夥伴 + 遊戲化打卡獎勵系統</li>
+              <li>個人化週報 / 月報含代謝評估與行動建議</li>
+              <li>Gemini + OpenAI 雙引擎備援架構</li>
+            </ul>
+            <div class="tags"><span class="tag">OpenAI</span><span class="tag">Gemini</span><span class="tag">Vue.js</span><span class="tag">Python</span><span class="tag">LINE Bot</span></div>
+            <a class="plink" href="https://luna-ai-life.com" target="_blank" rel="noopener">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg>
+              luna-ai-life.com
+            </a>
+          </div>
+        </div>
+
+        <div class="proj bevel-in">
+          <div class="ptitle">
+            <span class="pn">金連發電器</span>
+            <span class="pmeta">電商平台 · 家電 · 全台配送</span>
+          </div>
+          <div class="pbody">
+            <p>完整家電購物商城，涵蓋商品管理、訂單流程、安裝 / 回收 / 運送服務整合，為實際營運中的電商系統。</p>
+            <ul class="feat">
+              <li>完整電商流程（商品、購物車、訂單、金流）</li>
+              <li>物流整合（安裝、回收、運送服務調度）</li>
+              <li>Redis 快取 + CDN + 負載均衡效能優化</li>
+            </ul>
+            <div class="tags"><span class="tag">Vue.js</span><span class="tag">PHP</span><span class="tag">Redis</span><span class="tag">CDN</span><span class="tag">MySQL</span></div>
+            <a class="plink" href="https://jlfshop.com" target="_blank" rel="noopener">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg>
+              jlfshop.com
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SPECIAL FEATS ===== -->
+  <section id="feats" class="win">
+    <div class="titlebar">
+      <span class="tdot"><i class="fa-solid fa-trophy" aria-hidden="true"></i></span>
+      <span class="ttl">Special_Tech.log</span>
+      <span class="tbtns" aria-hidden="true"><span class="tbtn">_</span><span class="tbtn">&#9633;</span><span class="tbtn">&#10005;</span></span>
+    </div>
+    <div class="win-body">
+      <h2 class="sec">特殊技術實績</h2>
+      <div style="height:16px"></div>
+      <div class="ach bevel-in">
+        <h3>
+          <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          Stable Diffusion + LoRA 模型微調
+        </h3>
+        <p style="margin-bottom:0">獨立完成圖像生成模型訓練，涵蓋資料標注、訓練參數調整至產出完整流程，具備 AI 模型層級的實戰能力，不只是 API 呼叫層。</p>
+      </div>
+      <div class="ach bevel-in">
+        <h3>
+          <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+          醫療文件 RAG 系統
+        </h3>
+        <p style="margin-bottom:0">將 800+ 頁原文病歷向量化，建置可語義查詢的醫療知識庫，實際用於醫療諮詢輔助，具備高精度召回率與答案可追溯性需求的處理經驗。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== EDUCATION ===== -->
+  <section id="edu" class="win">
+    <div class="titlebar">
+      <span class="tdot"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i></span>
+      <span class="ttl">Education.sys</span>
+      <span class="tbtns" aria-hidden="true"><span class="tbtn">_</span><span class="tbtn">&#9633;</span><span class="tbtn">&#10005;</span></span>
+    </div>
+    <div class="win-body">
+      <h2 class="sec">學歷</h2>
+      <div style="height:16px"></div>
+      <div class="edu bevel-in">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1 2.7 2.5 6 2.5s6-1.5 6-2.5v-5"/><path d="M22 10v6"/></svg>
+        <div>
+          <h3 style="margin-bottom:2px">中山醫學大學</h3>
+          <div class="muted">醫學資訊學系 · 學士</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT ===== -->
+  <section id="contact" class="win">
+    <div class="titlebar">
+      <span class="tdot"><i class="fa-regular fa-envelope" aria-hidden="true"></i></span>
+      <span class="ttl">Contact — Dial Up</span>
+      <span class="tbtns" aria-hidden="true"><span class="tbtn">_</span><span class="tbtn">&#9633;</span><span class="tbtn">&#10005;</span></span>
+    </div>
+    <div class="win-body">
+      <h2 class="sec">聯繫</h2>
+      <div style="height:16px"></div>
+      <div class="contact-grid">
+        <a class="cbtn" href="mailto:serviceluna@luna-ai-life.com">
+          <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="1"/><path d="m3 7 9 6 9-6"/></svg>
+          serviceluna@luna-ai-life.com
+        </a>
+        <a class="cbtn" href="https://luna-ai-life.com" target="_blank" rel="noopener">
+          <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15 15 0 0 1 0 20 15 15 0 0 1 0-20z"/></svg>
+          璐娜健康管家
+        </a>
+        <a class="cbtn" href="https://jlfshop.com" target="_blank" rel="noopener">
+          <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>
+          金連發電器
+        </a>
+        <a class="cbtn" href="https://github.com/" target="_blank" rel="noopener">
+          <svg class="ic" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.5v-1.8c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.7.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17 4.7 18 5 18 5c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.6.8.5A11.5 11.5 0 0 0 23.5 12C23.5 5.7 18.3.5 12 .5z"/></svg>
+          GitHub
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="deskfoot">© 2026 Ian Cheng</footer>
+</div>
+
+<!-- ===== TASKBAR ===== -->
+<div class="taskbar" role="contentinfo">
+  <span class="startbtn">
+    <svg class="flag" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="2" width="9" height="9" fill="#f25022"/><rect x="13" y="2" width="9" height="9" fill="#7fba00"/><rect x="2" y="13" width="9" height="9" fill="#00a4ef"/><rect x="13" y="13" width="9" height="9" fill="#ffb900"/></svg>
+    Start
+  </span>
+  <div class="task-open">
+    <span class="tw bevel-in">RESUME.EXE — Ian Cheng</span>
+  </div>
+  <span class="clock" id="clock">--:--</span>
+</div>
+
+<script>
+(function(){
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---- Boot screen ---- */
+  var boot = document.getElementById('boot');
+  if(boot){
+    if(reduce){
+      boot.parentNode.removeChild(boot);
+    } else {
+      setTimeout(function(){
+        boot.style.transition = 'opacity .4s ease';
+        boot.style.opacity = '0';
+        setTimeout(function(){ if(boot.parentNode) boot.parentNode.removeChild(boot); }, 450);
+      }, 2400);
+    }
+  }
+
+  /* ---- Clock ---- */
+  var clock = document.getElementById('clock');
+  function tick(){
+    if(!clock) return;
+    var d = new Date();
+    var h = ('0'+d.getHours()).slice(-2);
+    var m = ('0'+d.getMinutes()).slice(-2);
+    clock.textContent = h + ':' + m;
+  }
+  tick(); setInterval(tick, 10000);
+
+  /* ---- Count up stats ---- */
+  function runCount(el){
+    var target = parseInt(el.getAttribute('data-count'), 10) || 0;
+    var suffix = el.getAttribute('data-suffix') || '';
+    if(reduce){ el.textContent = target + suffix; return; }
+    var start = null, dur = 1200;
+    function step(ts){
+      if(!start) start = ts;
+      var p = Math.min((ts - start) / dur, 1);
+      var val = Math.round(target * (1 - Math.pow(1 - p, 3)));
+      el.textContent = val + suffix;
+      if(p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  var stats = document.querySelectorAll('.num[data-count]');
+  if('IntersectionObserver' in window && !reduce){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ runCount(e.target); io.unobserve(e.target); }
+      });
+    }, {threshold:.4});
+    stats.forEach(function(s){ io.observe(s); });
+  } else {
+    stats.forEach(runCount);
+  }
+
+  /* ---- Scroll spy nav ---- */
+  var links = Array.prototype.slice.call(document.querySelectorAll('.menubar a'));
+  var sections = links.map(function(l){ return document.querySelector(l.getAttribute('href')); }).filter(Boolean);
+  function spy(){
+    var pos = window.scrollY + 140;
+    var current = sections[0];
+    sections.forEach(function(s){ if(s.offsetTop <= pos) current = s; });
+    links.forEach(function(l){
+      l.classList.toggle('active', current && l.getAttribute('href') === '#' + current.id);
+    });
+  }
+  spy();
+  window.addEventListener('scroll', spy, {passive:true});
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ian Cheng · 資深全端工程師 & AI 工程師</title>
+<meta name="description" content="Ian Cheng — 資深全端工程師 & AI 工程師。10 年開發經驗，擅長 AI 產品落地、微服務架構設計，具備從零到上線的完整交付能力。">
+<meta name="author" content="Ian Cheng">
+<meta name="theme-color" content="#0a0a1a">
+<!-- Open Graph -->
+<meta property="og:type" content="profile">
+<meta property="og:title" content="Ian Cheng · 資深全端工程師 & AI 工程師">
+<meta property="og:description" content="10 年開發經驗，擅長 AI 產品落地、微服務架構設計，具備從零到上線的完整交付能力。">
+<meta property="og:locale" content="zh_TW">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Ian Cheng · 資深全端工程師 & AI 工程師">
+<meta name="twitter:description" content="10 年開發經驗，擅長 AI 產品落地、微服務架構設計。">
+<!-- Emoji-free SVG favicon (abstract aurora orb) -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3CradialGradient id='g' cx='50%25' cy='40%25' r='70%25'%3E%3Cstop offset='0%25' stop-color='%23b794ff'/%3E%3Cstop offset='55%25' stop-color='%2356d4d4'/%3E%3Cstop offset='100%25' stop-color='%230a0a1a'/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect width='32' height='32' rx='8' fill='%230a0a1a'/%3E%3Ccircle cx='16' cy='15' r='10' fill='url(%23g)'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#070710;
+  --bg2:#0c0c1e;
+  --ink:#eef0fb;
+  --ink-soft:#aeb3d4;
+  --ink-dim:#7b80a8;
+  --line:rgba(150,160,220,.14);
+  --glass:rgba(22,24,48,.42);
+  --glass-strong:rgba(28,30,60,.62);
+  --violet:#b794ff;
+  --cyan:#56e0e0;
+  --pink:#ff8bd0;
+  --indigo:#7c6cff;
+  --grad: linear-gradient(110deg,var(--violet),var(--cyan) 45%,var(--pink) 90%);
+  --radius:20px;
+  --maxw:1080px;
+  --ease:cubic-bezier(.2,.7,.2,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:"Noto Sans TC","Space Grotesk",system-ui,sans-serif;
+  background:var(--bg);
+  color:var(--ink);
+  line-height:1.75;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+  letter-spacing:.01em;
+}
+h1,h2,h3,h4{font-family:"Space Grotesk","Noto Sans TC",sans-serif;line-height:1.32;font-weight:700}
+a{color:inherit;text-decoration:none}
+img,svg{display:block}
+::selection{background:rgba(183,148,255,.32);color:#fff}
+
+/* ---------- Aurora background ---------- */
+.aurora{position:fixed;inset:0;z-index:-2;background:var(--bg);overflow:hidden}
+.aurora::before,.aurora::after,.aurora .blob{
+  content:"";position:absolute;border-radius:50%;filter:blur(70px);opacity:.55;
+  mix-blend-mode:screen;will-change:transform;
+}
+.aurora::before{
+  width:60vw;height:60vw;left:-10vw;top:-10vw;
+  background:radial-gradient(circle at 50% 50%,var(--violet),transparent 65%);
+  animation:drift1 26s var(--ease) infinite alternate, hue 30s linear infinite;
+}
+.aurora::after{
+  width:55vw;height:55vw;right:-12vw;top:10vh;
+  background:radial-gradient(circle at 50% 50%,var(--cyan),transparent 65%);
+  animation:drift2 32s var(--ease) infinite alternate, hue 40s linear infinite reverse;
+}
+.aurora .blob{
+  width:50vw;height:50vw;left:25vw;bottom:-20vh;
+  background:radial-gradient(circle at 50% 50%,var(--pink),transparent 65%);
+  animation:drift3 30s var(--ease) infinite alternate, hue 36s linear infinite;
+}
+.aurora .grain{
+  position:absolute;inset:-50%;opacity:.05;mix-blend-mode:overlay;
+  background-image:radial-gradient(rgba(255,255,255,.6) .5px,transparent .5px);
+  background-size:3px 3px;
+}
+@keyframes drift1{0%{transform:translate(0,0) scale(1)}100%{transform:translate(12vw,8vh) scale(1.25)}}
+@keyframes drift2{0%{transform:translate(0,0) scale(1.1)}100%{transform:translate(-10vw,12vh) scale(.85)}}
+@keyframes drift3{0%{transform:translate(0,0) scale(.9)}100%{transform:translate(-8vw,-12vh) scale(1.2)}}
+@keyframes hue{to{filter:blur(70px) hue-rotate(360deg)}}
+.veil{position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:radial-gradient(120% 80% at 50% -10%,transparent 40%,rgba(7,7,16,.55) 100%);}
+
+/* ---------- Nav ---------- */
+header.nav{
+  position:sticky;top:0;z-index:50;
+  backdrop-filter:blur(14px) saturate(140%);
+  -webkit-backdrop-filter:blur(14px) saturate(140%);
+  background:linear-gradient(to bottom,rgba(7,7,16,.72),rgba(7,7,16,.30));
+  border-bottom:1px solid var(--line);
+}
+.nav-inner{max-width:var(--maxw);margin:0 auto;display:flex;align-items:center;
+  justify-content:space-between;padding:14px 24px;gap:16px}
+.brand{display:flex;align-items:center;gap:11px;font-weight:700;font-size:1.02rem}
+.brand .orb{width:26px;height:26px;border-radius:50%;
+  background:var(--grad);background-size:200% 200%;animation:hueText 8s linear infinite;
+  box-shadow:0 0 18px rgba(124,108,255,.6)}
+.navlinks{display:flex;gap:4px;flex-wrap:wrap}
+.navlinks a{
+  font-size:.86rem;color:var(--ink-soft);padding:7px 13px;border-radius:99px;
+  position:relative;transition:color .25s,background .25s;font-weight:500;letter-spacing:.02em;
+}
+.navlinks a:hover{color:var(--ink);background:rgba(150,160,220,.10)}
+.navlinks a.active{color:#fff;background:rgba(124,108,255,.18)}
+.navlinks a.active::after{content:"";position:absolute;left:50%;bottom:1px;width:18px;height:2px;
+  transform:translateX(-50%);border-radius:2px;background:var(--grad)}
+.nav-toggle{display:none;background:none;border:1px solid var(--line);color:var(--ink);
+  border-radius:10px;padding:8px;cursor:pointer}
+
+/* ---------- Layout ---------- */
+main{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+section{padding:84px 0;scroll-margin-top:84px}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:.78rem;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--cyan);font-weight:600;margin-bottom:14px}
+.eyebrow svg{width:15px;height:15px}
+.section-title{font-size:clamp(1.6rem,3.6vw,2.5rem);margin-bottom:10px;line-height:1.34;padding-bottom:.12em}
+.section-sub{color:var(--ink-soft);max-width:60ch;margin-bottom:38px;font-size:1rem}
+
+/* gradient text */
+.grad-text{
+  background:var(--grad);background-size:220% 220%;
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:transparent;
+  animation:hueText 9s linear infinite;
+  line-height:1.34;padding-bottom:.1em;display:inline-block;
+}
+@keyframes hueText{0%{background-position:0% 50%}100%{background-position:220% 50%}}
+
+/* glass card */
+.glass{
+  background:var(--glass);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  backdrop-filter:blur(16px) saturate(135%);
+  -webkit-backdrop-filter:blur(16px) saturate(135%);
+  box-shadow:0 18px 50px -28px rgba(0,0,0,.85), inset 0 1px 0 rgba(255,255,255,.05);
+  position:relative;overflow:hidden;
+}
+.glass::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;
+  background:linear-gradient(140deg,rgba(183,148,255,.4),transparent 35%,transparent 65%,rgba(86,224,224,.35));
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;opacity:.7}
+
+/* ---------- Hero ---------- */
+.hero{padding:96px 0 70px;display:grid;gap:34px}
+.badge{display:inline-flex;align-items:center;gap:9px;font-size:.84rem;color:var(--ink);
+  padding:8px 16px;border-radius:99px;border:1px solid var(--line);
+  background:var(--glass);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);width:max-content}
+.badge .dot{width:9px;height:9px;border-radius:50%;background:#46e8a0;
+  box-shadow:0 0 0 0 rgba(70,232,160,.6);animation:pulse 2.4s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(70,232,160,.55)}70%{box-shadow:0 0 0 11px rgba(70,232,160,0)}100%{box-shadow:0 0 0 0 rgba(70,232,160,0)}}
+.hero h1{font-size:clamp(2.3rem,7vw,4.4rem);line-height:1.12;letter-spacing:-.01em}
+.hero .role{font-size:clamp(1.05rem,2.6vw,1.45rem);color:var(--ink);font-weight:600;margin-top:6px}
+.hero .tagline{font-size:clamp(1rem,2vw,1.15rem);color:var(--ink-soft);max-width:62ch}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:4px}
+
+/* magnetic glow button */
+.btn{
+  --gx:50%;--gy:50%;
+  position:relative;display:inline-flex;align-items:center;gap:10px;
+  padding:13px 24px;border-radius:99px;font-weight:600;font-size:.95rem;cursor:pointer;
+  border:1px solid var(--line);color:#fff;overflow:hidden;
+  transition:transform .18s var(--ease),box-shadow .3s,border-color .3s;
+  will-change:transform;
+}
+.btn svg{width:18px;height:18px}
+.btn::after{content:"";position:absolute;inset:0;border-radius:inherit;opacity:0;
+  transition:opacity .3s;
+  background:radial-gradient(120px circle at var(--gx) var(--gy),rgba(183,148,255,.55),transparent 60%)}
+.btn:hover::after{opacity:1}
+.btn:hover{box-shadow:0 16px 40px -16px rgba(124,108,255,.7)}
+.btn.primary{background:var(--grad);background-size:200% 200%;border-color:transparent;color:#0a0a16;
+  font-weight:700;animation:hueText 9s linear infinite}
+.btn.primary::after{background:radial-gradient(120px circle at var(--gx) var(--gy),rgba(255,255,255,.55),transparent 60%)}
+.btn.ghost{background:var(--glass)}
+
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:8px}
+.stat{padding:22px 18px;text-align:center}
+.stat .num{font-family:"Space Grotesk",sans-serif;font-size:clamp(1.9rem,5vw,2.7rem);font-weight:700;
+  background:var(--grad);background-size:200% 200%;-webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;line-height:1.3;padding-bottom:.06em;animation:hueText 10s linear infinite}
+.stat .lbl{font-size:.84rem;color:var(--ink-soft);margin-top:4px;letter-spacing:.02em}
+
+/* ---------- About ---------- */
+.about-grid{display:grid;gap:18px}
+.about-card{padding:26px 28px;display:flex;gap:18px;align-items:flex-start}
+.about-card .idx{font-family:"Space Grotesk",sans-serif;font-size:1.5rem;font-weight:700;
+  color:var(--violet);min-width:34px;line-height:1.3}
+.about-card p{color:var(--ink-soft);margin:0}
+
+/* ---------- Skills ---------- */
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
+.skill-card{padding:24px 26px}
+.skill-card h3{font-size:1.06rem;display:flex;align-items:center;gap:11px;margin-bottom:16px}
+.skill-card h3 .ic{width:38px;height:38px;border-radius:11px;display:grid;place-items:center;
+  background:rgba(124,108,255,.14);border:1px solid var(--line);color:var(--violet);flex:none}
+.skill-card h3 .ic svg{width:20px;height:20px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font-size:.83rem;padding:6px 13px;border-radius:99px;border:1px solid var(--line);
+  background:rgba(150,160,220,.07);color:var(--ink-soft);transition:.25s;cursor:default}
+.chip:hover{color:#fff;border-color:rgba(183,148,255,.5);background:rgba(124,108,255,.16);transform:translateY(-2px)}
+
+/* ---------- Timeline ---------- */
+.tl-head{padding:24px 28px;margin-bottom:22px;display:flex;flex-wrap:wrap;gap:8px 18px;align-items:baseline}
+.tl-head h3{font-size:1.2rem}
+.tl-head .org{color:var(--cyan);font-weight:600}
+.tl-head .when{color:var(--ink-dim);font-size:.88rem;margin-left:auto}
+.timeline{display:grid;gap:18px;position:relative;padding-left:26px}
+.timeline::before{content:"";position:absolute;left:7px;top:6px;bottom:6px;width:2px;
+  background:linear-gradient(var(--violet),var(--cyan),var(--pink));opacity:.5;border-radius:2px}
+.tl-item{position:relative;padding:22px 26px}
+.tl-item::before{content:"";position:absolute;left:-26px;top:30px;width:14px;height:14px;border-radius:50%;
+  background:var(--bg);border:3px solid var(--violet);box-shadow:0 0 12px rgba(183,148,255,.6);transform:translateX(-1px)}
+.tl-item h4{font-size:1.04rem;margin-bottom:8px;color:#fff}
+.tl-item p{color:var(--ink-soft);font-size:.95rem;margin:0}
+
+/* ---------- Projects ---------- */
+.proj-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px}
+.proj{padding:28px;display:flex;flex-direction:column;gap:14px}
+.proj-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.proj h3{font-size:1.22rem}
+.proj h3 a{display:inline-flex;align-items:center;gap:8px}
+.proj h3 a:hover .grad-text{filter:brightness(1.15)}
+.proj .meta{font-size:.8rem;color:var(--cyan);letter-spacing:.04em;font-weight:600;margin-top:2px}
+.proj .ext{color:var(--ink-dim);transition:.25s;flex:none}
+.proj .ext:hover{color:var(--violet);transform:translate(2px,-2px)}
+.proj .ext svg{width:20px;height:20px}
+.proj .desc{color:var(--ink-soft);font-size:.95rem;margin:0}
+.feat{display:grid;gap:8px;margin:2px 0}
+.feat li{list-style:none;display:flex;gap:10px;align-items:flex-start;font-size:.9rem;color:var(--ink-soft)}
+.feat li svg{width:16px;height:16px;color:var(--cyan);flex:none;margin-top:5px}
+.tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:auto;padding-top:4px}
+.tag{font-size:.76rem;padding:5px 11px;border-radius:8px;background:rgba(124,108,255,.12);
+  border:1px solid var(--line);color:var(--ink-soft)}
+
+/* ---------- Highlights (special tech) ---------- */
+.hi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px}
+.hi{padding:28px;display:flex;flex-direction:column;gap:14px}
+.hi .ic{width:46px;height:46px;border-radius:13px;display:grid;place-items:center;
+  background:var(--grad);background-size:200% 200%;color:#0a0a16;animation:hueText 10s linear infinite;
+  box-shadow:0 10px 26px -10px rgba(124,108,255,.6)}
+.hi .ic svg{width:24px;height:24px}
+.hi h3{font-size:1.1rem}
+.hi p{color:var(--ink-soft);font-size:.95rem;margin:0}
+
+/* ---------- Education ---------- */
+.edu{padding:28px 30px;display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.edu .ic{width:54px;height:54px;border-radius:14px;display:grid;place-items:center;flex:none;
+  background:rgba(124,108,255,.14);border:1px solid var(--line);color:var(--violet)}
+.edu .ic svg{width:28px;height:28px}
+.edu h3{font-size:1.16rem}
+.edu .det{color:var(--ink-soft);margin-top:3px}
+
+/* ---------- Contact ---------- */
+.contact{padding:46px 38px;text-align:center;display:grid;gap:22px;place-items:center}
+.contact h2{font-size:clamp(1.7rem,4vw,2.6rem);padding-bottom:.12em}
+.contact p{color:var(--ink-soft);max-width:52ch}
+.contact-links{display:flex;flex-wrap:wrap;gap:14px;justify-content:center}
+
+/* ---------- Footer ---------- */
+footer{text-align:center;padding:46px 24px 60px;color:var(--ink-dim);font-size:.86rem;
+  border-top:1px solid var(--line);margin-top:30px}
+
+/* ---------- Reveal animation ---------- */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+
+/* ---------- Responsive ---------- */
+@media(max-width:760px){
+  .nav-toggle{display:inline-flex}
+  .navlinks{position:fixed;inset:62px 12px auto 12px;flex-direction:column;gap:4px;
+    background:var(--glass-strong);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+    border:1px solid var(--line);border-radius:16px;padding:12px;
+    transform:scale(.97) translateY(-8px);opacity:0;pointer-events:none;transition:.25s var(--ease)}
+  .navlinks.open{transform:none;opacity:1;pointer-events:auto}
+  .navlinks a{padding:11px 14px}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  section{padding:64px 0}
+  .hero{padding:64px 0 48px}
+  .edu{justify-content:center;text-align:center}
+}
+@media(max-width:430px){.stats{grid-template-columns:1fr 1fr}.about-card{padding:22px}}
+
+/* ---------- Reduced motion ---------- */
+@media(prefers-reduced-motion:reduce){
+  *{animation-duration:.001ms!important;animation-iteration-count:1!important;
+    transition-duration:.001ms!important;scroll-behavior:auto!important}
+  .aurora::before,.aurora::after,.aurora .blob{animation:none}
+  .reveal{opacity:1;transform:none}
+  .grad-text,.stat .num,.btn.primary,.brand .orb,.hi .ic{animation:none}
+}
+
+/* ---------- Print ---------- */
+@media print{
+  :root{--ink:#111;--ink-soft:#333;--ink-dim:#555;--line:#ccc}
+  body{background:#fff;color:#111}
+  .aurora,.veil,.nav-toggle,header.nav,.hero-cta,.contact-links,.btn{display:none!important}
+  .glass{background:#fff!important;border:1px solid #ddd!important;box-shadow:none!important;backdrop-filter:none!important}
+  .glass::before{display:none}
+  .grad-text,.stat .num,.section-title.grad-text{-webkit-text-fill-color:#5b3fd9!important;color:#5b3fd9!important;background:none!important}
+  section{padding:18px 0;page-break-inside:avoid}
+  main{max-width:100%}
+  a{color:#111}
+  .hi .ic,.edu .ic,.skill-card h3 .ic{background:#eee!important;color:#5b3fd9!important;-webkit-text-fill-color:initial}
+}
+</style>
+</head>
+<body>
+
+<!-- Aurora animated background -->
+<div class="aurora" aria-hidden="true"><div class="blob"></div><div class="grain"></div></div>
+<div class="veil" aria-hidden="true"></div>
+
+<!-- Nav -->
+<header class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="#hero"><span class="orb"></span><span>Ian Cheng</span></a>
+    <nav class="navlinks" id="navlinks" aria-label="主要導覽">
+      <a href="#about">關於</a>
+      <a href="#skills">技能</a>
+      <a href="#experience">經歷</a>
+      <a href="#projects">作品</a>
+      <a href="#highlights">技術實績</a>
+      <a href="#education">學歷</a>
+      <a href="#contact">聯繫</a>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="開啟選單" aria-expanded="false">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+  </div>
+</header>
+
+<main>
+
+  <!-- HERO -->
+  <section id="hero" class="hero">
+    <div class="badge reveal"><span class="dot"></span>Available for opportunities</div>
+    <div class="reveal">
+      <h1>你好，我是 <span class="grad-text">Ian Cheng</span></h1>
+      <p class="role">資深全端工程師 &amp; AI 工程師</p>
+    </div>
+    <p class="tagline reveal">10 年開發經驗，擅長 AI 產品落地、微服務架構設計，具備從零到上線的完整交付能力。</p>
+    <div class="hero-cta reveal">
+      <a class="btn primary" href="#contact">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16v12H4z"/><path d="m4 7 8 6 8-6"/></svg>
+        聯繫我
+      </a>
+      <a class="btn ghost" href="#projects">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h18M3 12h18M3 17h12"/></svg>
+        查看作品
+      </a>
+    </div>
+
+    <div class="stats">
+      <div class="stat glass reveal"><div class="num" data-count="10" data-suffix="+">0</div><div class="lbl">年開發經驗</div></div>
+      <div class="stat glass reveal"><div class="num" data-count="5" data-suffix="+">0</div><div class="lbl">大型專案交付</div></div>
+      <div class="stat glass reveal"><div class="num" data-count="2" data-suffix="">0</div><div class="lbl">自建產品上線</div></div>
+      <div class="stat glass reveal"><div class="num" data-count="3" data-suffix="">0</div><div class="lbl">AI 整合實戰</div></div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <span class="eyebrow reveal">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a7 7 0 0 1 16 0v1"/></svg>
+      About
+    </span>
+    <h2 class="section-title grad-text reveal">關於我</h2>
+    <p class="section-sub reveal">橫跨醫療資訊、電商與 AI 三個領域，能在技術深度與跨部門架構溝通之間自如切換。</p>
+    <div class="about-grid">
+      <div class="about-card glass reveal"><span class="idx">01</span><p>10 年全端工程師，具備從系統架構設計到 AI 產品落地的端對端能力。曾在中部區域醫院主導多項院內大型系統開發，採微服務架構 + API Gateway + RBAC 集中控管，支援全院多部門運作。</p></div>
+      <div class="about-card glass reveal"><span class="idx">02</span><p>自行開發並上線 璐娜健康管家（AI 健康 SaaS）與金連發電器（家電電商），整合 Gemini + OpenAI 多模態雙引擎。具備 Stable Diffusion + LoRA 模型微調及 RAG 系統建置實戰經驗，熟悉醫療資料處理與合規需求。</p></div>
+      <div class="about-card glass reveal"><span class="idx">03</span><p>背景橫跨醫療資訊、電商、AI 三個領域，能同時勝任技術深度討論與跨部門架構溝通。目前積極尋求 AI 工程師 / Tech Lead / Solution Architect 相關機會。</p></div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <span class="eyebrow reveal">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m8 3-6 9 6 9"/><path d="m16 3 6 9-6 9"/></svg>
+      Skills
+    </span>
+    <h2 class="section-title grad-text reveal">核心技能</h2>
+    <p class="section-sub reveal">從程式語言、資料庫到 AI / ML 與 DevOps，全棧覆蓋並深入領域知識。</p>
+    <div class="skills-grid">
+      <div class="skill-card glass reveal">
+        <h3><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/><path d="M4 20h16" opacity=".4"/></svg></span>程式語言</h3>
+        <div class="chips"><span class="chip">Python</span><span class="chip">Vue.js</span><span class="chip">PHP</span><span class="chip">JavaScript</span><span class="chip">HTML / CSS</span></div>
+      </div>
+      <div class="skill-card glass reveal">
+        <h3><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v6c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 11v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></svg></span>資料庫</h3>
+        <div class="chips"><span class="chip">MySQL</span><span class="chip">PostgreSQL</span><span class="chip">MongoDB</span><span class="chip">Redis</span></div>
+      </div>
+      <div class="skill-card glass reveal">
+        <h3><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="8.5" y="14" width="7" height="7" rx="1.5"/><path d="M6.5 10v2M17.5 10v2M12 12v2"/></svg></span>系統架構</h3>
+        <div class="chips"><span class="chip">微服務</span><span class="chip">API Gateway</span><span class="chip">RBAC</span><span class="chip">事件驅動</span><span class="chip">負載均衡</span><span class="chip">CDN</span></div>
+      </div>
+      <div class="skill-card glass reveal">
+        <h3><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="8" width="14" height="11" rx="2.5"/><path d="M12 8V5M9 3h6"/><circle cx="9.5" cy="13" r="1"/><circle cx="14.5" cy="13" r="1"/></svg></span>AI / ML</h3>
+        <div class="chips"><span class="chip">OpenAI API</span><span class="chip">Gemini API</span><span class="chip">RAG</span><span class="chip">LoRA fine-tuning</span><span class="chip">Stable Diffusion</span><span class="chip">向量資料庫</span></div>
+      </div>
+      <div class="skill-card glass reveal">
+        <h3><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/></svg></span>DevOps</h3>
+        <div class="chips"><span class="chip">Docker</span><span class="chip">CI/CD</span><span class="chip">Linux</span><span class="chip">Nginx</span></div>
+      </div>
+      <div class="skill-card glass reveal">
+        <h3><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M5 8a4 4 0 0 1 7-2 4 4 0 0 1 7 2c0 5-7 9-7 9S5 13 5 8Z" opacity=".5"/><path d="M9 12h6M12 9v6"/></svg></span>領域知識</h3>
+        <div class="chips"><span class="chip">醫療資訊系統</span><span class="chip">電商平台</span><span class="chip">醫療資料合規</span><span class="chip">HL7 / FHIR</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <span class="eyebrow reveal">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+      Experience
+    </span>
+    <h2 class="section-title grad-text reveal">工作經歷</h2>
+    <p class="section-sub reveal">主導院內多項大型系統，從架構設計、開發、部署到維運的全流程交付。</p>
+
+    <div class="tl-head glass reveal">
+      <h3>程式設計師</h3>
+      <span class="org">＠ 中部區域醫院</span>
+      <span class="when">任職約 9 年 — 至今</span>
+    </div>
+
+    <div class="timeline">
+      <div class="tl-item glass reveal">
+        <h4>全院行動祕書（全院通用行動 App）</h4>
+        <p>微服務架構設計，各功能模組獨立部署並透過 API Gateway 統一入口管理；RBAC 集中式權限控管，支援多角色、多部門存取隔離；Vue.js 前端 + Python / PHP 後端，Redis 快取優化高頻讀取效能；負責架構設計、開發、部署與維運全流程。</p>
+      </div>
+      <div class="tl-item glass reveal">
+        <h4>個案管理系統</h4>
+        <p>跨科別病患個案追蹤平台，整合多部門護理流程與個案狀態管理；符合醫療資料安全規範，實作審計日誌與敏感欄位加密機制。</p>
+      </div>
+      <div class="tl-item glass reveal">
+        <h4>學習護照系統</h4>
+        <p>全院員工學習歷程平台，支援課程管理、學習進度追蹤與認證產出；模組化設計對應醫師、護理師、行政等不同職類的差異化學習路徑。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <span class="eyebrow reveal">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 9 4.5v9L12 21l-9-4.5v-9z"/><path d="M3 7.5 12 12l9-4.5M12 12v9" opacity=".5"/></svg>
+      Products
+    </span>
+    <h2 class="section-title grad-text reveal">自建作品</h2>
+    <p class="section-sub reveal">從零到上線、實際營運中的產品 — 涵蓋 AI SaaS 與電商平台。</p>
+
+    <div class="proj-grid">
+      <article class="proj glass reveal">
+        <div class="proj-top">
+          <div>
+            <h3><a href="https://luna-ai-life.com" target="_blank" rel="noopener"><span class="grad-text">璐娜健康管家</span></a></h3>
+            <div class="meta">AI SaaS · LINE Bot · 健康管理</div>
+          </div>
+          <a class="ext" href="https://luna-ai-life.com" target="_blank" rel="noopener" aria-label="開啟璐娜健康管家">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>
+          </a>
+        </div>
+        <p class="desc">整合 Gemini + OpenAI 雙引擎的 AI 健康管理平台，提供拍照熱量辨識、社交陪跑配對與個人化健康報告。</p>
+        <ul class="feat">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-11"/></svg>多模態 AI 辨識食物熱量（蛋白質、碳水、脂肪、鈉）</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-11"/></svg>AI 配對陪跑夥伴 + 遊戲化打卡獎勵系統</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-11"/></svg>個人化週報 / 月報含代謝評估與行動建議</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-11"/></svg>Gemini + OpenAI 雙引擎備援架構</li>
+        </ul>
+        <div class="tags"><span class="tag">OpenAI</span><span class="tag">Gemini</span><span class="tag">Vue.js</span><span class="tag">Python</span><span class="tag">LINE Bot</span></div>
+      </article>
+
+      <article class="proj glass reveal">
+        <div class="proj-top">
+          <div>
+            <h3><a href="https://jlfshop.com" target="_blank" rel="noopener"><span class="grad-text">金連發電器</span></a></h3>
+            <div class="meta">電商平台 · 家電 · 全台配送</div>
+          </div>
+          <a class="ext" href="https://jlfshop.com" target="_blank" rel="noopener" aria-label="開啟金連發電器">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>
+          </a>
+        </div>
+        <p class="desc">完整家電購物商城，涵蓋商品管理、訂單流程、安裝 / 回收 / 運送服務整合，為實際營運中的電商系統。</p>
+        <ul class="feat">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-11"/></svg>完整電商流程（商品、購物車、訂單、金流）</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-11"/></svg>物流整合（安裝、回收、運送服務調度）</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-11"/></svg>Redis 快取 + CDN + 負載均衡效能優化</li>
+        </ul>
+        <div class="tags"><span class="tag">Vue.js</span><span class="tag">PHP</span><span class="tag">Redis</span><span class="tag">CDN</span><span class="tag">MySQL</span></div>
+      </article>
+    </div>
+  </section>
+
+  <!-- HIGHLIGHTS -->
+  <section id="highlights">
+    <span class="eyebrow reveal">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v4M12 17v4M3 12h4M17 12h4"/><circle cx="12" cy="12" r="4"/></svg>
+      Highlights
+    </span>
+    <h2 class="section-title grad-text reveal">特殊技術實績</h2>
+    <p class="section-sub reveal">不只是 API 呼叫層 — 深入到 AI 模型層級與大規模知識庫建置的實戰能力。</p>
+
+    <div class="hi-grid">
+      <article class="hi glass reveal">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="m7 14 3-3 2 2 3-4 2 3"/><circle cx="8" cy="8" r="1.4"/></svg></span>
+        <h3>Stable Diffusion + LoRA 模型微調</h3>
+        <p>獨立完成圖像生成模型訓練，涵蓋資料標注、訓練參數調整至產出完整流程，具備 AI 模型層級的實戰能力，不只是 API 呼叫層。</p>
+      </article>
+      <article class="hi glass reveal">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l3 3v15a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"/><path d="M9 9h6M9 13h6M9 17h4"/></svg></span>
+        <h3>醫療文件 RAG 系統</h3>
+        <p>將 800+ 頁原文病歷向量化，建置可語義查詢的醫療知識庫，實際用於醫療諮詢輔助，具備高精度召回率與答案可追溯性需求的處理經驗。</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <span class="eyebrow reveal">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9 12 5l9 4-9 4-9-4Z"/><path d="M7 11v4c0 1.1 2.2 2 5 2s5-.9 5-2v-4"/></svg>
+      Education
+    </span>
+    <h2 class="section-title grad-text reveal">學歷</h2>
+    <div class="edu glass reveal">
+      <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9 12 5l9 4-9 4-9-4Z"/><path d="M7 11v4c0 1.1 2.2 2 5 2s5-.9 5-2v-4"/><path d="M21 9v5"/></svg></span>
+      <div>
+        <h3>中山醫學大學</h3>
+        <div class="det">醫學資訊學系 · 學士</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="contact glass reveal">
+      <span class="eyebrow" style="margin:0">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16v12H4z"/><path d="m4 7 8 6 8-6"/></svg>
+        Get in touch
+      </span>
+      <h2 class="grad-text">一起打造下一個產品</h2>
+      <p>目前積極尋求 AI 工程師 / Tech Lead / Solution Architect 相關機會。歡迎來信聊聊技術與合作。</p>
+      <div class="contact-links">
+        <a class="btn primary" href="mailto:serviceluna@luna-ai-life.com">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16v12H4z"/><path d="m4 7 8 6 8-6"/></svg>
+          serviceluna@luna-ai-life.com
+        </a>
+        <a class="btn ghost" href="https://luna-ai-life.com" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 2.5 15 0 18M12 3c-2.5 2.5-2.5 15 0 18"/></svg>
+          璐娜健康管家
+        </a>
+        <a class="btn ghost" href="https://jlfshop.com" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 7h14l-1.2 11a2 2 0 0 1-2 1.8H8.2a2 2 0 0 1-2-1.8L5 7Z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg>
+          金連發電器
+        </a>
+        <a class="btn ghost" href="https://github.com/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12 12 0 0 0-6 0C6.7 3.6 5.6 3.9 5.6 3.9a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4.2 10.3c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V22"/></svg>
+          GitHub
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>© 2026 Ian Cheng</footer>
+
+<script>
+(function(){
+  "use strict";
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---- Mobile nav toggle ---- */
+  var toggle = document.getElementById('navToggle');
+  var links = document.getElementById('navlinks');
+  if(toggle && links){
+    toggle.addEventListener('click', function(){
+      var open = links.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    links.addEventListener('click', function(e){
+      if(e.target.tagName === 'A'){ links.classList.remove('open'); toggle.setAttribute('aria-expanded','false'); }
+    });
+  }
+
+  /* ---- Staggered reveal ---- */
+  var reveals = Array.prototype.slice.call(document.querySelectorAll('.reveal'));
+  if(reduce || !('IntersectionObserver' in window)){
+    reveals.forEach(function(el){ el.classList.add('in'); });
+  } else {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          var el = entry.target;
+          // stagger within the same parent group
+          var siblings = Array.prototype.slice.call(el.parentNode.children).filter(function(c){return c.classList.contains('reveal');});
+          var idx = siblings.indexOf(el);
+          el.style.transitionDelay = (Math.max(0,idx) * 90) + 'ms';
+          el.classList.add('in');
+          io.unobserve(el);
+        }
+      });
+    }, { threshold:.14, rootMargin:'0px 0px -8% 0px' });
+    reveals.forEach(function(el){ io.observe(el); });
+    // Failsafe: if IntersectionObserver never fires (rare renderer quirks),
+    // make sure nothing stays permanently hidden.
+    setTimeout(function(){
+      reveals.forEach(function(el){
+        if(!el.classList.contains('in')){
+          var r = el.getBoundingClientRect();
+          if(r.top < window.innerHeight && r.bottom > 0){ el.classList.add('in'); }
+        }
+      });
+    }, 2500);
+  }
+
+  /* ---- Count-up stats ---- */
+  function countUp(el){
+    var target = parseInt(el.getAttribute('data-count'),10) || 0;
+    var suffix = el.getAttribute('data-suffix') || '';
+    if(reduce){ el.textContent = target + suffix; return; }
+    var dur = 1200, start = null;
+    function step(ts){
+      if(!start) start = ts;
+      var p = Math.min((ts - start)/dur, 1);
+      var eased = 1 - Math.pow(1-p, 3);
+      el.textContent = Math.round(eased * target) + suffix;
+      if(p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  var nums = Array.prototype.slice.call(document.querySelectorAll('.num[data-count]'));
+  if('IntersectionObserver' in window){
+    var nio = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){ countUp(e.target); nio.unobserve(e.target); } });
+    }, { threshold:.5 });
+    nums.forEach(function(el){ nio.observe(el); });
+    // Failsafe so the stat numbers never stay stuck at 0.
+    setTimeout(function(){
+      nums.forEach(function(el){ if(el.textContent === '0'){ countUp(el); } });
+    }, 2600);
+  } else { nums.forEach(countUp); }
+
+  /* ---- Magnetic + glow buttons ---- */
+  if(!reduce){
+    var btns = Array.prototype.slice.call(document.querySelectorAll('.btn'));
+    btns.forEach(function(btn){
+      btn.addEventListener('pointermove', function(e){
+        var r = btn.getBoundingClientRect();
+        var x = e.clientX - r.left, y = e.clientY - r.top;
+        btn.style.setProperty('--gx', x + 'px');
+        btn.style.setProperty('--gy', y + 'px');
+        var mx = (x - r.width/2) / r.width, my = (y - r.height/2) / r.height;
+        btn.style.transform = 'translate(' + (mx*6).toFixed(1) + 'px,' + (my*6).toFixed(1) + 'px)';
+      });
+      btn.addEventListener('pointerleave', function(){ btn.style.transform = ''; });
+    });
+  }
+
+  /* ---- Scroll-spy nav highlight ---- */
+  var navAnchors = Array.prototype.slice.call(document.querySelectorAll('.navlinks a'));
+  var sections = navAnchors.map(function(a){ return document.querySelector(a.getAttribute('href')); }).filter(Boolean);
+  if('IntersectionObserver' in window && sections.length){
+    var current = '';
+    var sio = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ current = '#' + e.target.id; }
+      });
+      navAnchors.forEach(function(a){
+        a.classList.toggle('active', a.getAttribute('href') === current);
+      });
+    }, { rootMargin:'-45% 0px -50% 0px', threshold:0 });
+    sections.forEach(function(s){ sio.observe(s); });
+  }
+})();
+</script>
+</body>
+</html>

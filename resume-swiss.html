@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ian Cheng — 資深全端工程師 & AI 工程師</title>
+<meta name="description" content="Ian Cheng 的個人履歷。10 年開發經驗，擅長 AI 產品落地、微服務架構設計，具備從零到上線的完整交付能力。">
+<meta name="author" content="Ian Cheng">
+<meta name="theme-color" content="#e2231a">
+
+<!-- Open Graph -->
+<meta property="og:type" content="profile">
+<meta property="og:title" content="Ian Cheng — 資深全端工程師 & AI 工程師">
+<meta property="og:description" content="10 年開發經驗，擅長 AI 產品落地、微服務架構設計，具備從零到上線的完整交付能力。">
+<meta property="og:locale" content="zh_TW">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Ian Cheng — 資深全端工程師 & AI 工程師">
+<meta name="twitter:description" content="10 年開發經驗，擅長 AI 產品落地、微服務架構設計，具備從零到上線的完整交付能力。">
+
+<!-- Favicon: data URI SVG -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23ffffff'/%3E%3Crect x='8' y='8' width='84' height='84' fill='none' stroke='%23111111' stroke-width='6'/%3E%3Crect x='8' y='8' width='42' height='42' fill='%23e2231a'/%3E%3Ctext x='54' y='80' font-family='Helvetica,Arial,sans-serif' font-size='46' font-weight='800' fill='%23111111'%3EIC%3C/text%3E%3C/svg%3E">
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Archivo:wght@600;700;800;900&display=swap" rel="stylesheet">
+<!-- Font Awesome (cdnjs) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" referrerpolicy="no-referrer">
+
+<style>
+  :root{
+    --red:#e2231a;
+    --ink:#111111;
+    --paper:#ffffff;
+    --grey:#6b6b6b;
+    --line:#111111;
+    --hair:rgba(17,17,17,.14);
+    --col-gap:24px;
+    --pad:clamp(20px,5vw,72px);
+    --maxw:1280px;
+    --ff:"Inter","Helvetica Neue",Helvetica,Arial,"PingFang TC","Microsoft JhengHei",sans-serif;
+    --display:"Archivo","Helvetica Neue",Helvetica,Arial,sans-serif;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:var(--ff);
+    color:var(--ink);
+    background:var(--paper);
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+    overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none;}
+  ::selection{background:var(--red);color:#fff;}
+
+  /* ---------- Layout grid ---------- */
+  .wrap{max-width:var(--maxw);margin:0 auto;padding-left:var(--pad);padding-right:var(--pad);}
+  .grid12{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--col-gap);}
+
+  /* ---------- Section scaffolding ---------- */
+  section{position:relative;padding-block:clamp(56px,9vw,128px);border-top:1px solid var(--line);}
+  #hero{border-top:none;}
+  .sec-head{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--col-gap);align-items:baseline;margin-bottom:clamp(32px,5vw,64px);}
+  .sec-num{
+    grid-column:1/3;
+    font-family:var(--display);
+    font-weight:800;
+    font-size:clamp(13px,1.3vw,15px);
+    letter-spacing:.04em;
+    color:var(--red);
+  }
+  .sec-title{
+    grid-column:3/13;
+    font-family:var(--display);
+    font-weight:800;
+    font-size:clamp(30px,6vw,72px);
+    line-height:1.02;
+    letter-spacing:-.02em;
+  }
+  .sec-kicker{
+    grid-column:3/13;
+    margin-top:14px;
+    font-size:clamp(12px,1.1vw,13px);
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    color:var(--grey);
+  }
+
+  /* ---------- Reveal animations ---------- */
+  .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1);}
+  .reveal.in{opacity:1;transform:none;}
+  .reveal.d1{transition-delay:.08s;}
+  .reveal.d2{transition-delay:.16s;}
+  .reveal.d3{transition-delay:.24s;}
+  .reveal.d4{transition-delay:.32s;}
+
+  /* clip-path wipe reveal */
+  .wipe{clip-path:inset(0 100% 0 0);transition:clip-path .9s cubic-bezier(.76,0,.24,1);}
+  .wipe.in{clip-path:inset(0 0 0 0);}
+
+  /* hairline draw */
+  .rule{height:1px;background:var(--line);transform:scaleX(0);transform-origin:left;transition:transform .9s cubic-bezier(.76,0,.24,1);}
+  .rule.in{transform:scaleX(1);}
+
+  /* ---------- Nav ---------- */
+  header.nav{
+    position:fixed;top:0;left:0;right:0;z-index:50;
+    background:rgba(255,255,255,.86);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:64px;}
+  .brand{display:flex;align-items:baseline;gap:12px;font-family:var(--display);font-weight:800;letter-spacing:-.01em;}
+  .brand .mk{display:inline-block;width:14px;height:14px;background:var(--red);transform:translateY(1px);}
+  .brand small{font-family:var(--ff);font-weight:600;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--grey);}
+  nav ul{list-style:none;display:flex;gap:clamp(8px,1.6vw,26px);align-items:center;}
+  nav a{
+    position:relative;font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+    padding:6px 2px;color:var(--ink);
+  }
+  nav a .n{color:var(--red);margin-right:6px;font-variant-numeric:tabular-nums;}
+  nav a::after{content:"";position:absolute;left:0;bottom:-2px;height:2px;width:100%;background:var(--red);transform:scaleX(0);transform-origin:left;transition:transform .35s cubic-bezier(.76,0,.24,1);}
+  nav a:hover::after,nav a.active::after{transform:scaleX(1);}
+  nav a.active{color:var(--red);}
+  .nav-toggle{display:none;background:none;border:1px solid var(--line);width:40px;height:36px;cursor:pointer;}
+  .nav-toggle span{display:block;width:18px;height:2px;background:var(--ink);margin:3px auto;}
+
+  /* ---------- Hero ---------- */
+  #hero{padding-top:clamp(96px,16vh,180px);padding-bottom:clamp(48px,7vw,96px);}
+  .hero-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--col-gap);align-items:end;}
+  .hero-tag{grid-column:1/13;display:flex;gap:14px;align-items:center;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--grey);margin-bottom:22px;}
+  .hero-tag .badge{display:inline-flex;align-items:center;gap:8px;color:var(--ink);font-weight:600;border:1px solid var(--line);padding:6px 12px;}
+  .hero-tag .dot{width:8px;height:8px;border-radius:50%;background:var(--red);animation:pulse 1.8s infinite;}
+  @keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.4;transform:scale(.7);}}
+  .hero-title{
+    grid-column:1/13;
+    font-family:var(--display);
+    font-weight:900;
+    font-size:clamp(48px,12vw,168px);
+    line-height:.9;
+    letter-spacing:-.035em;
+    padding-bottom:.06em;
+  }
+  .hero-title .ln{display:block;overflow:hidden;}
+  .hero-title .ln i{display:block;font-style:normal;transform:translateY(110%);transition:transform .9s cubic-bezier(.2,.8,.2,1);}
+  .hero-title.in .ln i{transform:none;}
+  .hero-title .ln:nth-child(2) i{transition-delay:.12s;}
+  .hero-title .red{color:var(--red);}
+  .hero-role{grid-column:1/8;margin-top:26px;font-size:clamp(15px,2vw,22px);font-weight:600;letter-spacing:-.01em;}
+  .hero-lead{grid-column:1/9;margin-top:18px;font-size:clamp(14px,1.5vw,17px);color:#222;max-width:62ch;}
+  .hero-meta{grid-column:9/13;align-self:end;margin-top:18px;display:flex;flex-direction:column;gap:10px;font-size:13px;}
+  .hero-meta a,.hero-meta span{display:flex;align-items:center;gap:10px;color:var(--ink);}
+  .hero-meta .lbl{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--grey);}
+  .hero-meta svg{flex:0 0 auto;}
+
+  /* ---------- Stats ---------- */
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--line);margin-top:clamp(40px,6vw,72px);}
+  .stat{padding:clamp(22px,3vw,34px);border-right:1px solid var(--line);position:relative;}
+  .stat:last-child{border-right:none;}
+  .stat .num{font-family:var(--display);font-weight:800;font-size:clamp(38px,6vw,68px);line-height:1;letter-spacing:-.03em;display:flex;align-items:baseline;}
+  .stat .suf{color:var(--red);margin-left:2px;}
+  .stat .cap{margin-top:12px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--grey);}
+
+  /* ---------- About ---------- */
+  .about-body{grid-column:3/12;}
+  .about-p{display:grid;grid-template-columns:auto 1fr;gap:clamp(18px,3vw,40px);padding-block:clamp(20px,3vw,34px);border-top:1px solid var(--hair);}
+  .about-p:first-child{border-top:none;}
+  .about-p .pn{font-family:var(--display);font-weight:800;font-size:14px;color:var(--red);padding-top:4px;}
+  .about-p p{font-size:clamp(15px,1.6vw,19px);line-height:1.7;letter-spacing:-.005em;color:#1a1a1a;}
+  .about-p p .hl{color:var(--ink);font-weight:700;box-shadow:inset 0 -.5em 0 rgba(226,35,26,.14);}
+
+  /* ---------- Skills ---------- */
+  .skills{grid-column:1/13;display:grid;grid-template-columns:repeat(12,1fr);gap:var(--col-gap) 0;}
+  .skill-row{grid-column:1/13;display:grid;grid-template-columns:repeat(12,1fr);gap:var(--col-gap);align-items:start;padding-block:clamp(20px,2.6vw,30px);border-top:1px solid var(--line);}
+  .skill-row:first-child{border-top:none;}
+  .skill-row .k{grid-column:1/4;display:flex;gap:12px;align-items:flex-start;}
+  .skill-row .k .ic{width:20px;height:20px;color:var(--red);flex:0 0 auto;margin-top:2px;}
+  .skill-row .k h4{font-family:var(--display);font-weight:700;font-size:clamp(15px,1.5vw,18px);letter-spacing:-.01em;}
+  .skill-row .v{grid-column:4/13;display:flex;flex-wrap:wrap;gap:8px;}
+  .chip{font-size:13px;font-weight:500;border:1px solid var(--line);padding:6px 13px;position:relative;transition:color .3s ease;background:transparent;}
+  .chip::before{content:"";position:absolute;inset:0;background:var(--red);transform:scaleX(0);transform-origin:left;transition:transform .3s cubic-bezier(.76,0,.24,1);z-index:-1;}
+  .chip{z-index:0;}
+  .chip:hover{color:#fff;}
+  .chip:hover::before{transform:scaleX(1);}
+
+  /* ---------- Experience ---------- */
+  .exp-head{grid-column:1/13;display:grid;grid-template-columns:repeat(12,1fr);gap:var(--col-gap);align-items:baseline;margin-bottom:8px;}
+  .exp-head .role{grid-column:1/9;font-family:var(--display);font-weight:800;font-size:clamp(22px,3vw,38px);letter-spacing:-.02em;line-height:1.1;}
+  .exp-head .org{grid-column:1/9;margin-top:8px;font-size:15px;color:var(--grey);}
+  .exp-head .when{grid-column:9/13;text-align:right;font-family:var(--display);font-weight:700;font-size:clamp(13px,1.3vw,15px);letter-spacing:.04em;color:var(--ink);}
+  .projects{grid-column:1/13;margin-top:clamp(24px,3vw,40px);}
+  .proj{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--col-gap);padding-block:clamp(22px,3vw,34px);border-top:1px solid var(--line);}
+  .proj .pn{grid-column:1/2;font-family:var(--display);font-weight:800;font-size:14px;color:var(--red);}
+  .proj .pt{grid-column:2/5;font-family:var(--display);font-weight:700;font-size:clamp(16px,1.7vw,21px);line-height:1.2;letter-spacing:-.01em;}
+  .proj .pd{grid-column:5/13;}
+  .proj .pd li{list-style:none;position:relative;padding-left:22px;font-size:clamp(14px,1.4vw,16px);line-height:1.65;color:#1c1c1c;margin-bottom:10px;}
+  .proj .pd li:last-child{margin-bottom:0;}
+  .proj .pd li::before{content:"";position:absolute;left:0;top:.62em;width:10px;height:1px;background:var(--red);}
+
+  /* ---------- Work / products ---------- */
+  .cards{grid-column:1/13;display:grid;grid-template-columns:repeat(12,1fr);gap:var(--col-gap);}
+  .card{grid-column:span 6;border:1px solid var(--line);padding:clamp(24px,3vw,40px);display:flex;flex-direction:column;position:relative;overflow:hidden;}
+  .card .topline{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;}
+  .card .pn{font-family:var(--display);font-weight:800;font-size:14px;color:var(--red);}
+  .card h3{font-family:var(--display);font-weight:800;font-size:clamp(22px,2.6vw,30px);letter-spacing:-.02em;margin-top:18px;line-height:1.08;}
+  .card .meta{margin-top:8px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--grey);}
+  .card .lk{margin-top:6px;display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--ink);width:max-content;}
+  .card .lk .ul{position:relative;}
+  .card .lk .ul::after{content:"";position:absolute;left:0;bottom:-2px;height:2px;width:100%;background:var(--red);transform:scaleX(0);transform-origin:left;transition:transform .35s cubic-bezier(.76,0,.24,1);}
+  .card:hover .lk .ul::after{transform:scaleX(1);}
+  .card p.desc{margin-top:20px;font-size:15px;line-height:1.65;color:#1c1c1c;}
+  .card .feats{margin-top:18px;}
+  .card .feats li{list-style:none;position:relative;padding-left:22px;font-size:14px;line-height:1.55;margin-bottom:9px;color:#222;}
+  .card .feats li::before{content:"";position:absolute;left:0;top:.6em;width:10px;height:1px;background:var(--red);}
+  .card .tags{margin-top:auto;padding-top:22px;display:flex;flex-wrap:wrap;gap:7px;}
+  .card .tags span{font-size:11.5px;font-weight:600;letter-spacing:.04em;border:1px solid var(--line);padding:4px 10px;}
+  .card .arrowmk{position:absolute;right:0;top:0;width:48px;height:48px;color:var(--ink);opacity:.18;}
+
+  /* ---------- Feats (special) ---------- */
+  .featrow{grid-column:1/13;display:grid;grid-template-columns:repeat(12,1fr);gap:var(--col-gap);padding-block:clamp(26px,3.4vw,44px);border-top:1px solid var(--line);align-items:start;}
+  .featrow .pn{grid-column:1/2;font-family:var(--display);font-weight:800;font-size:clamp(28px,4vw,52px);color:var(--red);line-height:.9;}
+  .featrow .ft{grid-column:2/6;font-family:var(--display);font-weight:700;font-size:clamp(18px,2.1vw,26px);letter-spacing:-.015em;line-height:1.15;}
+  .featrow .fd{grid-column:6/13;font-size:clamp(15px,1.6vw,18px);line-height:1.7;color:#1a1a1a;}
+
+  /* ---------- Education ---------- */
+  .edu{grid-column:1/13;display:grid;grid-template-columns:repeat(12,1fr);gap:var(--col-gap);align-items:center;}
+  .edu .ic{grid-column:1/2;color:var(--red);}
+  .edu .et{grid-column:2/8;font-family:var(--display);font-weight:800;font-size:clamp(22px,3vw,40px);letter-spacing:-.02em;}
+  .edu .ed{grid-column:8/13;text-align:right;font-size:15px;color:var(--grey);letter-spacing:.04em;}
+
+  /* ---------- Contact ---------- */
+  #contact{background:var(--ink);color:#fff;border-top:1px solid var(--ink);}
+  #contact .sec-num{color:var(--red);}
+  #contact .sec-title,#contact .edu .et{color:#fff;}
+  #contact .sec-kicker{color:#9a9a9a;}
+  .contact-grid{grid-column:1/13;display:grid;grid-template-columns:repeat(12,1fr);gap:var(--col-gap);}
+  .contact-mail{grid-column:1/13;}
+  .contact-mail a{font-family:var(--display);font-weight:800;font-size:clamp(26px,5vw,64px);letter-spacing:-.025em;line-height:1.1;color:#fff;display:inline-block;position:relative;word-break:break-word;}
+  .contact-mail a::after{content:"";position:absolute;left:0;bottom:.04em;height:3px;width:100%;background:var(--red);transform:scaleX(0);transform-origin:left;transition:transform .45s cubic-bezier(.76,0,.24,1);}
+  .contact-mail a:hover::after{transform:scaleX(1);}
+  .links{grid-column:1/13;margin-top:clamp(36px,5vw,60px);display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid rgba(255,255,255,.2);}
+  .links a{padding:clamp(22px,3vw,34px) 0;padding-right:24px;border-right:1px solid rgba(255,255,255,.2);display:flex;flex-direction:column;gap:10px;position:relative;}
+  .links a:last-child{border-right:none;}
+  .links a .ln-num{font-family:var(--display);font-weight:800;font-size:12px;color:var(--red);}
+  .links a .ln-name{font-family:var(--display);font-weight:700;font-size:clamp(16px,1.8vw,22px);letter-spacing:-.01em;display:flex;align-items:center;gap:12px;}
+  .links a .ln-url{font-size:12px;color:#9a9a9a;letter-spacing:.04em;word-break:break-all;}
+  .links a .arr{position:absolute;right:24px;top:clamp(22px,3vw,34px);transition:transform .35s cubic-bezier(.76,0,.24,1);color:#fff;}
+  .links a:hover .arr{transform:translate(4px,-4px);}
+  .links a .ln-name::after{content:"";position:absolute;left:0;bottom:8px;height:2px;width:0;background:var(--red);transition:width .35s cubic-bezier(.76,0,.24,1);}
+
+  /* ---------- Footer ---------- */
+  footer{background:var(--ink);color:#9a9a9a;border-top:1px solid rgba(255,255,255,.2);}
+  .foot-inner{display:flex;justify-content:space-between;align-items:center;gap:20px;padding-block:32px;flex-wrap:wrap;}
+  .foot-inner .fb{display:flex;align-items:center;gap:10px;font-family:var(--display);font-weight:800;color:#fff;font-size:13px;letter-spacing:.04em;}
+  .foot-inner .fb .mk{width:12px;height:12px;background:var(--red);display:inline-block;}
+  .foot-inner .cr{font-size:12px;letter-spacing:.06em;}
+  .foot-inner .top{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#fff;display:inline-flex;align-items:center;gap:8px;}
+
+  /* ---------- Responsive ---------- */
+  @media(max-width:900px){
+    nav ul{display:none;}
+    .nav-toggle{display:block;}
+    nav.open ul{display:flex;position:absolute;top:64px;left:0;right:0;flex-direction:column;background:#fff;border-bottom:1px solid var(--line);padding:14px var(--pad);gap:14px;}
+    .hero-role,.hero-lead,.hero-meta{grid-column:1/13;}
+    .hero-meta{align-self:start;margin-top:24px;}
+    .stats{grid-template-columns:repeat(2,1fr);}
+    .stat:nth-child(2){border-right:none;}
+    .stat:nth-child(1),.stat:nth-child(2){border-bottom:1px solid var(--line);}
+    .about-body{grid-column:1/13;}
+    .skill-row .k{grid-column:1/13;margin-bottom:14px;}
+    .skill-row .v{grid-column:1/13;}
+    .exp-head .role,.exp-head .org{grid-column:1/13;}
+    .exp-head .when{grid-column:1/13;text-align:left;margin-top:8px;}
+    .proj .pn{grid-column:1/13;}
+    .proj .pt{grid-column:1/13;margin-top:2px;}
+    .proj .pd{grid-column:1/13;margin-top:14px;}
+    .card{grid-column:1/13;}
+    .featrow .pn{grid-column:1/13;}
+    .featrow .ft{grid-column:1/13;margin-top:6px;}
+    .featrow .fd{grid-column:1/13;margin-top:14px;}
+    .edu .ic{grid-column:1/13;}
+    .edu .et{grid-column:1/13;margin-top:8px;}
+    .edu .ed{grid-column:1/13;text-align:left;margin-top:8px;}
+    .links{grid-template-columns:1fr;}
+    .links a{border-right:none;border-bottom:1px solid rgba(255,255,255,.2);padding-right:0;}
+    .links a:last-child{border-bottom:none;}
+    .links a .arr{right:0;}
+  }
+  @media(max-width:520px){
+    .stats{grid-template-columns:1fr;}
+    .stat{border-right:none;border-bottom:1px solid var(--line);}
+    .stat:last-child{border-bottom:none;}
+    .about-p{grid-template-columns:1fr;gap:8px;}
+  }
+
+  /* ---------- Reduced motion ---------- */
+  @media(prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+    *{animation:none !important;transition:none !important;}
+    .reveal{opacity:1 !important;transform:none !important;}
+    .wipe{clip-path:none !important;}
+    .rule{transform:none !important;}
+    .hero-title .ln i{transform:none !important;}
+    .hero-tag .dot{animation:none !important;}
+  }
+
+  /* ---------- Print ---------- */
+  @media print{
+    header.nav,.foot-inner .top,.hero-tag .dot{display:none !important;}
+    *{box-shadow:none !important;}
+    body{color:#000;background:#fff;}
+    section{border-color:#000;padding-block:18px;}
+    #hero{padding-top:8px;}
+    #contact,footer{background:#fff !important;color:#000 !important;}
+    #contact .sec-title,#contact .contact-mail a,#contact .links a .ln-name,.foot-inner .fb{color:#000 !important;}
+    #contact .links a .ln-url,.foot-inner .cr{color:#333 !important;}
+    .reveal{opacity:1 !important;transform:none !important;}
+    .wipe{clip-path:none !important;}
+    .rule{transform:none !important;}
+    .hero-title .ln i{transform:none !important;}
+    a{text-decoration:none;}
+    .card,.stats{break-inside:avoid;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== NAV ===== -->
+<header class="nav">
+  <div class="wrap">
+    <nav id="nav" class="nav-inner" aria-label="主要導覽">
+      <a class="brand" href="#hero" aria-label="Ian Cheng 首頁">
+        <span class="mk" aria-hidden="true"></span>
+        <span>IAN&nbsp;CHENG</span>
+        <small>Full-Stack / AI</small>
+      </a>
+      <ul>
+        <li><a href="#about"><span class="n">01</span>關於</a></li>
+        <li><a href="#skills"><span class="n">02</span>技能</a></li>
+        <li><a href="#experience"><span class="n">03</span>經歷</a></li>
+        <li><a href="#work"><span class="n">04</span>作品</a></li>
+        <li><a href="#feats"><span class="n">05</span>實績</a></li>
+        <li><a href="#education"><span class="n">06</span>學歷</a></li>
+        <li><a href="#contact"><span class="n">07</span>聯繫</a></li>
+      </ul>
+      <button class="nav-toggle" id="navToggle" aria-label="切換選單" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<!-- ===== HERO ===== -->
+<section id="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div class="hero-tag reveal">
+        <span class="badge"><span class="dot" aria-hidden="true"></span>Available for opportunities</span>
+        <span>Resident Engineer / 台灣台中</span>
+      </div>
+      <h1 class="hero-title" id="heroTitle">
+        <span class="ln"><i>IAN CHENG</i></span>
+        <span class="ln"><i><span class="red">/</span> ENGINEER</i></span>
+      </h1>
+      <p class="hero-role reveal d1">資深全端工程師 &amp; AI 工程師</p>
+      <p class="hero-lead reveal d2">10 年開發經驗，擅長 AI 產品落地、微服務架構設計，具備從零到上線的完整交付能力。</p>
+      <div class="hero-meta reveal d3">
+        <span class="lbl">Contact</span>
+        <a href="mailto:serviceluna@luna-ai-life.com">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="2.5" y="4.5" width="19" height="15" /><path d="M3 5l9 7 9-7"/></svg>
+          serviceluna@luna-ai-life.com
+        </a>
+        <span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 2.5 15 0 18M12 3c-2.5 2.5-2.5 15 0 18"/></svg>
+          luna-ai-life.com · jlfshop.com
+        </span>
+      </div>
+    </div>
+
+    <!-- stats -->
+    <div class="stats reveal d2" id="stats">
+      <div class="stat"><div class="num"><span class="count" data-to="10">0</span><span class="suf">+</span></div><div class="cap">年開發經驗</div></div>
+      <div class="stat"><div class="num"><span class="count" data-to="5">0</span><span class="suf">+</span></div><div class="cap">大型專案交付</div></div>
+      <div class="stat"><div class="num"><span class="count" data-to="2">0</span></div><div class="cap">自建產品上線</div></div>
+      <div class="stat"><div class="num"><span class="count" data-to="3">0</span></div><div class="cap">AI 整合實戰</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 01 ABOUT ===== -->
+<section id="about">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-num reveal">01</div>
+      <h2 class="sec-title wipe">關於我</h2>
+      <p class="sec-kicker reveal d1">Profile / 醫療資訊 · 電商 · AI</p>
+    </div>
+    <div class="grid12">
+      <div class="about-body">
+        <div class="about-p reveal">
+          <div class="pn">A</div>
+          <p>10 年全端工程師，具備從<span class="hl">系統架構設計</span>到 AI 產品落地的端對端能力。曾在中部區域醫院主導多項院內大型系統開發，採微服務架構 + API Gateway + RBAC 集中控管，支援全院多部門運作。</p>
+        </div>
+        <div class="about-p reveal">
+          <div class="pn">B</div>
+          <p>自行開發並上線 <span class="hl">璐娜健康管家</span>（AI 健康 SaaS）與 <span class="hl">金連發電器</span>（家電電商），整合 Gemini + OpenAI 多模態雙引擎。具備 Stable Diffusion + LoRA 模型微調及 RAG 系統建置實戰經驗，熟悉醫療資料處理與合規需求。</p>
+        </div>
+        <div class="about-p reveal">
+          <div class="pn">C</div>
+          <p>背景橫跨<span class="hl">醫療資訊、電商、AI</span> 三個領域，能同時勝任技術深度討論與跨部門架構溝通。目前積極尋求 AI 工程師 / Tech Lead / Solution Architect 相關機會。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 02 SKILLS ===== -->
+<section id="skills">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-num reveal">02</div>
+      <h2 class="sec-title wipe">核心技能</h2>
+      <p class="sec-kicker reveal d1">Core Capabilities</p>
+    </div>
+    <div class="grid12">
+      <div class="skills">
+
+        <div class="skill-row reveal">
+          <div class="k">
+            <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M8 6l-5 6 5 6M16 6l5 6-5 6M13 4l-2 16"/></svg>
+            <h4>程式語言</h4>
+          </div>
+          <div class="v">
+            <span class="chip">Python</span><span class="chip">Vue.js</span><span class="chip">PHP</span><span class="chip">JavaScript</span><span class="chip">HTML / CSS</span>
+          </div>
+        </div>
+
+        <div class="skill-row reveal">
+          <div class="k">
+            <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v6c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 11v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></svg>
+            <h4>資料庫</h4>
+          </div>
+          <div class="v">
+            <span class="chip">MySQL</span><span class="chip">PostgreSQL</span><span class="chip">MongoDB</span><span class="chip">Redis</span>
+          </div>
+        </div>
+
+        <div class="skill-row reveal">
+          <div class="k">
+            <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><path d="M10 6.5h4M6.5 10v4M17.5 10v4M10 17.5h4"/></svg>
+            <h4>系統架構</h4>
+          </div>
+          <div class="v">
+            <span class="chip">微服務</span><span class="chip">API Gateway</span><span class="chip">RBAC</span><span class="chip">事件驅動</span><span class="chip">負載均衡</span><span class="chip">CDN</span>
+          </div>
+        </div>
+
+        <div class="skill-row reveal">
+          <div class="k">
+            <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="3"/><circle cx="5" cy="6" r="2"/><circle cx="19" cy="6" r="2"/><circle cx="5" cy="18" r="2"/><circle cx="19" cy="18" r="2"/><path d="M10 11L6.5 7M14 11l3.5-4M10 13l-3.5 4M14 13l3.5 4"/></svg>
+            <h4>AI / ML</h4>
+          </div>
+          <div class="v">
+            <span class="chip">OpenAI API</span><span class="chip">Gemini API</span><span class="chip">RAG</span><span class="chip">LoRA fine-tuning</span><span class="chip">Stable Diffusion</span><span class="chip">向量資料庫</span>
+          </div>
+        </div>
+
+        <div class="skill-row reveal">
+          <div class="k">
+            <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 2a3 3 0 013 3 3 3 0 01-1 5l1 7H9l1-7a3 3 0 01-1-5 3 3 0 013-3z"/><path d="M12 5v0"/></svg>
+            <h4>DevOps</h4>
+          </div>
+          <div class="v">
+            <span class="chip">Docker</span><span class="chip">CI/CD</span><span class="chip">Linux</span><span class="chip">Nginx</span>
+          </div>
+        </div>
+
+        <div class="skill-row reveal">
+          <div class="k">
+            <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 21s-7-4.3-7-10a7 7 0 0114 0c0 5.7-7 10-7 10z"/><path d="M9.5 11.5l2 2 3.5-3.5"/></svg>
+            <h4>領域知識</h4>
+          </div>
+          <div class="v">
+            <span class="chip">醫療資訊系統</span><span class="chip">電商平台</span><span class="chip">醫療資料合規</span><span class="chip">HL7 / FHIR</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 03 EXPERIENCE ===== -->
+<section id="experience">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-num reveal">03</div>
+      <h2 class="sec-title wipe">工作經歷</h2>
+      <p class="sec-kicker reveal d1">Experience</p>
+    </div>
+    <div class="grid12">
+      <div class="exp-head reveal">
+        <div class="role">程式設計師</div>
+        <div class="org">中部區域醫院</div>
+        <div class="when">任職約 9 年 — 至今</div>
+      </div>
+
+      <div class="projects">
+        <div class="proj reveal">
+          <div class="pn">A</div>
+          <div class="pt">全院行動祕書</div>
+          <ul class="pd">
+            <li>微服務架構設計，各功能模組獨立部署並透過 API Gateway 統一入口管理</li>
+            <li>RBAC 集中式權限控管，支援多角色、多部門存取隔離</li>
+            <li>Vue.js 前端 + Python / PHP 後端，Redis 快取優化高頻讀取效能</li>
+            <li>負責架構設計、開發、部署與維運全流程</li>
+          </ul>
+        </div>
+
+        <div class="proj reveal">
+          <div class="pn">B</div>
+          <div class="pt">個案管理系統</div>
+          <ul class="pd">
+            <li>跨科別病患個案追蹤平台，整合多部門護理流程與個案狀態管理</li>
+            <li>符合醫療資料安全規範，實作審計日誌與敏感欄位加密機制</li>
+          </ul>
+        </div>
+
+        <div class="proj reveal">
+          <div class="pn">C</div>
+          <div class="pt">學習護照系統</div>
+          <ul class="pd">
+            <li>全院員工學習歷程平台，支援課程管理、學習進度追蹤與認證產出</li>
+            <li>模組化設計對應醫師、護理師、行政等不同職類的差異化學習路徑</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 04 WORK ===== -->
+<section id="work">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-num reveal">04</div>
+      <h2 class="sec-title wipe">自建作品</h2>
+      <p class="sec-kicker reveal d1">Selected Products / 從零到上線</p>
+    </div>
+    <div class="grid12">
+      <div class="cards">
+
+        <article class="card reveal">
+          <svg class="arrowmk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
+          <div class="topline">
+            <span class="pn">01</span>
+          </div>
+          <h3>璐娜健康管家</h3>
+          <div class="meta">AI SaaS · LINE Bot · 健康管理</div>
+          <a class="lk" href="https://luna-ai-life.com" target="_blank" rel="noopener noreferrer"><span class="ul">luna-ai-life.com</span>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
+          </a>
+          <p class="desc">整合 Gemini + OpenAI 雙引擎的 AI 健康管理平台，提供拍照熱量辨識、社交陪跑配對與個人化健康報告。</p>
+          <ul class="feats">
+            <li>多模態 AI 辨識食物熱量（蛋白質、碳水、脂肪、鈉）</li>
+            <li>AI 配對陪跑夥伴 + 遊戲化打卡獎勵系統</li>
+            <li>個人化週報 / 月報含代謝評估與行動建議</li>
+            <li>Gemini + OpenAI 雙引擎備援架構</li>
+          </ul>
+          <div class="tags">
+            <span>OpenAI</span><span>Gemini</span><span>Vue.js</span><span>Python</span><span>LINE Bot</span>
+          </div>
+        </article>
+
+        <article class="card reveal d1">
+          <svg class="arrowmk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
+          <div class="topline">
+            <span class="pn">02</span>
+          </div>
+          <h3>金連發電器</h3>
+          <div class="meta">電商平台 · 家電 · 全台配送</div>
+          <a class="lk" href="https://jlfshop.com" target="_blank" rel="noopener noreferrer"><span class="ul">jlfshop.com</span>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
+          </a>
+          <p class="desc">完整家電購物商城，涵蓋商品管理、訂單流程、安裝 / 回收 / 運送服務整合，為實際營運中的電商系統。</p>
+          <ul class="feats">
+            <li>完整電商流程（商品、購物車、訂單、金流）</li>
+            <li>物流整合（安裝、回收、運送服務調度）</li>
+            <li>Redis 快取 + CDN + 負載均衡效能優化</li>
+          </ul>
+          <div class="tags">
+            <span>Vue.js</span><span>PHP</span><span>Redis</span><span>CDN</span><span>MySQL</span>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 05 FEATS ===== -->
+<section id="feats">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-num reveal">05</div>
+      <h2 class="sec-title wipe">特殊技術實績</h2>
+      <p class="sec-kicker reveal d1">Technical Highlights</p>
+    </div>
+    <div class="grid12">
+      <div class="cards">
+        <div class="featrow reveal">
+          <div class="pn">01</div>
+          <div class="ft">Stable Diffusion + LoRA 模型微調</div>
+          <div class="fd">獨立完成圖像生成模型訓練，涵蓋資料標注、訓練參數調整至產出完整流程，具備 AI 模型層級的實戰能力，不只是 API 呼叫層。</div>
+        </div>
+        <div class="featrow reveal">
+          <div class="pn">02</div>
+          <div class="ft">醫療文件 RAG 系統</div>
+          <div class="fd">將 800+ 頁原文病歷向量化，建置可語義查詢的醫療知識庫，實際用於醫療諮詢輔助，具備高精度召回率與答案可追溯性需求的處理經驗。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 06 EDUCATION ===== -->
+<section id="education">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-num reveal">06</div>
+      <h2 class="sec-title wipe">學歷</h2>
+      <p class="sec-kicker reveal d1">Education</p>
+    </div>
+    <div class="grid12">
+      <div class="edu reveal">
+        <svg class="ic" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 4L2 9l10 5 10-5-10-5z"/><path d="M6 11v5c0 1.1 2.7 2 6 2s6-.9 6-2v-5M22 9v5"/></svg>
+        <div class="et">中山醫學大學</div>
+        <div class="ed">醫學資訊學系 · 學士</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 07 CONTACT ===== -->
+<section id="contact">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-num reveal">07</div>
+      <h2 class="sec-title wipe">聯繫</h2>
+      <p class="sec-kicker reveal d1">Let's build something</p>
+    </div>
+    <div class="grid12">
+      <div class="contact-grid">
+        <div class="contact-mail reveal">
+          <a href="mailto:serviceluna@luna-ai-life.com">serviceluna@luna-ai-life.com</a>
+        </div>
+        <div class="links reveal d1">
+          <a href="https://luna-ai-life.com" target="_blank" rel="noopener noreferrer">
+            <span class="ln-num">01</span>
+            <span class="ln-name">璐娜健康管家</span>
+            <span class="ln-url">luna-ai-life.com</span>
+            <svg class="arr" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
+          </a>
+          <a href="https://jlfshop.com" target="_blank" rel="noopener noreferrer">
+            <span class="ln-num">02</span>
+            <span class="ln-name">金連發電器</span>
+            <span class="ln-url">jlfshop.com</span>
+            <svg class="arr" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
+          </a>
+          <a href="https://github.com/" target="_blank" rel="noopener noreferrer">
+            <span class="ln-num">03</span>
+            <span class="ln-name"><i class="fa-brands fa-github" aria-hidden="true"></i>GitHub</span>
+            <span class="ln-url">github.com</span>
+            <svg class="arr" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="wrap">
+    <div class="foot-inner">
+      <div class="fb"><span class="mk" aria-hidden="true"></span>IAN CHENG</div>
+      <div class="cr">© 2026 Ian Cheng</div>
+      <a class="top" href="#hero">回到頂部
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* ---- Mobile nav toggle ---- */
+  var nav = document.getElementById("nav");
+  var toggle = document.getElementById("navToggle");
+  if(toggle){
+    toggle.addEventListener("click", function(){
+      var open = nav.classList.toggle("open");
+      toggle.setAttribute("aria-expanded", open ? "true" : "false");
+    });
+    nav.querySelectorAll("ul a").forEach(function(a){
+      a.addEventListener("click", function(){
+        nav.classList.remove("open");
+        toggle.setAttribute("aria-expanded","false");
+      });
+    });
+  }
+
+  /* ---- Hero title in ---- */
+  var heroTitle = document.getElementById("heroTitle");
+  if(heroTitle){ requestAnimationFrame(function(){ heroTitle.classList.add("in"); }); }
+
+  if(reduce){
+    document.querySelectorAll(".reveal,.wipe,.rule").forEach(function(el){ el.classList.add("in"); });
+    document.querySelectorAll(".count").forEach(function(el){ el.textContent = el.getAttribute("data-to"); });
+  } else {
+    /* ---- Intersection reveal ---- */
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){
+          e.target.classList.add("in");
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold:0.12, rootMargin:"0px 0px -8% 0px" });
+    document.querySelectorAll(".reveal,.wipe,.rule").forEach(function(el){ io.observe(el); });
+
+    /* ---- Number count up ---- */
+    function countUp(el){
+      var to = parseInt(el.getAttribute("data-to"),10) || 0;
+      var dur = 1100, start = null;
+      function step(ts){
+        if(start===null) start = ts;
+        var p = Math.min((ts-start)/dur, 1);
+        var eased = 1 - Math.pow(1-p, 3);
+        el.textContent = Math.round(eased*to);
+        if(p<1) requestAnimationFrame(step);
+        else el.textContent = to;
+      }
+      requestAnimationFrame(step);
+    }
+    var statsBox = document.getElementById("stats");
+    if(statsBox){
+      var sio = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){
+          if(e.isIntersecting){
+            statsBox.querySelectorAll(".count").forEach(countUp);
+            sio.disconnect();
+          }
+        });
+      }, { threshold:0.4 });
+      sio.observe(statsBox);
+    }
+  }
+
+  /* ---- Scroll spy nav highlight ---- */
+  var sections = Array.prototype.slice.call(document.querySelectorAll("main section[id]"));
+  var navLinks = Array.prototype.slice.call(document.querySelectorAll("#nav ul a"));
+  function spy(){
+    var pos = window.scrollY + 120;
+    var current = sections[0];
+    for(var i=0;i<sections.length;i++){
+      if(sections[i].offsetTop <= pos) current = sections[i];
+    }
+    var id = current ? current.id : "";
+    navLinks.forEach(function(a){
+      a.classList.toggle("active", a.getAttribute("href") === "#"+id);
+    });
+  }
+  var ticking = false;
+  window.addEventListener("scroll", function(){
+    if(!ticking){
+      window.requestAnimationFrame(function(){ spy(); ticking=false; });
+      ticking=true;
+    }
+  }, { passive:true });
+  spy();
+})();
+</script>
+</body>
+</html>

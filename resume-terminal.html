@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ian Cheng — 資深全端工程師 &amp; AI 工程師</title>
+<meta name="description" content="Ian Cheng — 資深全端工程師 &amp; AI 工程師。10 年開發經驗，擅長 AI 產品落地、微服務架構設計，具備從零到上線的完整交付能力。" />
+<meta name="author" content="Ian Cheng" />
+<meta name="theme-color" content="#0a0e0a" />
+<meta name="robots" content="index,follow" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="profile" />
+<meta property="og:title" content="Ian Cheng — 資深全端工程師 &amp; AI 工程師" />
+<meta property="og:description" content="10 年開發經驗，擅長 AI 產品落地、微服務架構設計，具備從零到上線的完整交付能力。" />
+<meta property="og:locale" content="zh_TW" />
+<meta property="profile:first_name" content="Ian" />
+<meta property="profile:last_name" content="Cheng" />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="Ian Cheng — 資深全端工程師 &amp; AI 工程師" />
+<meta name="twitter:description" content="10 年開發經驗，擅長 AI 產品落地、微服務架構設計，具備從零到上線的完整交付能力。" />
+
+<!-- Favicon (data URI SVG) -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20100%20100'%3E%3Crect%20width='100'%20height='100'%20rx='18'%20fill='%230a0e0a'/%3E%3Ctext%20x='14'%20y='66'%20font-family='monospace'%20font-size='52'%20fill='%2300ff7f'%3E%26gt;_%3C/text%3E%3C/svg%3E" />
+
+<!-- Google Fonts: JetBrains Mono -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<style>
+  :root {
+    --bg: #070a07;
+    --bg-panel: #0b110b;
+    --bg-window: #0d140d;
+    --green: #00ff7f;
+    --green-dim: #3a9d6a;
+    --amber: #ffb347;
+    --amber-dim: #c98a2e;
+    --text: #b9f5cf;
+    --text-dim: #6f9c84;
+    --line: rgba(0, 255, 127, 0.18);
+    --line-soft: rgba(0, 255, 127, 0.08);
+    --glow: 0 0 4px rgba(0, 255, 127, 0.55);
+    --glow-amber: 0 0 4px rgba(255, 179, 71, 0.5);
+    --font: 'JetBrains Mono', 'Fira Code', 'Courier New', ui-monospace, monospace;
+    --max: 980px;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font);
+    font-size: 15px;
+    line-height: 1.7;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    text-shadow: var(--glow);
+  }
+
+  a { color: var(--amber); text-decoration: none; text-shadow: var(--glow-amber); }
+  a:hover { text-decoration: underline; }
+
+  /* ---------- Matrix rain ---------- */
+  #matrix {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    opacity: 0.10;
+    pointer-events: none;
+  }
+
+  /* ---------- CRT overlays ---------- */
+  .scanlines {
+    position: fixed;
+    inset: 0;
+    z-index: 9000;
+    pointer-events: none;
+    background: repeating-linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0) 0,
+      rgba(0, 0, 0, 0) 2px,
+      rgba(0, 0, 0, 0.18) 3px,
+      rgba(0, 0, 0, 0) 4px
+    );
+    mix-blend-mode: multiply;
+  }
+  .vignette {
+    position: fixed;
+    inset: 0;
+    z-index: 8999;
+    pointer-events: none;
+    background: radial-gradient(ellipse at center, transparent 55%, rgba(0, 0, 0, 0.55) 100%);
+  }
+  .flicker {
+    position: fixed;
+    inset: 0;
+    z-index: 8998;
+    pointer-events: none;
+    background: rgba(0, 255, 127, 0.015);
+    animation: flicker 6s infinite steps(1);
+  }
+  @keyframes flicker {
+    0%, 96%, 100% { opacity: 0.35; }
+    97% { opacity: 0.7; }
+    98% { opacity: 0.2; }
+    99% { opacity: 0.6; }
+  }
+
+  /* ---------- Boot sequence ---------- */
+  #boot {
+    position: fixed;
+    inset: 0;
+    z-index: 9500;
+    background: var(--bg);
+    padding: clamp(16px, 5vw, 60px);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  #boot .boot-inner {
+    max-width: 860px;
+    width: 100%;
+    margin: auto 0;
+    font-size: clamp(12px, 2.6vw, 15px);
+  }
+  .boot-line { white-space: pre-wrap; margin: 2px 0; }
+  .boot-line .ok { color: var(--green); }
+  .boot-line .warn { color: var(--amber); }
+  .boot-prompt { color: var(--green-dim); }
+  .boot-skip {
+    position: fixed;
+    bottom: 18px;
+    right: 22px;
+    color: var(--text-dim);
+    font-size: 12px;
+    z-index: 9600;
+    letter-spacing: 0.06em;
+  }
+  .boot-skip kbd {
+    border: 1px solid var(--line);
+    padding: 1px 6px;
+    border-radius: 4px;
+    color: var(--green);
+  }
+  .cursor {
+    display: inline-block;
+    width: 0.6em;
+    height: 1.05em;
+    background: var(--green);
+    box-shadow: var(--glow);
+    vertical-align: -2px;
+    animation: blink 1s steps(1) infinite;
+  }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  /* ---------- Main layout ---------- */
+  #main { position: relative; z-index: 1; opacity: 0; }
+  #main.show { opacity: 1; transition: opacity 0.6s ease; }
+
+  .wrap { max-width: var(--max); margin: 0 auto; padding: 0 clamp(14px, 4vw, 28px); }
+
+  .window {
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: var(--bg-window);
+    margin: 22px auto;
+    max-width: var(--max);
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.6), inset 0 0 60px rgba(0, 255, 127, 0.02);
+    overflow: hidden;
+  }
+  .titlebar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 14px;
+    border-bottom: 1px solid var(--line);
+    background: linear-gradient(180deg, rgba(0,255,127,0.06), rgba(0,0,0,0));
+  }
+  .dot { width: 12px; height: 12px; border-radius: 50%; display: inline-block; }
+  .dot.r { background: #ff5f56; }
+  .dot.y { background: #ffbd2e; }
+  .dot.g { background: #27c93f; }
+  .titlebar .tb-title {
+    margin-left: 10px;
+    color: var(--text-dim);
+    font-size: 12.5px;
+    letter-spacing: 0.04em;
+  }
+  .window-body { padding: clamp(16px, 4vw, 30px); }
+
+  /* ---------- Section ---------- */
+  section { scroll-margin-top: 20px; }
+  .cmd {
+    color: var(--green);
+    font-weight: 700;
+    margin: 0 0 4px;
+    letter-spacing: 0.02em;
+    font-size: 1.02rem;
+  }
+  .cmd .sigil { color: var(--amber); }
+  .cmd-out { color: var(--text-dim); font-size: 12.5px; margin: 0 0 18px; }
+
+  h1, h2, h3 { font-weight: 700; }
+
+  /* ---------- Hero ---------- */
+  .hero h1 {
+    font-size: clamp(1.7rem, 6vw, 3rem);
+    margin: 6px 0 4px;
+    color: var(--green);
+    line-height: 1.2;
+  }
+  .hero .role {
+    color: var(--amber);
+    font-size: clamp(1rem, 3.2vw, 1.35rem);
+    margin: 0 0 14px;
+    min-height: 1.4em;
+  }
+  .hero .tagline { color: var(--text); max-width: 720px; margin: 0 0 18px; }
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid var(--green);
+    border-radius: 999px;
+    padding: 5px 14px;
+    color: var(--green);
+    font-size: 13px;
+    margin-bottom: 18px;
+  }
+  .badge .pulse {
+    width: 9px; height: 9px; border-radius: 50%;
+    background: var(--green); box-shadow: 0 0 8px var(--green);
+    animation: pulse 1.6s ease-in-out infinite;
+  }
+  @keyframes pulse { 0%,100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.35; transform: scale(0.7); } }
+  .hero-links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 6px; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    border: 1px solid var(--line); border-radius: 6px;
+    padding: 8px 16px; color: var(--text);
+    transition: all 0.2s ease; text-shadow: var(--glow);
+  }
+  .btn:hover { border-color: var(--green); color: var(--green); background: rgba(0,255,127,0.06); text-decoration: none; }
+
+  /* ---------- Stats ---------- */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    margin-top: 6px;
+  }
+  .stat {
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 18px 12px;
+    text-align: center;
+    background: rgba(0, 255, 127, 0.02);
+  }
+  .stat .num {
+    font-size: clamp(1.8rem, 6vw, 2.6rem);
+    font-weight: 700;
+    color: var(--amber);
+    text-shadow: var(--glow-amber);
+    line-height: 1;
+  }
+  .stat .label { color: var(--text-dim); font-size: 12px; margin-top: 8px; }
+
+  /* ---------- About ---------- */
+  .about p { margin: 0 0 14px; }
+  .about p::before { content: "» "; color: var(--green-dim); }
+
+  /* ---------- Skills ---------- */
+  .skills-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .skill-card {
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 14px 16px;
+    background: rgba(0,255,127,0.015);
+  }
+  .skill-card h3 {
+    margin: 0 0 10px; color: var(--green); font-size: 0.95rem;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .skill-card h3 svg { width: 16px; height: 16px; flex: none; }
+  .chips { display: flex; flex-wrap: wrap; gap: 7px; }
+  .chip {
+    border: 1px solid var(--line-soft);
+    background: rgba(0,255,127,0.05);
+    border-radius: 5px;
+    padding: 3px 9px;
+    font-size: 12.5px;
+    color: var(--text);
+  }
+  .chip:hover { border-color: var(--green); color: var(--green); }
+
+  /* ---------- Timeline / experience ---------- */
+  .job-head { margin-bottom: 4px; }
+  .job-head .title { color: var(--green); font-size: 1.05rem; font-weight: 700; }
+  .job-head .meta { color: var(--text-dim); font-size: 12.5px; }
+  .exp-item {
+    border-left: 2px solid var(--line);
+    padding: 0 0 18px 18px;
+    margin-left: 6px;
+    position: relative;
+    margin-top: 18px;
+  }
+  .exp-item::before {
+    content: "";
+    position: absolute;
+    left: -7px; top: 4px;
+    width: 11px; height: 11px;
+    border-radius: 50%;
+    background: var(--green);
+    box-shadow: var(--glow);
+  }
+  .exp-item h3 { margin: 0 0 8px; color: var(--amber); font-size: 0.98rem; }
+  .exp-item ul { margin: 0; padding-left: 18px; }
+  .exp-item li { margin: 4px 0; color: var(--text); }
+  .exp-item li::marker { color: var(--green-dim); content: "› "; }
+
+  /* ---------- Projects ---------- */
+  .proj-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+  .proj-card {
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 18px;
+    background: rgba(0,255,127,0.02);
+    display: flex; flex-direction: column;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+  }
+  .proj-card:hover { transform: translateY(-3px); border-color: var(--green); }
+  .proj-card h3 { margin: 0 0 4px; color: var(--green); font-size: 1.1rem; }
+  .proj-card .proj-meta { color: var(--amber); font-size: 12px; margin-bottom: 10px; }
+  .proj-card p { margin: 0 0 10px; color: var(--text); font-size: 13.5px; }
+  .proj-card ul { margin: 0 0 12px; padding-left: 18px; font-size: 13px; }
+  .proj-card li { margin: 3px 0; }
+  .proj-card li::marker { color: var(--green-dim); }
+  .proj-card .chips { margin-top: auto; }
+  .proj-link { margin-top: 12px; }
+
+  /* ---------- Special / education / contact ---------- */
+  .feat-item {
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 16px 18px;
+    margin-bottom: 16px;
+    background: rgba(255,179,71,0.03);
+  }
+  .feat-item h3 { margin: 0 0 8px; color: var(--amber); font-size: 1rem; display: flex; gap: 9px; align-items: center; }
+  .feat-item h3 svg { width: 18px; height: 18px; flex: none; }
+  .feat-item p { margin: 0; color: var(--text); font-size: 13.5px; }
+
+  .edu { display: flex; align-items: center; gap: 14px; }
+  .edu svg { width: 26px; height: 26px; flex: none; color: var(--green); }
+  .edu .edu-main { color: var(--green); font-weight: 700; }
+  .edu .edu-sub { color: var(--text-dim); font-size: 13px; }
+
+  .contact-grid { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 4px; }
+  .contact-card {
+    flex: 1 1 200px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 16px;
+    display: flex; align-items: center; gap: 12px;
+    transition: border-color 0.2s ease;
+  }
+  .contact-card:hover { border-color: var(--green); }
+  .contact-card svg, .contact-card i { width: 22px; font-size: 20px; color: var(--green); text-align: center; }
+  .contact-card .c-label { color: var(--text-dim); font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; }
+  .contact-card .c-val { color: var(--text); font-size: 13.5px; word-break: break-all; }
+
+  /* ---------- Footer ---------- */
+  footer {
+    text-align: center;
+    color: var(--text-dim);
+    font-size: 12.5px;
+    padding: 30px 16px 50px;
+    position: relative;
+    z-index: 1;
+  }
+  footer .prompt { color: var(--green-dim); }
+
+  /* ---------- Reveal animation ---------- */
+  .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.5s ease, transform 0.5s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 760px) {
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .skills-grid, .proj-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ---------- Reduced motion ---------- */
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+    .reveal { opacity: 1 !important; transform: none !important; }
+    .cursor { opacity: 1; }
+  }
+
+  /* ---------- Print ---------- */
+  @media print {
+    #matrix, .scanlines, .vignette, .flicker, #boot, .boot-skip { display: none !important; }
+    body { background: #fff; color: #111; text-shadow: none; font-size: 11pt; }
+    a { color: #0a4; text-shadow: none; }
+    #main { opacity: 1 !important; }
+    .window { border: 1px solid #ccc; box-shadow: none; margin: 10px 0; break-inside: avoid; }
+    .titlebar { background: #f3f3f3; border-color: #ddd; }
+    .titlebar .tb-title { color: #555; }
+    .dot { border: 1px solid #aaa; }
+    .cmd, .hero h1, .stat .num, .skill-card h3, .proj-card h3, .edu .edu-main, .badge { color: #0a4 !important; text-shadow: none !important; }
+    .role, .exp-item h3, .feat-item h3, .proj-card .proj-meta, .stat .num { color: #b25e00 !important; text-shadow: none !important; }
+    .chip, .stat, .skill-card, .proj-card, .feat-item, .contact-card, .exp-item, .badge { background: #fff !important; border-color: #ddd !important; }
+    .reveal { opacity: 1 !important; transform: none !important; }
+    .text, .about p, .exp-item li, .proj-card p { color: #222; }
+  }
+</style>
+</head>
+<body>
+
+<canvas id="matrix" aria-hidden="true"></canvas>
+<div class="scanlines" aria-hidden="true"></div>
+<div class="vignette" aria-hidden="true"></div>
+<div class="flicker" aria-hidden="true"></div>
+
+<!-- ============ BOOT SEQUENCE ============ -->
+<div id="boot" role="status" aria-label="系統開機中">
+  <div class="boot-inner" id="bootInner"></div>
+</div>
+<div class="boot-skip" id="bootSkip" aria-hidden="true">點擊任意處或按 <kbd>Enter</kbd> 跳過</div>
+
+<!-- ============ MAIN ============ -->
+<main id="main">
+
+  <!-- HERO -->
+  <div class="window reveal hero">
+    <div class="titlebar">
+      <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+      <span class="tb-title">ian@portfolio: ~/profile</span>
+    </div>
+    <div class="window-body">
+      <div class="badge"><span class="pulse"></span>Available for opportunities</div>
+      <p class="cmd"><span class="sigil">$</span> whoami</p>
+      <h1>Ian Cheng<span class="cursor" aria-hidden="true"></span></h1>
+      <p class="role" id="roleType" data-text="資深全端工程師 &amp; AI 工程師">資深全端工程師 &amp; AI 工程師</p>
+      <p class="tagline">10 年開發經驗，擅長 AI 產品落地、微服務架構設計，具備從零到上線的完整交付能力。</p>
+      <div class="hero-links">
+        <a class="btn" href="mailto:serviceluna@luna-ai-life.com"><i class="fa-regular fa-envelope" aria-hidden="true"></i> serviceluna@luna-ai-life.com</a>
+        <a class="btn" href="https://luna-ai-life.com" target="_blank" rel="noopener"><i class="fa-solid fa-heart-pulse" aria-hidden="true"></i> 璐娜健康管家</a>
+        <a class="btn" href="https://jlfshop.com" target="_blank" rel="noopener"><i class="fa-solid fa-cart-shopping" aria-hidden="true"></i> 金連發電器</a>
+        <a class="btn" href="https://github.com/" target="_blank" rel="noopener"><i class="fa-brands fa-github" aria-hidden="true"></i> GitHub</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <div class="window reveal">
+    <div class="titlebar">
+      <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+      <span class="tb-title">~/stats --load</span>
+    </div>
+    <div class="window-body">
+      <p class="cmd"><span class="sigil">$</span> ./load_metrics.sh</p>
+      <div class="stats">
+        <div class="stat"><div class="num" data-count="10" data-suffix="+">0</div><div class="label">年開發經驗</div></div>
+        <div class="stat"><div class="num" data-count="5" data-suffix="+">0</div><div class="label">大型專案交付</div></div>
+        <div class="stat"><div class="num" data-count="2" data-suffix="">0</div><div class="label">自建產品上線</div></div>
+        <div class="stat"><div class="num" data-count="3" data-suffix="">0</div><div class="label">AI 整合實戰</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <div class="window reveal">
+    <div class="titlebar">
+      <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+      <span class="tb-title">~/about.md</span>
+    </div>
+    <div class="window-body about">
+      <p class="cmd"><span class="sigil">$</span> cat about.md</p>
+      <p class="cmd-out"># 關於我</p>
+      <p>10 年全端工程師，具備從系統架構設計到 AI 產品落地的端對端能力。曾在中部區域醫院主導多項院內大型系統開發，採微服務架構 + API Gateway + RBAC 集中控管，支援全院多部門運作。</p>
+      <p>自行開發並上線 璐娜健康管家（AI 健康 SaaS）與金連發電器（家電電商），整合 Gemini + OpenAI 多模態雙引擎。具備 Stable Diffusion + LoRA 模型微調及 RAG 系統建置實戰經驗，熟悉醫療資料處理與合規需求。</p>
+      <p>背景橫跨醫療資訊、電商、AI 三個領域，能同時勝任技術深度討論與跨部門架構溝通。目前積極尋求 AI 工程師 / Tech Lead / Solution Architect 相關機會。</p>
+    </div>
+  </div>
+
+  <!-- SKILLS -->
+  <div class="window reveal">
+    <div class="titlebar">
+      <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+      <span class="tb-title">~/skills/</span>
+    </div>
+    <div class="window-body">
+      <p class="cmd"><span class="sigil">$</span> ls skills/ --all</p>
+      <p class="cmd-out"># 核心技能</p>
+      <div class="skills-grid">
+        <div class="skill-card">
+          <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>程式語言</h3>
+          <div class="chips"><span class="chip">Python</span><span class="chip">Vue.js</span><span class="chip">PHP</span><span class="chip">JavaScript</span><span class="chip">HTML / CSS</span></div>
+        </div>
+        <div class="skill-card">
+          <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>資料庫</h3>
+          <div class="chips"><span class="chip">MySQL</span><span class="chip">PostgreSQL</span><span class="chip">MongoDB</span><span class="chip">Redis</span></div>
+        </div>
+        <div class="skill-card">
+          <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>系統架構</h3>
+          <div class="chips"><span class="chip">微服務</span><span class="chip">API Gateway</span><span class="chip">RBAC</span><span class="chip">事件驅動</span><span class="chip">負載均衡</span><span class="chip">CDN</span></div>
+        </div>
+        <div class="skill-card">
+          <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4M5 5l3 3M16 16l3 3M19 5l-3 3M8 16l-3 3"/></svg>AI / ML</h3>
+          <div class="chips"><span class="chip">OpenAI API</span><span class="chip">Gemini API</span><span class="chip">RAG</span><span class="chip">LoRA fine-tuning</span><span class="chip">Stable Diffusion</span><span class="chip">向量資料庫</span></div>
+        </div>
+        <div class="skill-card">
+          <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>DevOps</h3>
+          <div class="chips"><span class="chip">Docker</span><span class="chip">CI/CD</span><span class="chip">Linux</span><span class="chip">Nginx</span></div>
+        </div>
+        <div class="skill-card">
+          <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="15" x2="15" y2="15"/></svg>領域知識</h3>
+          <div class="chips"><span class="chip">醫療資訊系統</span><span class="chip">電商平台</span><span class="chip">醫療資料合規</span><span class="chip">HL7 / FHIR</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXPERIENCE -->
+  <div class="window reveal">
+    <div class="titlebar">
+      <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+      <span class="tb-title">~/experience.log</span>
+    </div>
+    <div class="window-body">
+      <p class="cmd"><span class="sigil">$</span> git log --experience</p>
+      <p class="cmd-out"># 工作經歷</p>
+      <div class="job-head">
+        <div class="title">程式設計師 ＠ 中部區域醫院</div>
+        <div class="meta">任職約 9 年 — 至今</div>
+      </div>
+      <div class="exp-item">
+        <h3>全院行動祕書（全院通用行動 App）</h3>
+        <ul>
+          <li>微服務架構設計，各功能模組獨立部署並透過 API Gateway 統一入口管理</li>
+          <li>RBAC 集中式權限控管，支援多角色、多部門存取隔離</li>
+          <li>Vue.js 前端 + Python / PHP 後端，Redis 快取優化高頻讀取效能</li>
+          <li>負責架構設計、開發、部署與維運全流程</li>
+        </ul>
+      </div>
+      <div class="exp-item">
+        <h3>個案管理系統</h3>
+        <ul>
+          <li>跨科別病患個案追蹤平台，整合多部門護理流程與個案狀態管理</li>
+          <li>符合醫療資料安全規範，實作審計日誌與敏感欄位加密機制</li>
+        </ul>
+      </div>
+      <div class="exp-item">
+        <h3>學習護照系統</h3>
+        <ul>
+          <li>全院員工學習歷程平台，支援課程管理、學習進度追蹤與認證產出</li>
+          <li>模組化設計對應醫師、護理師、行政等不同職類的差異化學習路徑</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROJECTS -->
+  <div class="window reveal">
+    <div class="titlebar">
+      <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+      <span class="tb-title">~/projects/</span>
+    </div>
+    <div class="window-body">
+      <p class="cmd"><span class="sigil">$</span> ls -la projects/</p>
+      <p class="cmd-out"># 自建作品</p>
+      <div class="proj-grid">
+        <div class="proj-card">
+          <h3>璐娜健康管家</h3>
+          <div class="proj-meta">AI SaaS · LINE Bot · 健康管理</div>
+          <p>整合 Gemini + OpenAI 雙引擎的 AI 健康管理平台，提供拍照熱量辨識、社交陪跑配對與個人化健康報告。</p>
+          <ul>
+            <li>多模態 AI 辨識食物熱量（蛋白質、碳水、脂肪、鈉）</li>
+            <li>AI 配對陪跑夥伴 + 遊戲化打卡獎勵系統</li>
+            <li>個人化週報 / 月報含代謝評估與行動建議</li>
+            <li>Gemini + OpenAI 雙引擎備援架構</li>
+          </ul>
+          <div class="chips"><span class="chip">OpenAI</span><span class="chip">Gemini</span><span class="chip">Vue.js</span><span class="chip">Python</span><span class="chip">LINE Bot</span></div>
+          <div class="proj-link"><a href="https://luna-ai-life.com" target="_blank" rel="noopener"><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> luna-ai-life.com</a></div>
+        </div>
+        <div class="proj-card">
+          <h3>金連發電器</h3>
+          <div class="proj-meta">電商平台 · 家電 · 全台配送</div>
+          <p>完整家電購物商城，涵蓋商品管理、訂單流程、安裝 / 回收 / 運送服務整合，為實際營運中的電商系統。</p>
+          <ul>
+            <li>完整電商流程（商品、購物車、訂單、金流）</li>
+            <li>物流整合（安裝、回收、運送服務調度）</li>
+            <li>Redis 快取 + CDN + 負載均衡效能優化</li>
+          </ul>
+          <div class="chips"><span class="chip">Vue.js</span><span class="chip">PHP</span><span class="chip">Redis</span><span class="chip">CDN</span><span class="chip">MySQL</span></div>
+          <div class="proj-link"><a href="https://jlfshop.com" target="_blank" rel="noopener"><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> jlfshop.com</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SPECIAL ACHIEVEMENTS -->
+  <div class="window reveal">
+    <div class="titlebar">
+      <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+      <span class="tb-title">~/achievements --special</span>
+    </div>
+    <div class="window-body">
+      <p class="cmd"><span class="sigil">$</span> cat achievements/special.txt</p>
+      <p class="cmd-out"># 特殊技術實績</p>
+      <div class="feat-item">
+        <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="9"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/></svg>Stable Diffusion + LoRA 模型微調</h3>
+        <p>獨立完成圖像生成模型訓練，涵蓋資料標注、訓練參數調整至產出完整流程，具備 AI 模型層級的實戰能力，不只是 API 呼叫層。</p>
+      </div>
+      <div class="feat-item">
+        <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>醫療文件 RAG 系統</h3>
+        <p>將 800+ 頁原文病歷向量化，建置可語義查詢的醫療知識庫，實際用於醫療諮詢輔助，具備高精度召回率與答案可追溯性需求的處理經驗。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- EDUCATION -->
+  <div class="window reveal">
+    <div class="titlebar">
+      <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+      <span class="tb-title">~/education</span>
+    </div>
+    <div class="window-body">
+      <p class="cmd"><span class="sigil">$</span> cat education.txt</p>
+      <p class="cmd-out"># 學歷</p>
+      <div class="edu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+        <div>
+          <div class="edu-main">中山醫學大學 · 醫學資訊學系</div>
+          <div class="edu-sub">學士</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTACT -->
+  <div class="window reveal">
+    <div class="titlebar">
+      <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+      <span class="tb-title">~/contact --connect</span>
+    </div>
+    <div class="window-body">
+      <p class="cmd"><span class="sigil">$</span> ./connect.sh</p>
+      <p class="cmd-out"># 聯繫</p>
+      <div class="contact-grid">
+        <a class="contact-card" href="mailto:serviceluna@luna-ai-life.com">
+          <i class="fa-regular fa-envelope" aria-hidden="true"></i>
+          <div><div class="c-label">Email</div><div class="c-val">serviceluna@luna-ai-life.com</div></div>
+        </a>
+        <a class="contact-card" href="https://luna-ai-life.com" target="_blank" rel="noopener">
+          <i class="fa-solid fa-heart-pulse" aria-hidden="true"></i>
+          <div><div class="c-label">Product</div><div class="c-val">璐娜健康管家</div></div>
+        </a>
+        <a class="contact-card" href="https://jlfshop.com" target="_blank" rel="noopener">
+          <i class="fa-solid fa-cart-shopping" aria-hidden="true"></i>
+          <div><div class="c-label">Product</div><div class="c-val">金連發電器</div></div>
+        </a>
+        <a class="contact-card" href="https://github.com/" target="_blank" rel="noopener">
+          <i class="fa-brands fa-github" aria-hidden="true"></i>
+          <div><div class="c-label">Code</div><div class="c-val">GitHub</div></div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p><span class="prompt">$</span> echo "© 2026 Ian Cheng"</p>
+    <p>© 2026 Ian Cheng<span class="cursor" aria-hidden="true"></span></p>
+  </footer>
+
+</main>
+
+<script>
+(function () {
+  "use strict";
+
+  var prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  var bootEl = document.getElementById('boot');
+  var bootInner = document.getElementById('bootInner');
+  var bootSkip = document.getElementById('bootSkip');
+  var main = document.getElementById('main');
+
+  var bootLines = [
+    { t: '> booting ian.portfolio ...', c: 'prompt' },
+    { t: '> POST check ............................ [<span class="ok">ok</span>]' },
+    { t: '> mounting modules /core /ai /devops ... [<span class="ok">ok</span>]' },
+    { t: '> loading kernel: resume.engine v10.0 ... [<span class="ok">ok</span>]' },
+    { t: '> init microservices + api-gateway ..... [<span class="ok">ok</span>]' },
+    { t: '> connecting OpenAI + Gemini engines ... [<span class="ok">ok</span>]' },
+    { t: '> spinning up RAG + vector store ....... [<span class="ok">ok</span>]' },
+    { t: '> decrypting profile: Ian Cheng ........ [<span class="ok">ok</span>]' },
+    { t: '> status: <span class="warn">Available for opportunities</span>' },
+    { t: '> all systems nominal. launching UI ...', c: 'prompt' }
+  ];
+
+  var finished = false;
+
+  function revealMain() {
+    if (finished) return;
+    finished = true;
+    bootEl.style.display = 'none';
+    bootSkip.style.display = 'none';
+    main.classList.add('show');
+    initMain();
+  }
+
+  // Skip mechanisms
+  bootEl.addEventListener('click', revealMain);
+  document.addEventListener('keydown', function (e) {
+    if (!finished && (e.key === 'Enter' || e.key === 'Escape' || e.key === ' ')) revealMain();
+  });
+
+  if (prefersReduced) {
+    // Skip boot animation entirely
+    revealMain();
+    return;
+  }
+
+  // Auto-complete safety timeout
+  var safety = setTimeout(revealMain, 9000);
+
+  // Type out boot lines
+  var lineIndex = 0;
+  function typeLine() {
+    if (finished) { clearTimeout(safety); return; }
+    if (lineIndex >= bootLines.length) {
+      clearTimeout(safety);
+      setTimeout(revealMain, 500);
+      return;
+    }
+    var data = bootLines[lineIndex];
+    var div = document.createElement('div');
+    div.className = 'boot-line' + (data.c === 'prompt' ? ' boot-prompt' : '');
+    bootInner.appendChild(div);
+
+    var hasMarkup = data.t.indexOf('<') !== -1;
+    if (hasMarkup) {
+      // Reveal whole line quickly with a small delay (markup-safe)
+      div.innerHTML = data.t + '<span class="cursor"></span>';
+      lineIndex++;
+      setTimeout(function () {
+        var c = div.querySelector('.cursor');
+        if (c) c.remove();
+        typeLine();
+      }, 180);
+    } else {
+      // Char-by-char typing
+      var text = data.t;
+      var i = 0;
+      var cursor = document.createElement('span');
+      cursor.className = 'cursor';
+      div.appendChild(cursor);
+      var iv = setInterval(function () {
+        if (finished) { clearInterval(iv); return; }
+        if (i < text.length) {
+          cursor.insertAdjacentText('beforebegin', text.charAt(i));
+          i++;
+        } else {
+          clearInterval(iv);
+          cursor.remove();
+          lineIndex++;
+          setTimeout(typeLine, 120);
+        }
+      }, 18);
+    }
+  }
+  typeLine();
+
+  // ---------- Main init (reveal, counters, role typing) ----------
+  function initMain() {
+    // Reveal-on-scroll. IntersectionObserver is the primary mechanism, but a
+    // scroll/resize fallback guarantees nothing ever stays stuck invisible even
+    // if the IO initial callback is missed.
+    var reveals = [].slice.call(document.querySelectorAll('.reveal'));
+
+    function inView(el) {
+      var b = el.getBoundingClientRect();
+      var vh = window.innerHeight || document.documentElement.clientHeight;
+      return b.top < vh * 0.92 && b.bottom > 0;
+    }
+    function revealNow(el) { el.classList.add('in'); }
+
+    if (prefersReduced) {
+      reveals.forEach(revealNow);
+    } else {
+      var io = null;
+      if ('IntersectionObserver' in window) {
+        io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (en) {
+            if (en.isIntersecting) { revealNow(en.target); io.unobserve(en.target); }
+          });
+        }, { threshold: 0.12 });
+        reveals.forEach(function (r) { io.observe(r); });
+      }
+      var fallbackCheck = function () {
+        for (var k = reveals.length - 1; k >= 0; k--) {
+          var el = reveals[k];
+          if (inView(el)) { revealNow(el); if (io) io.unobserve(el); reveals.splice(k, 1); }
+        }
+      };
+      window.addEventListener('scroll', fallbackCheck, { passive: true });
+      window.addEventListener('resize', fallbackCheck);
+      window.addEventListener('load', fallbackCheck);
+      // Run immediately and once more on the next frame to cover initial paint.
+      fallbackCheck();
+      requestAnimationFrame(fallbackCheck);
+      // Hard safety net: never leave content invisible. After a short delay,
+      // reveal anything still hidden regardless of IO/scroll/rAF timing.
+      setTimeout(function () {
+        reveals.forEach(function (el) { revealNow(el); if (io) io.unobserve(el); });
+        reveals.length = 0;
+      }, 2500);
+    }
+
+    // Role typewriter
+    var role = document.getElementById('roleType');
+    if (role && !prefersReduced) {
+      var full = role.getAttribute('data-text');
+      role.textContent = '';
+      var ri = 0;
+      var rcur = document.createElement('span');
+      rcur.className = 'cursor';
+      role.appendChild(rcur);
+      var rv = setInterval(function () {
+        if (ri < full.length) {
+          rcur.insertAdjacentText('beforebegin', full.charAt(ri));
+          ri++;
+        } else {
+          clearInterval(rv);
+          setTimeout(function () { if (rcur) rcur.remove(); }, 1600);
+        }
+      }, 55);
+    } else if (role) {
+      role.textContent = role.getAttribute('data-text');
+    }
+
+    // Count-up stats
+    var nums = document.querySelectorAll('.num[data-count]');
+    function runCount(el) {
+      var target = parseInt(el.getAttribute('data-count'), 10);
+      var suffix = el.getAttribute('data-suffix') || '';
+      if (prefersReduced) { el.textContent = target + suffix; return; }
+      var dur = 1100, start = null;
+      function step(ts) {
+        if (!start) start = ts;
+        var p = Math.min((ts - start) / dur, 1);
+        var eased = 1 - Math.pow(1 - p, 3);
+        el.textContent = Math.round(eased * target) + suffix;
+        if (p < 1) requestAnimationFrame(step);
+        else el.textContent = target + suffix;
+      }
+      requestAnimationFrame(step);
+    }
+    var numList = [].slice.call(nums);
+    function numInView(el) {
+      var b = el.getBoundingClientRect();
+      var vh = window.innerHeight || document.documentElement.clientHeight;
+      return b.top < vh * 0.9 && b.bottom > 0;
+    }
+    if (prefersReduced) {
+      numList.forEach(runCount);
+    } else {
+      var nio = null;
+      if ('IntersectionObserver' in window) {
+        nio = new IntersectionObserver(function (entries) {
+          entries.forEach(function (en) {
+            if (en.isIntersecting) { runCount(en.target); nio.unobserve(en.target); }
+          });
+        }, { threshold: 0.4 });
+        numList.forEach(function (n) { nio.observe(n); });
+      }
+      var numCheck = function () {
+        for (var k = numList.length - 1; k >= 0; k--) {
+          var el = numList[k];
+          if (numInView(el)) { runCount(el); if (nio) nio.unobserve(el); numList.splice(k, 1); }
+        }
+      };
+      window.addEventListener('scroll', numCheck, { passive: true });
+      window.addEventListener('resize', numCheck);
+      numCheck();
+      requestAnimationFrame(numCheck);
+    }
+  }
+
+})();
+
+// ---------- Matrix rain ----------
+(function () {
+  var prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var canvas = document.getElementById('matrix');
+  if (!canvas) return;
+  if (prefersReduced) { canvas.style.display = 'none'; return; }
+
+  var ctx = canvas.getContext('2d');
+  var chars = 'アイウエオカキクケコサシスセソ0123456789ABCDEF<>/$#{}[]=+*';
+  var fontSize = 14, columns, drops;
+
+  function resize() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    columns = Math.floor(canvas.width / fontSize);
+    drops = [];
+    for (var i = 0; i < columns; i++) drops[i] = Math.random() * -50;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  function draw() {
+    ctx.fillStyle = 'rgba(7, 10, 7, 0.08)';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = '#00ff7f';
+    ctx.font = fontSize + 'px monospace';
+    for (var i = 0; i < drops.length; i++) {
+      var ch = chars.charAt(Math.floor(Math.random() * chars.length));
+      ctx.fillText(ch, i * fontSize, drops[i] * fontSize);
+      if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
+      drops[i]++;
+    }
+  }
+  var interval = setInterval(draw, 55);
+
+  // Pause when hidden to save CPU
+  document.addEventListener('visibilitychange', function () {
+    if (document.hidden) { clearInterval(interval); }
+    else { interval = setInterval(draw, 55); }
+  });
+})();
+</script>
+</body>
+</html>
