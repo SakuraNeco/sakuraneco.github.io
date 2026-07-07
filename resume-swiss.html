@@ -408,7 +408,7 @@
         </div>
         <div class="about-p reveal">
           <div class="pn">B</div>
-          <p>自行開發並上線 <span class="hl">璐娜健康管家</span>（AI 健康 SaaS）與 <span class="hl">金連發電器</span>（家電電商），整合 Gemini + OpenAI 多模態雙引擎。具備 Stable Diffusion + LoRA 模型微調及 RAG 系統建置實戰經驗，熟悉醫療資料處理與合規需求。</p>
+          <p>自行開發並上線 <span class="hl">璐娜健康管家</span>（AI 健康 SaaS）與 <span class="hl">金連發電器</span>（家電電商）。具備 Stable Diffusion + LoRA 模型微調及 RAG 系統建置實戰經驗，熟悉醫療資料處理與合規需求。</p>
         </div>
         <div class="about-p reveal">
           <div class="pn">C</div>
@@ -466,7 +466,7 @@
             <h4>AI / ML</h4>
           </div>
           <div class="v">
-            <span class="chip">OpenAI API</span><span class="chip">Gemini API</span><span class="chip">RAG</span><span class="chip">LoRA fine-tuning</span><span class="chip">Stable Diffusion</span><span class="chip">向量資料庫</span>
+            <span class="chip">串接當前熱門模型</span><span class="chip">RAG</span><span class="chip">LoRA fine-tuning</span><span class="chip">Stable Diffusion</span><span class="chip">向量資料庫</span><span class="chip">LLM 微調 (Qwen)</span><span class="chip">Illustrious-XL</span>
           </div>
         </div>
 
@@ -513,10 +513,10 @@
       <div class="projects">
         <div class="proj reveal">
           <div class="pn">A</div>
-          <div class="pt">全院行動祕書</div>
+          <div class="pt">全院個人服務 App</div>
           <ul class="pd">
-            <li>微服務架構設計，各功能模組獨立部署並透過 API Gateway 統一入口管理</li>
-            <li>RBAC 集中式權限控管，支援多角色、多部門存取隔離</li>
+            <li>以微服務架構（10–15 個獨立服務模組）設計，各模組獨立部署並透過 API Gateway 統一入口管理</li>
+            <li>RBAC 集中式權限控管，支援全院 3,500 名員工、100+ 部門的多角色存取隔離</li>
             <li>Vue.js 前端 + Python / PHP 後端，Redis 快取優化高頻讀取效能</li>
             <li>負責架構設計、開發、部署與維運全流程</li>
           </ul>
@@ -565,15 +565,14 @@
           <a class="lk" href="https://luna-ai-life.com" target="_blank" rel="noopener noreferrer"><span class="ul">luna-ai-life.com</span>
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
           </a>
-          <p class="desc">整合 Gemini + OpenAI 雙引擎的 AI 健康管理平台，提供拍照熱量辨識、社交陪跑配對與個人化健康報告。</p>
+          <p class="desc">AI 健康管理平台，提供拍照熱量辨識、社交陪跑配對與個人化健康報告。</p>
           <ul class="feats">
             <li>多模態 AI 辨識食物熱量（蛋白質、碳水、脂肪、鈉）</li>
             <li>AI 配對陪跑夥伴 + 遊戲化打卡獎勵系統</li>
             <li>個人化週報 / 月報含代謝評估與行動建議</li>
-            <li>Gemini + OpenAI 雙引擎備援架構</li>
           </ul>
           <div class="tags">
-            <span>OpenAI</span><span>Gemini</span><span>Vue.js</span><span>Python</span><span>LINE Bot</span>
+            <span>串接熱門模型</span><span>Vue.js</span><span>Python</span><span>LINE Bot</span>
           </div>
         </article>
 
@@ -616,12 +615,17 @@
         <div class="featrow reveal">
           <div class="pn">01</div>
           <div class="ft">Stable Diffusion + LoRA 模型微調</div>
-          <div class="fd">獨立完成圖像生成模型訓練，涵蓋資料標注、訓練參數調整至產出完整流程，具備 AI 模型層級的實戰能力，不只是 API 呼叫層。</div>
+          <div class="fd">以 sd-scripts 在 Illustrious-XL（SDXL）底模上獨立完成角色 LoRA 微調，資料集約 1,500 張，涵蓋資料標注、訓練參數調整到產出的完整流程，具備 AI 模型層級能力，不只是 API 呼叫層。</div>
         </div>
         <div class="featrow reveal">
           <div class="pn">02</div>
           <div class="ft">醫療文件 RAG 系統</div>
-          <div class="fd">將 800+ 頁原文病歷向量化，建置可語義查詢的醫療知識庫，實際用於醫療諮詢輔助，具備高精度召回率與答案可追溯性需求的處理經驗。</div>
+          <div class="fd">將 800+ 頁原文病歷切塊向量化為可語義查詢的醫療知識庫，查詢數秒內回傳結果並附來源可追溯，實際用於醫療諮詢輔助。</div>
+        </div>
+        <div class="featrow reveal">
+          <div class="pn">03</div>
+          <div class="ft">LLM 微調實戰</div>
+          <div class="fd">對開源大型語言模型 Qwen 2.5（3B / 7B-Instruct）進行微調與多組 checkpoint 迭代實驗，具備開源 LLM 客製化與落地能力。</div>
         </div>
       </div>
     </div>

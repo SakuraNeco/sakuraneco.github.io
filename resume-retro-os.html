@@ -329,7 +329,7 @@
   <div class="logo">IanOS&nbsp;v10.0</div>
   <div class="line" style="animation-delay:.1s">Initializing system memory ........... OK</div>
   <div class="line" style="animation-delay:.4s">Loading full-stack modules ........... OK</div>
-  <div class="line" style="animation-delay:.7s">Mounting AI engines (Gemini + OpenAI)  OK</div>
+  <div class="line" style="animation-delay:.7s">Mounting AI engines .................. OK</div>
   <div class="line" style="animation-delay:1.0s">Connecting microservices / API Gateway OK</div>
   <div class="line" style="animation-delay:1.3s">Starting RESUME.EXE ...</div>
   <div class="bar-wrap line" style="animation-delay:1.4s">
@@ -413,7 +413,7 @@
       <h2 class="sec">關於我</h2>
       <div style="height:14px"></div>
       <p>10 年全端工程師，具備從系統架構設計到 AI 產品落地的端對端能力。曾在中部區域醫院主導多項院內大型系統開發，採微服務架構 + API Gateway + RBAC 集中控管，支援全院多部門運作。</p>
-      <p>自行開發並上線 璐娜健康管家（AI 健康 SaaS）與金連發電器（家電電商），整合 Gemini + OpenAI 多模態雙引擎。具備 Stable Diffusion + LoRA 模型微調及 RAG 系統建置實戰經驗，熟悉醫療資料處理與合規需求。</p>
+      <p>自行開發並上線 璐娜健康管家（AI 健康 SaaS）與金連發電器（家電電商）。具備 Stable Diffusion + LoRA 模型微調及 RAG 系統建置實戰經驗，熟悉醫療資料處理與合規需求。</p>
       <p style="margin-bottom:0">背景橫跨醫療資訊、電商、AI 三個領域，能同時勝任技術深度討論與跨部門架構溝通。目前積極尋求 AI 工程師 / Tech Lead / Solution Architect 相關機會。</p>
     </div>
   </section>
@@ -446,7 +446,7 @@
         <div>
           <div class="skill-group">
             <h3><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6v6H9z"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M1 9h3M1 15h3M20 9h3M20 15h3"/></svg>AI / ML</h3>
-            <div class="chips"><span class="chip">OpenAI API</span><span class="chip">Gemini API</span><span class="chip">RAG</span><span class="chip">LoRA fine-tuning</span><span class="chip">Stable Diffusion</span><span class="chip">向量資料庫</span></div>
+            <div class="chips"><span class="chip">串接當前熱門模型</span><span class="chip">RAG</span><span class="chip">LoRA fine-tuning</span><span class="chip">Stable Diffusion</span><span class="chip">向量資料庫</span><span class="chip">LLM 微調 (Qwen)</span><span class="chip">Illustrious-XL</span></div>
           </div>
           <div class="skill-group">
             <h3><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-2.4.59 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 8 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4 15.6 1.65 1.65 0 0 0 2.5 14.6H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9"/></svg>DevOps</h3>
@@ -474,10 +474,10 @@
       <div class="joblead">程式設計師 ＠ <span class="co">中部區域醫院</span>（任職約 9 年 — 至今）</div>
 
       <div class="exp-item bevel-in">
-        <h3>全院行動祕書（全院通用行動 App）</h3>
+        <h3>全院個人服務 App</h3>
         <ul class="feat">
-          <li>微服務架構設計，各功能模組獨立部署並透過 API Gateway 統一入口管理</li>
-          <li>RBAC 集中式權限控管，支援多角色、多部門存取隔離</li>
+          <li>以微服務架構（10–15 個獨立服務模組）設計，各模組獨立部署並透過 API Gateway 統一入口管理</li>
+          <li>RBAC 集中式權限控管，支援全院 3,500 名員工、100+ 部門的多角色存取隔離</li>
           <li>Vue.js 前端 + Python / PHP 後端，Redis 快取優化高頻讀取效能</li>
           <li>負責架構設計、開發、部署與維運全流程</li>
         </ul>
@@ -518,14 +518,13 @@
             <span class="pmeta">AI SaaS · LINE Bot · 健康管理</span>
           </div>
           <div class="pbody">
-            <p>整合 Gemini + OpenAI 雙引擎的 AI 健康管理平台，提供拍照熱量辨識、社交陪跑配對與個人化健康報告。</p>
+            <p>AI 健康管理平台，提供拍照熱量辨識、社交陪跑配對與個人化健康報告。</p>
             <ul class="feat">
               <li>多模態 AI 辨識食物熱量（蛋白質、碳水、脂肪、鈉）</li>
               <li>AI 配對陪跑夥伴 + 遊戲化打卡獎勵系統</li>
               <li>個人化週報 / 月報含代謝評估與行動建議</li>
-              <li>Gemini + OpenAI 雙引擎備援架構</li>
             </ul>
-            <div class="tags"><span class="tag">OpenAI</span><span class="tag">Gemini</span><span class="tag">Vue.js</span><span class="tag">Python</span><span class="tag">LINE Bot</span></div>
+            <div class="tags"><span class="tag">串接熱門模型</span><span class="tag">Vue.js</span><span class="tag">Python</span><span class="tag">LINE Bot</span></div>
             <a class="plink" href="https://luna-ai-life.com" target="_blank" rel="noopener">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg>
               luna-ai-life.com
@@ -571,14 +570,21 @@
           <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
           Stable Diffusion + LoRA 模型微調
         </h3>
-        <p style="margin-bottom:0">獨立完成圖像生成模型訓練，涵蓋資料標注、訓練參數調整至產出完整流程，具備 AI 模型層級的實戰能力，不只是 API 呼叫層。</p>
+        <p style="margin-bottom:0">以 sd-scripts 在 Illustrious-XL（SDXL）底模上獨立完成角色 LoRA 微調，資料集約 1,500 張，涵蓋資料標注、訓練參數調整到產出的完整流程，具備 AI 模型層級能力，不只是 API 呼叫層。</p>
       </div>
       <div class="ach bevel-in">
         <h3>
           <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
           醫療文件 RAG 系統
         </h3>
-        <p style="margin-bottom:0">將 800+ 頁原文病歷向量化，建置可語義查詢的醫療知識庫，實際用於醫療諮詢輔助，具備高精度召回率與答案可追溯性需求的處理經驗。</p>
+        <p style="margin-bottom:0">將 800+ 頁原文病歷切塊向量化為可語義查詢的醫療知識庫，查詢數秒內回傳結果並附來源可追溯，實際用於醫療諮詢輔助。</p>
+      </div>
+      <div class="ach bevel-in">
+        <h3>
+          <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 4h16v12H5.2L4 17.5z"/><path d="M8 9h8M8 12h5"/></svg>
+          LLM 微調實戰
+        </h3>
+        <p style="margin-bottom:0">對開源大型語言模型 Qwen 2.5（3B / 7B-Instruct）進行微調與多組 checkpoint 迭代實驗，具備開源 LLM 客製化與落地能力。</p>
       </div>
     </div>
   </section>

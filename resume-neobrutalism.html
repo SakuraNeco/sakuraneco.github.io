@@ -463,7 +463,7 @@ footer{
       </div>
       <div class="about-card reveal d1">
         <span class="n">2</span>
-        <p>自行開發並上線 璐娜健康管家（AI 健康 SaaS）與金連發電器（家電電商），整合 Gemini + OpenAI 多模態雙引擎。具備 Stable Diffusion + LoRA 模型微調及 RAG 系統建置實戰經驗，熟悉醫療資料處理與合規需求。</p>
+        <p>自行開發並上線 璐娜健康管家（AI 健康 SaaS）與金連發電器（家電電商）。具備 Stable Diffusion + LoRA 模型微調及 RAG 系統建置實戰經驗，熟悉醫療資料處理與合規需求。</p>
       </div>
       <div class="about-card reveal d2">
         <span class="n">3</span>
@@ -481,8 +481,8 @@ footer{
   </div>
   <div class="marquee reveal d1" aria-hidden="true">
     <div class="marquee-track">
-      <span>PYTHON</span><span>VUE.JS</span><span>OPENAI</span><span>GEMINI</span><span>RAG</span><span>DOCKER</span><span>MICROSERVICES</span><span>REDIS</span><span>STABLE DIFFUSION</span>
-      <span>PYTHON</span><span>VUE.JS</span><span>OPENAI</span><span>GEMINI</span><span>RAG</span><span>DOCKER</span><span>MICROSERVICES</span><span>REDIS</span><span>STABLE DIFFUSION</span>
+      <span>PYTHON</span><span>VUE.JS</span><span>LLM 微調</span><span>QWEN</span><span>RAG</span><span>DOCKER</span><span>MICROSERVICES</span><span>REDIS</span><span>STABLE DIFFUSION</span>
+      <span>PYTHON</span><span>VUE.JS</span><span>LLM 微調</span><span>QWEN</span><span>RAG</span><span>DOCKER</span><span>MICROSERVICES</span><span>REDIS</span><span>STABLE DIFFUSION</span>
     </div>
   </div>
   <div class="wrap">
@@ -501,7 +501,7 @@ footer{
       </div>
       <div class="skill-cat reveal d1">
         <h3><span class="ic"><i class="fa-solid fa-robot"></i></span>AI / ML</h3>
-        <div class="chips"><span class="chip">OpenAI API</span><span class="chip">Gemini API</span><span class="chip">RAG</span><span class="chip">LoRA fine-tuning</span><span class="chip">Stable Diffusion</span><span class="chip">向量資料庫</span></div>
+        <div class="chips"><span class="chip">串接當前熱門模型</span><span class="chip">RAG</span><span class="chip">LoRA fine-tuning</span><span class="chip">LLM 微調 (Qwen)</span><span class="chip">Illustrious-XL</span><span class="chip">Stable Diffusion</span><span class="chip">向量資料庫</span></div>
       </div>
       <div class="skill-cat reveal">
         <h3><span class="ic"><i class="fa-solid fa-gears"></i></span>DevOps</h3>
@@ -529,10 +529,10 @@ footer{
     </div>
     <div class="exp-list">
       <div class="exp-item reveal">
-        <h4>全院行動祕書（全院通用行動 App）</h4>
+        <h4>全院個人服務 App</h4>
         <ul>
-          <li>微服務架構設計，各功能模組獨立部署並透過 API Gateway 統一入口管理</li>
-          <li>RBAC 集中式權限控管，支援多角色、多部門存取隔離</li>
+          <li>以微服務架構（10–15 個獨立服務模組）設計，各模組獨立部署並透過 API Gateway 統一入口管理</li>
+          <li>RBAC 集中式權限控管，支援全院 3,500 名員工、100+ 部門的多角色存取隔離</li>
           <li>Vue.js 前端 + Python / PHP 後端，Redis 快取優化高頻讀取效能</li>
           <li>負責架構設計、開發、部署與維運全流程</li>
         </ul>
@@ -568,14 +568,13 @@ footer{
           <span class="kicker">LIVE</span>
         </div>
         <a class="link" href="https://luna-ai-life.com" target="_blank" rel="noopener"><i class="fa-solid fa-arrow-up-right-from-square"></i> AI SaaS · LINE Bot · 健康管理</a>
-        <p class="desc">整合 Gemini + OpenAI 雙引擎的 AI 健康管理平台，提供拍照熱量辨識、社交陪跑配對與個人化健康報告。</p>
+        <p class="desc">AI 健康管理平台，提供拍照熱量辨識、社交陪跑配對與個人化健康報告。</p>
         <ul class="feat">
           <li>多模態 AI 辨識食物熱量（蛋白質、碳水、脂肪、鈉）</li>
           <li>AI 配對陪跑夥伴 + 遊戲化打卡獎勵系統</li>
           <li>個人化週報 / 月報含代謝評估與行動建議</li>
-          <li>Gemini + OpenAI 雙引擎備援架構</li>
         </ul>
-        <div class="tags"><span class="t">OpenAI</span><span class="t">Gemini</span><span class="t">Vue.js</span><span class="t">Python</span><span class="t">LINE Bot</span></div>
+        <div class="tags"><span class="t">串接熱門模型</span><span class="t">Vue.js</span><span class="t">Python</span><span class="t">LINE Bot</span></div>
       </div>
       <div class="proj reveal d1">
         <div class="top">
@@ -604,12 +603,17 @@ footer{
       <div class="hl-card reveal">
         <div class="ic"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
         <h3>Stable Diffusion + LoRA 模型微調</h3>
-        <p>獨立完成圖像生成模型訓練，涵蓋資料標注、訓練參數調整至產出完整流程，具備 AI 模型層級的實戰能力，不只是 API 呼叫層。</p>
+        <p>以 sd-scripts 在 Illustrious-XL（SDXL）底模上獨立完成角色 LoRA 微調，資料集約 1,500 張，涵蓋資料標注、訓練參數調整到產出的完整流程，具備 AI 模型層級能力，不只是 API 呼叫層。</p>
       </div>
       <div class="hl-card reveal d1">
         <div class="ic"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
         <h3>醫療文件 RAG 系統</h3>
-        <p>將 800+ 頁原文病歷向量化，建置可語義查詢的醫療知識庫，實際用於醫療諮詢輔助，具備高精度召回率與答案可追溯性需求的處理經驗。</p>
+        <p>將 800+ 頁原文病歷切塊向量化為可語義查詢的醫療知識庫，查詢數秒內回傳結果並附來源可追溯，實際用於醫療諮詢輔助。</p>
+      </div>
+      <div class="hl-card reveal d2">
+        <div class="ic"><i class="fa-solid fa-microchip"></i></div>
+        <h3>LLM 微調實戰</h3>
+        <p>對開源大型語言模型 Qwen 2.5（3B / 7B-Instruct）進行微調與多組 checkpoint 迭代實驗，具備開源 LLM 客製化與落地能力。</p>
       </div>
     </div>
   </div>

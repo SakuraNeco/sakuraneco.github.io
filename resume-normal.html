@@ -1383,8 +1383,7 @@
             </p>
             <p>
               自行開發並上線 <span class="hl-ai">璐娜健康管家</span>（AI 健康
-              SaaS）與<span class="hl-com">金連發電器</span>（家電電商），整合
-              <strong>Gemini + OpenAI 多模態雙引擎</strong>。具備
+              SaaS）與<span class="hl-com">金連發電器</span>（家電電商）。具備
               <strong>Stable Diffusion + LoRA 模型微調</strong>及
               <strong>RAG 系統建置</strong>實戰經驗，熟悉醫療資料處理與合規需求。
             </p>
@@ -1458,8 +1457,9 @@
             </div>
             <div class="reg-body">
               <div class="tags">
-                <span class="tag t-ai">OpenAI API</span>
-                <span class="tag t-ai">Gemini API</span>
+                <span class="tag t-ai">串接當前熱門模型</span>
+                <span class="tag t-ai">LLM 微調 (Qwen)</span>
+                <span class="tag t-ai">Illustrious-XL</span>
                 <span class="tag t-ai">RAG</span>
                 <span class="tag t-ai">LoRA fine-tuning</span>
                 <span class="tag t-ai">Stable Diffusion</span>
@@ -1528,11 +1528,11 @@
                     <path d="M10 6h4" />
                     <path d="M11 18h2" />
                   </svg>
-                  全院行動祕書（全院通用行動 App）
+                  全院個人服務 App
                 </p>
                 <ul>
-                  <li>微服務架構設計，各功能模組獨立部署並透過 API Gateway 統一入口管理</li>
-                  <li>RBAC 集中式權限控管，支援多角色、多部門存取隔離</li>
+                  <li>以微服務架構（10–15 個獨立服務模組）設計，各模組獨立部署並透過 API Gateway 統一入口管理</li>
+                  <li>RBAC 集中式權限控管，支援全院 3,500 名員工、100+ 部門的多角色存取隔離</li>
                   <li>Vue.js 前端 + Python / PHP 後端，Redis 快取優化高頻讀取效能</li>
                   <li>負責架構設計、開發、部署與維運全流程</li>
                 </ul>
@@ -1611,18 +1611,16 @@
               <p class="proj-name">璐娜健康管家</p>
               <p class="proj-cat">AI SAAS · LINE BOT · 健康管理</p>
               <p class="proj-desc">
-                整合 Gemini + OpenAI 雙引擎的 AI
+                AI
                 健康管理平台，提供拍照熱量辨識、社交陪跑配對與個人化健康報告。
               </p>
               <div class="features">
                 <div class="feature"><i class="fas fa-check-circle"></i>多模態 AI 辨識食物熱量（蛋白質、碳水、脂肪、鈉）</div>
                 <div class="feature"><i class="fas fa-check-circle"></i>AI 配對陪跑夥伴 + 遊戲化打卡獎勵系統</div>
                 <div class="feature"><i class="fas fa-check-circle"></i>個人化週報 / 月報，含代謝評估與行動建議</div>
-                <div class="feature"><i class="fas fa-check-circle"></i>Gemini + OpenAI 雙引擎備援架構</div>
               </div>
               <div class="tags">
-                <span class="tag t-ai">OpenAI</span>
-                <span class="tag t-ai">Gemini</span>
+                <span class="tag t-ai">串接熱門模型</span>
                 <span class="tag">Vue.js</span>
                 <span class="tag">Python</span>
                 <span class="tag">LINE Bot</span>
@@ -1688,8 +1686,8 @@
             <div>
               <p class="hl-title">Stable Diffusion + LoRA 模型微調</p>
               <p class="hl-desc">
-                獨立完成圖像生成模型訓練，涵蓋<strong>資料標注、訓練參數調整至產出</strong>完整流程，具備
-                AI 模型層級的實戰能力，不只是 API 呼叫層。
+                以 sd-scripts 在 <strong>Illustrious-XL（SDXL）</strong>底模上獨立完成角色 LoRA 微調，資料集約 1,500 張，涵蓋資料標注、訓練參數調整到產出的完整流程，具備
+                AI 模型層級能力，不只是 API 呼叫層。
               </p>
             </div>
           </div>
@@ -1706,7 +1704,24 @@
               <p class="hl-title">醫療文件 RAG 系統</p>
               <p class="hl-desc">
                 將
-                <strong class="med">800+ 頁原文病歷</strong>向量化，建置可語義查詢的醫療知識庫，實際用於醫療諮詢輔助，具備高精度召回率與答案可追溯性需求的處理經驗。
+                <strong class="med">800+ 頁原文病歷</strong>切塊向量化為可語義查詢的醫療知識庫，查詢數秒內回傳結果並附來源可追溯，實際用於醫療諮詢輔助。
+              </p>
+            </div>
+          </div>
+          <div class="panel hl-card fade-in">
+            <div class="hl-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="3" y="4" width="18" height="12" rx="2" />
+                <path d="M8 20h8" />
+                <path d="M12 16v4" />
+                <path d="M7 9h4" />
+                <path d="M7 12h7" />
+              </svg>
+            </div>
+            <div>
+              <p class="hl-title">LLM 微調實戰</p>
+              <p class="hl-desc">
+                對開源大型語言模型 <strong>Qwen 2.5（3B / 7B-Instruct）</strong>進行微調與多組 checkpoint 迭代實驗，具備開源 LLM 客製化與落地能力。
               </p>
             </div>
           </div>
